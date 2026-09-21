@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Sora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+
+  --color-cream: #FFFDEE;
+  --color-mint: #E2FBCE;
+  --color-lime: #E3EF26;
+  --color-forest: #076653;
+  --color-pine: #0C342C;
+  --color-night: #06231D;
+
+  --color-brand-cream: #FFFDEE;
+  --color-brand-mint: #E2FBCE;
+  --color-brand-lime: #E3EF26;
+  --color-brand-lime-hover: #d2de1e;
+  --color-brand-forest: #076653;
+  --color-brand-forest-hover: #055041;
+  --color-brand-pine: #0C342C;
+  --color-brand-night: #06231D;
+}
+
+:root {
+  --font-display: "Sora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --color-brand-cream: #FFFDEE;
+  --color-brand-mint: #E2FBCE;
+  --color-brand-lime: #E3EF26;
+  --color-brand-forest: #076653;
+  --color-brand-pine: #0C342C;
+  --color-brand-night: #06231D;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #FFFDEE;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans, "Inter", sans-serif);
+  overflow-x: hidden;
+  background-color: #FFFDEE;
+  color: #06231D;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography helper utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Glassmorphism & organic high-end surfaces */
+.glass-panel {
+  background: rgba(255, 253, 238, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(12, 52, 44, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(6, 35, 29, 0.06);
+}
+
+.glass-panel-dark {
+  background: rgba(6, 35, 29, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(227, 239, 38, 0.15);
+  box-shadow: 0 25px 60px -12px rgba(6, 35, 29, 0.45);
+}
+
+.glow-lime {
+  box-shadow: 0 0 60px -10px rgba(227, 239, 38, 0.35);
+}
+
+.glow-forest {
+  box-shadow: 0 0 60px -10px rgba(7, 102, 83, 0.3);
+}
+
+/* Interactive focus ring */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #076653;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFDEE;
+}
+::-webkit-scrollbar-thumb {
+  background: #0C342C;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #076653;
+}
+
+/* Infinite marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse beacon */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.15);
+  }
+}
+
+.pulse-beacon {
+  animation: pulse-subtle 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
