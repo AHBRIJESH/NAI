@@ -137,34 +137,49 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
           </div>
 
           {/* Results Column (Broad Midnight Forest container with Acid Lime metrics) */}
-          <div className="lg:col-span-6 rounded-3xl border border-[#076653]/30 bg-[#06231D] text-[#FFFDEE] p-8 sm:p-12 flex flex-col justify-between shadow-2xl shadow-[#06231D]/25">
-            <div>
+          <div className="lg:col-span-6 rounded-3xl border border-[#076653]/30 bg-[#06231D] text-[#FFFDEE] p-6 sm:p-10 flex flex-col justify-between shadow-2xl shadow-[#06231D]/25 min-w-0 overflow-hidden">
+            <div className="min-w-0">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#E3EF26] font-bold mb-6">
-                <TrendingUp className="w-4 h-4" />
+                <TrendingUp className="w-4 h-4 shrink-0" />
                 <span>PROJECTED RECOVERED VALUE</span>
               </div>
 
-              {/* Giant Main Headline Value */}
-              <div className="mb-8">
+              {/* Responsive Main Headline Value with Dynamic Overflow Protection */}
+              <div className="mb-8 min-w-0 overflow-hidden">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#E2FBCE]/70 block mb-2 font-bold">
                   Estimated Annual Cost Recovery
                 </span>
-                <div className="font-display font-black text-5xl sm:text-7xl lg:text-8xl text-[#E3EF26] tracking-tight leading-none">
+                <div
+                  className={`font-display font-black text-[#E3EF26] tracking-tight leading-none break-all sm:break-normal transition-all duration-150 ${
+                    `$${annualCostSaved.toLocaleString()}`.length >= 11
+                      ? 'text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl'
+                      : `$${annualCostSaved.toLocaleString()}`.length >= 9
+                      ? 'text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl'
+                      : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
+                  }`}
+                >
                   ${annualCostSaved.toLocaleString()}
                 </div>
-                <span className="text-sm font-mono font-medium text-[#E2FBCE]/60 mt-2 block">
-                  budget recaptured per year
-                </span>
+                <div className="flex flex-wrap items-center gap-2.5 mt-2.5">
+                  <span className="text-xs sm:text-sm font-mono font-medium text-[#E2FBCE]/60">
+                    budget recaptured per year
+                  </span>
+                  {annualCostSaved >= 1000000 && (
+                    <span className="text-[11px] font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-[#0C342C] text-[#E3EF26] border border-[#076653]/60">
+                      ~${(annualCostSaved / 1000000).toFixed(1)}M / yr
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Output Metric Badges */}
-              <div className="grid grid-cols-2 gap-5 mb-8">
-                <div className="p-5 rounded-2xl bg-[#0C342C]/80 border border-[#076653]/40">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#0C342C]/80 border border-[#076653]/40 min-w-0 overflow-hidden">
                   <div className="flex items-center gap-2 text-[#E2FBCE] text-xs font-mono mb-1.5 font-bold">
-                    <Clock className="w-4 h-4 text-[#E3EF26]" />
-                    <span>HOURS RECOVERED</span>
+                    <Clock className="w-4 h-4 text-[#E3EF26] shrink-0" />
+                    <span className="truncate">HOURS RECOVERED</span>
                   </div>
-                  <div className="font-display font-black text-3xl text-[#FFFDEE]">
+                  <div className="font-display font-black text-2xl sm:text-3xl text-[#FFFDEE] truncate">
                     {annualHoursRecovered.toLocaleString()}
                   </div>
                   <span className="text-xs text-[#E2FBCE]/60 block mt-1 font-mono">
@@ -172,12 +187,12 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   </span>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#0C342C]/80 border border-[#076653]/40">
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#0C342C]/80 border border-[#076653]/40 min-w-0 overflow-hidden">
                   <div className="flex items-center gap-2 text-[#E2FBCE] text-xs font-mono mb-1.5 font-bold">
-                    <TrendingUp className="w-4 h-4 text-[#E3EF26]" />
-                    <span>FTE BANDWIDTH</span>
+                    <TrendingUp className="w-4 h-4 text-[#E3EF26] shrink-0" />
+                    <span className="truncate">FTE BANDWIDTH</span>
                   </div>
-                  <div className="font-display font-black text-3xl text-[#FFFDEE]">
+                  <div className="font-display font-black text-2xl sm:text-3xl text-[#FFFDEE] truncate">
                     +{fteEquivalentReturned} FTEs
                   </div>
                   <span className="text-xs text-[#E2FBCE]/60 block mt-1 font-mono">
