@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react';
+import { LenisProvider } from './components/LenisProvider';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { JourneyNavigator } from './components/JourneyNavigator';
-import { SolutionsGrid } from './components/SolutionsGrid';
-import { ImpactCalculator } from './components/ImpactCalculator';
-import { FAQPage } from './components/FAQPage';
+import { LogoTrustBar } from './components/LogoTrustBar';
+import { NeuralEngineSection } from './components/NeuralEngineSection';
+import { BlueStatsSection } from './components/BlueStatsSection';
+import { TeamSplitSection } from './components/TeamSplitSection';
+import { CustomerSuccessSection } from './components/CustomerSuccessSection';
 import { CalloutBanner } from './components/CalloutBanner';
-import { Footer } from './components/Footer';
+import { PressBar } from './components/PressBar';
+import { NavyTestimonialSection } from './components/NavyTestimonialSection';
+import { SuccessByNumbersSection } from './components/SuccessByNumbersSection';
+import { ImpactCalculator } from './components/ImpactCalculator';
+import { BlueSolutionsSection } from './components/BlueSolutionsSection';
+import { IndustryExpertiseSection } from './components/IndustryExpertiseSection';
+import { PartnerCtaSection } from './components/PartnerCtaSection';
+import { GradientFooter } from './components/GradientFooter';
+import { FAQPage } from './components/FAQPage';
 import { AssessmentModal } from './components/AssessmentModal';
 import { BookingModal } from './components/BookingModal';
 import { PagePreloader } from './components/PagePreloader';
-import { NeuralEngineSection } from './components/NeuralEngineSection';
 
 export function App() {
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
@@ -65,11 +74,11 @@ export function App() {
     }
   };
 
-  // Refined Minimal Preloader (active on first visit)
+  // Refined Smooth Preloader (active on first visit)
   const [preloaderActive, setPreloaderActive] = useState<boolean>(true);
 
   const handleOpenBooking = (serviceName?: string) => {
-    setPrefillService(serviceName || 'AI Strategy & Readiness');
+    setPrefillService(serviceName || 'Enterprise AI Strategy & Delivery');
     setIsBookingOpen(true);
   };
 
@@ -84,102 +93,119 @@ export function App() {
     setIsBookingOpen(true);
   };
 
-  const handleSelectJourneyPath = (pathId: string) => {
-    if (pathId === 'solutions') {
-      const el = document.getElementById('solutions');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    } else if (pathId === 'automation') {
-      const el = document.getElementById('calculator');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    } else if (pathId === 'training') {
-      const el = document.getElementById('solutions');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-[#FFFDEE] text-[#06231D] selection:bg-[#E3EF26] selection:text-[#06231D]">
-      {/* Refined Smooth Logo Reveal Preloader */}
-      {preloaderActive && (
-        <PagePreloader
-          duration={1300}
-          onComplete={() => setPreloaderActive(false)}
+    <LenisProvider>
+      <div className="min-h-screen bg-white text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white antialiased">
+        {/* Smooth Logo Reveal Preloader */}
+        {preloaderActive && (
+          <PagePreloader
+            duration={1200}
+            onComplete={() => setPreloaderActive(false)}
+          />
+        )}
+
+        {/* Fixed Top Navigation Bar */}
+        <Navbar
+          onBookCall={() => handleOpenBooking()}
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
         />
-      )}
 
-      {/* Top Navigation */}
-      <Navbar
-        onBookCall={() => handleOpenBooking()}
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-      />
+        {currentPage === 'home' ? (
+          <main className="w-full">
+            {/* 1. Hero Section (Green Photo / Deep Navy Colorgrade + "Every company has an AI idea. Ours has a ship date.") */}
+            <Hero
+              onBookCall={() => handleOpenBooking()}
+              onOpenAssessment={handleOpenAssessment}
+            />
 
-      {currentPage === 'home' ? (
-        <>
-          {/* Side-by-Side Hero Section */}
-          <Hero
-            onBookCall={() => handleOpenBooking()}
+            {/* 2. Trusted By Industry Leaders Logo Bar */}
+            <LogoTrustBar />
+
+            {/* 3. Proprietary Multi-Agent Inference Engine Section */}
+            <NeuralEngineSection
+              onOpenAssessment={handleOpenAssessment}
+              onBookCall={() => handleOpenBooking('Autonomous Neural Core Engine')}
+            />
+
+            {/* 4. Royal Blue Stats Section ("AI, Software, and Data. Built to Ship.") */}
+            <BlueStatsSection
+              onExploreCapabilities={() => {
+                const el = document.getElementById('services');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+
+            {/* 5. Team & Capabilities Split ("Smart AI Solutions with an Even Smarter AI Team") */}
+            <TeamSplitSection />
+
+            {/* 6. Cerulean Customer Success Story */}
+            <CustomerSuccessSection
+              onSelectCaseStudy={(storyTitle) => handleOpenBooking(`Case Study Inquiry: ${storyTitle}`)}
+            />
+
+            {/* 7. The Uncomfortable Truth About Enterprise Workflows (Ransom Note Callout) */}
+            <CalloutBanner />
+
+            {/* 8. Press & Recognition Logo Bar */}
+            <PressBar />
+
+            {/* 9. Navy Client Testimonial Section ("Our Clients Say It Best") */}
+            <NavyTestimonialSection />
+
+            {/* 10. Success by the Numbers Circular Diagram */}
+            <SuccessByNumbersSection />
+
+            {/* 11. Interactive ROI Impact Estimator */}
+            <ImpactCalculator
+              onBookCall={() => handleOpenBooking('Operational Automation ROI')}
+            />
+
+            {/* 12. Expert Solutions Grid (Royal Blue Background, 3 White Cards) */}
+            <BlueSolutionsSection
+              onSelectSolution={(sol) => handleOpenBooking(sol)}
+            />
+
+            {/* 13. Proven Industry Expertise (4 Bento Cards with 3D Isometric Renders) */}
+            <IndustryExpertiseSection
+              onSelectIndustry={(ind) => handleOpenBooking(`Industry Solution: ${ind}`)}
+            />
+
+            {/* 14. Partner Call-To-Action ("Partner With Us to Solve What's Next") */}
+            <PartnerCtaSection
+              onBookCall={() => handleOpenBooking()}
+            />
+          </main>
+        ) : (
+          /* Dedicated Standalone FAQ Page */
+          <FAQPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
             onOpenAssessment={handleOpenAssessment}
           />
+        )}
 
-          {/* Dedicated Interactive Fluid Orb Neural Engine Section */}
-          <NeuralEngineSection
-            onOpenAssessment={handleOpenAssessment}
-            onBookCall={() => handleOpenBooking('Autonomous Neural Engine')}
-          />
-
-          {/* "Where are you in your AI journey?" Navigator */}
-          <JourneyNavigator
-            onOpenAssessment={handleOpenAssessment}
-            onSelectPath={handleSelectJourneyPath}
-            isCinematicDark={false}
-          />
-
-          {/* Solutions & Capabilities Grid */}
-          <SolutionsGrid
-            onBookCall={(service) => handleOpenBooking(service)}
-            isCinematicDark={false}
-          />
-
-          {/* Interactive ROI Impact Estimator */}
-          <ImpactCalculator
-            onBookCall={() => handleOpenBooking('Operational Automation')}
-            isCinematicDark={false}
-          />
-
-          {/* Creative Razor-Sharp Ransom Note Editorial Callout — Positioned above the Footer */}
-          <CalloutBanner />
-        </>
-      ) : (
-        /* Dedicated Full-Sized FAQ Page */
-        <FAQPage
-          onBackToHome={() => handleNavigate('home')}
-          onBookCall={handleOpenBooking}
-          onOpenAssessment={handleOpenAssessment}
+        {/* 15. Panoramic Gradient Footer (Navy to Royal Blue with Crimson Accents) */}
+        <GradientFooter
+          onBookCall={() => handleOpenBooking()}
+          onNavigate={handleNavigate}
         />
-      )}
 
-      {/* Footer */}
-      <Footer
-        onBookCall={() => handleOpenBooking()}
-        isCinematicDark={false}
-        onNavigate={handleNavigate}
-      />
+        {/* Interactive Modals */}
+        <AssessmentModal
+          isOpen={isAssessmentOpen}
+          onClose={() => setIsAssessmentOpen(false)}
+          onBookCallWithData={handleBookWithAssessmentData}
+        />
 
-      {/* Interactive Modals */}
-      <AssessmentModal
-        isOpen={isAssessmentOpen}
-        onClose={() => setIsAssessmentOpen(false)}
-        onBookCallWithData={handleBookWithAssessmentData}
-      />
-
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        prefillService={prefillService}
-        assessmentData={assessmentData}
-      />
-    </div>
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          prefillService={prefillService}
+          assessmentData={assessmentData}
+        />
+      </div>
+    </LenisProvider>
   );
 }
 

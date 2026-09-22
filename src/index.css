@@ -35,8 +35,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  background-color: #FFFDEE;
+  background-color: #FFFFFF;
 }
 
 body {
@@ -44,8 +43,8 @@ body {
   padding: 0;
   font-family: var(--font-sans, "Inter", sans-serif);
   overflow-x: hidden;
-  background-color: #FFFDEE;
-  color: #06231D;
+  background-color: #FFFFFF;
+  color: #0A192F;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

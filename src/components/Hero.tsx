@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  ArrowRight,
-  ShieldCheck,
-  Zap,
-  CheckCircle2,
-} from 'lucide-react';
+import { ArrowRight, Play, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -12,96 +7,88 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
-  const capabilities = [
-    'AI Consulting',
-    'AI Governance',
-    'Agentic AI',
-    'Automation',
-    'Generative AI',
-    'AI Training',
-  ];
+  const handleScrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden bg-[#FFFDEE] border-b border-[#0C342C]/10 min-h-[88vh] lg:min-h-[calc(100vh-80px)] flex flex-col justify-between">
-      {/* Full-Screen Hero Image Background (Spans 100% of the section) */}
+    <section className="relative overflow-hidden bg-[#0A192F] text-white min-h-[90vh] lg:min-h-[calc(100vh-80px)] flex flex-col justify-center">
+      {/* Background Photography with Navy & Cobalt Color Grade Overlay */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <img
-          src="/images/hero_sculpture.jpg"
-          alt="NAIR.AI Enterprise Neural Architecture Sculpture"
-          className="w-full h-full object-cover object-[70%_center] lg:object-right scale-100 transition-transform duration-1000 ease-out"
+          src="/images/hero_green_office.jpg"
+          alt="NAIR.AI Enterprise Engineering Operations"
+          className="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-125"
         />
+        {/* Cinematic Deep Navy / Cobalt Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#0A1D3D]/90 to-[#071326]/95 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-[#0A192F]/60" />
+        {/* Subtle Cybernetic Red & Blue Radial Ambient Glows */}
+        <div className="absolute -top-32 right-1/4 w-[500px] h-[500px] rounded-full bg-[#1D4ED8]/25 blur-[140px]" />
+        <div className="absolute bottom-10 left-10 w-[400px] h-[400px] rounded-full bg-[#DC2626]/15 blur-[130px]" />
       </div>
 
-
-      {/* Hero Written Content Container (Positioned on the Left Side) */}
-      <div className="relative z-10 w-full flex-1 flex flex-col justify-center px-8 sm:px-14 lg:px-16 xl:px-24 py-16 lg:py-24 text-left">
-        <div className="max-w-2xl xl:max-w-3xl">
+      {/* Hero Content Container */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 text-left">
+        <div className="max-w-3xl lg:max-w-4xl">
           
-          {/* Stylized Eyebrow Telemetry Chip */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.24em] uppercase font-bold bg-[#E2FBCE] text-[#06231D] border border-[#076653]/25 shadow-2xs mb-5">
-            <span className="w-2 h-2 rounded-full bg-[#076653] pulse-beacon" />
-            <span>ENTERPRISE AI ARCHITECTURE</span>
+          {/* Eyebrow Kicker */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
+            <span>ENTERPRISE AI ARCHITECTURE &amp; DELIVERY</span>
           </div>
 
-          {/* Big, Dominant H1 Headline — 100% Guaranteed Visible & High Contrast */}
-          <h1 className="font-display text-5xl sm:text-7xl lg:text-7xl xl:text-[5.5rem] 2xl:text-[6.25rem] font-extrabold tracking-tight text-[#06231D] leading-[0.96] mb-6">
-            <span className="block font-light text-[#06231D]">Put AI to Work for</span>
-            <span className="block text-[#076653]">Your Business.</span>
+          {/* Headline Matching Reference Image */}
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight text-white leading-[1.02] mb-6">
+            Every company has an AI idea.{' '}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">
+              Ours has a ship date.
+            </span>
           </h1>
 
-          {/* Minimal Narrative Subtitle */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-[#0C342C]/85 leading-relaxed max-w-2xl mb-10 font-normal">
-            We architect and deploy production-grade autonomous agent workflows for enterprises — <strong className="text-[#06231D] font-bold">with strict zero data retention and validated ROI roadmaps.</strong>
+          {/* Subtitle */}
+          <p className="text-lg sm:text-xl lg:text-2xl text-slate-200/90 leading-relaxed max-w-2xl mb-10 font-normal">
+            We architect, build, and deploy production-grade autonomous agent systems and enterprise AI software with guaranteed delivery milestones.
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
             <button
               onClick={onBookCall}
-              className="px-9 py-4.5 bg-[#E3EF26] hover:bg-[#d2de1e] text-[#06231D] font-mono text-xs sm:text-sm uppercase tracking-wider font-black rounded-full shadow-lg shadow-[#E3EF26]/25 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border border-[#0C342C]/15"
+              className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
             >
-              <span>Book an AI Strategy Call</span>
-              <div className="w-6 h-6 rounded-full bg-[#06231D] text-[#FFFDEE] flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-              </div>
+              <span>Let's Talk</span>
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
 
             <button
-              onClick={onOpenAssessment}
-              className="px-8 py-4.5 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-[#0C342C]/20 bg-[#FFFDEE] hover:bg-[#E2FBCE]/50 text-[#06231D] shadow-xs hover:border-[#076653]/40 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              onClick={() => handleScrollToSection('capabilities')}
+              className="px-6 py-4 rounded-full font-mono text-sm tracking-wider font-semibold text-white/90 hover:text-white border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
             >
-              <span>Take Readiness Diagnostic</span>
+              <Play className="w-3.5 h-3.5 fill-white text-white" />
+              <span>See How It Works</span>
             </button>
           </div>
 
           {/* Key Trust Signals */}
-          <div className="flex flex-wrap items-center gap-7 sm:gap-9 text-xs sm:text-sm font-mono text-[#0C342C]/80">
+          <div className="flex flex-wrap items-center gap-7 sm:gap-10 text-xs sm:text-sm font-mono text-slate-300/80 pt-6 border-t border-white/10">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#076653]" />
-              <span className="font-bold text-[#06231D]">Zero Data Retention</span>
+              <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
+              <span className="font-semibold text-white">Zero Data Retention</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#076653]" />
-              <span className="font-bold text-[#06231D]">3–4 Week Sprints</span>
+              <Zap className="w-4 h-4 text-[#FACC15]" />
+              <span className="font-semibold text-white">3–4 Week Sprints</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#076653]" />
-              <span className="font-bold text-[#06231D]">SOC2 Type II Aligned</span>
+              <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+              <span className="font-semibold text-white">SOC2 Type II Aligned</span>
             </div>
           </div>
 
-        </div>
-      </div>
-
-      {/* Jet Black Capability Marquee Strip with Cyber Lime Star Accents */}
-      <div className="relative z-10 w-full py-4 bg-black text-[#FFFDEE] overflow-hidden border-t border-black/80 shadow-2xl">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...capabilities, ...capabilities, ...capabilities, ...capabilities].map((cap, index) => (
-            <div key={index} className="flex items-center mx-8 font-mono text-xs uppercase tracking-[0.26em] font-extrabold">
-              <span className="text-[#FFFDEE]/90 hover:text-[#E3EF26] transition-colors cursor-default tracking-[0.24em]">{cap}</span>
-              <span className="ml-8 text-[#E3EF26] font-black text-sm select-none">✦</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
