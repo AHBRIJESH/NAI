@@ -35,13 +35,13 @@ const DEFAULT_FONTS = [
   '"Trebuchet MS", sans-serif',
 ]
 
-// High-end LyNA Palette scraps
-const LYNA_PALETTE = [
-  { bg: '#06231D', text: '#FFFDEE', border: '#06231D' }, // Midnight Pine
-  { bg: '#E3EF26', text: '#06231D', border: '#076653' }, // Acid Lime
-  { bg: '#E2FBCE', text: '#076653', border: '#076653' }, // Soft Mint
-  { bg: '#076653', text: '#FFFDEE', border: '#0C342C' }, // Deep Forest Emerald
-  { bg: '#FFFDEE', text: '#06231D', border: '#0C342C' }, // Alabaster Cream
+// High-end Blue, White & Red Ransom Tile Palette
+const BRAND_PALETTE = [
+  { bg: '#0A192F', text: '#FFFFFF', border: '#071326' }, // Midnight Navy
+  { bg: '#DC2626', text: '#FFFFFF', border: '#991B1B' }, // Crimson Red
+  { bg: '#FFFFFF', text: '#0A192F', border: '#CBD5E1' }, // Clean White
+  { bg: '#1D4ED8', text: '#FFFFFF', border: '#1E40AF' }, // Royal Blue
+  { bg: '#F8FAFC', text: '#1D4ED8', border: '#94A3B8' }, // Crisp Slate
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({
@@ -50,7 +50,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
   intensity = 0.45,
   animate = 'assemble',
   fonts = DEFAULT_FONTS,
-  palette = LYNA_PALETTE,
+  palette = BRAND_PALETTE,
   rotation = 5,
   className,
   wordClassName,

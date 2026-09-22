@@ -87,7 +87,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
                   <span>Zero Data Retention Architecture</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
                   <span>SOC2 Type II Compliance Aligned</span>
                 </div>
               </div>

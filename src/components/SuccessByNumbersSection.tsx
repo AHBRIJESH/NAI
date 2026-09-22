@@ -139,8 +139,8 @@ export const SuccessByNumbersSection: React.FC = () => {
                   <span className="font-mono text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                     {activeNode.category}
                   </span>
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#1D4ED8]">
+                    <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
                     <span>AUDITED SLA</span>
                   </div>
                 </div>
@@ -305,7 +305,7 @@ export const SuccessByNumbersSection: React.FC = () => {
                     <span className="font-display font-extrabold text-xs text-white leading-tight">
                       NAIR.AI Intelligence
                     </span>
-                    <span className="text-[8px] font-mono text-emerald-400 font-semibold mt-1">
+                    <span className="text-[8px] font-mono text-[#38BDF8] font-semibold mt-1">
                       ● TELEMETRY ACTIVE
                     </span>
                   </div>

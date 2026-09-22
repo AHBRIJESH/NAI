@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#0A192F] text-white min-h-[90vh] lg:min-h-[calc(100vh-80px)] flex flex-col justify-center">
+    <section className="relative overflow-hidden bg-[#0A192F] text-white flex flex-col justify-center">
       {/* Background Photography with Navy & Cobalt Color Grade Overlay */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <img
@@ -55,23 +55,23 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
         <div className="absolute bottom-10 left-10 w-[400px] h-[400px] rounded-full bg-[#DC2626]/15 blur-[130px]" />
       </div>
 
-      {/* Hero Content Container with Motion Entrance */}
+      {/* Hero Content Container with Motion Entrance (Compact, Balanced Vertical Spacing) */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 text-left"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-20 lg:py-24 text-left"
       >
         <div className="max-w-3xl lg:max-w-4xl">
           
           {/* Eyebrow Kicker */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-6">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-4">
             <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
             <span>SOVEREIGN COGNITIVE TOPOLOGY &amp; DELIVERY</span>
           </motion.div>
 
-          {/* Elevated Headline */}
-          <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight text-white leading-[1.02] mb-6">
+          {/* Elevated Headline (Refined, Compact Hierarchy) */}
+          <motion.h1 variants={itemVariants} className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
             Enterprises don't need more AI prototypes.{' '}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">
               They need autonomous systems that ship.
@@ -79,15 +79,15 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p variants={itemVariants} className="text-lg sm:text-xl lg:text-2xl text-slate-200/90 leading-relaxed max-w-2xl mb-10 font-normal">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg text-slate-200/90 leading-relaxed max-w-2xl mb-7 font-normal">
             We architect, build, and deploy production-grade multi-agent swarms and zero-retention inference pipelines directly within your sovereign infrastructure—backed by guaranteed milestone delivery.
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 mb-8">
             <button
               onClick={onBookCall}
-              className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
+              className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
             >
               <span>Schedule Technical Briefing</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
 
             <button
               onClick={() => handleScrollToSection('capabilities')}
-              className="px-6 py-4 rounded-full font-mono text-sm tracking-wider font-semibold text-white/90 hover:text-white border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
+              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-semibold text-white/90 hover:text-white border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>Explore Sovereign Engine</span>
@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
           </motion.div>
 
           {/* Key Trust Signals */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-7 sm:gap-10 text-xs sm:text-sm font-mono text-slate-300/80 pt-6 border-t border-white/10">
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-mono text-slate-300/80 pt-5 border-t border-white/10">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
               <span className="font-semibold text-white">Zero Data Retention</span>
@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               <span className="font-semibold text-white">3–4 Week Sprints</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+              <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
               <span className="font-semibold text-white">SOC2 Type II Aligned</span>
             </div>
           </motion.div>

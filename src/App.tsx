@@ -143,34 +143,34 @@ export function App() {
               onSelectCaseStudy={(storyTitle) => handleOpenBooking(`Case Study Inquiry: ${storyTitle}`)}
             />
 
-            {/* 7. The Uncomfortable Truth About Enterprise Workflows (Ransom Note Callout) */}
-            <CalloutBanner />
-
-            {/* 8. Press & Recognition Logo Bar */}
+            {/* 7. Press & Recognition Logo Bar */}
             <PressBar />
 
-            {/* 9. Success by the Numbers Circular Diagram */}
+            {/* 8. Success by the Numbers Circular Diagram */}
             <SuccessByNumbersSection />
 
-            {/* 11. Interactive ROI Impact Estimator */}
+            {/* 9. Interactive ROI Impact Estimator */}
             <ImpactCalculator
               onBookCall={() => handleOpenBooking('Operational Automation ROI')}
             />
 
-            {/* 12. Expert Solutions Grid (Royal Blue Background, 3 White Cards) */}
+            {/* 10. Expert Solutions Grid (Royal Blue Background, 3 White Cards) */}
             <BlueSolutionsSection
               onSelectSolution={(sol) => handleOpenBooking(sol)}
             />
 
-            {/* 13. Proven Industry Expertise (4 Bento Cards with 3D Isometric Renders) */}
+            {/* 11. Proven Industry Expertise (4 Bento Cards with 3D Isometric Renders) */}
             <IndustryExpertiseSection
               onSelectIndustry={(ind) => handleOpenBooking(`Industry Solution: ${ind}`)}
             />
 
-            {/* 14. Partner Call-To-Action ("Partner With Us to Solve What's Next") */}
+            {/* 12. Partner Call-To-Action ("Ready to Deploy Autonomous Intelligence into Production?") */}
             <PartnerCtaSection
               onBookCall={() => handleOpenBooking()}
             />
+
+            {/* 13. The Uncomfortable Truth About Enterprise Workflows (Ransom Note Callout) - Positioned directly above Footer */}
+            <CalloutBanner />
           </main>
         ) : (
           /* Dedicated Standalone FAQ Page */

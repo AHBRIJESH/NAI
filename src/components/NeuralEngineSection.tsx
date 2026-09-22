@@ -152,8 +152,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       {currentMode.desc}
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 px-3 py-1 rounded-full bg-blue-950 border border-blue-800/60 font-bold shrink-0 self-start sm:self-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#38BDF8] px-3 py-1 rounded-full bg-blue-950 border border-blue-800/60 font-bold shrink-0 self-start sm:self-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
                     <span>ONLINE · 99.99%</span>
                   </div>
                 </div>
@@ -195,8 +195,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       <Terminal className="w-3 h-3 text-[#38BDF8]" />
                       <span className="text-white font-bold">STREAM TELEMETRY</span>
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] text-emerald-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <div className="flex items-center gap-1 text-[10px] text-[#38BDF8]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
                       <span>LIVE LOG</span>
                     </div>
                   </div>

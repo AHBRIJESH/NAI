@@ -1,6 +1,6 @@
 import React from 'react';
 import { RansomNote } from './RansomNote';
-import { ArrowDown, Flame } from 'lucide-react';
+import { ArrowUp, Calculator, Flame } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface CalloutBannerProps {
@@ -32,7 +32,7 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = () => {
           </div>
         </ScrollReveal>
 
-        {/* High-Definition Razor-Sharp Ransom Note Headline */}
+        {/* High-Definition Razor-Sharp Ransom Note Headline in Blue, White & Red */}
         <ScrollReveal delay={0.1} y={30} duration={0.65}>
           <div className="my-6 py-4 flex justify-center">
             <RansomNote
@@ -56,16 +56,17 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = () => {
           </p>
         </ScrollReveal>
 
-        {/* Quick scroll anchor */}
+        {/* Quick scroll anchor back up to Calculator */}
         <ScrollReveal delay={0.2} y={20} duration={0.5}>
           <div className="mt-10 flex justify-center">
             <a
               href="#calculator"
               className="inline-flex items-center gap-3 text-xs font-mono uppercase tracking-[0.18em] text-white font-extrabold px-8 py-4 bg-[#1D4ED8] hover:bg-[#1E40AF] rounded-full shadow-xl shadow-blue-600/25 hover:scale-102 transition-all duration-200 group cursor-pointer"
             >
-              <span>Calculate Reclaimable Hours</span>
-              <div className="w-6 h-6 rounded-full bg-white text-[#1D4ED8] flex items-center justify-center transition-transform group-hover:translate-y-0.5">
-                <ArrowDown className="w-3.5 h-3.5 stroke-[2.5]" />
+              <Calculator className="w-4 h-4 text-[#38BDF8]" />
+              <span>Quantify Reclaimable Hours</span>
+              <div className="w-6 h-6 rounded-full bg-white text-[#1D4ED8] flex items-center justify-center transition-transform group-hover:-translate-y-0.5">
+                <ArrowUp className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </a>
           </div>

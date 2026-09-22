@@ -161,7 +161,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#076653', '#E3EF26', '#0C342C'],
+          colors: ['#1D4ED8', '#DC2626', '#0284C7', '#0A192F', '#38BDF8'],
         });
       } catch (e) {
         // Safe fallback
@@ -178,7 +178,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     if (score >= 80) {
       return {
         label: 'High Production Readiness — Immediate Pilot Deployable',
-        color: 'text-[#06231D] bg-[#E3EF26] px-3 py-1 rounded-full border border-[#076653]/30',
+        color: 'text-white bg-[#1D4ED8] px-3 py-1 rounded-full border border-blue-600',
         recommendation:
           'Your infrastructure and clarity place you in the top 15% of enterprise readiness. We recommend deploying an autonomous agent workflow directly to production in 3 to 4 weeks.',
       };
@@ -186,14 +186,14 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     if (score >= 60) {
       return {
         label: 'Moderate Readiness — Targeted Architectural Structuring',
-        color: 'text-[#FFFDEE] bg-[#076653] px-3 py-1 rounded-full border border-[#0C342C]/40',
+        color: 'text-white bg-[#0A192F] px-3 py-1 rounded-full border border-blue-900',
         recommendation:
           'Your operational friction points are primed for AI, but data pipeline structuring or compliance guardrails should be installed first to guarantee reliability.',
       };
     }
     return {
       label: 'Foundational Phase — Strategy & Governance Workshop',
-      color: 'text-[#06231D] bg-[#E2FBCE] px-3 py-1 rounded-full border border-[#076653]/30',
+      color: 'text-[#1D4ED8] bg-blue-50 px-3 py-1 rounded-full border border-blue-200',
       recommendation:
         'You will benefit most from our AI Readiness & Opportunity Audit, identifying high-yield quick wins while standardizing governance.',
     };
@@ -222,13 +222,13 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#06231D]/80 backdrop-blur-xl animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0A192F]/80 backdrop-blur-xl animate-in fade-in duration-200"
     >
-      <div className="bg-[#FFFDEE] border border-[#0C342C]/15 rounded-3xl max-w-2xl w-full p-8 sm:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto text-[#06231D]">
+      <div className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-8 sm:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto text-[#0A192F]">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-[#0C342C]/70 hover:text-[#06231D] hover:bg-[#E2FBCE]/60 rounded-full transition-colors cursor-pointer"
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-[#0A192F] hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
           aria-label="Close assessment"
         >
           <X className="w-5 h-5" />
@@ -238,15 +238,15 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           <div>
             {/* Header with Step Tracker */}
             <div className="mb-8">
-              <div className="flex items-center justify-between text-xs font-mono text-[#0C342C]/60 mb-2.5 font-bold">
+              <div className="flex items-center justify-between text-xs font-mono text-slate-500 mb-2.5 font-bold">
                 <span className="uppercase tracking-wider">{currentQ.category}</span>
                 <span>
                   STEP {currentStep + 1} OF {QUESTIONS.length}
                 </span>
               </div>
-              <div className="w-full h-2 bg-[#E2FBCE] rounded-full overflow-hidden">
+              <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#076653] transition-all duration-300 rounded-full"
+                  className="h-full bg-[#1D4ED8] transition-all duration-300 rounded-full"
                   style={{ width: `${((currentStep + 1) / QUESTIONS.length) * 100}%` }}
                 />
               </div>
@@ -254,10 +254,10 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
 
             {/* Question Details */}
             <div className="mb-8">
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#06231D] mb-2 leading-tight">
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-2 leading-tight">
                 {currentQ.title}
               </h3>
-              <p className="text-base text-[#0C342C]/75 font-normal">
+              <p className="text-base text-slate-600 font-normal">
                 {currentQ.subtitle}
               </p>
             </div>
@@ -268,17 +268,17 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                 <button
                   key={idx}
                   onClick={() => handleSelectOption(option)}
-                  className="w-full text-left p-5 rounded-2xl border border-[#0C342C]/15 hover:border-[#076653] bg-[#FFFDEE] hover:bg-[#E2FBCE]/30 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex items-start justify-between gap-4 group cursor-pointer"
+                  className="w-full text-left p-5 rounded-2xl border border-slate-200 hover:border-[#1D4ED8] bg-white hover:bg-blue-50/50 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex items-start justify-between gap-4 group cursor-pointer"
                 >
                   <div>
-                    <span className="font-bold text-[#06231D] text-base block group-hover:text-[#076653]">
+                    <span className="font-bold text-[#0A192F] text-base block group-hover:text-[#1D4ED8]">
                       {option.label}
                     </span>
-                    <span className="text-xs text-[#0C342C]/70 mt-1 block font-normal">
+                    <span className="text-xs text-slate-600 mt-1 block font-normal">
                       {option.detail}
                     </span>
                   </div>
-                  <div className="w-6 h-6 rounded-full border border-[#0C342C]/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#076653] group-hover:text-[#E3EF26] transition-colors">
+                  <div className="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
                     <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </button>
@@ -290,7 +290,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
               <div className="mt-8 flex justify-start">
                 <button
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="text-xs font-mono text-[#0C342C]/60 hover:text-[#06231D] font-bold cursor-pointer underline"
+                  className="text-xs font-mono text-slate-500 hover:text-[#0A192F] font-bold cursor-pointer underline"
                 >
                   ← Previous Question
                 </button>
@@ -302,17 +302,17 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           <div className="text-center py-4">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#E3EF26]/30 blur-xl scale-130" />
-                <FluidOrb size={96} color="#076653" className="shadow-xl ring-4 ring-[#E3EF26]" />
+                <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl scale-130" />
+                <FluidOrb size={96} color="#1D4ED8" className="shadow-xl ring-4 ring-[#DC2626]/20" />
               </div>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-[11px] tracking-wider uppercase bg-[#E2FBCE] text-[#06231D] border border-[#076653]/30 mb-3 font-bold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-[11px] tracking-wider uppercase bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-3 font-bold">
               DIAGNOSTIC REPORT GENERATED
             </div>
 
-            <h3 className="font-display font-extrabold text-3xl sm:text-4xl text-[#06231D] mb-3">
-              AI Readiness Score: <span className="text-[#076653]">{totalScore}%</span>
+            <h3 className="font-display font-extrabold text-3xl sm:text-4xl text-[#0A192F] mb-3">
+              AI Readiness Score: <span className="text-[#1D4ED8]">{totalScore}%</span>
             </h3>
 
             <div className="inline-block font-mono text-xs uppercase tracking-wider font-bold mb-8">
@@ -321,51 +321,51 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
 
             {/* Score Summary Metrics */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left mb-8">
-              <div className="p-4 rounded-2xl bg-[#E2FBCE]/30 border border-[#076653]/20 shadow-xs">
-                <span className="text-[10px] font-mono text-[#0C342C]/60 uppercase block mb-1 font-bold">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
+                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
                   EFFICIENCY GAIN
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#06231D]">
+                <span className="font-display font-extrabold text-lg text-[#0A192F]">
                   35% to 55%
                 </span>
-                <span className="text-xs text-[#0C342C]/70 block mt-0.5 font-medium">
+                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
                   Overhead reduction
                 </span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#E2FBCE]/30 border border-[#076653]/20 shadow-xs">
-                <span className="text-[10px] font-mono text-[#0C342C]/60 uppercase block mb-1 font-bold">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
+                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
                   RECOMMENDED ARCHITECTURE
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#06231D]">
+                <span className="font-display font-extrabold text-lg text-[#0A192F]">
                   Agentic Automation
                 </span>
-                <span className="text-xs text-[#0C342C]/70 block mt-0.5 font-medium">
+                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
                   Private RAG + Tool-use
                 </span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#E2FBCE]/30 border border-[#076653]/20 shadow-xs">
-                <span className="text-[10px] font-mono text-[#0C342C]/60 uppercase block mb-1 font-bold">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
+                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
                   TIME TO PILOT
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#06231D]">
+                <span className="font-display font-extrabold text-lg text-[#0A192F]">
                   3 to 4 Weeks
                 </span>
-                <span className="text-xs text-[#0C342C]/70 block mt-0.5 font-medium">
+                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
                   To live production test
                 </span>
               </div>
             </div>
 
             {/* Diagnostic Takeaways */}
-            <div className="p-5 rounded-2xl bg-[#E2FBCE]/40 border border-[#076653]/30 text-left mb-8 shadow-xs">
-              <div className="flex items-center gap-2 text-[#06231D] font-extrabold text-sm mb-2">
-                <ShieldCheck className="w-4 h-4 text-[#076653]" />
+            <div className="p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-left mb-8 shadow-xs">
+              <div className="flex items-center gap-2 text-[#0A192F] font-extrabold text-sm mb-2">
+                <ShieldCheck className="w-4 h-4 text-[#1D4ED8]" />
                 <span>Executive Strategy Takeaway:</span>
               </div>
-              <p className="text-sm text-[#0C342C]/80 leading-relaxed font-normal">
-                Based on your bottleneck in <strong className="font-bold text-[#06231D]">{answers.bottleneck?.label.toLowerCase()}</strong> and your compliance posture,
+              <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                Based on your bottleneck in <strong className="font-bold text-[#0A192F]">{answers.bottleneck?.label.toLowerCase()}</strong> and your compliance posture,
                 NAIR.AI can immediately deploy zero-data-retention agentic workflows that preserve your IP while slashing cycle time.
               </p>
             </div>
@@ -374,7 +374,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
             <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
               <button
                 onClick={handleProceedToCall}
-                className="px-8 py-4 bg-[#E3EF26] hover:bg-[#d2de1e] text-[#06231D] font-mono text-xs uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-[#E3EF26]/25 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-102 transition-all"
+                className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/25 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-102 transition-all"
               >
                 <span>Book Strategy Call With These Results</span>
                 <ArrowRight className="w-4 h-4" />
@@ -382,7 +382,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
 
               <button
                 onClick={handleReset}
-                className="px-5 py-4 border border-[#0C342C]/20 text-[#06231D] font-mono text-xs uppercase tracking-wider font-bold rounded-full hover:bg-[#E2FBCE]/40 flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="px-5 py-4 border border-slate-200 text-[#0A192F] font-mono text-xs uppercase tracking-wider font-bold rounded-full hover:bg-slate-100 flex items-center justify-center gap-2 cursor-pointer transition-colors"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Retake</span>
