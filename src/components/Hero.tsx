@@ -39,82 +39,104 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#0A192F] text-white flex flex-col justify-center">
-      {/* Background Photography with Navy & Cobalt Color Grade Overlay */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        <img
-          src="/images/hero_green_office.jpg"
-          alt="NAIR.AI Enterprise Engineering Operations"
-          className="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-125"
-        />
-        {/* Cinematic Deep Navy / Cobalt Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#0A1D3D]/90 to-[#071326]/95 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-[#0A192F]/60" />
-        {/* Subtle Cybernetic Red & Blue Radial Ambient Glows */}
-        <div className="absolute -top-32 right-1/4 w-[500px] h-[500px] rounded-full bg-[#1D4ED8]/25 blur-[140px]" />
-        <div className="absolute bottom-10 left-10 w-[400px] h-[400px] rounded-full bg-[#DC2626]/15 blur-[130px]" />
-      </div>
+    <section className="relative overflow-hidden bg-[#F8FAFC] text-[#0A192F] border-b border-slate-200/80 py-14 sm:py-16 md:py-20">
+      {/* Background Architectural Subtle Grid & Soft Ambient Accents */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage: 'radial-gradient(#1E3A8A 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+      />
+      <div className="absolute top-0 right-1/4 w-[420px] h-[420px] rounded-full bg-blue-100/60 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-[360px] h-[360px] rounded-full bg-red-100/40 blur-[120px] pointer-events-none" />
 
-      {/* Hero Content Container with Motion Entrance (Compact, Balanced Vertical Spacing) */}
+      {/* Main Container */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-20 lg:py-24 text-left"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-left"
       >
-        <div className="max-w-3xl lg:max-w-4xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Eyebrow Kicker */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-            <span>SOVEREIGN COGNITIVE TOPOLOGY &amp; DELIVERY</span>
-          </motion.div>
+          {/* Left Column: Limited Concise Written Content (7 cols) */}
+          <div className="lg:col-span-7">
+            {/* Eyebrow Kicker */}
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
+              <span>SOVEREIGN COGNITIVE RUNTIME</span>
+            </motion.div>
 
-          {/* Elevated Headline (Refined, Compact Hierarchy) */}
-          <motion.h1 variants={itemVariants} className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
-            Enterprises don't need more AI prototypes.{' '}
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">
-              They need autonomous systems that ship.
-            </span>
-          </motion.h1>
+            {/* Limited Punchy Headline */}
+            <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.06] mb-4">
+              Autonomous AI Systems.{' '}
+              <span className="text-[#1D4ED8]">Built to Ship.</span>
+            </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p variants={itemVariants} className="text-base sm:text-lg text-slate-200/90 leading-relaxed max-w-2xl mb-7 font-normal">
-            We architect, build, and deploy production-grade multi-agent swarms and zero-retention inference pipelines directly within your sovereign infrastructure—backed by guaranteed milestone delivery.
-          </motion.p>
+            {/* Limited Concise Subtitle */}
+            <motion.p variants={itemVariants} className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 font-normal">
+              We engineer production-grade multi-agent swarms and zero-retention inference pipelines deployed directly within your private enterprise infrastructure.
+            </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 mb-8">
-            <button
-              onClick={onBookCall}
-              className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
-            >
-              <span>Schedule Technical Briefing</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-            </button>
+            {/* CTA Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
+              <button
+                onClick={onBookCall}
+                className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 hover:scale-102 active:scale-98 flex items-center justify-center gap-2.5 cursor-pointer"
+              >
+                <span>Schedule Technical Briefing</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              </button>
 
-            <button
-              onClick={() => handleScrollToSection('capabilities')}
-              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-semibold text-white/90 hover:text-white border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
-            >
-              <Play className="w-3.5 h-3.5 fill-white text-white" />
-              <span>Explore Sovereign Engine</span>
-            </button>
-          </motion.div>
+              <button
+                onClick={() => handleScrollToSection('capabilities')}
+                className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-bold text-[#0A192F] hover:text-[#1D4ED8] border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Play className="w-3.5 h-3.5 fill-[#0A192F] text-[#0A192F]" />
+                <span>Explore Sovereign Engine</span>
+              </button>
+            </motion.div>
 
-          {/* Key Trust Signals */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-mono text-slate-300/80 pt-5 border-t border-white/10">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
-              <span className="font-semibold text-white">Zero Data Retention</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#FACC15]" />
-              <span className="font-semibold text-white">3–4 Week Sprints</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
-              <span className="font-semibold text-white">SOC2 Type II Aligned</span>
+            {/* Trust Signals */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6 text-xs font-mono text-slate-500 pt-4 border-t border-slate-200">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#1D4ED8]" />
+                <span className="font-semibold text-slate-700">Zero Data Retention</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-[#DC2626]" />
+                <span className="font-semibold text-slate-700">3–4 Week Sprints</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+                <span className="font-semibold text-slate-700">SOC2 Type II Aligned</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Light Color Themed Image (5 cols) */}
+          <motion.div variants={itemVariants} className="lg:col-span-5">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-white group aspect-[4/3] sm:aspect-[16/11]">
+              <img
+                src="/images/hero_sculpture.jpg"
+                alt="NAIR.AI Sovereign Architecture"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/50 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Architectural Badge */}
+              <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-500 font-bold block">
+                    SOVEREIGN TOPOLOGY //
+                  </span>
+                  <span className="font-display font-extrabold text-xs sm:text-sm text-[#0A192F]">
+                    Air-Gapped Private VPC Runtime
+                  </span>
+                </div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1D4ED8] animate-pulse shrink-0 ml-2" />
+              </div>
             </div>
           </motion.div>
 

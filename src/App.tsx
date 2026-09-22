@@ -12,8 +12,6 @@ import { PressBar } from './components/PressBar';
 import { SuccessByNumbersSection } from './components/SuccessByNumbersSection';
 import { ImpactCalculator } from './components/ImpactCalculator';
 import { BlueSolutionsSection } from './components/BlueSolutionsSection';
-import { IndustryExpertiseSection } from './components/IndustryExpertiseSection';
-import { PartnerCtaSection } from './components/PartnerCtaSection';
 import { GradientFooter } from './components/GradientFooter';
 import { FAQPage } from './components/FAQPage';
 import { AssessmentModal } from './components/AssessmentModal';
@@ -159,18 +157,10 @@ export function App() {
               onSelectSolution={(sol) => handleOpenBooking(sol)}
             />
 
-            {/* 11. Proven Industry Expertise (4 Bento Cards with 3D Isometric Renders) */}
-            <IndustryExpertiseSection
-              onSelectIndustry={(ind) => handleOpenBooking(`Industry Solution: ${ind}`)}
-            />
-
-            {/* 12. Partner Call-To-Action ("Ready to Deploy Autonomous Intelligence into Production?") */}
-            <PartnerCtaSection
+            {/* 11. Unified Minimal Uncomfortable Truth & Technical Feasibility Section */}
+            <CalloutBanner
               onBookCall={() => handleOpenBooking()}
             />
-
-            {/* 13. The Uncomfortable Truth About Enterprise Workflows (Ransom Note Callout) - Positioned directly above Footer */}
-            <CalloutBanner />
           </main>
         ) : (
           /* Dedicated Standalone FAQ Page */
