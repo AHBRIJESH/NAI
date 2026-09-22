@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Bot, Compass, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { WatermarkPattern } from './WatermarkPattern';
+import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 
 interface BlueSolutionsSectionProps {
   onSelectSolution?: (solutionName: string) => void;
@@ -56,68 +57,71 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-            <span>EXPERT SOLUTIONS</span>
+        <ScrollReveal y={28} duration={0.6}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
+              <span>EXPERT SOLUTIONS</span>
+            </div>
+
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+              Expert Solutions to Simplify Challenges and Drive Growth
+            </h2>
+
+            <p className="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed">
+              Scalable engineering engagements engineered to integrate seamlessly into existing enterprise infrastructure.
+            </p>
           </div>
-
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 leading-tight">
-            Expert Solutions to Simplify Challenges and Drive Growth
-          </h2>
-
-          <p className="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed">
-            Scalable engineering engagements engineered to integrate seamlessly into existing enterprise infrastructure.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* 3 White Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {solutions.map((item, idx) => {
             const IconComp = item.icon;
             return (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-8 text-[#0A192F] shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-100"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] border border-blue-200 flex items-center justify-center mb-6 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
-                    <IconComp className="w-6 h-6" />
-                  </div>
-
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#DC2626] font-extrabold block mb-2">
-                    {item.tag}
-                  </span>
-
-                  <h3 className="font-display font-black text-2xl text-[#0A192F] mb-3 group-hover:text-[#1D4ED8] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
-                    {item.desc}
-                  </p>
-
-                  <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-8">
-                    {item.points.map((pt, pIdx) => (
-                      <div key={pIdx} className="flex items-center gap-2 text-xs font-mono text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
-                        <span>{pt}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => onSelectSolution?.(item.title)}
-                  className="w-full py-3 rounded-full bg-slate-50 hover:bg-[#1D4ED8] text-[#0A192F] hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-slate-200"
+              <StaggerItem key={idx} y={30} duration={0.65}>
+                <div
+                  className="h-full bg-white rounded-3xl p-8 text-[#0A192F] shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-100"
                 >
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] border border-blue-200 flex items-center justify-center mb-6 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+                      <IconComp className="w-6 h-6" />
+                    </div>
+
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#DC2626] font-extrabold block mb-2">
+                      {item.tag}
+                    </span>
+
+                    <h3 className="font-display font-black text-2xl text-[#0A192F] mb-3 group-hover:text-[#1D4ED8] transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                      {item.desc}
+                    </p>
+
+                    <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-8">
+                      {item.points.map((pt, pIdx) => (
+                        <div key={pIdx} className="flex items-center gap-2 text-xs font-mono text-slate-700">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
+                          <span>{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => onSelectSolution?.(item.title)}
+                    className="w-full py-3 rounded-full bg-slate-50 hover:bg-[#1D4ED8] text-[#0A192F] hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-slate-200"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
 
       </div>
     </section>

@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react';
+import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 
 interface FAQPageProps {
   onBackToHome: () => void;
@@ -137,15 +138,15 @@ export const FAQPage: React.FC<FAQPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDEE] text-[#06231D] selection:bg-[#E3EF26] selection:text-[#06231D] pt-24 pb-20">
+    <div className="min-h-screen bg-slate-50 text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-20">
       
       {/* Top Breadcrumb Header Bar */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-8">
         <button
           onClick={onBackToHome}
-          className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#076653] hover:text-[#06231D] transition-colors group cursor-pointer"
+          className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
         >
-          <div className="w-7 h-7 rounded-full bg-[#E2FBCE] group-hover:bg-[#E3EF26] text-[#06231D] flex items-center justify-center transition-all">
+          <div className="w-7 h-7 rounded-full bg-blue-50 group-hover:bg-[#1D4ED8] text-[#1D4ED8] group-hover:text-white border border-blue-200 flex items-center justify-center transition-all">
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           </div>
           <span>Back to Home Overview</span>
@@ -154,58 +155,60 @@ export const FAQPage: React.FC<FAQPageProps> = ({
 
       {/* Main FAQ Hero Header */}
       <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-16">
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.26em] uppercase font-extrabold bg-[#E2FBCE] text-[#06231D] border border-[#076653]/30 shadow-xs mb-6">
-          <HelpCircle className="w-3.5 h-3.5 text-[#076653]" />
-          <span>ENTERPRISE KNOWLEDGE BASE & FAQ</span>
-        </div>
-
-        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#06231D] mb-6 leading-[1.04]">
-          Answers on Safety, Scale, &amp; <span className="text-[#076653]">Enterprise AI</span>.
-        </h1>
-
-        <p className="text-base sm:text-xl text-[#0C342C]/80 max-w-2xl mx-auto font-normal leading-relaxed mb-10">
-          Everything growing enterprise leadership needs to know regarding sovereign data privacy, deterministic guardrails, multi-agent pipelines, and rapid 90-day deployment roadmaps.
-        </p>
-
-        {/* Real-time Search Input */}
-        <div className="relative max-w-xl mx-auto mb-10">
-          <div className="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none text-[#076653]">
-            <Search className="w-4 h-4" />
+        <ScrollReveal y={24} duration={0.6}>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.26em] uppercase font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-6">
+            <HelpCircle className="w-3.5 h-3.5 text-[#DC2626]" />
+            <span>ENTERPRISE KNOWLEDGE BASE &amp; FAQ</span>
           </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search security protocols, timelines, ERP integrations, SLAs..."
-            className="w-full pl-12 pr-5 py-4 rounded-full bg-white border border-[#0C342C]/15 focus:border-[#076653] focus:ring-3 focus:ring-[#076653]/15 text-sm sm:text-base text-[#06231D] placeholder-[#0C342C]/45 shadow-sm transition-all focus:outline-none font-normal"
-          />
-        </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase font-bold transition-all cursor-pointer ${
-                selectedCategory === cat
-                  ? 'bg-[#06231D] text-[#FFFDEE] shadow-md scale-102'
-                  : 'bg-white/80 hover:bg-[#E2FBCE] text-[#0C342C] border border-[#0C342C]/15 shadow-2xs'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
+            Answers on Safety, Scale, &amp; <span className="text-[#1D4ED8]">Enterprise AI</span>.
+          </h1>
+
+          <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed mb-10">
+            Everything growing enterprise leadership needs to know regarding sovereign data privacy, deterministic guardrails, multi-agent pipelines, and rapid 90-day deployment roadmaps.
+          </p>
+
+          {/* Real-time Search Input */}
+          <div className="relative max-w-xl mx-auto mb-10">
+            <div className="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none text-slate-400">
+              <Search className="w-4 h-4" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search security protocols, timelines, ERP integrations, SLAs..."
+              className="w-full pl-12 pr-5 py-4 rounded-full bg-white border border-slate-200 focus:border-[#1D4ED8] focus:ring-3 focus:ring-blue-100 text-sm sm:text-base text-[#0A192F] placeholder-slate-400 shadow-sm transition-all focus:outline-none font-normal"
+            />
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase font-bold transition-all cursor-pointer ${
+                  selectedCategory === cat
+                    ? 'bg-[#1D4ED8] text-white shadow-md scale-102 font-black'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* Accordion Questions List */}
       <section className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
         {filteredFaqs.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-3xl border border-[#0C342C]/10 p-8 shadow-xs">
-            <Sparkles className="w-8 h-8 text-[#076653] mx-auto mb-3" />
-            <h3 className="font-display font-bold text-xl text-[#06231D] mb-2">No matching questions found</h3>
-            <p className="text-sm text-[#0C342C]/75 mb-6">
+          <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-8 shadow-xs">
+            <Sparkles className="w-8 h-8 text-[#1D4ED8] mx-auto mb-3" />
+            <h3 className="font-display font-bold text-xl text-[#0A192F] mb-2">No matching questions found</h3>
+            <p className="text-sm text-slate-600 mb-6">
               Try searching with different terms or reset your category filter.
             </p>
             <button
@@ -213,113 +216,116 @@ export const FAQPage: React.FC<FAQPageProps> = ({
                 setSearchQuery('');
                 setSelectedCategory('All Topics');
               }}
-              className="px-6 py-2.5 rounded-full font-mono text-xs uppercase font-bold bg-[#E2FBCE] text-[#06231D] hover:bg-[#E3EF26] transition-colors"
+              className="px-6 py-2.5 rounded-full font-mono text-xs uppercase font-bold bg-blue-50 text-[#1D4ED8] hover:bg-blue-100 transition-colors"
             >
               Reset Search Filter
             </button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <StaggerContainer stagger={0.06} className="space-y-4">
             {filteredFaqs.map((faq) => {
               const isOpen = openIndex === faq.id;
               return (
-                <div
-                  key={faq.id}
-                  className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
-                    isOpen
-                      ? 'bg-white border-[#076653]/40 shadow-xl shadow-[#076653]/8'
-                      : 'bg-white/70 hover:bg-white border-[#0C342C]/10 hover:border-[#076653]/25 shadow-xs'
-                  }`}
-                >
-                  <button
-                    onClick={() => toggleAccordion(faq.id)}
-                    className="w-full text-left p-6 sm:p-8 flex items-start justify-between gap-6 cursor-pointer focus:outline-none"
-                    aria-expanded={isOpen}
+                <StaggerItem key={faq.id} y={20}>
+                  <div
+                    className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
+                      isOpen
+                        ? 'bg-white border-[#1D4ED8] shadow-xl shadow-blue-500/8'
+                        : 'bg-white hover:border-slate-300 shadow-xs'
+                    }`}
                   >
-                    <div className="space-y-2 pr-4">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-[#076653] font-bold px-2 py-0.5 rounded-md bg-[#E2FBCE]/60">
-                          {faq.category}
-                        </span>
-                        {faq.badge && (
-                          <span className="font-mono text-[10px] uppercase tracking-widest text-[#06231D] font-extrabold px-2 py-0.5 rounded-md bg-[#E3EF26]/70">
-                            {faq.badge}
-                          </span>
-                        )}
-                      </div>
-                      <h2 className="font-display font-bold text-lg sm:text-xl text-[#06231D] leading-snug">
-                        {faq.question}
-                      </h2>
-                    </div>
-
-                    <div
-                      className={`p-2.5 rounded-full border border-[#0C342C]/10 transition-all duration-300 shrink-0 mt-1 ${
-                        isOpen
-                          ? 'rotate-180 bg-[#076653] text-[#E3EF26]'
-                          : 'bg-[#FFFDEE] text-[#0C342C]'
-                      }`}
+                    <button
+                      onClick={() => toggleAccordion(faq.id)}
+                      className="w-full text-left p-6 sm:p-8 flex items-start justify-between gap-6 cursor-pointer focus:outline-none"
+                      aria-expanded={isOpen}
                     >
-                      <ChevronDown className="w-4 h-4 stroke-[2.5]" />
-                    </div>
-                  </button>
+                      <div className="space-y-2 pr-4">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-mono text-[10px] uppercase tracking-widest text-[#1D4ED8] font-bold px-2.5 py-0.5 rounded-md bg-blue-50 border border-blue-100">
+                            {faq.category}
+                          </span>
+                          {faq.badge && (
+                            <span className="font-mono text-[10px] uppercase tracking-widest text-[#DC2626] font-extrabold px-2.5 py-0.5 rounded-md bg-red-50 border border-red-100">
+                              {faq.badge}
+                            </span>
+                          )}
+                        </div>
+                        <h2 className="font-display font-bold text-lg sm:text-xl text-[#0A192F] leading-snug">
+                          {faq.question}
+                        </h2>
+                      </div>
 
-                  {isOpen && (
-                    <div className="px-6 sm:px-8 pb-8 pt-1 text-base sm:text-lg text-[#0C342C]/85 leading-relaxed border-t border-[#076653]/10 font-normal">
-                      <p>{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
+                      <div
+                        className={`p-2.5 rounded-full border border-slate-200 transition-all duration-300 shrink-0 mt-1 ${
+                          isOpen
+                            ? 'rotate-180 bg-[#1D4ED8] text-white'
+                            : 'bg-slate-50 text-slate-700'
+                        }`}
+                      >
+                        <ChevronDown className="w-4 h-4 stroke-[2.5]" />
+                      </div>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-6 sm:px-8 pb-8 pt-1 text-base sm:text-lg text-slate-700 leading-relaxed border-t border-slate-100 font-normal">
+                        <p>{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         )}
       </section>
 
       {/* Bottom Advisory Consultation Card */}
       <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
-        <div className="rounded-3xl bg-[#06231D] text-[#FFFDEE] p-8 sm:p-14 border border-[#076653]/35 shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#076653]/30 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#E3EF26]/10 blur-3xl pointer-events-none" />
+        <ScrollReveal y={28} duration={0.65}>
+          <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.24em] text-[#E3EF26] font-bold mb-4 px-3.5 py-1.5 rounded-full bg-[#0C342C] border border-[#076653]/40">
-              <Cpu className="w-3.5 h-3.5 text-[#E3EF26]" />
-              <span>DIRECT ARCHITECT ADVISORY</span>
-            </div>
+            <div className="relative z-10 max-w-3xl">
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.24em] text-blue-300 font-bold mb-4 px-3.5 py-1.5 rounded-full bg-blue-950 border border-blue-800">
+                <Cpu className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>DIRECT ARCHITECT ADVISORY</span>
+              </div>
 
-            <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#FFFDEE] tracking-tight mb-4 leading-tight">
-              Have a Specific Architectural or Regulatory Inquiry?
-            </h3>
+              <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+                Have a Specific Architectural or Regulatory Inquiry?
+              </h3>
 
-            <p className="text-base sm:text-lg text-[#E2FBCE]/85 leading-relaxed mb-8 font-normal">
-              Schedule an objective 30-minute feasibility session directly with our senior AI systems architects. We will examine your internal stack, compliance constraints, and provide deterministic ROI projections.
-            </p>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 font-normal">
+                Schedule an objective 30-minute feasibility session directly with our senior AI systems architects. We will examine your internal stack, compliance constraints, and provide deterministic ROI projections.
+              </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <button
-                onClick={() => onBookCall('Enterprise Architecture Consultation')}
-                className="px-8 py-4 bg-[#E3EF26] hover:bg-[#d2de1e] text-[#06231D] font-mono text-xs sm:text-sm uppercase tracking-wider font-black rounded-full shadow-lg shadow-[#E3EF26]/20 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
-              >
-                <span>Book Architecture Call</span>
-                <ArrowRight className="w-4 h-4 text-[#06231D] stroke-[2.5]" />
-              </button>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <button
+                  onClick={() => onBookCall('Enterprise Architecture Consultation')}
+                  className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                >
+                  <span>Book Architecture Call</span>
+                  <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
+                </button>
 
-              <button
-                onClick={onOpenAssessment}
-                className="px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-[#076653]/40 bg-[#0C342C] hover:bg-[#076653] text-[#FFFDEE] transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Take Readiness Diagnostic</span>
-              </button>
+                <button
+                  onClick={onOpenAssessment}
+                  className="px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Take Readiness Diagnostic</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Bottom Return Button */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
         <button
           onClick={onBackToHome}
-          className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider font-bold text-[#076653] hover:text-[#06231D] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider font-bold text-[#1D4ED8] hover:text-[#0A192F] transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to Homepage Overview</span>

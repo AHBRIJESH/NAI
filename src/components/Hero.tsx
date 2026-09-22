@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Play, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -12,6 +13,29 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.23, 1, 0.32, 1] as const,
+      },
+    },
   };
 
   return (
@@ -31,31 +55,36 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
         <div className="absolute bottom-10 left-10 w-[400px] h-[400px] rounded-full bg-[#DC2626]/15 blur-[130px]" />
       </div>
 
-      {/* Hero Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 text-left">
+      {/* Hero Content Container with Motion Entrance */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 text-left"
+      >
         <div className="max-w-3xl lg:max-w-4xl">
           
           {/* Eyebrow Kicker */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-6">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-6">
             <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
             <span>ENTERPRISE AI ARCHITECTURE &amp; DELIVERY</span>
-          </div>
+          </motion.div>
 
           {/* Headline Matching Reference Image */}
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight text-white leading-[1.02] mb-6">
+          <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight text-white leading-[1.02] mb-6">
             Every company has an AI idea.{' '}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">
               Ours has a ship date.
             </span>
-          </h1>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-slate-200/90 leading-relaxed max-w-2xl mb-10 font-normal">
+          <motion.p variants={itemVariants} className="text-lg sm:text-xl lg:text-2xl text-slate-200/90 leading-relaxed max-w-2xl mb-10 font-normal">
             We architect, build, and deploy production-grade autonomous agent systems and enterprise AI software with guaranteed delivery milestones.
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12">
             <button
               onClick={onBookCall}
               className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
@@ -71,10 +100,10 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>See How It Works</span>
             </button>
-          </div>
+          </motion.div>
 
           {/* Key Trust Signals */}
-          <div className="flex flex-wrap items-center gap-7 sm:gap-10 text-xs sm:text-sm font-mono text-slate-300/80 pt-6 border-t border-white/10">
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-7 sm:gap-10 text-xs sm:text-sm font-mono text-slate-300/80 pt-6 border-t border-white/10">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
               <span className="font-semibold text-white">Zero Data Retention</span>
@@ -87,10 +116,10 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
               <span className="font-semibold text-white">SOC2 Type II Aligned</span>
             </div>
-          </div>
+          </motion.div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
