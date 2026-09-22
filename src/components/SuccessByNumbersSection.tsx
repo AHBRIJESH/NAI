@@ -1,189 +1,373 @@
 import React, { useState } from 'react';
 import { ScrollReveal } from './ScrollReveal';
+import { Activity, ShieldCheck, Zap, TrendingUp, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
+
+interface MetricNode {
+  id: string;
+  pct: string;
+  tag: string;
+  label: string;
+  category: string;
+  detail: string;
+  impactMetric: string;
+  color: string;
+  angle: number; // in degrees
+  radius: number; // in px from center
+}
 
 export const SuccessByNumbersSection: React.FC = () => {
-  const nodes = [
+  const nodes: MetricNode[] = [
     {
+      id: 'task-reduction',
       pct: '85%',
+      tag: 'Automation',
       label: 'Manual Task Reduction',
-      detail: 'Elimination of repetitive cross-system data entry & reconciliation',
-      color: '#1D4ED8',
-      angle: -90, // Top
+      category: 'OPERATIONAL EFFICIENCY',
+      detail: 'Elimination of repetitive cross-system data entry, manual document validation, and status chasing across enterprise teams.',
+      impactMetric: '780 hrs / person / yr recaptured',
+      color: '#1D4ED8', // Royal Blue
+      angle: 270, // Top
+      radius: 185,
     },
     {
+      id: 'throughput',
       pct: '80%',
-      label: 'Throughput Acceleration',
-      detail: 'Faster cycle time across complex approval & compliance gates',
-      color: '#DC2626',
-      angle: -30, // Top right
+      tag: 'Throughput',
+      label: 'Workflow Cycle Velocity',
+      category: 'PIPELINE SPEED',
+      detail: 'Faster end-to-end turnaround across complex multi-departmental approval chains, compliance checks, and cross-border customs declarations.',
+      impactMetric: 'Sub-second in-memory routing',
+      color: '#DC2626', // Crimson Red
+      angle: 330, // Top Right
+      radius: 175,
     },
     {
+      id: 'cost-savings',
       pct: '60%',
-      label: 'Operating Cost Savings',
-      detail: 'Direct operational overhead recaptured per business unit',
+      tag: 'Cost Recapture',
+      label: 'Operating Overhead Savings',
+      category: 'FINANCIAL RECOVERY',
+      detail: 'Direct operational overhead recaptured per business unit through autonomous agent verification and automated exception triage.',
+      impactMetric: '$3.4M average client recovery',
       color: '#1D4ED8',
-      angle: 30, // Bottom right
+      angle: 30, // Bottom Right
+      radius: 180,
     },
     {
+      id: 'time-to-prod',
       pct: '50%',
-      label: 'Time-to-Production',
-      detail: 'Faster MVP deployment compared to traditional IT builds',
+      tag: 'Fast-Track',
+      label: 'Sprint Delivery Velocity',
+      category: 'DEPLOYMENT TIME',
+      detail: 'Accelerated time-to-production compared to traditional vendor consulting, deploying working air-gapped sandboxes in 14 days.',
+      impactMetric: 'First production sprint in 3–4 wks',
       color: '#DC2626',
       angle: 90, // Bottom
+      radius: 185,
     },
     {
+      id: 'error-reduction',
       pct: '40%',
-      label: 'Error Reduction',
-      detail: 'Zero compliance slippage via deterministic verification nodes',
+      tag: 'Zero Slippage',
+      label: 'Compliance Error Elimination',
+      category: 'ACCURACY & AUDIT',
+      detail: 'Zero compliance slippage achieved through deterministic Pydantic validation nodes, mathematical schema enforcement, and audit rollbacks.',
+      impactMetric: '99.98% verifiable parity',
       color: '#1D4ED8',
-      angle: 150, // Bottom left
+      angle: 150, // Bottom Left
+      radius: 175,
     },
     {
+      id: 'compute-optim',
       pct: '27%',
-      label: 'Cloud Compute Optim',
-      detail: 'Inference token caching & dynamic quantization savings',
+      tag: 'GPU Efficiency',
+      label: 'Inference Token Optimization',
+      category: 'INFRASTRUCTURE COST',
+      detail: 'Reduction in foundation model compute overhead through aggressive token caching, vector indexing, and dynamic model quantization.',
+      impactMetric: '60% GPU memory footprint saved',
       color: '#DC2626',
-      angle: 210, // Top left
+      angle: 210, // Top Left
+      radius: 180,
     },
   ];
 
-  const [activeNode, setActiveNode] = useState(nodes[0]);
+  const [activeNode, setActiveNode] = useState<MetricNode>(nodes[0]);
 
-  // Radius for circular positioning
-  const radius = 145;
-  const centerX = 200;
-  const centerY = 200;
+  // Center coordinate of SVG mesh
+  const cx = 240;
+  const cy = 240;
 
   return (
-    <section className="py-24 md:py-32 bg-white text-[#0A192F] border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className="py-24 md:py-32 bg-[#F8FAFC] text-[#0A192F] border-b border-slate-200/80 relative overflow-hidden">
+      {/* Background Architectural Grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          backgroundImage: 'radial-gradient(#1E3A8A 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
-          {/* Left Column: Stacked Bold Typography (5 cols) */}
+          {/* Left Column: Technical Narrative & Live Telemetry HUD (5 cols) */}
           <div className="lg:col-span-5 text-left">
             <ScrollReveal y={28} duration={0.6}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-                <span>MEASURABLE VELOCITY</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-100/70 text-[#1D4ED8] border border-blue-200 mb-6">
+                <Activity className="w-3.5 h-3.5 text-[#DC2626]" />
+                <span>VALIDATED ENTERPRISE BENCHMARKS</span>
               </div>
 
-              <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0A192F] leading-[1.02] mb-6">
-                Success<br />by the<br /><span className="text-[#1D4ED8]">Numbers</span>.
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.04] mb-6">
+                Deterministic Yield.<br />
+                <span className="text-[#1D4ED8]">Proven in Production.</span>
               </h2>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-md font-normal mb-8">
-                Validated enterprise benchmarks aggregated across our multi-agent inference systems and operational workflow deployments.
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8">
+                Aggregated telemetry across 514+ private enterprise multi-agent deployments, benchmarked against rigorous SOC2 and operational SLA standards.
               </p>
 
-              {/* Active Node Detail Card */}
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left transition-all shadow-xs">
-                <div className="flex items-center gap-3 mb-2">
+              {/* Active Metric Telemetry HUD Card */}
+              <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-xl relative overflow-hidden">
+                <div
+                  className="absolute top-0 left-0 right-0 h-1.5 transition-colors duration-300"
+                  style={{ backgroundColor: activeNode.color }}
+                />
+
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <span className="font-mono text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                    {activeNode.category}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>AUDITED SLA</span>
+                  </div>
+                </div>
+
+                <div className="flex items-baseline gap-3 mb-2">
                   <span
-                    className="font-display font-black text-3xl sm:text-4xl"
+                    className="font-display font-black text-5xl sm:text-6xl tracking-tight transition-all duration-300"
                     style={{ color: activeNode.color }}
                   >
                     {activeNode.pct}
                   </span>
-                  <span className="font-display font-bold text-base text-[#0A192F]">
+                  <span className="font-display font-extrabold text-lg sm:text-xl text-[#0A192F] leading-tight">
                     {activeNode.label}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 font-mono leading-relaxed">
+
+                {/* Progress Metric Bar */}
+                <div className="w-full bg-slate-100 rounded-full h-2 mb-4 overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-500 ease-out"
+                    style={{
+                      width: activeNode.pct,
+                      backgroundColor: activeNode.color,
+                    }}
+                  />
+                </div>
+
+                <p className="text-sm text-slate-600 font-normal leading-relaxed mb-4">
                   {activeNode.detail}
                 </p>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
+                  <span className="font-bold text-[#0A192F]">VERIFIED GAIN:</span>
+                  <span className="font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-[#1D4ED8]">
+                    {activeNode.impactMetric}
+                  </span>
+                </div>
+              </div>
+
+              {/* Quick Node Selector Pills */}
+              <div className="flex flex-wrap items-center gap-2 mt-5">
+                {nodes.map((node) => (
+                  <button
+                    key={node.id}
+                    onClick={() => setActiveNode(node)}
+                    className={`px-3 py-1.5 rounded-full font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                      activeNode.id === node.id
+                        ? 'bg-[#0A192F] text-white shadow-md scale-105'
+                        : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
+                    }`}
+                  >
+                    {node.pct} {node.tag}
+                  </button>
+                ))}
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Hexagonal Circular Node Diagram (7 cols) */}
+          {/* Right Column: Hexagonal Orbital Radar Constellation (7 cols) */}
           <div className="lg:col-span-7 flex justify-center items-center">
-            <ScrollReveal delay={0.15} y={30} scale={0.96} duration={0.7}>
-              <div className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px]">
+            <ScrollReveal delay={0.12} y={30} scale={0.96} duration={0.7} className="w-full flex justify-center">
+              <div className="relative w-[340px] h-[340px] sm:w-[480px] sm:h-[480px]">
                 
-                {/* SVG Connecting Web */}
+                {/* SVG Orbital Circuit Network */}
                 <svg
-                  className="w-full h-full absolute inset-0"
-                  viewBox="0 0 400 400"
+                  className="w-full h-full absolute inset-0 pointer-events-none"
+                  viewBox="0 0 480 480"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Connecting Lines from Center to Each Node */}
-                  {nodes.map((node, i) => {
+                  {/* Concentric Radar Grid Rings */}
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r="105"
+                    stroke="#CBD5E1"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 4"
+                    className="opacity-70"
+                  />
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r="180"
+                    stroke="#E2E8F0"
+                    strokeWidth="1.5"
+                    strokeDasharray="6 6"
+                  />
+
+                  {/* Crosshair Diagnostic Guides */}
+                  <line x1={cx} y1="35" x2={cx} y2="445" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="3 3" />
+                  <line x1="35" y1={cy} x2="445" y2={cy} stroke="#E2E8F0" strokeWidth="1" strokeDasharray="3 3" />
+
+                  {/* Circuit Paths connecting Central Core to each node */}
+                  {nodes.map((node) => {
                     const rad = (node.angle * Math.PI) / 180;
-                    const x = centerX + radius * Math.cos(rad);
-                    const y = centerY + radius * Math.sin(rad);
+                    const nx = cx + node.radius * Math.cos(rad);
+                    const ny = cy + node.radius * Math.sin(rad);
+                    const isActive = activeNode.id === node.id;
+
                     return (
-                      <line
-                        key={i}
-                        x1={centerX}
-                        y1={centerY}
-                        x2={x}
-                        y2={y}
-                        stroke="#CBD5E1"
-                        strokeWidth="2"
-                        strokeDasharray="4 4"
-                      />
+                      <g key={node.id}>
+                        {/* Connecting Line */}
+                        <line
+                          x1={cx}
+                          y1={cy}
+                          x2={nx}
+                          y2={ny}
+                          stroke={isActive ? node.color : '#CBD5E1'}
+                          strokeWidth={isActive ? '2.5' : '1.5'}
+                          strokeDasharray={isActive ? 'none' : '4 4'}
+                          className="transition-all duration-300"
+                        />
+                        {/* Animated signal node on active line */}
+                        {isActive && (
+                          <circle
+                            cx={(cx + nx) / 2}
+                            cy={(cy + ny) / 2}
+                            r="3"
+                            fill={node.color}
+                            className="animate-ping"
+                          />
+                        )}
+                      </g>
                     );
                   })}
 
-                  {/* Outer Connecting Ring */}
-                  <circle
-                    cx={centerX}
-                    cy={centerY}
-                    r={radius}
-                    stroke="#E2E8F0"
-                    strokeWidth="2"
-                  />
+                  {/* Outer Hexagonal Interconnect lines between adjacent nodes */}
+                  {nodes.map((node, i) => {
+                    const nextNode = nodes[(i + 1) % nodes.length];
+                    const r1 = (node.angle * Math.PI) / 180;
+                    const r2 = (nextNode.angle * Math.PI) / 180;
+                    const x1 = cx + node.radius * Math.cos(r1);
+                    const y1 = cy + node.radius * Math.sin(r1);
+                    const x2 = cx + nextNode.radius * Math.cos(r2);
+                    const y2 = cy + nextNode.radius * Math.sin(r2);
+
+                    return (
+                      <line
+                        key={`poly-${i}`}
+                        x1={x1}
+                        y1={y1}
+                        x2={x2}
+                        y2={y2}
+                        stroke="#E2E8F0"
+                        strokeWidth="1"
+                      />
+                    );
+                  })}
                 </svg>
 
-                {/* Center Core Node */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full bg-slate-50 border-2 border-slate-200 shadow-md flex flex-col items-center justify-center p-3 text-center z-10 select-none">
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
-                    ENTERPRISE
-                  </span>
-                  <span className="font-display font-extrabold text-xs text-[#0A192F] leading-tight">
-                    Validated ROI Benchmarks
-                  </span>
+                {/* Central Sovereign Engine Core Hub */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[#0A192F] text-white border-4 border-blue-900 shadow-2xl flex flex-col items-center justify-center p-3 text-center z-20 select-none">
+                  {/* Outer glowing pulsing aura */}
+                  <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping pointer-events-none" />
+                  
+                  <div className="relative z-10 flex flex-col items-center">
+                    <Cpu className="w-5 h-5 text-[#DC2626] mb-1 animate-pulse" />
+                    <span className="font-mono text-[8px] uppercase tracking-widest text-[#38BDF8] font-bold block mb-0.5">
+                      SOVEREIGN CORE
+                    </span>
+                    <span className="font-display font-extrabold text-xs text-white leading-tight">
+                      NAIR.AI Intelligence
+                    </span>
+                    <span className="text-[8px] font-mono text-emerald-400 font-semibold mt-1">
+                      ● TELEMETRY ACTIVE
+                    </span>
+                  </div>
                 </div>
 
-                {/* Surrounding Percentage Pill Nodes */}
-                {nodes.map((node, i) => {
+                {/* 6 Surrounding Interactive Metric Pills */}
+                {nodes.map((node) => {
                   const rad = (node.angle * Math.PI) / 180;
-                  const x = centerX + radius * Math.cos(rad);
-                  const y = centerY + radius * Math.sin(rad);
-                  const isActive = activeNode.pct === node.pct;
+                  const nx = cx + node.radius * Math.cos(rad);
+                  const ny = cy + node.radius * Math.sin(rad);
+                  const isActive = activeNode.id === node.id;
 
                   return (
                     <button
-                      key={i}
+                      key={node.id}
                       onClick={() => setActiveNode(node)}
                       onMouseEnter={() => setActiveNode(node)}
-                      style={{
-                        left: `${(x / 400) * 100}%`,
-                        top: `${(y / 400) * 100}%`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                      className={`absolute z-20 w-14 h-14 sm:w-16 sm:h-16 rounded-full font-display font-black text-sm sm:text-base flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer ${
+                      className={`absolute z-30 group flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full font-mono transition-all duration-300 shadow-lg cursor-pointer ${
                         isActive
-                          ? 'scale-125 text-white shadow-xl ring-4 ring-offset-2'
-                          : 'bg-white text-[#0A192F] hover:scale-110 border-2 border-slate-200'
+                          ? 'scale-110 sm:scale-115 text-white shadow-2xl ring-4 ring-offset-2'
+                          : 'bg-white text-[#0A192F] hover:scale-105 border border-slate-200/90 hover:border-slate-300'
                       }`}
-                      aria-label={`View ${node.label} statistic`}
+                      style={{
+                        left: `${(nx / 480) * 100}%`,
+                        top: `${(ny / 480) * 100}%`,
+                        transform: 'translate(-50%, -50%)',
+                        backgroundColor: isActive ? node.color : '#FFFFFF',
+                      }}
+                      aria-label={`View ${node.label} benchmark`}
                     >
+                      {/* Pulsing beacon dot inside pill */}
                       <span
+                        className={`w-2 h-2 rounded-full ${
+                          isActive
+                            ? 'bg-white animate-pulse'
+                            : ''
+                        }`}
+                        style={{
+                          backgroundColor: isActive ? '#FFFFFF' : node.color,
+                        }}
+                      />
+
+                      {/* Percentage Badge */}
+                      <span
+                        className={`font-display font-black text-sm sm:text-base leading-none tracking-tight ${
+                          isActive ? 'text-white' : ''
+                        }`}
                         style={{
                           color: isActive ? '#FFFFFF' : node.color,
                         }}
-                        className={isActive ? 'text-white' : ''}
                       >
                         {node.pct}
                       </span>
-                      {isActive && (
-                        <div
-                          className="absolute inset-0 rounded-full -z-10"
-                          style={{ backgroundColor: node.color }}
-                        />
-                      )}
+
+                      {/* Short Label */}
+                      <span
+                        className={`text-[10px] sm:text-[11px] font-mono uppercase font-bold tracking-wider ${
+                          isActive ? 'text-white' : 'text-slate-700'
+                        }`}
+                      >
+                        {node.tag}
+                      </span>
                     </button>
                   );
                 })}

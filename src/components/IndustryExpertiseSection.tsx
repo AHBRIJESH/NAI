@@ -11,30 +11,30 @@ export const IndustryExpertiseSection: React.FC<IndustryExpertiseSectionProps> =
 }) => {
   const industries = [
     {
-      title: 'Healthcare & Life Sciences',
+      title: 'Clinical Systems & Life Sciences',
       tag: 'HIPAA & FDA ALIGNED',
-      desc: 'Accelerating clinical trial data ingestion and automating diagnostic triage with strict zero data persistence.',
+      desc: 'Accelerating multi-modal clinical ingestion and automated chart triage with provably zero persistent health record retention.',
       image: '/images/isometric_health.jpg',
       stat: '72% faster record synthesis',
     },
     {
-      title: 'Financial Services & Banking',
-      tag: 'SOC2 & FINRA READY',
-      desc: 'Real-time transaction fraud detection, automated KYC verification, and algorithmic ledger reconciliation.',
+      title: 'Institutional Banking & Capital Markets',
+      tag: 'FINRA & SOC2 COMPLIANCE',
+      desc: 'High-throughput transaction anomaly detection, automated KYC verification dossiers, and algorithmic ledger reconciliation.',
       image: '/images/isometric_finance.jpg',
-      stat: '99.98% audit compliance',
+      stat: '99.98% verifiable audit accuracy',
     },
     {
-      title: 'Smart Manufacturing',
-      tag: 'INDUSTRY 4.0 // IOT',
-      desc: 'Autonomous supply chain telemetry, robotic assembly auto-tuning, and predictive downtime prevention.',
+      title: 'Autonomous Logistics & Manufacturing',
+      tag: 'INDUSTRY 4.0 // SCADA',
+      desc: 'Real-time telemetry ingestion, autonomous freight dispatch orchestration, and predictive downtime prevention.',
       image: '/images/isometric_manufacturing.jpg',
-      stat: '4.8x faster incident recovery',
+      stat: '4.8x faster anomaly mitigation',
     },
     {
-      title: 'Enterprise Cloud & SaaS',
-      tag: 'MULTI-TENANT ISOLATION',
-      desc: 'Dynamic cloud microservices optimization, automated customer support triage, and database scaling.',
+      title: 'Enterprise Cloud & Infrastructure',
+      tag: 'ZERO-TRUST ARCHITECTURE',
+      desc: 'Dynamic Kubernetes resource rightsizing, automated incident remediation swarms, and private API mesh isolation.',
       image: '/images/security_vault.jpg',
       stat: '60% cloud compute recaptured',
     },
@@ -49,15 +49,15 @@ export const IndustryExpertiseSection: React.FC<IndustryExpertiseSectionProps> =
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-              <span>DOMAIN INTELLIGENCE</span>
+              <span>DOMAIN-CALIBRATED ARCHITECTURES</span>
             </div>
 
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0A192F] mb-4 leading-tight">
-              Proven Industry Expertise Driving Real Results
+              Mission-Critical Systems for Regulated Industries
             </h2>
 
             <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-              Engineered specifically for the regulatory and architectural demands of mission-critical sectors.
+              Standard AI fails in zero-tolerance environments. We engineer deterministic systems hardened for strict compliance, continuous auditability, and sub-second SLAs.
             </p>
           </div>
         </ScrollReveal>

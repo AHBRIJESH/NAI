@@ -6,23 +6,23 @@ export const TeamSplitSection: React.FC = () => {
   const features = [
     {
       icon: Bot,
-      title: 'Dedicated Engineering Squads',
-      desc: 'Senior AI architects, data engineers, and infrastructure leads working as an integrated extension of your team.',
+      title: 'Dedicated Systems Architecture Pods',
+      desc: 'Principal AI architects, distributed systems engineers, and infrastructure leads deployed directly into your engineering workflows.',
     },
     {
       icon: Layers,
-      title: 'Full-Stack AI Architecture',
-      desc: 'End-to-end implementation covering model selection, vector retrieval, orchestration, and custom UI.',
+      title: 'End-to-End Sovereign Runtime',
+      desc: 'Full-stack implementation spanning fine-tuned open weights, in-memory vector indexing, deterministic state machines, and private cluster orchestration.',
     },
     {
       icon: ShieldCheck,
-      title: 'Zero Data Retention & Sovereign Security',
-      desc: 'Strict air-gapped VPC deployments ensuring proprietary data is never persisted or used for model training.',
+      title: 'Cryptographic Isolation & Zero Data Persistence',
+      desc: 'Air-gapped VPC and on-prem execution ensuring client proprietary data and weights never leak into public foundation models.',
     },
     {
       icon: Zap,
-      title: 'Rapid Sprint Prototyping',
-      desc: 'Working proof-of-concepts delivered in 14 days, validated with real organizational data.',
+      title: 'Pragmatic 14-Day Sprint Validation',
+      desc: 'Production-ready proof-of-concept pipelines running live against your proprietary enterprise telemetry within two weeks—guaranteed.',
     },
   ];
 
@@ -36,12 +36,12 @@ export const TeamSplitSection: React.FC = () => {
             <ScrollReveal y={28} duration={0.6}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-                <span>COLLABORATIVE INTELLIGENCE</span>
+                <span>COLLABORATIVE SYSTEMS ENGINEERING</span>
               </div>
 
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-8 leading-tight">
-                Smart AI Solutions with an{' '}
-                <span className="text-[#1D4ED8]">Even Smarter AI Team.</span>
+                Architected by Principal Engineers.{' '}
+                <span className="text-[#1D4ED8]">Delivered With Zero Bloat.</span>
               </h2>
             </ScrollReveal>
 
@@ -84,10 +84,10 @@ export const TeamSplitSection: React.FC = () => {
                 <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-lg flex items-center justify-between">
                   <div>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold block">
-                      TEAM VELOCITY //
+                      SYSTEMS ARCHITECTURE GUILD //
                     </span>
                     <span className="font-display font-extrabold text-sm sm:text-base text-[#0A192F]">
-                      Top 1% Senior AI Engineers &amp; MLOps Leads
+                      Senior Distributed AI Systems &amp; MLOps Architects
                     </span>
                   </div>
                   <div className="w-3 h-3 rounded-full bg-[#DC2626] animate-pulse shrink-0 ml-3" />

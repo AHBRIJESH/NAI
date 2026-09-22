@@ -67,20 +67,20 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
           {/* Eyebrow Kicker */}
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-white/10 text-white border border-white/20 backdrop-blur-md shadow-xs mb-6">
             <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-            <span>ENTERPRISE AI ARCHITECTURE &amp; DELIVERY</span>
+            <span>SOVEREIGN COGNITIVE TOPOLOGY &amp; DELIVERY</span>
           </motion.div>
 
-          {/* Headline Matching Reference Image */}
+          {/* Elevated Headline */}
           <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight text-white leading-[1.02] mb-6">
-            Every company has an AI idea.{' '}
+            Enterprises don't need more AI prototypes.{' '}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">
-              Ours has a ship date.
+              They need autonomous systems that ship.
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p variants={itemVariants} className="text-lg sm:text-xl lg:text-2xl text-slate-200/90 leading-relaxed max-w-2xl mb-10 font-normal">
-            We architect, build, and deploy production-grade autonomous agent systems and enterprise AI software with guaranteed delivery milestones.
+            We architect, build, and deploy production-grade multi-agent swarms and zero-retention inference pipelines directly within your sovereign infrastructure—backed by guaranteed milestone delivery.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               onClick={onBookCall}
               className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:shadow-2xl hover:scale-102 active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
             >
-              <span>Let's Talk</span>
+              <span>Schedule Technical Briefing</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
 
@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               className="px-6 py-4 rounded-full font-mono text-sm tracking-wider font-semibold text-white/90 hover:text-white border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
-              <span>See How It Works</span>
+              <span>Explore Sovereign Engine</span>
             </button>
           </motion.div>
 

@@ -13,18 +13,18 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
   const stats = [
     {
       value: '10+',
-      label: 'Years in Enterprise AI',
-      subtext: 'Pioneering production-grade inference pipelines',
+      label: 'Years in Distributed AI Systems',
+      subtext: 'Pioneering zero-retention sovereign pipelines',
     },
     {
       value: '514+',
-      label: 'Production Workflows Deployed',
+      label: 'Production Swarms Deployed',
       subtext: 'Across Fortune 500 & high-growth leaders',
     },
     {
       value: '100%',
-      label: 'On-Time Milestone Delivery',
-      subtext: 'Fixed-schedule agile release cadences',
+      label: 'Milestone Delivery SLA Guarantee',
+      subtext: 'Fixed-cadence production deployment targets',
     },
   ];
 
@@ -43,23 +43,23 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
           <div className="max-w-3xl mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-              <span>PRAGMATIC EXECUTION</span>
+              <span>PRAGMATIC EXECUTION VELOCITY</span>
             </div>
 
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-              AI, Software, and Data.{' '}
-              <span className="text-blue-100">Built to Ship.</span>
+              Sovereign Architecture. Zero Friction.{' '}
+              <span className="text-blue-100">Engineered to Deploy.</span>
             </h2>
 
             <p className="text-lg sm:text-xl text-blue-100/90 leading-relaxed mb-8 font-normal">
-              From zero to production without endless discovery cycles or runaway compute costs. We architect resilient systems that scale securely within your existing tech stack.
+              Bypass months of speculative research and runaway GPU compute overhead. We engineer resilient autonomous pipelines hardened directly into your private enterprise infrastructure.
             </p>
 
             <button
               onClick={onExploreCapabilities}
               className="px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-[#1D4ED8] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-blue-900/30 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
             >
-              <span>See Our Capabilities</span>
+              <span>Explore Architectural Topology</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
           </div>

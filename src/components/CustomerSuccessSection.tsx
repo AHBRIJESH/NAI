@@ -11,31 +11,31 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
 }) => {
   const clientStories = [
     {
-      industry: 'Global Logistics',
+      industry: 'Global Supply Chain',
       headline: 'Autonomous Freight Dispatch',
-      result: '82% faster dispatch cycles',
+      result: '82% faster dispatch velocity',
       img: '/images/isometric_manufacturing.jpg',
     },
     {
-      industry: 'Commercial Banking',
+      industry: 'Tier-1 Capital Markets',
       headline: 'Zero-Retention Audit Sentinel',
       result: '100% compliance SLA verified',
       img: '/images/isometric_finance.jpg',
     },
     {
-      industry: 'Biotech Discovery',
-      headline: 'Clinical Data Synthesis',
+      industry: 'Clinical Genomics',
+      headline: 'Multi-Omics Research Synthesis',
       result: '650+ research hours saved/mo',
       img: '/images/isometric_health.jpg',
     },
     {
-      industry: 'Enterprise Cloud',
-      headline: 'Microservices Auto-Tuning',
-      result: '$3.8M annual cloud savings',
+      industry: 'High-Scale Cloud',
+      headline: 'Kubernetes Cluster Auto-Tuning',
+      result: '$3.8M annual compute recaptured',
       img: '/images/security_vault.jpg',
     },
     {
-      industry: 'Retail Distribution',
+      industry: 'Omnichannel Commerce',
       headline: 'Predictive Inventory Mesh',
       result: '99.4% on-shelf availability',
       img: '/images/solutions_architecture.jpg',
@@ -54,11 +54,11 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/20 text-white border border-white/30 mb-4">
               <Building2 className="w-3.5 h-3.5 text-white" />
-              <span>CUSTOMER SUCCESS STORY</span>
+              <span>VALIDATED PRODUCTION IMPACT</span>
             </div>
 
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-2">
-              Accelerating Enterprise Intelligence at Scale
+              Quantifiable Impact Across Mission-Critical Infrastructure
             </h2>
           </div>
         </ScrollReveal>
@@ -81,25 +81,25 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
               <div className="lg:col-span-7 text-white space-y-6">
                 <div>
                   <span className="font-mono text-xs uppercase tracking-widest text-[#BAE6FD] font-bold block mb-1">
-                    THE CHALLENGE
+                    THE ARCHITECTURAL CHALLENGE
                   </span>
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
-                    A Fortune 500 logistics provider was drowning in 40,000+ daily cross-border manifest documents, requiring 320 full-time specialists to manually transcribe and audit customs records.
+                    A Fortune 500 logistics provider was constrained by 40,000+ daily cross-border manifest documents, requiring 320 full-time specialists to manually transcribe, match, and audit customs records across fragmented regional legacy systems.
                   </p>
                 </div>
 
                 <div>
                   <span className="font-mono text-xs uppercase tracking-widest text-[#BAE6FD] font-bold block mb-1">
-                    THE SOLUTION
+                    THE ENGINEERED TOPOLOGY
                   </span>
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
-                    NAIR.AI architected an autonomous multi-agent OCR and verification pipeline deployed on-prem in private VPC, achieving 99.8% extraction accuracy with zero data persistence.
+                    NAIR.AI architected an autonomous multi-agent OCR and verification pipeline deployed on-prem in an air-gapped VPC, achieving 99.8% extraction accuracy with zero data persistence and real-time schema validation.
                   </p>
                 </div>
 
                 <div>
                   <span className="font-mono text-xs uppercase tracking-widest text-[#BAE6FD] font-bold block mb-1">
-                    THE IMPACT
+                    THE VERIFIED PRODUCTION YIELD
                   </span>
                   <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal">
                     <strong>84% reduction in document turnaround time</strong>, over $4.2M in annual recurring operational savings, and zero compliance penalties across 14 international trade corridors.
@@ -111,7 +111,7 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
                     onClick={() => onSelectCaseStudy?.('Global Logistics Architecture')}
                     className="px-7 py-3 rounded-full bg-white hover:bg-slate-100 text-[#0284C7] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all shadow-md hover:scale-102 flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Read Full Case Study</span>
+                    <span>Explore Architectural Blueprint</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 </div>

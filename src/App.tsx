@@ -9,7 +9,6 @@ import { TeamSplitSection } from './components/TeamSplitSection';
 import { CustomerSuccessSection } from './components/CustomerSuccessSection';
 import { CalloutBanner } from './components/CalloutBanner';
 import { PressBar } from './components/PressBar';
-import { NavyTestimonialSection } from './components/NavyTestimonialSection';
 import { SuccessByNumbersSection } from './components/SuccessByNumbersSection';
 import { ImpactCalculator } from './components/ImpactCalculator';
 import { BlueSolutionsSection } from './components/BlueSolutionsSection';
@@ -150,10 +149,7 @@ export function App() {
             {/* 8. Press & Recognition Logo Bar */}
             <PressBar />
 
-            {/* 9. Navy Client Testimonial Section ("Our Clients Say It Best") */}
-            <NavyTestimonialSection />
-
-            {/* 10. Success by the Numbers Circular Diagram */}
+            {/* 9. Success by the Numbers Circular Diagram */}
             <SuccessByNumbersSection />
 
             {/* 11. Interactive ROI Impact Estimator */}

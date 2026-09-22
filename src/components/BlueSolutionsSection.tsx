@@ -13,35 +13,35 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
   const solutions = [
     {
       icon: Compass,
-      tag: 'STRATEGY & ARCHITECTURE',
-      title: 'Enterprise AI Strategy',
-      desc: 'Pragmatic blueprinting, model evaluation, and ROI roadmaps designed to prevent costly architectural dead-ends.',
+      tag: 'STRATEGY & TOPOLOGY',
+      title: 'Enterprise AI Strategy & Sizing',
+      desc: 'Pragmatic architectural audits, model sizing, and hardware roadmaps designed to bypass multi-million dollar vendor dead-ends.',
       points: [
-        'Proprietary vs Open-Weight Model Sizing',
-        'Private VPC Infrastructure Design',
-        'C-Suite & Board Alignment Briefings',
+        'Proprietary vs Sovereign Open-Weight Sizing',
+        'Air-Gapped Private VPC Topologies',
+        'Deterministic Cost & Latency Benchmarks',
       ],
     },
     {
       icon: Bot,
-      tag: 'AUTONOMOUS WORKFLOWS',
-      title: 'Multi-Agent Automation',
-      desc: 'Coordinating autonomous agent swarms that interact directly with enterprise ERPs, CRMs, and core relational databases.',
+      tag: 'AUTONOMOUS EXECUTION',
+      title: 'Multi-Agent Operational Swarms',
+      desc: 'Resilient agent clusters executing complex multi-step workflows across ERPs, relational databases, and proprietary enterprise APIs.',
       points: [
         'Sub-Second In-Memory Orchestration',
         'Automated Transactional Rollbacks',
-        'Human-in-the-Loop Approval Gates',
+        'Human-in-the-Loop Approval Safeguards',
       ],
     },
     {
       icon: ShieldCheck,
-      tag: 'SECURITY & COMPLIANCE',
-      title: 'Sovereign Private LLMs',
-      desc: 'Hardware-isolated, zero-retention deployments ensuring client proprietary data never trains external foundation models.',
+      tag: 'SOVEREIGN DATA SECURITY',
+      title: 'Zero-Retention Private LLMs',
+      desc: 'Hardware-isolated inference environments guaranteeing client intellectual property and enterprise data never train external models.',
       points: [
         'Cryptographic Ephemeral RAM Processing',
         'Real-Time PII & Credential Scrubbing',
-        'SOC2 Type II Aligned Audit Trails',
+        'SOC2 Type II Aligned Cryptographic Logs',
       ],
     },
   ];
@@ -61,15 +61,15 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-4">
               <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-              <span>EXPERT SOLUTIONS</span>
+              <span>CORE CAPABILITIES &amp; RUNTIMES</span>
             </div>
 
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 leading-tight">
-              Expert Solutions to Simplify Challenges and Drive Growth
+              Autonomous Infrastructure Built for Enterprise Scale
             </h2>
 
             <p className="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed">
-              Scalable engineering engagements engineered to integrate seamlessly into existing enterprise infrastructure.
+              Resilient cognitive software engineered to integrate seamlessly into your mission-critical private infrastructure.
             </p>
           </div>
         </ScrollReveal>
