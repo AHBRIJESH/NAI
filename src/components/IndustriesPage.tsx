@@ -25,6 +25,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import type { PageRoute } from './Navbar';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
 import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface IndustriesPageProps {
   onBackToHome: () => void;
@@ -771,14 +772,17 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
 
       </section>
 
-      {/* BOTTOM CALL TO ACTION */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-24">
-        <div className="p-8 sm:p-14 rounded-3xl bg-[#0A192F] text-white text-center shadow-2xl relative overflow-hidden">
+      {/* BOTTOM CALL TO ACTION: Light Blue Theme with Motion Dot Deflection */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-20">
+        <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] border border-blue-200/90 text-[#0A192F] text-center shadow-xl relative overflow-hidden">
+          {/* Motion Dot Deflection Effect */}
+          <MotionDotCanvas dotCount={40} deflectionRadius={120} />
+
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight">
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0A192F]">
               Ready to Deploy Sovereign AI in Your Organization?
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
               Book a 30-minute technical evaluation with a senior NAIR solutions architect. We will evaluate your compliance boundaries, data infrastructure, and outline a 30-day production path.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -793,7 +797,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all cursor-pointer"
+                className="px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>

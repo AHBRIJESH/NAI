@@ -218,6 +218,47 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <span className="text-xs text-slate-700 font-medium">Silicon Valley, USA &amp; Bangalore, India</span>
                   </div>
                 </div>
+
+                {/* Social Channels */}
+                <div className="pt-2">
+                  <span className="font-mono text-xs text-slate-500 uppercase block font-semibold mb-2">
+                    Official Social Channels
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://www.linkedin.com/company/nairai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#0A66C2] hover:text-white border border-slate-200 text-xs font-mono font-bold text-slate-700 transition-all flex items-center gap-1.5"
+                    >
+                      <span>LinkedIn</span>
+                    </a>
+                    <a
+                      href="https://youtube.com/@naircorp?si=gcy-P6RD3bsbm9Zv"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#FF0000] hover:text-white border border-slate-200 text-xs font-mono font-bold text-slate-700 transition-all flex items-center gap-1.5"
+                    >
+                      <span>YouTube</span>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/naircorp?stkn=NTJoY2VjcDUxY3B0&utm_source=qr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#E1306C] hover:text-white border border-slate-200 text-xs font-mono font-bold text-slate-700 transition-all flex items-center gap-1.5"
+                    >
+                      <span>Instagram</span>
+                    </a>
+                    <a
+                      href="https://www.facebook.com/share/1MA8bMLjab/?mibextid=wwXIfr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#1877F2] hover:text-white border border-slate-200 text-xs font-mono font-bold text-slate-700 transition-all flex items-center gap-1.5"
+                    >
+                      <span>Facebook</span>
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className="pt-4 border-t border-slate-100">
@@ -233,25 +274,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
             </div>
 
-            {/* Quick Consultation Perks */}
-            <div className="rounded-3xl bg-gradient-to-br from-[#0A192F] to-[#1E3A8A] text-white p-8 shadow-xl text-left">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-blue-200 block mb-2 font-bold">
+            {/* Quick Consultation Perks - Upgraded to Light Blue Aesthetic */}
+            <div className="rounded-3xl bg-gradient-to-br from-blue-50/90 via-sky-50 to-blue-100/70 border border-blue-200/90 text-[#0A192F] p-8 shadow-md text-left">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#1D4ED8] block mb-2 font-bold">
                 WHAT HAPPENS ON THE CALL
               </span>
-              <h3 className="font-display font-extrabold text-xl text-white mb-3">
+              <h3 className="font-display font-extrabold text-xl text-[#0A192F] mb-3">
                 Zero Fluff. Pure Engineering.
               </h3>
-              <ul className="text-xs sm:text-sm text-blue-100/90 leading-relaxed space-y-2.5 font-normal">
+              <ul className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-2.5 font-normal">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#38BDF8] font-bold">1.</span>
+                  <span className="text-[#1D4ED8] font-bold">1.</span>
                   <span>Objective breakdown of where AI creates immediate ROI in your workflows.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#38BDF8] font-bold">2.</span>
+                  <span className="text-[#1D4ED8] font-bold">2.</span>
                   <span>Evaluation of compliance constraints (SOC2, HIPAA, air-gapped runtimes).</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#38BDF8] font-bold">3.</span>
+                  <span className="text-[#1D4ED8] font-bold">3.</span>
                   <span>Realistic 30-day proof-of-concept milestone and budget estimate.</span>
                 </li>
               </ul>

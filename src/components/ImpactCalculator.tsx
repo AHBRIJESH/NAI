@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TrendingUp, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface ImpactCalculatorProps {
   onBookCall: () => void;
@@ -140,23 +141,26 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
             </ScrollReveal>
           </div>
 
-          {/* Results Column (Deep Navy Container with Electric Blue & White metrics) */}
+          {/* Results Column (Light Blue Container with Motion Dot Deflection & Red/Navy accents) */}
           <div className="lg:col-span-6 flex flex-col">
             <ScrollReveal delay={0.15} y={32} duration={0.7} className="h-full flex flex-col">
-              <div className="rounded-3xl border border-blue-900/60 bg-[#0A192F] text-white p-6 sm:p-10 flex-1 flex flex-col justify-between shadow-2xl min-w-0 overflow-hidden">
-                <div className="min-w-0">
-                  <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-blue-300 font-bold mb-6">
+              <div className="rounded-3xl border border-blue-200/90 bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] text-[#0A192F] p-6 sm:p-10 flex-1 flex flex-col justify-between shadow-xl min-w-0 overflow-hidden relative">
+                {/* Motion Dot Deflection Canvas */}
+                <MotionDotCanvas dotCount={35} deflectionRadius={110} />
+
+                <div className="min-w-0 relative z-10">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#1D4ED8] font-bold mb-6">
                     <TrendingUp className="w-4 h-4 text-[#DC2626] shrink-0" />
                     <span>PROJECTED RECOVERED VALUE</span>
                   </div>
 
                   {/* Responsive Main Headline Value with Dynamic Overflow Protection */}
                   <div className="mb-8 min-w-0 overflow-hidden">
-                    <span className="text-xs font-mono uppercase tracking-wider text-blue-200/70 block mb-2 font-bold">
+                    <span className="text-xs font-mono uppercase tracking-wider text-slate-500 block mb-2 font-bold">
                       Estimated Annual Cost Recovery
                     </span>
                     <div
-                      className={`font-display font-black text-white tracking-tight leading-none break-all sm:break-normal transition-all duration-150 ${
+                      className={`font-display font-black text-[#0A192F] tracking-tight leading-none break-all sm:break-normal transition-all duration-150 ${
                         `$${annualCostSaved.toLocaleString()}`.length >= 11
                           ? 'text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl'
                           : `$${annualCostSaved.toLocaleString()}`.length >= 9
@@ -167,11 +171,11 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                       ${annualCostSaved.toLocaleString()}
                     </div>
                     <div className="flex flex-wrap items-center gap-2.5 mt-2.5">
-                      <span className="text-xs sm:text-sm font-mono font-medium text-blue-200/60">
+                      <span className="text-xs sm:text-sm font-mono font-medium text-slate-500">
                         budget recaptured per year
                       </span>
                       {annualCostSaved >= 1000000 && (
-                        <span className="text-[11px] font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-blue-950 text-[#38BDF8] border border-blue-800">
+                        <span className="text-[11px] font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-blue-100 text-[#0284C7] border border-blue-200">
                           ~${(annualCostSaved / 1000000).toFixed(1)}M / yr
                         </span>
                       )}
@@ -180,28 +184,28 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
 
                   {/* Output Metric Badges */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div className="p-4 sm:p-5 rounded-2xl bg-[#071326] border border-blue-950 min-w-0 overflow-hidden">
-                      <div className="flex items-center gap-2 text-blue-200 text-xs font-mono mb-1.5 font-bold">
-                        <Clock className="w-4 h-4 text-[#38BDF8] shrink-0" />
+                    <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1.5 font-bold">
+                        <Clock className="w-4 h-4 text-[#0284C7] shrink-0" />
                         <span className="truncate">HOURS RECOVERED</span>
                       </div>
-                      <div className="font-display font-black text-2xl sm:text-3xl text-white truncate">
+                      <div className="font-display font-black text-2xl sm:text-3xl text-[#0A192F] truncate">
                         {annualHoursRecovered.toLocaleString()}
                       </div>
-                      <span className="text-xs text-blue-300/60 block mt-1 font-mono">
+                      <span className="text-xs text-slate-500 block mt-1 font-mono">
                         Hours returned / yr
                       </span>
                     </div>
 
-                    <div className="p-4 sm:p-5 rounded-2xl bg-[#071326] border border-blue-950 min-w-0 overflow-hidden">
-                      <div className="flex items-center gap-2 text-blue-200 text-xs font-mono mb-1.5 font-bold">
+                    <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1.5 font-bold">
                         <TrendingUp className="w-4 h-4 text-[#DC2626] shrink-0" />
                         <span className="truncate">FTE BANDWIDTH</span>
                       </div>
-                      <div className="font-display font-black text-2xl sm:text-3xl text-white truncate">
+                      <div className="font-display font-black text-2xl sm:text-3xl text-[#0A192F] truncate">
                         +{fteEquivalentReturned} FTEs
                       </div>
-                      <span className="text-xs text-blue-300/60 block mt-1 font-mono">
+                      <span className="text-xs text-slate-500 block mt-1 font-mono">
                         Capacity unlocked
                       </span>
                     </div>
@@ -209,12 +213,12 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
 
                   {/* Strategic Context */}
                   <div className="space-y-3 mb-8">
-                    <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                      <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                       <span>Immediate deployment without retraining existing operational staff.</span>
                     </div>
-                    <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                      <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                       <span>Zero proprietary data used for public foundation model training.</span>
                     </div>
                   </div>
@@ -223,7 +227,7 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                 {/* Direct CTA */}
                 <button
                   onClick={onBookCall}
-                  className="w-full py-4 px-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                  className="w-full py-4 px-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 flex items-center justify-center gap-3 cursor-pointer hover:scale-102 relative z-10"
                 >
                   <span>Validate ROI With An AI Strategy Call</span>
                   <ArrowRight className="w-4 h-4" />

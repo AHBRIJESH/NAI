@@ -35,13 +35,15 @@ const DEFAULT_FONTS = [
   '"Trebuchet MS", sans-serif',
 ]
 
-// High-end Blue, White & Red Ransom Tile Palette
+// Light, fun, and vibrant ransom tile palette
 const BRAND_PALETTE = [
-  { bg: '#0A192F', text: '#FFFFFF', border: '#071326' }, // Midnight Navy
-  { bg: '#DC2626', text: '#FFFFFF', border: '#991B1B' }, // Crimson Red
-  { bg: '#FFFFFF', text: '#0A192F', border: '#CBD5E1' }, // Clean White
-  { bg: '#1D4ED8', text: '#FFFFFF', border: '#1E40AF' }, // Royal Blue
-  { bg: '#F8FAFC', text: '#1D4ED8', border: '#94A3B8' }, // Crisp Slate
+  { bg: '#E0F2FE', text: '#0284C7', border: '#7DD3FC' }, // Light Sky Blue
+  { bg: '#FEF08A', text: '#A16207', border: '#FACC15' }, // Sunny Pastel Yellow
+  { bg: '#DCFCE7', text: '#15803D', border: '#86EFAC' }, // Mint Green
+  { bg: '#FFE4E6', text: '#E11D48', border: '#FDA4AF' }, // Playful Rose Pink
+  { bg: '#EDE9FE', text: '#7C3AED', border: '#C4B5FD' }, // Soft Lavender Purple
+  { bg: '#FFEDD5', text: '#EA580C', border: '#FDBA74' }, // Warm Pastel Peach
+  { bg: '#F0F9FF', text: '#1D4ED8', border: '#93C5FD' }, // Crisp Ice Blue
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({

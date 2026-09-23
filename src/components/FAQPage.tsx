@@ -18,6 +18,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface FAQPageProps {
   onBackToHome: () => void;
@@ -610,19 +611,19 @@ export const FAQPage: React.FC<FAQPageProps> = ({
         )}
       </section>
 
-      {/* Bottom Advisory Consultation Card */}
+      {/* Bottom Advisory Consultation Card: Light Blue Theme with Motion Dot Deflection */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16 text-left">
-        <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
+        <div className="rounded-3xl bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] border border-blue-200/90 text-[#0A192F] p-8 sm:p-14 shadow-xl relative overflow-hidden">
+          {/* Motion Dot Deflection Effect */}
+          <MotionDotCanvas dotCount={40} deflectionRadius={120} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8">
-              <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+              <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A192F] tracking-tight mb-4 leading-tight">
                 Have a Specific Architectural or Regulatory Inquiry?
               </h3>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
                 Schedule an objective 30-minute feasibility session directly with our senior AI systems architects. We will examine your internal stack, compliance constraints, and provide deterministic ROI projections.
               </p>
             </div>
@@ -638,7 +639,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({
 
               <button
                 onClick={onOpenAssessment}
-                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-[#0A192F] transition-all flex items-center justify-center gap-2 cursor-pointer text-center shadow-xs"
               >
                 <span>Take Readiness Diagnostic</span>
               </button>

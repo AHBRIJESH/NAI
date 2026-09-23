@@ -25,6 +25,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import type { PageRoute } from './Navbar';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
 import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface ServicesPageProps {
   onBackToHome: () => void;
@@ -178,37 +179,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       tag: 'Sovereign',
       icon: Cpu,
       color: '#1D4ED8',
-    },
-  ];
-
-  const deliveryStages = [
-    {
-      step: '01',
-      title: 'Discover & Feasibility',
-      duration: 'Week 1',
-      desc: 'Deep-dive audit of your proprietary data schemas, compliance boundaries, and operational friction points to define high-ROI agent opportunities.',
-      deliverable: 'Technical Feasibility & ROI Blueprint',
-    },
-    {
-      step: '02',
-      title: 'Architect & Benchmark',
-      duration: 'Week 2',
-      desc: 'Design deterministic agent topology, model selection (cloud vs sovereign self-hosted), vector schema, and security guardrail matrix.',
-      deliverable: 'Production Architecture Specification',
-    },
-    {
-      step: '03',
-      title: 'Build & Red-Team',
-      duration: 'Weeks 3-4',
-      desc: 'Rapid agile delivery of agent swarms, integration with existing ERP/CRM APIs, strict hallucination red-teaming, and human-in-the-loop workflows.',
-      deliverable: 'Functional Pilot & Compliance Verification',
-    },
-    {
-      step: '04',
-      title: 'Deploy & Scale',
-      duration: 'Production Launch',
-      desc: 'Full production rollout to your private cloud with 24/7 latency monitoring, zero-drift telemetry, and staff enablement playbooks.',
-      deliverable: 'SLA Guarantee & Continuous Monitoring',
     },
   ];
 
@@ -510,67 +480,17 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </div>
       </section>
 
-      {/* 4-STAGE DELIVERY TIMELINE: Distinct Architecture Flow */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-        <div className="text-left mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1D4ED8] font-mono text-xs font-extrabold uppercase mb-3">
-            <Workflow className="w-3.5 h-3.5" />
-            <span>Pragmatic Delivery Protocol</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
-            From Blueprint to Production in 30 Days.
-          </h2>
-          <p className="text-base text-slate-600 max-w-2xl mt-3">
-            We reject multi-year research experiments. Every engagement follows a disciplined, sprint-based delivery cycle with verifiable milestones at each step.
-          </p>
-        </div>
+      {/* BOTTOM CALL TO ACTION: Light Blue Theme with Motion Dot Deflection */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-16">
+        <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] border border-blue-200/90 text-[#0A192F] text-center shadow-xl relative overflow-hidden">
+          {/* Motion Dot Deflection Effect */}
+          <MotionDotCanvas dotCount={40} deflectionRadius={120} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-          {deliveryStages.map((stage, idx) => (
-            <div
-              key={idx}
-              className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono font-black text-2xl text-[#1D4ED8]">
-                    {stage.step}
-                  </span>
-                  <span className="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1D4ED8]">
-                    {stage.duration}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3">
-                  {stage.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                  {stage.desc}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100">
-                <span className="font-mono text-[10px] text-slate-400 uppercase block mb-1">
-                  Key Deliverable:
-                </span>
-                <span className="font-mono text-xs font-bold text-[#0A192F]">
-                  {stage.deliverable}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* BOTTOM CALL TO ACTION */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-20">
-        <div className="p-8 sm:p-14 rounded-3xl bg-[#0A192F] text-white text-center shadow-2xl relative overflow-hidden">
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight">
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0A192F]">
               Ready to Upgrade Your Enterprise Workflows?
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
               Schedule an executive AI strategy session with our lead architects. We will evaluate your technical landscape and propose a structured execution roadmap.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -585,7 +505,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all cursor-pointer"
+                className="px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>

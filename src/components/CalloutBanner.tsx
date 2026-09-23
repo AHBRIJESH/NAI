@@ -2,6 +2,7 @@ import React from 'react';
 import { RansomNote } from './RansomNote';
 import { ArrowRight, ArrowUp, Calculator } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface CalloutBannerProps {
   onBookCall?: () => void;
@@ -10,18 +11,13 @@ interface CalloutBannerProps {
 
 export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-slate-50 border-t border-b border-slate-200/90 text-center relative overflow-hidden">
-      {/* Background Architectural Grid Accent */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.25]"
-        style={{
-          backgroundImage: 'radial-gradient(#1E3A8A 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }}
-      />
-      {/* Ambient Blue & Red Soft Radial Blurs */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-blue-400/10 blur-3xl pointer-events-none rounded-full" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-red-400/10 blur-3xl pointer-events-none rounded-full" />
+    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] border-t border-b border-blue-200/80 text-center relative overflow-hidden">
+      {/* Interactive Motion Dot Deflection Background */}
+      <MotionDotCanvas dotCount={45} deflectionRadius={130} />
+
+      {/* Subtle Ambient Glows */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-blue-300/20 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-sky-300/15 blur-3xl pointer-events-none rounded-full" />
 
       <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
         

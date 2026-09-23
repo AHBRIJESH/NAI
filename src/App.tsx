@@ -4,6 +4,7 @@ import { Navbar, type PageRoute } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { LogoTrustBar } from './components/LogoTrustBar';
 import { NeuralEngineSection } from './components/NeuralEngineSection';
+import { IntelligenceEvolution } from './components/IntelligenceEvolution';
 import { BlueStatsSection } from './components/BlueStatsSection';
 import { TeamSplitSection } from './components/TeamSplitSection';
 import { CustomerSuccessSection } from './components/CustomerSuccessSection';
@@ -131,6 +132,12 @@ export function App() {
             <NeuralEngineSection
               onOpenAssessment={handleOpenAssessment}
               onBookCall={() => handleOpenBooking('Autonomous Neural Core Engine')}
+            />
+
+            {/* 3. AI -> AGI -> ASI Cognitive Evolution Roadmap */}
+            <IntelligenceEvolution
+              onBookCall={() => handleOpenBooking('AI to AGI Roadmap')}
+              onExploreCapabilities={() => handleNavigate('services')}
             />
 
             {/* 4. Royal Blue Stats Section ("AI, Software, and Data. Built to Ship.") */}
