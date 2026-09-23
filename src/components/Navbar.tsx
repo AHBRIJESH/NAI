@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
+export type PageRoute = 'home' | 'about' | 'services' | 'case-studies' | 'contact' | 'faq';
+
 interface NavbarProps {
   onBookCall: () => void;
-  currentPage: 'home' | 'faq';
-  onNavigate: (page: 'home' | 'faq', sectionId?: string) => void;
+  currentPage: PageRoute;
+  onNavigate: (page: PageRoute) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -14,21 +16,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: 'Services', sectionId: 'services' },
-    { name: 'About', sectionId: 'about' },
-    { name: 'Case Studies', sectionId: 'case-studies' },
-    { name: 'Capabilities', sectionId: 'capabilities' },
-    { name: 'FAQ', isPage: true },
+  const navLinks: { name: string; page: PageRoute }[] = [
+    { name: 'Home', page: 'home' },
+    { name: 'About', page: 'about' },
+    { name: 'Products & Services', page: 'services' },
+    { name: 'Case Studies', page: 'case-studies' },
+    { name: 'FAQ', page: 'faq' },
+    { name: 'Contact', page: 'contact' },
   ];
 
-  const handleLinkClick = (link: typeof navLinks[0]) => {
+  const handleLinkClick = (page: PageRoute) => {
     setMobileMenuOpen(false);
-    if (link.isPage) {
-      onNavigate('faq');
-    } else {
-      onNavigate('home', link.sectionId);
-    }
+    onNavigate(page);
   };
 
   return (
@@ -52,20 +51,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => {
-            const isActive = link.isPage && currentPage === 'faq';
+            const isActive = currentPage === link.page;
             return (
               <button
                 key={link.name}
-                onClick={() => handleLinkClick(link)}
-                className={`text-sm font-semibold transition-colors cursor-pointer py-1 ${
+                onClick={() => handleLinkClick(link.page)}
+                className={`text-sm font-semibold transition-all duration-200 cursor-pointer py-1 relative ${
                   isActive
-                    ? 'text-[#1D4ED8] font-bold border-b-2 border-[#1D4ED8]'
+                    ? 'text-[#1D4ED8] font-bold'
                     : 'text-slate-700 hover:text-[#1D4ED8]'
                 }`}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1D4ED8] rounded-full" />
+                )}
               </button>
             );
           })}
@@ -94,16 +96,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => handleLinkClick(link)}
-              className="block w-full text-left py-2 text-base font-semibold text-slate-800 hover:text-[#1D4ED8] cursor-pointer"
-            >
-              {link.name}
-            </button>
-          ))}
+        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-2 shadow-xl">
+          {navLinks.map((link) => {
+            const isActive = currentPage === link.page;
+            return (
+              <button
+                key={link.name}
+                onClick={() => handleLinkClick(link.page)}
+                className={`block w-full text-left py-2.5 px-3 rounded-xl text-base font-semibold transition-colors cursor-pointer ${
+                  isActive
+                    ? 'bg-blue-50 text-[#1D4ED8] font-bold'
+                    : 'text-slate-800 hover:text-[#1D4ED8]'
+                }`}
+              >
+                {link.name}
+              </button>
+            );
+          })}
           <div className="pt-4 border-t border-slate-100">
             <button
               onClick={() => {

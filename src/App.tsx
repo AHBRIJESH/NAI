@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LenisProvider } from './components/LenisProvider';
-import { Navbar } from './components/Navbar';
+import { Navbar, type PageRoute } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { LogoTrustBar } from './components/LogoTrustBar';
 import { NeuralEngineSection } from './components/NeuralEngineSection';
@@ -13,6 +13,10 @@ import { SuccessByNumbersSection } from './components/SuccessByNumbersSection';
 import { ImpactCalculator } from './components/ImpactCalculator';
 import { BlueSolutionsSection } from './components/BlueSolutionsSection';
 import { GradientFooter } from './components/GradientFooter';
+import { AboutPage } from './components/AboutPage';
+import { ServicesPage } from './components/ServicesPage';
+import { CaseStudiesPage } from './components/CaseStudiesPage';
+import { ContactPage } from './components/ContactPage';
 import { FAQPage } from './components/FAQPage';
 import { AssessmentModal } from './components/AssessmentModal';
 import { BookingModal } from './components/BookingModal';
@@ -24,25 +28,36 @@ export function App() {
   const [prefillService, setPrefillService] = useState<string>('');
   const [assessmentData, setAssessmentData] = useState<Record<string, string> | undefined>(undefined);
 
-  // Page Routing State ('home' | 'faq')
-  const [currentPage, setCurrentPage] = useState<'home' | 'faq'>(() => {
+  // Page Routing State ('home' | 'about' | 'services' | 'case-studies' | 'contact' | 'faq')
+  const [currentPage, setCurrentPage] = useState<PageRoute>(() => {
     if (typeof window !== 'undefined') {
-      const hash = window.location.hash;
-      const path = window.location.pathname;
-      if (hash === '#/faq' || hash === '#faq' || path === '/faq') {
-        return 'faq';
-      }
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#/about' || hash === '#about') return 'about';
+      if (hash === '#/services' || hash === '#services') return 'services';
+      if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
+      if (hash === '#/contact' || hash === '#contact') return 'contact';
+      if (hash === '#/faq' || hash === '#faq') return 'faq';
     }
     return 'home';
   });
 
-  // Sync with browser back/forward and hash
+  // Synchronize route with browser history and URL hash
   useEffect(() => {
     const handleRouteCheck = () => {
-      const hash = window.location.hash;
-      const path = window.location.pathname;
-      const isFaq = hash === '#/faq' || hash === '#faq' || path === '/faq';
-      setCurrentPage(isFaq ? 'faq' : 'home');
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#/about' || hash === '#about') {
+        setCurrentPage('about');
+      } else if (hash === '#/services' || hash === '#services') {
+        setCurrentPage('services');
+      } else if (hash === '#/case-studies' || hash === '#case-studies') {
+        setCurrentPage('case-studies');
+      } else if (hash === '#/contact' || hash === '#contact') {
+        setCurrentPage('contact');
+      } else if (hash === '#/faq' || hash === '#faq') {
+        setCurrentPage('faq');
+      } else {
+        setCurrentPage('home');
+      }
     };
     window.addEventListener('popstate', handleRouteCheck);
     window.addEventListener('hashchange', handleRouteCheck);
@@ -52,26 +67,17 @@ export function App() {
     };
   }, []);
 
-  const handleNavigate = (page: 'home' | 'faq', sectionId?: string) => {
-    if (page === 'faq') {
-      setCurrentPage('faq');
-      window.location.hash = '#/faq';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleNavigate = (page: PageRoute) => {
+    setCurrentPage(page);
+    if (page === 'home') {
+      window.history.pushState(null, '', window.location.pathname);
     } else {
-      setCurrentPage('home');
-      window.history.replaceState(null, '', window.location.pathname);
-      if (sectionId) {
-        setTimeout(() => {
-          const el = document.getElementById(sectionId);
-          el?.scrollIntoView({ behavior: 'smooth' });
-        }, 80);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      window.location.hash = `#/${page}`;
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Refined Smooth Preloader (active on first visit)
+  // Refined Smooth Preloader (active on initial visit)
   const [preloaderActive, setPreloaderActive] = useState<boolean>(true);
 
   const handleOpenBooking = (serviceName?: string) => {
@@ -101,16 +107,17 @@ export function App() {
           />
         )}
 
-        {/* Fixed Top Navigation Bar */}
+        {/* Top Fixed Global Navigation Bar */}
         <Navbar
           onBookCall={() => handleOpenBooking()}
           currentPage={currentPage}
           onNavigate={handleNavigate}
         />
 
-        {currentPage === 'home' ? (
+        {/* Dynamic Page Views */}
+        {currentPage === 'home' && (
           <main className="w-full">
-            {/* 1. Hero Section (Green Photo / Deep Navy Colorgrade + "Every company has an AI idea. Ours has a ship date.") */}
+            {/* 1. Hero Section (AI Orb Face 380px with 5s Auto Reactions) */}
             <Hero
               onBookCall={() => handleOpenBooking()}
               onOpenAssessment={handleOpenAssessment}
@@ -127,16 +134,13 @@ export function App() {
 
             {/* 4. Royal Blue Stats Section ("AI, Software, and Data. Built to Ship.") */}
             <BlueStatsSection
-              onExploreCapabilities={() => {
-                const el = document.getElementById('services');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onExploreCapabilities={() => handleNavigate('services')}
             />
 
-            {/* 5. Team & Capabilities Split ("Smart AI Solutions with an Even Smarter AI Team") */}
+            {/* 5. Team & Capabilities Split */}
             <TeamSplitSection />
 
-            {/* 6. Cerulean Customer Success Story */}
+            {/* 6. Customer Success Story */}
             <CustomerSuccessSection
               onSelectCaseStudy={(storyTitle) => handleOpenBooking(`Case Study Inquiry: ${storyTitle}`)}
             />
@@ -152,7 +156,7 @@ export function App() {
               onBookCall={() => handleOpenBooking('Operational Automation ROI')}
             />
 
-            {/* 10. Expert Solutions Grid (Royal Blue Background, 3 White Cards) */}
+            {/* 10. Expert Solutions Grid */}
             <BlueSolutionsSection
               onSelectSolution={(sol) => handleOpenBooking(sol)}
             />
@@ -162,8 +166,44 @@ export function App() {
               onBookCall={() => handleOpenBooking()}
             />
           </main>
-        ) : (
-          /* Dedicated Standalone FAQ Page */
+        )}
+
+        {currentPage === 'about' && (
+          <AboutPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'services' && (
+          <ServicesPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'case-studies' && (
+          <CaseStudiesPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'contact' && (
+          <ContactPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+          />
+        )}
+
+        {currentPage === 'faq' && (
           <FAQPage
             onBackToHome={() => handleNavigate('home')}
             onBookCall={handleOpenBooking}
@@ -171,13 +211,14 @@ export function App() {
           />
         )}
 
-        {/* 15. Panoramic Gradient Footer (Navy to Royal Blue with Crimson Accents) */}
+        {/* Panoramic Gradient Footer */}
         <GradientFooter
           onBookCall={() => handleOpenBooking()}
           onNavigate={handleNavigate}
+          onOpenAssessment={handleOpenAssessment}
         />
 
-        {/* Interactive Modals */}
+        {/* Global Interactive Modals */}
         <AssessmentModal
           isOpen={isAssessmentOpen}
           onClose={() => setIsAssessmentOpen(false)}
