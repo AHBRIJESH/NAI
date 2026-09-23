@@ -20,9 +20,10 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
 
   const navColumns = [
     {
-      title: 'PRODUCTS & SERVICES',
+      title: 'SERVICES & SECTORS',
       links: [
-        { name: 'All Products & Services', page: 'services' as PageRoute },
+        { name: 'All Services & Products', page: 'services' as PageRoute },
+        { name: 'Industries (Health, Finance, Legal)', page: 'industries' as PageRoute },
         { name: 'NAIR Chat™ Assistant', page: 'services' as PageRoute },
         { name: 'NAIR Docs™ Extraction', page: 'services' as PageRoute },
         { name: 'Custom Agentic AI Swarms', page: 'services' as PageRoute },

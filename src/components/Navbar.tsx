@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
-export type PageRoute = 'home' | 'about' | 'services' | 'case-studies' | 'contact' | 'faq';
+export type PageRoute = 'home' | 'about' | 'services' | 'industries' | 'case-studies' | 'faq' | 'contact';
 
 interface NavbarProps {
   onBookCall: () => void;
@@ -19,7 +19,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks: { name: string; page: PageRoute }[] = [
     { name: 'Home', page: 'home' },
     { name: 'About', page: 'about' },
-    { name: 'Products & Services', page: 'services' },
+    { name: 'Services', page: 'services' },
+    { name: 'Industries', page: 'industries' },
     { name: 'Case Studies', page: 'case-studies' },
     { name: 'FAQ', page: 'faq' },
     { name: 'Contact', page: 'contact' },

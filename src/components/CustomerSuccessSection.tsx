@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, TrendingUp, Building2 } from 'lucide-react';
-import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
+import { ScrollReveal } from './ScrollReveal';
 
 interface CustomerSuccessSectionProps {
   onSelectCaseStudy?: (title: string) => void;
@@ -9,39 +9,6 @@ interface CustomerSuccessSectionProps {
 export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
   onSelectCaseStudy,
 }) => {
-  const clientStories = [
-    {
-      industry: 'Global Supply Chain',
-      headline: 'Autonomous Freight Dispatch',
-      result: '82% faster dispatch velocity',
-      img: '/images/isometric_manufacturing.jpg',
-    },
-    {
-      industry: 'Tier-1 Capital Markets',
-      headline: 'Zero-Retention Audit Sentinel',
-      result: '100% compliance SLA verified',
-      img: '/images/isometric_finance.jpg',
-    },
-    {
-      industry: 'Clinical Genomics',
-      headline: 'Multi-Omics Research Synthesis',
-      result: '650+ research hours saved/mo',
-      img: '/images/isometric_health.jpg',
-    },
-    {
-      industry: 'High-Scale Cloud',
-      headline: 'Kubernetes Cluster Auto-Tuning',
-      result: '$3.8M annual compute recaptured',
-      img: '/images/security_vault.jpg',
-    },
-    {
-      industry: 'Omnichannel Commerce',
-      headline: 'Predictive Inventory Mesh',
-      result: '99.4% on-shelf availability',
-      img: '/images/solutions_architecture.jpg',
-    },
-  ];
-
   return (
     <section
       id="case-studies"
@@ -107,7 +74,7 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
                 </div>
 
                 <div className="pt-2">
-                  <button
+                    <button
                     onClick={() => onSelectCaseStudy?.('Global Logistics Architecture')}
                     className="px-7 py-3 rounded-full bg-white hover:bg-slate-100 text-[#0284C7] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all shadow-md hover:scale-102 flex items-center gap-2 cursor-pointer"
                   >
@@ -120,48 +87,6 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
             </div>
           </div>
         </ScrollReveal>
-
-        {/* Bottom 5 Client Story Cards */}
-        <div>
-          <ScrollReveal y={20} duration={0.5}>
-            <span className="text-xs font-mono uppercase tracking-[0.24em] text-white/80 font-bold block mb-6">
-              MORE CLIENT STORIES //
-            </span>
-          </ScrollReveal>
-
-          <StaggerContainer stagger={0.08} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {clientStories.map((story, idx) => (
-              <StaggerItem key={idx} y={24} duration={0.55}>
-                <div
-                  onClick={() => onSelectCaseStudy?.(story.headline)}
-                  className="h-full rounded-2xl bg-white text-[#0A192F] p-4 flex flex-col justify-between shadow-lg hover:-translate-y-1 transition-transform cursor-pointer group"
-                >
-                  <div>
-                    <div className="w-full h-24 rounded-xl overflow-hidden mb-3 bg-slate-100">
-                      <img
-                        src={story.img}
-                        alt={story.headline}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <span className="font-mono text-[9px] uppercase tracking-wider text-[#1D4ED8] font-bold block mb-1">
-                      {story.industry}
-                    </span>
-                    <h4 className="font-display font-bold text-xs sm:text-sm text-[#0A192F] leading-snug mb-2 group-hover:text-[#1D4ED8] transition-colors">
-                      {story.headline}
-                    </h4>
-                  </div>
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between mt-auto">
-                    <span className="text-[10px] font-mono font-semibold text-slate-500">
-                      {story.result}
-                    </span>
-                    <ArrowRight className="w-3 h-3 text-[#1D4ED8] group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
 
       </div>
     </section>

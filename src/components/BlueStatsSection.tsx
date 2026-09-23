@@ -52,7 +52,7 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
             </h2>
 
             <p className="text-lg sm:text-xl text-blue-100/90 leading-relaxed mb-8 font-normal">
-              Bypass months of speculative research and runaway GPU compute overhead. We engineer resilient autonomous pipelines hardened directly into your private enterprise infrastructure.
+              Bypass months of speculative research. We engineer resilient autonomous pipelines hardened directly into your private enterprise infrastructure.
             </p>
 
             <button

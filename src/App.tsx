@@ -15,6 +15,7 @@ import { BlueSolutionsSection } from './components/BlueSolutionsSection';
 import { GradientFooter } from './components/GradientFooter';
 import { AboutPage } from './components/AboutPage';
 import { ServicesPage } from './components/ServicesPage';
+import { IndustriesPage } from './components/IndustriesPage';
 import { CaseStudiesPage } from './components/CaseStudiesPage';
 import { ContactPage } from './components/ContactPage';
 import { FAQPage } from './components/FAQPage';
@@ -28,12 +29,13 @@ export function App() {
   const [prefillService, setPrefillService] = useState<string>('');
   const [assessmentData, setAssessmentData] = useState<Record<string, string> | undefined>(undefined);
 
-  // Page Routing State ('home' | 'about' | 'services' | 'case-studies' | 'contact' | 'faq')
+  // Page Routing State ('home' | 'about' | 'services' | 'industries' | 'case-studies' | 'contact' | 'faq')
   const [currentPage, setCurrentPage] = useState<PageRoute>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#/about' || hash === '#about') return 'about';
       if (hash === '#/services' || hash === '#services') return 'services';
+      if (hash === '#/industries' || hash === '#industries') return 'industries';
       if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
       if (hash === '#/contact' || hash === '#contact') return 'contact';
       if (hash === '#/faq' || hash === '#faq') return 'faq';
@@ -49,6 +51,8 @@ export function App() {
         setCurrentPage('about');
       } else if (hash === '#/services' || hash === '#services') {
         setCurrentPage('services');
+      } else if (hash === '#/industries' || hash === '#industries') {
+        setCurrentPage('industries');
       } else if (hash === '#/case-studies' || hash === '#case-studies') {
         setCurrentPage('case-studies');
       } else if (hash === '#/contact' || hash === '#contact') {
@@ -123,10 +127,7 @@ export function App() {
               onOpenAssessment={handleOpenAssessment}
             />
 
-            {/* 2. Trusted By Industry Leaders Logo Bar */}
-            <LogoTrustBar />
-
-            {/* 3. Proprietary Multi-Agent Inference Engine Section */}
+            {/* 2. Proprietary Multi-Agent Inference Engine Section */}
             <NeuralEngineSection
               onOpenAssessment={handleOpenAssessment}
               onBookCall={() => handleOpenBooking('Autonomous Neural Core Engine')}
@@ -179,6 +180,15 @@ export function App() {
 
         {currentPage === 'services' && (
           <ServicesPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'industries' && (
+          <IndustriesPage
             onBackToHome={() => handleNavigate('home')}
             onBookCall={handleOpenBooking}
             onOpenAssessment={handleOpenAssessment}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,6 +13,9 @@ import {
   Users2,
   Building2,
   Lock,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -32,6 +35,51 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenAssessment,
   onNavigate,
 }) => {
+  const hubScrollRef = useRef<HTMLDivElement>(null);
+
+  const handleHubScroll = (direction: 'left' | 'right') => {
+    if (hubScrollRef.current) {
+      hubScrollRef.current.scrollBy({
+        left: direction === 'left' ? -360 : 360,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const deliveryHubs = [
+    {
+      city: 'San Francisco, CA',
+      hub: 'Silicon Valley R&D Lab',
+      desc: 'Foundation model fine-tuning, latency optimization, and multi-agent swarm architecture design.',
+      focus: 'Agentic Research & Architecture',
+      badge: 'HQ & R&D',
+      color: '#1D4ED8',
+    },
+    {
+      city: 'Bangalore, India',
+      hub: 'High-Throughput Engineering Hub',
+      desc: '24/7 continuous engineering, large-scale data pipeline ingestion, and client production support.',
+      focus: 'Continuous Engineering & Ingestion',
+      badge: 'Global Delivery',
+      color: '#DC2626',
+    },
+    {
+      city: 'London, UK',
+      hub: 'Sovereign Regulatory Center',
+      desc: 'European enterprise governance, GDPR Article 28 data compliance, and private VPC security.',
+      focus: 'EU AI Act & Financial Compliance',
+      badge: 'European Hub',
+      color: '#0284C7',
+    },
+    {
+      city: 'New York, NY',
+      hub: 'Capital Markets & Legal AI Lab',
+      desc: 'High-frequency transaction anomaly evaluation, Wall Street underwriting tools, and corporate legal copilots.',
+      focus: 'Finance & Legal Deployments',
+      badge: 'Commercial Hub',
+      color: '#1D4ED8',
+    },
+  ];
   return (
     <div className="min-h-screen bg-slate-50 text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-20">
       
@@ -240,6 +288,85 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               All custom pipelines, model adapters, and workflows developed during our engagement remain your company's exclusive intellectual property with full portability.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Global Delivery Topology Horizontal Showcase */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20 text-left">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#1D4ED8] font-bold mb-1">
+              <Globe2 className="w-3.5 h-3.5" />
+              <span>GLOBAL DELIVERY TOPOLOGY</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
+              Engineering Hubs &amp; Operational Nodes
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
+              Swipe Hubs Horizontally
+            </span>
+            <button
+              onClick={() => handleHubScroll('left')}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+              aria-label="Scroll hubs left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => handleHubScroll('right')}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+              aria-label="Scroll hubs right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={hubScrollRef}
+          className="flex gap-6 overflow-x-auto pb-5 pt-1 snap-x snap-mandatory scrollbar-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {deliveryHubs.map((hub, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="w-[300px] sm:w-[340px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span
+                    className="font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-md"
+                    style={{ backgroundColor: `${hub.color}15`, color: hub.color }}
+                  >
+                    {hub.badge}
+                  </span>
+                  <div className="flex items-center gap-1 font-mono text-[11px] text-slate-500 font-bold">
+                    <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
+                    <span>{hub.city}</span>
+                  </div>
+                </div>
+
+                <h3 className="font-display font-extrabold text-xl text-[#0A192F] mb-2 leading-snug">
+                  {hub.hub}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
+                  {hub.desc}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between font-mono text-xs text-[#1D4ED8] font-bold">
+                <span>{hub.focus}</span>
+                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 

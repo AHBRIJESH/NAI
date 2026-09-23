@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -17,6 +17,7 @@ import {
   CheckCircle2,
   Sliders,
   ChevronRight,
+  ChevronLeft,
   Zap,
 } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -38,6 +39,16 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   onNavigate,
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'services' | 'products' | 'process'>('all');
+  const productScrollRef = useRef<HTMLDivElement>(null);
+
+  const handleProductScroll = (direction: 'left' | 'right') => {
+    if (productScrollRef.current) {
+      productScrollRef.current.scrollBy({
+        left: direction === 'left' ? -380 : 380,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const servicesList = [
     {
@@ -333,7 +344,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       {/* Flagship NAIR Products Showcase */}
       {(activeTab === 'all' || activeTab === 'products') && (
         <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-3 border-b border-slate-200">
             <div>
               <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#DC2626] font-bold block mb-1">
                 FOCUSED BUSINESS SUITE
@@ -342,18 +353,39 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 NAIR Products™ for Everyday Business
               </h2>
             </div>
-            <span className="text-xs font-mono text-slate-500 font-bold hidden sm:block">
-              5 Specialized Platforms
-            </span>
+            
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
+                Swipe Products Horizontally
+              </span>
+              <button
+                onClick={() => handleProductScroll('left')}
+                className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+                aria-label="Scroll products left"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => handleProductScroll('right')}
+                className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+                aria-label="Scroll products right"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            ref={productScrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {productsList.map((product) => {
               const IconComp = product.icon;
               return (
                 <div
                   key={product.name}
-                  className="rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1D4ED8] transition-all flex flex-col justify-between text-left group"
+                  className="w-[310px] sm:w-[360px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1D4ED8] transition-all flex flex-col justify-between text-left group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">

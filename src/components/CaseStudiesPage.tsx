@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,6 +14,9 @@ import {
   Users,
   Workflow,
   ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  Gauge,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -33,6 +36,62 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
   onOpenAssessment,
   onNavigate,
 }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (dir: 'left' | 'right') => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: dir === 'left' ? -360 : 360,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const benchmarkPills = [
+    {
+      metric: '88%',
+      label: 'Intake Wait Drop',
+      sector: 'Healthcare',
+      detail: 'Triage AI active 24/7 across clinical hubs',
+      color: '#1D4ED8',
+    },
+    {
+      metric: '92%',
+      label: 'Cycle Time Cut',
+      sector: 'Finance',
+      detail: 'NAIR Docs™ ERP invoice reconciliation',
+      color: '#DC2626',
+    },
+    {
+      metric: '< 20s',
+      label: 'Speed to Lead',
+      sector: 'Sales Enablement',
+      detail: 'Autonomous calendar qualification swarm',
+      color: '#0284C7',
+    },
+    {
+      metric: '$280K+',
+      label: 'Annual Saved',
+      sector: 'Manufacturing',
+      detail: 'ERP restocking prediction & dispatch mesh',
+      color: '#DC2626',
+    },
+    {
+      metric: '$3.8M',
+      label: 'Compute Recaptured',
+      sector: 'Cloud Tech',
+      detail: 'Cluster auto-tuning with 0.00ms downtime',
+      color: '#1D4ED8',
+    },
+    {
+      metric: '99.8%',
+      label: 'Clause Recall',
+      sector: 'Corporate Legal',
+      detail: 'Zero-retention contract diligence pipeline',
+      color: '#0284C7',
+    },
+  ];
+
   const caseStudies = [
     {
       id: 'support-chatbot',
@@ -149,6 +208,83 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
             </button>
           </div>
         </motion.div>
+      </section>
+
+      {/* Horizontal Scroll Track: Verified Production Benchmarks */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#1D4ED8] font-bold mb-1">
+              <Gauge className="w-3.5 h-3.5" />
+              <span>LIVE SLA &amp; ROI BENCHMARKS</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
+              Production Velocity Benchmarks
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
+              Swipe Horizontally
+            </span>
+            <button
+              onClick={() => handleScroll('left')}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => handleScroll('right')}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="flex gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {benchmarkPills.map((pill, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.07 }}
+              className="w-[280px] sm:w-[320px] shrink-0 snap-start rounded-2xl bg-white border border-slate-200/90 p-5 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span
+                    className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded-md"
+                    style={{ backgroundColor: `${pill.color}15`, color: pill.color }}
+                  >
+                    {pill.sector}
+                  </span>
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: pill.color }} />
+                </div>
+                <div className="font-display font-black text-3xl sm:text-4xl text-[#0A192F] mb-1">
+                  {pill.metric}
+                </div>
+                <div className="font-display font-bold text-sm text-slate-800 mb-2">
+                  {pill.label}
+                </div>
+                <p className="text-xs text-slate-500 font-normal leading-relaxed">
+                  {pill.detail}
+                </p>
+              </div>
+
+              <div className="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-[#1D4ED8] font-bold">
+                <span>Verified Client SLA</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#1D4ED8]" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* Case Studies Dossiers Grid */}

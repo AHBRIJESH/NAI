@@ -16,7 +16,6 @@ const REACTION_STATES: AIState[] = [
   'thinking',
   'streaming',
   'done',
-  'error',
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {

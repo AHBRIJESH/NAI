@@ -133,12 +133,12 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
           </div>
 
           {/* Right Column: Telemetry Readout & Controls (7 cols) */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 min-w-0 w-full">
             <ScrollReveal delay={0.15} y={32} duration={0.7}>
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#0A192F]/90 border border-blue-900/50 shadow-xl backdrop-blur-md">
+              <div className="p-5 sm:p-7 rounded-2xl bg-[#0A192F]/90 border border-blue-900/50 shadow-xl backdrop-blur-md min-w-0 overflow-hidden">
                 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-blue-900/40 mb-5">
-                  <div>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-blue-900/40 mb-5 min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-mono text-[11px] uppercase tracking-widest text-[#DC2626] font-bold">
                         SUBSYSTEM //
@@ -159,37 +159,44 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 </div>
 
                 {/* Metric Cards */}
-                <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5 mb-5">
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner">
-                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3.5 mb-5 min-w-0">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner min-w-0 overflow-hidden">
+                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5 truncate">
                       LATENCY
                     </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#38BDF8]">
+                    <div className="font-display font-black text-lg sm:text-2xl text-[#38BDF8] truncate">
                       {currentMode.latency}
                     </div>
                   </div>
 
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner">
-                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner min-w-0 overflow-hidden">
+                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5 truncate">
                       THROUGHPUT
                     </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-white">
+                    <div
+                      className={`font-display font-black text-white truncate ${
+                        currentMode.throughput.length > 10
+                          ? 'text-xs sm:text-sm lg:text-base tracking-tight'
+                          : 'text-lg sm:text-2xl'
+                      }`}
+                      title={currentMode.throughput}
+                    >
                       {currentMode.throughput}
                     </div>
                   </div>
 
-                  <div className="p-3 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner">
-                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-[#071326] border border-blue-950 shadow-inner min-w-0 overflow-hidden">
+                    <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-bold mb-0.5 truncate">
                       RETENTION
                     </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#DC2626]">
+                    <div className="font-display font-black text-lg sm:text-2xl text-[#DC2626] truncate">
                       0.00 KB
                     </div>
                   </div>
                 </div>
 
                 {/* Live Streaming Terminal Log Stream */}
-                <div className="p-3.5 rounded-xl bg-[#071326] border border-blue-950 mb-5 font-mono text-xs">
+                <div className="p-3.5 rounded-xl bg-[#071326] border border-blue-950 mb-5 font-mono text-xs overflow-hidden">
                   <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-blue-900/40 text-slate-400 text-[10px]">
                     <div className="flex items-center gap-1.5">
                       <Terminal className="w-3 h-3 text-[#38BDF8]" />
@@ -200,11 +207,11 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       <span>LIVE LOG</span>
                     </div>
                   </div>
-                  <div className="space-y-1 text-slate-300 text-[11px]">
+                  <div className="space-y-1.5 text-slate-300 text-[11px] overflow-hidden">
                     {currentMode.logSample.map((log, idx) => (
-                      <div key={idx} className="flex items-start gap-1.5">
+                      <div key={idx} className="flex items-start gap-1.5 min-w-0">
                         <span className="text-[#38BDF8] font-bold shrink-0">{'>'}</span>
-                        <span className="leading-tight break-all">{log}</span>
+                        <span className="leading-tight break-words min-w-0 flex-1">{log}</span>
                       </div>
                     ))}
                   </div>
