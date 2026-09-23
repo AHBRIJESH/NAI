@@ -1,76 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ArrowRight, Play, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
-import { motion, useMotionValue } from 'motion/react';
-import type { AIState } from './smoothui/ai-core';
-import AIOrbFace from './smoothui/ai-orb-face';
-import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 
 interface HeroProps {
   onBookCall: () => void;
   onOpenAssessment: () => void;
 }
 
-const REACTION_STATES: AIState[] = [
-  'idle',
-  'listening',
-  'thinking',
-  'streaming',
-  'done',
-];
-
-export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
-  const [orbState, setOrbState] = useState<AIState>('idle');
-  const [orbSize, setOrbSize] = useState<number>(360);
-  const amplitude = useMotionValue(0);
-
-  // Dynamic responsive orb sizing: large, prominent, and mobile-safe
-  useEffect(() => {
-    const updateSize = () => {
-      if (typeof window === 'undefined') return;
-      if (window.innerWidth < 640) {
-        setOrbSize(290);
-      } else if (window.innerWidth < 1024) {
-        setOrbSize(330);
-      } else {
-        setOrbSize(380);
-      }
-    };
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-
-  // Auto-time reaction faces every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOrbState((prev) => {
-        const currentIndex = REACTION_STATES.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % REACTION_STATES.length;
-        return REACTION_STATES[nextIndex];
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Voice amplitude simulator when in listening or streaming states
-  useEffect(() => {
-    if (orbState !== 'listening' && orbState !== 'streaming') {
-      amplitude.set(0);
-      return;
-    }
-    let frame: number;
-    let t = 0;
-    const tick = () => {
-      t += 0.08;
-      const raw = Math.sin(t) * 0.45 + Math.sin(t * 2.3) * 0.35 + Math.sin(t * 5.1) * 0.15;
-      const val = Math.max(0.05, Math.min(1, Math.abs(raw)));
-      amplitude.set(val);
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [orbState, amplitude]);
-
+export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   const handleScrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -123,22 +60,21 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Limited Concise Written Content (7 cols) */}
-          <div className="lg:col-span-7">
-
-
+          {/* Left Column: Strategic Value Proposition & CTAs (6 cols) */}
+          <div className="lg:col-span-6">
+            
             {/* Strategic AI Implementation Value Proposition */}
             <motion.p variants={itemVariants} className="text-sm sm:text-base font-semibold text-[#1D4ED8] mb-3.5 max-w-xl leading-relaxed">
               Want to implement AI, but not sure where to start? Work smarter—not harder—with these proven strategies.
             </motion.p>
 
-            {/* Limited Punchy Headline */}
+            {/* Headline */}
             <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.06] mb-4">
               Autonomous AI Systems.{' '}
               <span className="text-[#1D4ED8]">Built to Ship.</span>
             </motion.h1>
 
-            {/* Limited Concise Subtitle */}
+            {/* Subtitle */}
             <motion.p variants={itemVariants} className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 font-normal">
               We engineer production-grade multi-agent swarms and zero-retention inference pipelines deployed directly within your private enterprise infrastructure.
             </motion.p>
@@ -146,6 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
             {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
               <button
+                type="button"
                 onClick={onBookCall}
                 className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 hover:scale-102 active:scale-98 flex items-center justify-center gap-2.5 cursor-pointer"
               >
@@ -154,6 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
               </button>
 
               <button
+                type="button"
                 onClick={() => handleScrollToSection('capabilities')}
                 className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-bold text-[#0A192F] hover:text-[#1D4ED8] border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
@@ -179,35 +117,28 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
             </motion.div>
           </div>
 
-          {/* Right Column: Pure, Large AI Orb Face (5 cols) */}
-          <motion.div variants={itemVariants} className="lg:col-span-5 flex items-center justify-center">
-            <div className="relative w-full flex items-center justify-center py-4">
+          {/* Right Column: AI Lifecycle Architecture Artwork Showcase (6 cols) */}
+          <motion.div variants={itemVariants} className="lg:col-span-6 flex items-center justify-center">
+            <div className="relative w-full group">
               
-              {/* Diffused Ambient Backlight Aura reacting to state */}
-              <div
-                className={cn(
-                  'absolute w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] rounded-full blur-[90px] opacity-45 transition-colors duration-1000 pointer-events-none',
-                  orbState === 'error'
-                    ? 'bg-red-400'
-                    : orbState === 'done'
-                    ? 'bg-emerald-400'
-                    : 'bg-blue-400'
-                )}
-              />
+              {/* Diffused Ambient Glow Aura */}
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-blue-400/20 via-sky-300/25 to-indigo-400/20 blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-              {/* Enlarged AI Orb Face - Pure, No Text Clutter */}
-              <AIOrbFace
-                aria-label={`NAIR AI Autonomous Assistant is ${orbState}`}
-                size={orbSize}
-                state={orbState}
-                amplitude={amplitude}
-                colors={{
-                  body: '#1D4ED8',
-                  bodyEdge: '#93C5FD',
-                  feature: '#0A192F',
-                }}
-                className="relative z-10 drop-shadow-2xl transition-transform duration-500 hover:scale-102"
-              />
+              {/* Framed Image Container */}
+              <div className="relative rounded-3xl overflow-hidden bg-white/90 border border-slate-200/90 shadow-2xl backdrop-blur-md transition-all duration-500 group-hover:shadow-[0_25px_50px_-12px_rgba(29,78,216,0.2)] group-hover:scale-[1.01]">
+                <img
+                  src="/images/hero_ai_lifecycle.png"
+                  alt="NAIR.AI Autonomous AI Lifecycle — Discover, Prepare, Build, Deploy, Monitor, Evolve"
+                  className="w-full h-auto object-cover select-none"
+                  loading="eager"
+                />
+
+                {/* Subtle Overlay Badge */}
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-md flex items-center gap-2 font-mono text-[11px] sm:text-xs font-bold text-slate-700 pointer-events-none">
+                  <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
+                  <span>Enterprise AI Lifecycle</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
