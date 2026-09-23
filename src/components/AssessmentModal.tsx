@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ArrowRight, RefreshCw, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { FluidOrb } from './FluidOrb';
@@ -151,13 +152,21 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
+      window.removeEventListener('keydown', handleKeyDown);
       lenis?.start();
       document.body.style.overflow = originalOverflow;
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === 'undefined') return null;
 
   const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -241,13 +250,16 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     onBookCallWithData(payload);
   };
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       data-lenis-prevent="true"
       onWheel={handleWheelScroll}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0A192F]/80 backdrop-blur-xl animate-in fade-in duration-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-[#0A192F]/85 backdrop-blur-xl animate-in fade-in duration-200"
     >
       <div
         ref={modalScrollRef}
@@ -421,7 +433,8 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

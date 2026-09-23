@@ -23,7 +23,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Industries', page: 'industries' },
     { name: 'Case Studies', page: 'case-studies' },
     { name: 'FAQ', page: 'faq' },
-    { name: 'Book a Call', page: 'contact' },
   ];
 
   const handleLinkClick = (page: PageRoute) => {
@@ -77,7 +76,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Right Action CTA */}
         <div className="hidden sm:flex items-center gap-4">
           <button
-            onClick={onBookCall}
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onBookCall();
+            }}
             className="px-5 py-2.5 rounded-full bg-[#1D4ED8] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98 whitespace-nowrap"
           >
             <span>Book an AI strategy call</span>
@@ -116,7 +120,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
           <div className="pt-4 border-t border-slate-100">
             <button
-              onClick={() => {
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setMobileMenuOpen(false);
                 onBookCall();
               }}

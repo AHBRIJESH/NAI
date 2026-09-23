@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Calendar, CheckCircle2, ArrowRight, ShieldCheck, Clock, Video, Download, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -78,7 +79,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Manage Lenis and document body overflow for guaranteed smooth modal mouse-wheel scroll
+  // Manage Lenis, body overflow, and ESC key listener
   useEffect(() => {
     if (!isOpen) return;
 
@@ -90,13 +91,21 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
+      window.removeEventListener('keydown', handleKeyDown);
       lenis?.start();
       document.body.style.overflow = originalOverflow;
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === 'undefined') return null;
 
   // Handle wheel events directly so mouse wheel scrolls modal content reliably
   const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -168,13 +177,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     document.body.removeChild(link);
   };
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       data-lenis-prevent="true"
       onWheel={handleWheelScroll}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#0A192F]/80 backdrop-blur-xl animate-in fade-in duration-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 bg-[#0A192F]/85 backdrop-blur-xl animate-in fade-in duration-200"
     >
       <div
         ref={modalScrollRef}
@@ -491,7 +503,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

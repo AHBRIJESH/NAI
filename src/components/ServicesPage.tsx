@@ -2,26 +2,26 @@ import React, { useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  Bot,
-  FileText,
+  MessageSquare,
   BarChart3,
+  Eye,
+  FileText,
+  Cloud,
+  Cpu,
+  Bot,
   Shield,
   GraduationCap,
   Sparkles,
-  Cpu,
-  Brain,
-  Workflow,
-  Eye,
-  MessageSquare,
-  Cloud,
-  CheckCircle2,
-  ChevronRight,
   ChevronLeft,
-  Zap,
+  ChevronRight,
+  CheckCircle2,
+  Workflow,
+  Server,
+  Layers,
+  Terminal,
+  Activity,
 } from 'lucide-react';
-import { motion } from 'motion/react';
-import { cn } from '@/lib/utils';
-
+import { motion, AnimatePresence } from 'motion/react';
 import type { PageRoute } from './Navbar';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
 import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
@@ -37,229 +37,190 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   onBackToHome,
   onBookCall,
   onOpenAssessment,
-  onNavigate,
 }) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'services' | 'products' | 'process'>('all');
-  const productScrollRef = useHorizontalWheelScroll<HTMLDivElement>();
+  const [activePlatformIndex, setActivePlatformIndex] = useState(0);
+  const { ref: scrollContainerRef, scrollLeft, scrollRight } = useHorizontalWheelScroll<HTMLDivElement>();
 
-  const handleProductScroll = (direction: 'left' | 'right') => {
-    if (productScrollRef.current) {
-      const scrollAmount = 380;
-      productScrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const servicesList = [
+  const proprietaryPlatforms = [
     {
-      title: 'AI Consulting',
-      desc: 'Expert guidance to help you identify, prioritize, and execute AI initiatives that align with your business goals and deliver measurable ROI.',
-      tag: 'Strategic',
-      icon: Brain,
-    },
-    {
-      title: 'AI Readiness Analysis',
-      desc: 'A comprehensive assessment of your data, infrastructure, and processes to determine where AI can have the greatest impact — and what it takes to get there.',
-      tag: 'Audit',
-      icon: BarChart3,
-    },
-    {
-      title: 'Agentic AI',
-      desc: 'Autonomous AI agents that plan, reason, and act across multi-step tasks — handling complex workflows end-to-end with minimal human intervention.',
-      tag: 'Autonomous',
+      id: 'chat',
+      name: 'NAIR Chat™',
+      tagline: 'Conversational Runtime & Context Router',
+      desc: 'Autonomous multi-turn conversational agents with stateful context preservation, enterprise CRM sync, and intelligent human escalation.',
+      latency: '< 180ms TTFT',
+      security: 'Zero Retention / VPC Isolated',
+      architecture: 'Stateful Agent Swarm with RAG Vector Cache',
+      color: '#1D4ED8',
       icon: Bot,
+      capabilities: [
+        'Domain-specific grounding on approved enterprise knowledge',
+        'Multi-channel webhooks (Web, Mobile, WhatsApp, Slack)',
+        'Context-preserved escalation to human operators',
+        'Automatic sentiment triage & intent classification',
+      ],
     },
     {
-      title: 'Custom AI Development',
-      desc: 'Purpose-built AI solutions engineered around your unique data, processes, and business requirements — fully integrated into your existing systems.',
-      tag: 'Engineering',
-      icon: Cpu,
+      id: 'docs',
+      name: 'NAIR Docs™',
+      tagline: 'Deterministic Document Parser & Validator',
+      desc: 'Pydantic-governed extraction converting complex PDFs, invoices, medical records, and supply manifests into verified database records.',
+      latency: '99.8% Extraction Recall',
+      security: 'SOC 2 Type II / PII Masked',
+      architecture: 'Vision-LLM OCR + Deterministic Schema Compiler',
+      color: '#DC2626',
+      icon: FileText,
+      capabilities: [
+        'Line-item reconciliation against ERP purchase orders',
+        'Automated redlining of non-standard legal indemnities',
+        'Multi-page table extraction with mathematical checksums',
+        'Direct write-back to SAP, Oracle, and Postgres databases',
+      ],
     },
     {
-      title: 'Generative AI Solutions',
-      desc: 'Harness the power of large language models to generate content, summarize documents, draft communications, and create new value across your operations.',
-      tag: 'LLMs',
-      icon: Sparkles,
+      id: 'insight',
+      name: 'NAIR Insight™',
+      tagline: 'Predictive Analytics & Anomaly Radar',
+      desc: 'Continuous stream analytics that forecast demand shifts, flag operational anomalies, and surface actionable intelligence in real time.',
+      latency: '< 15ms Stream Scoring',
+      security: 'Immutable Event Telemetry',
+      architecture: 'Distributed Kafka / Neural Scoring Pipeline',
+      color: '#0284C7',
+      icon: BarChart3,
+      capabilities: [
+        'High-frequency transaction fraud prevention',
+        'Automated churn early-warning and revenue forecasting',
+        'Predictive supply chain restocking calculations',
+        'Live operational executive dashboards & automated reports',
+      ],
     },
     {
-      title: 'Machine Learning Models',
-      desc: 'Custom ML models trained on your data to classify, predict, and optimize — delivering intelligence that improves continuously as your business grows.',
-      tag: 'Predictive',
-      icon: Zap,
+      id: 'guard',
+      name: 'NAIR Guard™',
+      tagline: 'Hallucination Firewall & Governance Layer',
+      desc: 'The mission-critical security layer preventing prompt injection, data exfiltration, schema drifting, and ungrounded model hallucinations.',
+      latency: 'Zero Pipeline Overhead',
+      security: 'Cryptographic ACLs / Air-Gap',
+      architecture: 'Dual-Layer Guardrail & Deterministic Filter Gate',
+      color: '#DC2626',
+      icon: Shield,
+      capabilities: [
+        'Mathematical fact-checking against source ground truth',
+        'Granular user-level and document-level cryptographic ACLs',
+        'Continuous compliance mapping for HIPAA, SOC 2, and GDPR',
+        'Automated red-teaming and prompt vulnerability scanning',
+      ],
     },
     {
-      title: 'Intelligent Automation',
-      desc: 'AI-powered automation that goes beyond simple rules — handling exceptions, learning from patterns, and adapting to changing conditions across your workflows.',
-      tag: 'Automation',
-      icon: Workflow,
+      id: 'learn',
+      name: 'NAIR Learn™',
+      tagline: 'Enterprise Enablement & Workflow Playbooks',
+      desc: 'Hands-on enablement programs, interactive departmental playbooks, and continuous certification tracks to elevate your internal workforce.',
+      latency: '100% Practical Adoption',
+      security: 'Role-Based Playbooks',
+      architecture: 'Custom Interactive Corporate AI Academy',
+      color: '#1D4ED8',
+      icon: GraduationCap,
+      capabilities: [
+        'Executive alignment workshops on AI feasibility and ROI',
+        'Engineering team deep dives into LLMOps and model hosting',
+        'Departmental automation playbooks (HR, Legal, Finance, Ops)',
+        'Ongoing evaluation metrics and adoption benchmarking',
+      ],
     },
+  ];
+
+  const serviceCapabilities = [
     {
-      title: 'AI Chatbots & Virtual Assistants',
-      desc: 'Conversational AI that engages customers, qualifies leads, answers questions, and handles support requests around the clock — without adding headcount.',
+      title: 'Conversational AI & Support Agents',
+      desc: 'Autonomous agents that qualify leads, resolve support tickets, schedule appointments, and coordinate logistics around the clock.',
       tag: 'Support & Sales',
       icon: MessageSquare,
+      color: '#1D4ED8',
     },
     {
-      title: 'Predictive Analytics',
-      desc: 'Turn historical data into forward-looking intelligence — forecast demand, detect churn, identify risks, and make confident decisions before the moment passes.',
+      title: 'Predictive Analytics & Forecasting',
+      desc: 'Transform historical transactions and sensor logs into forward-looking forecasts — predict demand, reduce churn, and hedge risk.',
       tag: 'Intelligence',
       icon: BarChart3,
+      color: '#DC2626',
     },
     {
-      title: 'Computer Vision Solutions',
-      desc: 'AI systems that see and interpret visual data — enabling quality inspection, object detection, document scanning, and image-based automation at scale.',
+      title: 'Computer Vision & Inspection',
+      desc: 'Neural vision models that inspect manufacturing quality, extract physical document scans, and automate image-based classification at scale.',
       tag: 'Vision',
       icon: Eye,
+      color: '#0284C7',
     },
     {
-      title: 'Natural Language Processing',
-      desc: 'Extract meaning from text and speech — sentiment analysis, entity recognition, document classification, and language understanding built into your products.',
+      title: 'Natural Language Processing (NLP)',
+      desc: 'Semantic classification, entity linking, sentiment tracking, and multi-lingual summarization tuned to your specific domain vocabulary.',
       tag: 'NLP',
       icon: FileText,
+      color: '#1D4ED8',
     },
     {
-      title: 'Real-Time Insights',
-      desc: 'Live dashboards and AI-powered monitoring that surface actionable intelligence as events unfold — so your team can respond faster and smarter.',
+      title: 'Real-Time Insights & Dashboards',
+      desc: 'Streaming event monitors that alert executive and operational teams to anomalies the second they emerge.',
       tag: 'Real-Time',
-      icon: BarChart3,
+      icon: Activity,
+      color: '#DC2626',
     },
     {
-      title: 'Cloud Integration',
-      desc: 'Seamless deployment of AI solutions across AWS, Azure, and Google Cloud — architected for scalability, security, and performance from day one.',
+      title: 'Cloud Integration & Scalable Infra',
+      desc: 'Deterministic orchestration across AWS, Azure, GCP, or hybrid private clouds with enterprise security built-in from day one.',
       tag: 'Infrastructure',
       icon: Cloud,
+      color: '#0284C7',
     },
     {
-      title: 'Custom AI Models',
-      desc: 'Fine-tuned and domain-specific AI models built on your proprietary data — delivering accuracy and relevance that general-purpose models simply cannot match.',
+      title: 'Custom Sovereign AI Models',
+      desc: 'Fine-tuned open-weight models (Llama 3, DeepSeek, Mistral) hosted in your private VPC for maximum IP privacy and cost control.',
       tag: 'Sovereign',
       icon: Cpu,
-    },
-  ];
-
-  const productsList = [
-    {
-      name: 'NAIR Chat™',
-      badge: 'Conversational Runtime',
-      desc: 'A reliable AI assistant for customer support and internal teams. It answers common questions, helps people find information, and keeps conversations moving while your team focuses on complex work.',
-      features: [
-        'Industry-specific conversations trained on approved knowledge',
-        'Support for FAQs, appointment scheduling, and lead qualification',
-        'Human handoff with conversation context preserved',
-        'Healthcare, retail, and professional services calibration',
-      ],
-      icon: Bot,
-      color: '#1D4ED8',
-    },
-    {
-      name: 'NAIR Docs™',
-      badge: 'Document Intelligence',
-      desc: 'A smarter way to handle forms, contracts, invoices, and other business documents. NAIR Docs extracts key details, organizes files, and turns paperwork into structured, usable information.',
-      features: [
-        'Extracts structured data from forms, invoices, and contracts',
-        'Validates information and flags discrepancies automatically',
-        'Creates repeatable, audit-ready document workflows',
-        'Native export to ERP, CRM, and accounting ledgers',
-      ],
-      icon: FileText,
-      color: '#DC2626',
-    },
-    {
-      name: 'NAIR Insight™',
-      badge: 'Predictive Intelligence',
-      desc: 'A clear view of what is happening across your business. It combines analytics and predictive AI to highlight trends, uncover operational risks, and support executive decisions.',
-      features: [
-        'Real-time anomaly and bottleneck detection across systems',
-        'Predictive forecasting for demand, churn, and cash flow',
-        'Unified cross-departmental intelligence dashboard',
-        'Customizable automated executive anomaly alerts',
-      ],
-      icon: BarChart3,
-      color: '#1D4ED8',
-    },
-    {
-      name: 'NAIR Guard™',
-      badge: 'Safety & Governance',
-      desc: 'The safety layer for responsible AI adoption. It helps your organization manage access, monitor systems, and build governance practices that protect proprietary data and trust.',
-      features: [
-        'Zero-retention model enforcement and telemetry isolation',
-        'Granular document-level and user-level cryptographic ACLs',
-        'Hallucination filtering and deterministic schema validation',
-        'Continuous compliance mapping for SOC 2, HIPAA, and GDPR',
-      ],
-      icon: Shield,
-      color: '#DC2626',
-    },
-    {
-      name: 'NAIR Learn™',
-      badge: 'Enterprise Enablement',
-      desc: 'Practical AI training for teams at every stage. It builds the skills, confidence, and working habits people need to use AI effectively, productively, and responsibly.',
-      features: [
-        'Hands-on prompt engineering and departmental workflows',
-        'Custom interactive playbooks tailored to your company stack',
-        'Role-specific modules for executives, engineers, and ops',
-        'Continuous evaluation and team certification tracks',
-      ],
-      icon: GraduationCap,
       color: '#1D4ED8',
     },
   ];
 
-  const readinessModules = [
-    {
-      title: 'Talent & Expertise',
-      desc: 'Bring in the specialist knowledge your team needs to move faster. We provide AI talent and domain expertise to support planning, delivery, and knowledge transfer.',
-    },
-    {
-      title: 'Roadmapping & Strategy',
-      desc: 'Clear, sequenced roadmaps that connect business objectives to achievable AI milestones — so every initiative has a defined owner, budget, and business case.',
-    },
-    {
-      title: 'Data & Security Audits',
-      desc: 'Rigorous assessment of your data readiness, pipeline integrity, and security posture before writing a single line of production AI code.',
-    },
-    {
-      title: 'Risk & Governance Frameworks',
-      desc: 'Policy, monitoring, and guardrail design to ensure your AI systems operate safely, comply with relevant regulations, and protect company reputation.',
-    },
-    {
-      title: 'Vendor & Architecture Evaluation',
-      desc: 'Independent evaluation of third-party AI platforms and architectures — helping you choose the right foundation without vendor lock-in.',
-    },
-  ];
-
-  const processSteps = [
+  const deliveryStages = [
     {
       step: '01',
-      title: 'Discover',
-      desc: 'We assess your data, workflows, and business goals to uncover high-impact AI opportunities.',
+      title: 'Discover & Feasibility',
+      duration: 'Week 1',
+      desc: 'Deep-dive audit of your proprietary data schemas, compliance boundaries, and operational friction points to define high-ROI agent opportunities.',
+      deliverable: 'Technical Feasibility & ROI Blueprint',
     },
     {
       step: '02',
-      title: 'Design',
-      desc: 'We architect a solution tailored to your data, systems, and business goals.',
+      title: 'Architect & Benchmark',
+      duration: 'Week 2',
+      desc: 'Design deterministic agent topology, model selection (cloud vs sovereign self-hosted), vector schema, and security guardrail matrix.',
+      deliverable: 'Production Architecture Specification',
     },
     {
       step: '03',
-      title: 'Build',
-      desc: 'Our team develops, tests, and refines the AI solution with your feedback.',
+      title: 'Build & Red-Team',
+      duration: 'Weeks 3-4',
+      desc: 'Rapid agile delivery of agent swarms, integration with existing ERP/CRM APIs, strict hallucination red-teaming, and human-in-the-loop workflows.',
+      deliverable: 'Functional Pilot & Compliance Verification',
     },
     {
       step: '04',
-      title: 'Deploy',
-      desc: 'We integrate, launch, and monitor — ensuring smooth adoption and real results.',
+      title: 'Deploy & Scale',
+      duration: 'Production Launch',
+      desc: 'Full production rollout to your private cloud with 24/7 latency monitoring, zero-drift telemetry, and staff enablement playbooks.',
+      deliverable: 'SLA Guarantee & Continuous Monitoring',
     },
   ];
+
+  const activePlatform = proprietaryPlatforms[activePlatformIndex];
 
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
       {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
       <SubPageMotionBackground />
 
-      {/* Top Breadcrumb Navigation Bar */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-6">
+      {/* Top Breadcrumb Navigation */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-4">
         <button
           onClick={onBackToHome}
           className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
@@ -271,393 +232,360 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </button>
       </div>
 
-      {/* Wide Left-Right Hero Section: Full Space Utilization */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          
-          {/* Left Column (7 cols): Full breadth content */}
-          <div className="lg:col-span-7 text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-            >
-              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-                Practical AI for Everyday Business.{' '}
-                <span className="text-[#1D4ED8]">Built to Scale.</span>
-              </h1>
-
-              <p className="text-base sm:text-xl text-slate-600 max-w-2xl font-normal leading-relaxed mb-8">
-                From focused tools to enterprise-wide multi-agent swarms, we help small and mid-size businesses serve customers, manage data, make smarter decisions, and adopt AI with deterministic precision.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 mb-8">
-                <button
-                  onClick={() => onBookCall('Services - Strategy Briefing')}
-                  className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Book an AI strategy call</span>
-                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                </button>
-
-                <button
-                  onClick={onOpenAssessment}
-                  className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
-                >
-                  <span>Take Feasibility Diagnostic</span>
-                </button>
-              </div>
-
-              {/* Quick Filter Tabs */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-2 border-t border-slate-200/80">
-                <button
-                  onClick={() => setActiveTab('all')}
-                  className={cn(
-                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                    activeTab === 'all'
-                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-                  )}
-                >
-                  All Capabilities (24)
-                </button>
-
-                <button
-                  onClick={() => setActiveTab('products')}
-                  className={cn(
-                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                    activeTab === 'products'
-                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-                  )}
-                >
-                  NAIR Products™ (5)
-                </button>
-
-                <button
-                  onClick={() => setActiveTab('services')}
-                  className={cn(
-                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                    activeTab === 'services'
-                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-                  )}
-                >
-                  Custom Services (14)
-                </button>
-
-                <button
-                  onClick={() => setActiveTab('process')}
-                  className={cn(
-                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                    activeTab === 'process'
-                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-                  )}
-                >
-                  How We Work (4-Step)
-                </button>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column (5 cols): Architecture Board */}
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.65, delay: 0.15 }}
-              className="p-7 sm:p-8 rounded-3xl bg-white/95 border border-slate-200/90 shadow-2xl backdrop-blur-md text-left space-y-6"
-            >
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="font-display font-extrabold text-base text-[#0A192F] block leading-tight">
-                      Architecture Engine
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-500 uppercase tracking-wider">
-                      Enterprise Tier
-                    </span>
-                  </div>
-                </div>
-                <span className="font-mono text-[11px] text-[#1D4ED8] px-3 py-1 rounded-full bg-blue-50 font-bold">
-                  24 CAPABILITIES
-                </span>
-              </div>
-
-              <div className="space-y-3 font-mono text-xs">
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                  <span className="text-slate-600 font-semibold">Zero-Retention Runtime</span>
-                  <span className="font-bold text-[#1D4ED8]">Guaranteed</span>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                  <span className="text-slate-600 font-semibold">Client Code Ownership</span>
-                  <span className="font-bold text-[#1D4ED8]">100% Retained</span>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                  <span className="text-slate-600 font-semibold">Deployment Timeline</span>
-                  <span className="font-bold text-[#DC2626]">3 - 4 Weeks</span>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                  <span className="text-slate-600 font-semibold">Private Cloud Ready</span>
-                  <span className="font-bold text-[#0284C7]">VPC / On-Prem</span>
-                </div>
-              </div>
-
-              <div className="pt-2 text-xs font-mono text-slate-500 flex items-center justify-between">
-                <span>Direct Access to Senior Architects</span>
-                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
-              </div>
-            </motion.div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Flagship NAIR Products Showcase (Horizontal Wheel Scroll Enabled) */}
-      {(activeTab === 'all' || activeTab === 'products') && (
-        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-3 border-b border-slate-200">
-            <div>
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-                NAIR Products™ for Everyday Business
-              </h2>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-                Scroll Mouse Wheel to Slide
-              </span>
-              <button
-                onClick={() => handleProductScroll('left')}
-                className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
-                aria-label="Scroll products left"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => handleProductScroll('right')}
-                className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer"
-                aria-label="Scroll products right"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          <div
-            ref={productScrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      {/* BESPOKE HERO: Interactive Platform Operating System Matrix */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
+        <div className="text-left mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
           >
-            {productsList.map((product) => {
-              const IconComp = product.icon;
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
+              <span className="font-mono text-[11px] font-bold tracking-wider text-[#1D4ED8] uppercase">
+                Proprietary AI Platform Suite
+              </span>
+            </div>
+
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
+              The Enterprise AI <span className="text-[#1D4ED8]">Operating System</span>.
+            </h1>
+
+            <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
+              From deterministic document parsing to sovereign multi-agent swarms, NAIR Corporation provides the modular software layer that turns enterprise data into measurable competitive advantage.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={() => onBookCall('Services Architecture Briefing')}
+                className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
+              >
+                <span>Book an AI strategy call</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenAssessment}
+                className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+              >
+                <span>Take Feasibility Diagnostic</span>
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 5-PLATFORM INTERACTIVE BENCHMARK WORKBENCH */}
+        <div className="rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-6 sm:p-8 backdrop-blur-md">
+          {/* Platform Tab Selector */}
+          <div className="flex gap-2 overflow-x-auto pb-4 border-b border-slate-200/80 scrollbar-none">
+            {proprietaryPlatforms.map((platform, idx) => {
+              const isSelected = idx === activePlatformIndex;
+              const IconComp = platform.icon;
               return (
-                <div
-                  key={product.name}
-                  className="w-[320px] sm:w-[370px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1D4ED8] transition-all flex flex-col justify-between text-left group"
+                <button
+                  key={platform.id}
+                  type="button"
+                  onClick={() => setActivePlatformIndex(idx)}
+                  className={`px-4 py-3 rounded-2xl border text-left shrink-0 transition-all cursor-pointer flex items-center gap-3 ${
+                    isSelected
+                      ? 'bg-blue-50/80 border-[#1D4ED8] shadow-md shadow-blue-500/10 scale-[1.02]'
+                      : 'bg-white hover:bg-slate-50 border-slate-200/80'
+                  }`}
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <IconComp className="w-6 h-6 stroke-[2]" />
-                      </div>
-                      <span className="font-mono text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
-                        {product.badge}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display font-extrabold text-2xl text-[#0A192F] mb-3">
-                      {product.name}
-                    </h3>
-
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6 font-normal">
-                      {product.desc}
-                    </p>
-
-                    <div className="space-y-2 mb-6 pt-4 border-t border-slate-100">
-                      {product.features.map((feat, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => onBookCall(`Product Briefing: ${product.name}`)}
-                    className="w-full py-3 bg-slate-50 hover:bg-[#1D4ED8] text-slate-800 hover:text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
+                  <div
+                    className="w-8 h-8 rounded-xl flex items-center justify-center font-bold text-white shadow-xs"
+                    style={{ backgroundColor: platform.color }}
                   >
-                    <span>Book an AI strategy call</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                    <IconComp className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="font-display font-bold text-sm text-[#0A192F] block whitespace-nowrap">
+                      {platform.name}
+                    </span>
+                    <span className="font-mono text-[10px] text-slate-500 block whitespace-nowrap">
+                      {platform.latency}
+                    </span>
+                  </div>
+                </button>
               );
             })}
           </div>
-        </section>
-      )}
 
-      {/* 14 Custom AI Services Grid */}
-      {(activeTab === 'all' || activeTab === 'services') && (
-        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
-            <div>
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-                Our 14 Core Services
-              </h2>
-            </div>
-            <span className="text-xs font-mono text-slate-500 font-bold hidden sm:block">
-              Custom Architectural Delivery
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-            {servicesList.map((srv) => {
-              const IconComp = srv.icon;
-              return (
-                <div
-                  key={srv.title}
-                  className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-xs hover:shadow-lg hover:border-[#1D4ED8] transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-11 h-11 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <IconComp className="w-5 h-5 stroke-[2]" />
-                      </div>
-                      <span className="font-mono text-[10px] uppercase font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
-                        {srv.tag}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display font-bold text-xl text-[#0A192F] mb-2 group-hover:text-[#1D4ED8] transition-colors">
-                      {srv.title}
-                    </h3>
-
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6 font-normal">
-                      {srv.desc}
-                    </p>
+          {/* Active Platform Interactive Blueprint Display */}
+          <div className="pt-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activePlatform.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left"
+              >
+                {/* Left Description & Capabilities */}
+                <div className="lg:col-span-7 space-y-4">
+                  <div
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full font-mono text-xs font-bold"
+                    style={{ backgroundColor: `${activePlatform.color}15`, color: activePlatform.color }}
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>{activePlatform.tagline.toUpperCase()}</span>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                    <span className="font-mono text-[11px] text-slate-500">Production Ready</span>
+                  <h3 className="font-display text-2xl sm:text-4xl font-extrabold text-[#0A192F]">
+                    {activePlatform.name}
+                  </h3>
+
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+                    {activePlatform.desc}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {activePlatform.capabilities.map((cap, cIdx) => (
+                      <div
+                        key={cIdx}
+                        className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-2.5"
+                      >
+                        <CheckCircle2
+                          className="w-4 h-4 shrink-0 mt-0.5"
+                          style={{ color: activePlatform.color }}
+                        />
+                        <span className="text-xs font-medium text-[#0A192F] leading-snug">
+                          {cap}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-2">
                     <button
-                      onClick={() => onBookCall(`Service Inquiry: ${srv.title}`)}
-                      className="font-mono text-xs font-bold text-[#1D4ED8] hover:text-[#DC2626] transition-colors flex items-center gap-1 cursor-pointer"
+                      type="button"
+                      onClick={() => onBookCall(`Platform Inquiry: ${activePlatform.name}`)}
+                      className="px-6 py-3 rounded-full text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-colors"
+                      style={{ backgroundColor: activePlatform.color }}
                     >
-                      <span>Inquire</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>Deploy {activePlatform.name}</span>
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
-      {/* AI Readiness Framework */}
-      {(activeTab === 'all' || activeTab === 'services') && (
-        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
-          <div className="mb-10 pb-3 border-b border-slate-200">
-            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-              AI Readiness Framework
-            </h3>
-            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-              We assess every layer of your business to ensure AI initiatives succeed from the start.
-            </p>
-          </div>
+                {/* Right Architectural Telemetry Terminal */}
+                <div className="lg:col-span-5">
+                  <div className="p-6 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-700">
+                      <div className="flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-[#38BDF8]" />
+                        <span className="text-[#38BDF8] font-bold">KERNEL ARCHITECTURE</span>
+                      </div>
+                      <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-sm">
+                        ACTIVE
+                      </span>
+                    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {readinessModules.map((item, idx) => (
-              <div key={idx} className="rounded-3xl bg-white border border-slate-200 p-7 shadow-xs">
-                <span className="font-mono text-xs uppercase font-extrabold text-[#1D4ED8] block mb-2">
-                  MODULE 0{idx + 1}
-                </span>
-                <h4 className="font-display font-bold text-lg text-[#0A192F] mb-2">{item.title}</h4>
-                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-            <div className="rounded-3xl bg-blue-50 border border-blue-200 p-7 flex flex-col justify-center">
-              <span className="font-mono text-xs uppercase font-bold text-[#1D4ED8] mb-1">Interactive Diagnostic</span>
-              <h4 className="font-display font-bold text-lg text-[#0A192F] mb-2">Unsure where to start?</h4>
-              <p className="text-slate-600 text-xs mb-4">Complete our 2-minute diagnostic for custom architectural scoring.</p>
-              <button
-                onClick={onOpenAssessment}
-                className="py-2.5 px-4 bg-[#1D4ED8] text-white rounded-full font-mono text-xs uppercase font-bold cursor-pointer hover:bg-blue-800 transition-colors"
-              >
-                Launch Diagnostic
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
+                    <div className="space-y-3 font-mono text-xs">
+                      <div>
+                        <span className="text-slate-400 text-[10px] uppercase block">Topology:</span>
+                        <span className="text-white font-bold">{activePlatform.architecture}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 text-[10px] uppercase block">Benchmark Latency:</span>
+                        <span className="text-emerald-400 font-bold">{activePlatform.latency}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 text-[10px] uppercase block">Security Posture:</span>
+                        <span className="text-sky-300 font-bold">{activePlatform.security}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 text-[10px] uppercase block">Infrastructure Fabric:</span>
+                        <span className="text-slate-300 font-medium">AWS ECS · Azure Private Cloud · Bare Metal GPU</span>
+                      </div>
+                    </div>
 
-      {/* How We Work: 4-Step Pipeline */}
-      {(activeTab === 'all' || activeTab === 'process') && (
-        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
-          <div className="mb-10 pb-3 border-b border-slate-200">
+                    <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
+                      <span>Telemetry: Ephemeral Memory</span>
+                      <span className="text-blue-400 font-semibold">100% Deterministic</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* HORIZONTAL SCROLL SECTION: Service Capabilities Stream */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div className="text-left">
             <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-              How We Work
+              End-to-End Enterprise AI Capabilities
             </h2>
-            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-              From initial audit to production monitoring, our 4-step framework guarantees execution velocity.
+            <p className="text-sm text-slate-500 font-normal mt-1">
+              Scroll with mouse wheel or drag horizontally across core technical disciplines.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((s) => (
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
+              Wheel / Drag Scroll
+            </span>
+            <button
+              type="button"
+              onClick={scrollLeft}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer active:scale-95"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollRight}
+              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer active:scale-95"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* The Horizontal Scroll Track */}
+        <div
+          ref={scrollContainerRef}
+          data-lenis-prevent="true"
+          className="flex gap-6 overflow-x-auto pb-6 pt-2 select-none scrollbar-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {serviceCapabilities.map((srv, idx) => {
+            const IconComp = srv.icon;
+            return (
               <div
-                key={s.step}
-                className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-sm relative overflow-hidden"
+                key={idx}
+                className="w-[320px] sm:w-[370px] shrink-0 rounded-3xl bg-white border border-slate-200/90 p-7 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between group text-left"
               >
-                <span className="font-mono text-3xl font-black text-slate-200 block mb-4">
-                  {s.step}
-                </span>
-                <h3 className="font-display font-bold text-xl text-[#0A192F] mb-2">
-                  {s.title}
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span
+                      className="px-3 py-1 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider"
+                      style={{ backgroundColor: `${srv.color}15`, color: srv.color }}
+                    >
+                      {srv.tag}
+                    </span>
+                    <span className="font-mono text-[10px] text-slate-500 font-bold">
+                      Enterprise Tier
+                    </span>
+                  </div>
+
+                  <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                    <IconComp className="w-6 h-6" style={{ color: srv.color }} />
+                  </div>
+
+                  <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3 leading-snug">
+                    {srv.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                    {srv.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                  <span className="font-mono text-xs font-bold text-[#1D4ED8]">
+                    Production Ready
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onBookCall(`Capability Sizing: ${srv.title}`)}
+                    className="text-xs font-mono font-bold text-slate-500 hover:text-[#0A192F] flex items-center gap-1 group-hover:text-[#1D4ED8] transition-colors cursor-pointer"
+                  >
+                    <span>Inspect Specs</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 4-STAGE DELIVERY TIMELINE: Distinct Architecture Flow */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
+        <div className="text-left mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1D4ED8] font-mono text-xs font-extrabold uppercase mb-3">
+            <Workflow className="w-3.5 h-3.5" />
+            <span>Pragmatic Delivery Protocol</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
+            From Blueprint to Production in 30 Days.
+          </h2>
+          <p className="text-base text-slate-600 max-w-2xl mt-3">
+            We reject multi-year research experiments. Every engagement follows a disciplined, sprint-based delivery cycle with verifiable milestones at each step.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+          {deliveryStages.map((stage, idx) => (
+            <div
+              key={idx}
+              className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono font-black text-2xl text-[#1D4ED8]">
+                    {stage.step}
+                  </span>
+                  <span className="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1D4ED8]">
+                    {stage.duration}
+                  </span>
+                </div>
+
+                <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3">
+                  {stage.title}
                 </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {s.desc}
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                  {stage.desc}
                 </p>
               </div>
-            ))}
-          </div>
-        </section>
-      )}
 
-      {/* Bottom CTA Banner */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-left">
-        <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            <div className="lg:col-span-8">
-              <h3 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-                Tell Us About Your Business
-              </h3>
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-                Tell us about your operations and data infrastructure, and we will identify exactly where AI can have the biggest measurable impact.
-              </p>
+              <div className="pt-4 border-t border-slate-100">
+                <span className="font-mono text-[10px] text-slate-400 uppercase block mb-1">
+                  Key Deliverable:
+                </span>
+                <span className="font-mono text-xs font-bold text-[#0A192F]">
+                  {stage.deliverable}
+                </span>
+              </div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="lg:col-span-4 flex flex-col gap-3">
+      {/* BOTTOM CALL TO ACTION */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-20">
+        <div className="p-8 sm:p-14 rounded-3xl bg-[#0A192F] text-white text-center shadow-2xl relative overflow-hidden">
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Ready to Upgrade Your Enterprise Workflows?
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+              Schedule an executive AI strategy session with our lead architects. We will evaluate your technical landscape and propose a structured execution roadmap.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <button
-                onClick={() => onBookCall('Products & Services Consultation')}
-                className="w-full px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                type="button"
+                onClick={() => onBookCall('Services Strategy Call')}
+                className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 hover:scale-102 flex items-center gap-2 cursor-pointer"
               >
                 <span>Book an AI strategy call</span>
-                <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
-
               <button
+                type="button"
                 onClick={onOpenAssessment}
-                className="w-full px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all text-center cursor-pointer"
+                className="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>
@@ -665,7 +593,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           </div>
         </div>
       </section>
-
     </div>
   );
 };
