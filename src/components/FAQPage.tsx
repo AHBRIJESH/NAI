@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { SubPageMotionBackground } from './SubPageMotionBackground';
 
 interface FAQPageProps {
   onBackToHome: () => void;
@@ -374,10 +375,12 @@ export const FAQPage: React.FC<FAQPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-20">
-      
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
+      {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
+      <SubPageMotionBackground />
+
       {/* Top Breadcrumb Header Bar */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-6">
         <button
           onClick={onBackToHome}
           className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
@@ -389,20 +392,17 @@ export const FAQPage: React.FC<FAQPageProps> = ({
         </button>
       </div>
 
-      {/* Main FAQ Hero Header */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-12">
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.26em] uppercase font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-6">
-          <HelpCircle className="w-3.5 h-3.5 text-[#DC2626]" />
-          <span>ENTERPRISE KNOWLEDGE BASE &amp; FAQ</span>
+      {/* Main FAQ Hero Header: Wide Layout */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
+            Answers on Safety, Scale, &amp; <span className="text-[#1D4ED8]">Enterprise AI</span>.
+          </h1>
+
+          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+            Everything growing enterprise leadership needs to know regarding sovereign data privacy, deterministic guardrails, multi-agent pipelines, and rapid 90-day deployment roadmaps.
+          </p>
         </div>
-
-        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-          Answers on Safety, Scale, &amp; <span className="text-[#1D4ED8]">Enterprise AI</span>.
-        </h1>
-
-        <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed mb-10">
-          Everything growing enterprise leadership needs to know regarding sovereign data privacy, deterministic guardrails, multi-agent pipelines, and rapid 90-day deployment roadmaps.
-        </p>
 
         {/* Real-time Search Input with Clear Button */}
         <div className="relative max-w-xl mx-auto mb-8">
@@ -611,37 +611,34 @@ export const FAQPage: React.FC<FAQPageProps> = ({
       </section>
 
       {/* Bottom Advisory Consultation Card */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16 text-left">
         <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden">
           <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.24em] text-blue-300 font-bold mb-4 px-3.5 py-1.5 rounded-full bg-blue-950 border border-blue-800">
-              <Cpu className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>DIRECT ARCHITECT ADVISORY</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-8">
+              <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+                Have a Specific Architectural or Regulatory Inquiry?
+              </h3>
+
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+                Schedule an objective 30-minute feasibility session directly with our senior AI systems architects. We will examine your internal stack, compliance constraints, and provide deterministic ROI projections.
+              </p>
             </div>
 
-            <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-              Have a Specific Architectural or Regulatory Inquiry?
-            </h3>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 font-normal">
-              Schedule an objective 30-minute feasibility session directly with our senior AI systems architects. We will examine your internal stack, compliance constraints, and provide deterministic ROI projections.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="lg:col-span-4 flex flex-col gap-3">
               <button
                 onClick={() => onBookCall('Enterprise Architecture Consultation')}
-                className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                className="w-full px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
               >
-                <span>Book Architecture Call</span>
+                <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
               </button>
 
               <button
                 onClick={onOpenAssessment}
-                className="px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
               >
                 <span>Take Readiness Diagnostic</span>
               </button>

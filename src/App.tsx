@@ -37,7 +37,7 @@ export function App() {
       if (hash === '#/services' || hash === '#services') return 'services';
       if (hash === '#/industries' || hash === '#industries') return 'industries';
       if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
-      if (hash === '#/contact' || hash === '#contact') return 'contact';
+      if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') return 'contact';
       if (hash === '#/faq' || hash === '#faq') return 'faq';
     }
     return 'home';
@@ -55,7 +55,7 @@ export function App() {
         setCurrentPage('industries');
       } else if (hash === '#/case-studies' || hash === '#case-studies') {
         setCurrentPage('case-studies');
-      } else if (hash === '#/contact' || hash === '#contact') {
+      } else if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') {
         setCurrentPage('contact');
       } else if (hash === '#/faq' || hash === '#faq') {
         setCurrentPage('faq');

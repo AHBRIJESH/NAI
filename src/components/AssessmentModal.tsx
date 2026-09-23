@@ -141,7 +141,30 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   const [answers, setAnswers] = useState<Record<string, { label: string; score: number }>>({});
   const [isCompleted, setIsCompleted] = useState(false);
 
+  const modalScrollRef = React.useRef<HTMLDivElement>(null);
+
+  // Pause Lenis and lock body scroll when modal is open so mouse wheel scrolls modal freely
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+    lenis?.stop();
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+  const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (modalScrollRef.current) {
+      modalScrollRef.current.scrollTop += e.deltaY;
+    }
+  };
 
   const currentQ = QUESTIONS[currentStep];
 
@@ -222,9 +245,16 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
+      data-lenis-prevent="true"
+      onWheel={handleWheelScroll}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0A192F]/80 backdrop-blur-xl animate-in fade-in duration-200"
     >
-      <div className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-8 sm:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto text-[#0A192F]">
+      <div
+        ref={modalScrollRef}
+        data-lenis-prevent="true"
+        onWheel={handleWheelScroll}
+        className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-8 sm:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto overscroll-contain text-[#0A192F]"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}

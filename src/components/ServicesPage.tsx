@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,7 +15,6 @@ import {
   MessageSquare,
   Cloud,
   CheckCircle2,
-  Sliders,
   ChevronRight,
   ChevronLeft,
   Zap,
@@ -24,6 +23,8 @@ import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 import type { PageRoute } from './Navbar';
+import { SubPageMotionBackground } from './SubPageMotionBackground';
+import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
 
 interface ServicesPageProps {
   onBackToHome: () => void;
@@ -39,12 +40,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   onNavigate,
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'services' | 'products' | 'process'>('all');
-  const productScrollRef = useRef<HTMLDivElement>(null);
+  const productScrollRef = useHorizontalWheelScroll<HTMLDivElement>();
 
   const handleProductScroll = (direction: 'left' | 'right') => {
     if (productScrollRef.current) {
+      const scrollAmount = 380;
       productScrollRef.current.scrollBy({
-        left: direction === 'left' ? -380 : 380,
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
       });
     }
@@ -211,20 +213,20 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       desc: 'Bring in the specialist knowledge your team needs to move faster. We provide AI talent and domain expertise to support planning, delivery, and knowledge transfer.',
     },
     {
-      title: 'Ethical & Regulatory Readiness',
-      desc: 'Create a practical foundation for safe AI use. We help map responsibilities, prepare compliance processes, and keep intelligent systems aligned with relevant standards.',
+      title: 'Roadmapping & Strategy',
+      desc: 'Clear, sequenced roadmaps that connect business objectives to achievable AI milestones — so every initiative has a defined owner, budget, and business case.',
     },
     {
-      title: 'Monitoring & Iteration',
-      desc: 'Keep AI useful after launch. Ongoing monitoring catches performance changes and drift so models can be improved before small issues become business problems.',
+      title: 'Data & Security Audits',
+      desc: 'Rigorous assessment of your data readiness, pipeline integrity, and security posture before writing a single line of production AI code.',
     },
     {
-      title: 'Risk Assessment',
-      desc: 'Understand what could go wrong before and after deployment. We assess technical, operational, data, and reputational risks and turn findings into clear actions.',
+      title: 'Risk & Governance Frameworks',
+      desc: 'Policy, monitoring, and guardrail design to ensure your AI systems operate safely, comply with relevant regulations, and protect company reputation.',
     },
     {
-      title: 'Model Development & Evaluation',
-      desc: 'Build confidence before release. Models are tested against meaningful measures for accuracy, reliability, fairness, and real-world performance.',
+      title: 'Vendor & Architecture Evaluation',
+      desc: 'Independent evaluation of third-party AI platforms and architectures — helping you choose the right foundation without vendor lock-in.',
     },
   ];
 
@@ -232,7 +234,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     {
       step: '01',
       title: 'Discover',
-      desc: 'We audit your operations and identify the highest-impact AI opportunities.',
+      desc: 'We assess your data, workflows, and business goals to uncover high-impact AI opportunities.',
     },
     {
       step: '02',
@@ -252,10 +254,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-20">
-      
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
+      {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
+      <SubPageMotionBackground />
+
       {/* Top Breadcrumb Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-6">
         <button
           onClick={onBackToHome}
           className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
@@ -267,88 +271,157 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </button>
       </div>
 
-      {/* Main Services Hero */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-        >
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.26em] uppercase font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-            <span>PRODUCTS AND SERVICES</span>
+      {/* Wide Left-Right Hero Section: Full Space Utilization */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column (7 cols): Full breadth content */}
+          <div className="lg:col-span-7 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+            >
+              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
+                Practical AI for Everyday Business.{' '}
+                <span className="text-[#1D4ED8]">Built to Scale.</span>
+              </h1>
+
+              <p className="text-base sm:text-xl text-slate-600 max-w-2xl font-normal leading-relaxed mb-8">
+                From focused tools to enterprise-wide multi-agent swarms, we help small and mid-size businesses serve customers, manage data, make smarter decisions, and adopt AI with deterministic precision.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 mb-8">
+                <button
+                  onClick={() => onBookCall('Services - Strategy Briefing')}
+                  className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
+                >
+                  <span>Book an AI strategy call</span>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                </button>
+
+                <button
+                  onClick={onOpenAssessment}
+                  className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                >
+                  <span>Take Feasibility Diagnostic</span>
+                </button>
+              </div>
+
+              {/* Quick Filter Tabs */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-2 border-t border-slate-200/80">
+                <button
+                  onClick={() => setActiveTab('all')}
+                  className={cn(
+                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
+                    activeTab === 'all'
+                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                  )}
+                >
+                  All Capabilities (24)
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('products')}
+                  className={cn(
+                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
+                    activeTab === 'products'
+                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                  )}
+                >
+                  NAIR Products™ (5)
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('services')}
+                  className={cn(
+                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
+                    activeTab === 'services'
+                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                  )}
+                >
+                  Custom Services (14)
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('process')}
+                  className={cn(
+                    'px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
+                    activeTab === 'process'
+                      ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                  )}
+                >
+                  How We Work (4-Step)
+                </button>
+              </div>
+            </motion.div>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-            Practical AI for Everyday Business.{' '}
-            <span className="text-[#1D4ED8]">Built to Scale.</span>
-          </h1>
-
-          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-            From focused tools to enterprise-wide multi-agent swarms, we help small and mid-size businesses serve customers, manage data, make smarter decisions, and adopt AI with deterministic precision.
-          </p>
-
-          {/* Quick Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={cn(
-                'px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                activeTab === 'all'
-                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-              )}
+          {/* Right Column (5 cols): Architecture Board */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.65, delay: 0.15 }}
+              className="p-7 sm:p-8 rounded-3xl bg-white/95 border border-slate-200/90 shadow-2xl backdrop-blur-md text-left space-y-6"
             >
-              All Capabilities (24)
-            </button>
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-display font-extrabold text-base text-[#0A192F] block leading-tight">
+                      Architecture Engine
+                    </span>
+                    <span className="font-mono text-[10px] text-slate-500 uppercase tracking-wider">
+                      Enterprise Tier
+                    </span>
+                  </div>
+                </div>
+                <span className="font-mono text-[11px] text-[#1D4ED8] px-3 py-1 rounded-full bg-blue-50 font-bold">
+                  24 CAPABILITIES
+                </span>
+              </div>
 
-            <button
-              onClick={() => setActiveTab('products')}
-              className={cn(
-                'px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                activeTab === 'products'
-                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-              )}
-            >
-              NAIR Products™ (5)
-            </button>
+              <div className="space-y-3 font-mono text-xs">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <span className="text-slate-600 font-semibold">Zero-Retention Runtime</span>
+                  <span className="font-bold text-[#1D4ED8]">Guaranteed</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <span className="text-slate-600 font-semibold">Client Code Ownership</span>
+                  <span className="font-bold text-[#1D4ED8]">100% Retained</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <span className="text-slate-600 font-semibold">Deployment Timeline</span>
+                  <span className="font-bold text-[#DC2626]">3 - 4 Weeks</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <span className="text-slate-600 font-semibold">Private Cloud Ready</span>
+                  <span className="font-bold text-[#0284C7]">VPC / On-Prem</span>
+                </div>
+              </div>
 
-            <button
-              onClick={() => setActiveTab('services')}
-              className={cn(
-                'px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                activeTab === 'services'
-                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-              )}
-            >
-              Custom Services (14)
-            </button>
-
-            <button
-              onClick={() => setActiveTab('process')}
-              className={cn(
-                'px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer',
-                activeTab === 'process'
-                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-500/25 scale-102 font-black'
-                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
-              )}
-            >
-              How We Work (4-Step)
-            </button>
+              <div className="pt-2 text-xs font-mono text-slate-500 flex items-center justify-between">
+                <span>Direct Access to Senior Architects</span>
+                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+
+        </div>
       </section>
 
-      {/* Flagship NAIR Products Showcase */}
+      {/* Flagship NAIR Products Showcase (Horizontal Wheel Scroll Enabled) */}
       {(activeTab === 'all' || activeTab === 'products') && (
-        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
+        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-3 border-b border-slate-200">
             <div>
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#DC2626] font-bold block mb-1">
-                FOCUSED BUSINESS SUITE
-              </span>
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
                 NAIR Products™ for Everyday Business
               </h2>
@@ -356,7 +429,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-                Swipe Products Horizontally
+                Scroll Mouse Wheel to Slide
               </span>
               <button
                 onClick={() => handleProductScroll('left')}
@@ -385,7 +458,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               return (
                 <div
                   key={product.name}
-                  className="w-[310px] sm:w-[360px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1D4ED8] transition-all flex flex-col justify-between text-left group"
+                  className="w-[320px] sm:w-[370px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#1D4ED8] transition-all flex flex-col justify-between text-left group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">
@@ -419,7 +492,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                     onClick={() => onBookCall(`Product Briefing: ${product.name}`)}
                     className="w-full py-3 bg-slate-50 hover:bg-[#1D4ED8] text-slate-800 hover:text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-2 cursor-pointer mt-4"
                   >
-                    <span>Schedule {product.name} Demo</span>
+                    <span>Book an AI strategy call</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -431,12 +504,9 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
 
       {/* 14 Custom AI Services Grid */}
       {(activeTab === 'all' || activeTab === 'services') && (
-        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
+        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
           <div className="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
             <div>
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#1D4ED8] font-bold block mb-1">
-                TAILORED ENGINEERING
-              </span>
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
                 Our 14 Core Services
               </h2>
@@ -452,34 +522,37 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               return (
                 <div
                   key={srv.title}
-                  className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-sm hover:border-[#1D4ED8] hover:shadow-md transition-all flex flex-col justify-between"
+                  className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-xs hover:shadow-lg hover:border-[#1D4ED8] transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center">
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-11 h-11 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
                         <IconComp className="w-5 h-5 stroke-[2]" />
                       </div>
-                      <span className="font-mono text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
+                      <span className="font-mono text-[10px] uppercase font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
                         {srv.tag}
                       </span>
                     </div>
 
-                    <h4 className="font-display font-bold text-xl text-[#0A192F] mb-2.5">
+                    <h3 className="font-display font-bold text-xl text-[#0A192F] mb-2 group-hover:text-[#1D4ED8] transition-colors">
                       {srv.title}
-                    </h4>
+                    </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed font-normal mb-4">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6 font-normal">
                       {srv.desc}
                     </p>
                   </div>
 
-                  <button
-                    onClick={() => onBookCall(`Service Inquiry: ${srv.title}`)}
-                    className="text-xs font-mono uppercase tracking-wider font-bold text-[#1D4ED8] hover:text-[#DC2626] transition-colors flex items-center gap-1 cursor-pointer pt-2"
-                  >
-                    <span>Consult on this service</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span className="font-mono text-[11px] text-slate-500">Production Ready</span>
+                    <button
+                      onClick={() => onBookCall(`Service Inquiry: ${srv.title}`)}
+                      className="font-mono text-xs font-bold text-[#1D4ED8] hover:text-[#DC2626] transition-colors flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>Inquire</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               );
             })}
@@ -487,23 +560,23 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </section>
       )}
 
-      {/* Readiness & Governance Framework */}
+      {/* AI Readiness Framework */}
       {(activeTab === 'all' || activeTab === 'services') && (
-        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#DC2626] font-bold block mb-2">
-              FOUNDATIONAL GOVERNANCE
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0A192F]">
-              AI Readiness &amp; Governance Framework
-            </h2>
+        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
+          <div className="mb-10 pb-3 border-b border-slate-200">
+            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
+              AI Readiness Framework
+            </h3>
+            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
+              We assess every layer of your business to ensure AI initiatives succeed from the start.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {readinessModules.map((item, idx) => (
               <div key={idx} className="rounded-3xl bg-white border border-slate-200 p-7 shadow-xs">
                 <span className="font-mono text-xs uppercase font-extrabold text-[#1D4ED8] block mb-2">
-                  MODULE 0{idx + 1} //
+                  MODULE 0{idx + 1}
                 </span>
                 <h4 className="font-display font-bold text-lg text-[#0A192F] mb-2">{item.title}</h4>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
@@ -526,14 +599,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
 
       {/* How We Work: 4-Step Pipeline */}
       {(activeTab === 'all' || activeTab === 'process') && (
-        <section className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-[#1D4ED8] font-bold block mb-2">
-              DELIVERY METHODOLOGY
-            </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F]">
+        <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24 text-left">
+          <div className="mb-10 pb-3 border-b border-slate-200">
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
               How We Work
             </h2>
+            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
+              From initial audit to production monitoring, our 4-step framework guarantees execution velocity.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -558,54 +631,40 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       )}
 
       {/* Bottom CTA Banner */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
-        <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden text-left">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-left">
+        <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden">
           <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-blue-300 font-bold block mb-4">
-              TAILORED ROADMAP //
-            </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-8">
+              <h3 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+                Tell Us About Your Business
+              </h3>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+                Tell us about your operations and data infrastructure, and we will identify exactly where AI can have the biggest measurable impact.
+              </p>
+            </div>
 
-            <h3 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-              Tell Us About Your Business
-            </h3>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 font-normal">
-              Tell us about your operations and data infrastructure, and we will identify exactly where AI can have the biggest measurable impact.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="lg:col-span-4 flex flex-col gap-3">
               <button
                 onClick={() => onBookCall('Products & Services Consultation')}
-                className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                className="w-full px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
               >
-                <span>Get a Free Consultation</span>
+                <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
               </button>
 
               <button
-                onClick={() => onNavigate('case-studies')}
-                className="px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                onClick={onOpenAssessment}
+                className="w-full px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all text-center cursor-pointer"
               >
-                <span>Explore Client Case Studies</span>
+                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Return to Home Overview Button */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider font-bold text-[#1D4ED8] hover:text-[#0A192F] transition-colors cursor-pointer"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Return to Homepage Overview</span>
-        </button>
-      </div>
 
     </div>
   );

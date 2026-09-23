@@ -23,7 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Industries', page: 'industries' },
     { name: 'Case Studies', page: 'case-studies' },
     { name: 'FAQ', page: 'faq' },
-    { name: 'Contact', page: 'contact' },
+    { name: 'Book a Call', page: 'contact' },
   ];
 
   const handleLinkClick = (page: PageRoute) => {
@@ -78,9 +78,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden sm:flex items-center gap-4">
           <button
             onClick={onBookCall}
-            className="px-6 py-2.5 rounded-full bg-[#1D4ED8] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98"
+            className="px-5 py-2.5 rounded-full bg-[#1D4ED8] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98 whitespace-nowrap"
           >
-            <span>Let's Talk</span>
+            <span>Book an AI strategy call</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -122,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="w-full py-3 rounded-full bg-[#1D4ED8] text-white text-sm font-bold shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Let's Talk</span>
+              <span>Book an AI strategy call</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

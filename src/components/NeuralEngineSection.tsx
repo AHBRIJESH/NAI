@@ -231,7 +231,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                     onClick={onBookCall}
                     className="px-5 py-3 border border-blue-600/50 hover:border-white text-white hover:text-white font-mono text-xs uppercase tracking-wider font-bold rounded-full transition-colors flex items-center justify-center cursor-pointer"
                   >
-                    <span>Schedule Technical Audit</span>
+                    <span>Book an AI strategy call</span>
                   </button>
                 </div>
 

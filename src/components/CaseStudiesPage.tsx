@@ -1,14 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   ArrowLeft,
   ArrowRight,
   TrendingUp,
   FileCheck2,
   Clock,
-  MessageSquare,
-  Sparkles,
   CheckCircle2,
-  Building,
   HeartPulse,
   Receipt,
   Users,
@@ -17,11 +14,14 @@ import {
   ChevronLeft,
   ChevronRight,
   Gauge,
+  Cpu,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 import type { PageRoute } from './Navbar';
+import { SubPageMotionBackground } from './SubPageMotionBackground';
+import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
 
 interface CaseStudiesPageProps {
   onBackToHome: () => void;
@@ -36,7 +36,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
   onOpenAssessment,
   onNavigate,
 }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useHorizontalWheelScroll<HTMLDivElement>();
 
   const handleScroll = (dir: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -156,10 +156,12 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-20">
-      
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
+      {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
+      <SubPageMotionBackground />
+
       {/* Top Breadcrumb Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-6">
         <button
           onClick={onBackToHome}
           className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
@@ -171,53 +173,104 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
         </button>
       </div>
 
-      {/* Main Case Studies Hero */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-        >
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full font-mono text-[11px] tracking-[0.26em] uppercase font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-            <span>PROVEN CLIENT ENGAGEMENTS</span>
+      {/* Wide Left-Right Hero: Full Space Utilization */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column (7 cols) */}
+          <div className="lg:col-span-7 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+            >
+              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
+                AI That Delivers <span className="text-[#1D4ED8]">Real Results</span>.
+              </h1>
+
+              <p className="text-base sm:text-xl text-slate-600 max-w-2xl font-normal leading-relaxed mb-8">
+                See how Nair Corporation delivers measurable AI outcomes across healthcare, finance, retail, and manufacturing. Real solutions engineered for real-world enterprise operations.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => onBookCall('Case Studies - Strategy Briefing')}
+                  className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
+                >
+                  <span>Book an AI strategy call</span>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                </button>
+
+                <button
+                  onClick={onOpenAssessment}
+                  className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                >
+                  <span>Take Feasibility Diagnostic</span>
+                </button>
+              </div>
+            </motion.div>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-            AI That Delivers <span className="text-[#1D4ED8]">Real Results</span>.
-          </h1>
-
-          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-            See how Nair Corporation delivers measurable AI outcomes across healthcare, finance, retail, and manufacturing. Real solutions engineered for real-world enterprise operations.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => onBookCall('Case Studies - Strategy Briefing')}
-              className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
+          {/* Right Column (5 cols): Verified Impact Card */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.65, delay: 0.15 }}
+              className="p-7 sm:p-8 rounded-3xl bg-white/95 border border-slate-200/90 shadow-2xl backdrop-blur-md text-left space-y-6"
             >
-              <span>Discuss Your Use Case</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-            </button>
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-display font-extrabold text-base text-[#0A192F] block leading-tight">
+                      Production Outcomes
+                    </span>
+                    <span className="font-mono text-[10px] text-slate-500 uppercase tracking-wider">
+                      Quantified Client Audits
+                    </span>
+                  </div>
+                </div>
+                <span className="font-mono text-[11px] text-[#1D4ED8] px-3 py-1 rounded-full bg-blue-50 font-bold">
+                  VERIFIED
+                </span>
+              </div>
 
-            <button
-              onClick={onOpenAssessment}
-              className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
-            >
-              <span>Take Feasibility Diagnostic</span>
-            </button>
+              <div className="grid grid-cols-2 gap-3.5">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <span className="font-display font-black text-2xl sm:text-3xl text-[#1D4ED8] block">88%</span>
+                  <span className="font-mono text-[11px] text-slate-600 font-semibold">Triage Wait Cut</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <span className="font-display font-black text-2xl sm:text-3xl text-[#DC2626] block">92%</span>
+                  <span className="font-mono text-[11px] text-slate-600 font-semibold">Cycle Time Cut</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <span className="font-display font-black text-2xl sm:text-3xl text-[#0284C7] block">&lt; 20s</span>
+                  <span className="font-mono text-[11px] text-slate-600 font-semibold">Speed to Lead</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <span className="font-display font-black text-2xl sm:text-3xl text-[#1D4ED8] block">$3.8M</span>
+                  <span className="font-mono text-[11px] text-slate-600 font-semibold">Cloud Recaptured</span>
+                </div>
+              </div>
+
+              <div className="pt-2 text-xs font-mono text-slate-500 flex items-center justify-between">
+                <span>Zero Speculative Research</span>
+                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+
+        </div>
       </section>
 
-      {/* Horizontal Scroll Track: Verified Production Benchmarks */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
+      {/* Horizontal Scroll Track: Mouse Wheel Scroll Enabled */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#1D4ED8] font-bold mb-1">
-              <Gauge className="w-3.5 h-3.5" />
-              <span>LIVE SLA &amp; ROI BENCHMARKS</span>
-            </div>
             <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
               Production Velocity Benchmarks
             </h2>
@@ -225,7 +278,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
 
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-              Swipe Horizontally
+              Scroll Mouse Wheel to Slide
             </span>
             <button
               onClick={() => handleScroll('left')}
@@ -255,12 +308,12 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: idx * 0.07 }}
-              className="w-[280px] sm:w-[320px] shrink-0 snap-start rounded-2xl bg-white border border-slate-200/90 p-5 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between"
+              className="w-[280px] sm:w-[320px] shrink-0 snap-start rounded-3xl bg-white border border-slate-200/90 p-6 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between text-left"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span
-                    className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded-md"
+                    className="font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-md"
                     style={{ backgroundColor: `${pill.color}15`, color: pill.color }}
                   >
                     {pill.sector}
@@ -287,8 +340,8 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
         </div>
       </section>
 
-      {/* Case Studies Dossiers Grid */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mb-20 space-y-10">
+      {/* Case Studies Dossiers Grid: Wide Layout */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20 space-y-10">
         {caseStudies.map((cs, idx) => {
           const IconComp = cs.icon;
           return (
@@ -300,10 +353,8 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                 
                 {/* Left Detail Column (8 cols) */}
                 <div className="lg:col-span-8 space-y-5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-md bg-blue-50 text-[#1D4ED8] border border-blue-200">
-                      CASE STUDY 0{idx + 1} // {cs.category}
-                    </span>
+                  <div className="flex items-center gap-2 font-mono text-xs text-[#1D4ED8] font-bold">
+                    <span>{cs.category}</span>
                   </div>
 
                   <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[#0A192F] leading-tight">
@@ -311,18 +362,18 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                   </h2>
 
                   <div className="space-y-4 pt-2">
-                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/60">
+                    <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/60">
                       <span className="font-mono text-xs uppercase font-extrabold text-[#DC2626] block mb-1">
-                        THE CHALLENGE:
+                        THE CHALLENGE
                       </span>
                       <p className="text-slate-600 text-sm leading-relaxed font-normal">
                         {cs.challenge}
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-blue-50/50 border border-blue-100">
+                    <div className="p-5 rounded-2xl bg-blue-50/50 border border-blue-100">
                       <span className="font-mono text-xs uppercase font-extrabold text-[#1D4ED8] block mb-1">
-                        THE SOLUTION:
+                        THE SOLUTION
                       </span>
                       <p className="text-slate-700 text-sm leading-relaxed font-normal">
                         {cs.solution}
@@ -334,7 +385,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                     {cs.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[10px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium"
+                        className="font-mono text-[10px] text-slate-500 bg-slate-100 px-3 py-1 rounded-full font-medium"
                       >
                         #{tag}
                       </span>
@@ -359,13 +410,15 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                     </div>
                   ))}
 
-                  <button
-                    onClick={() => onBookCall(`Case Study Inquiry: ${cs.title}`)}
-                    className="w-full py-3 bg-[#1D4ED8] hover:bg-blue-800 text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-4"
-                  >
-                    <span>Deploy Similar Solution</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="pt-4 border-t border-slate-200">
+                    <button
+                      onClick={() => onBookCall(`Case Study Review: ${cs.title}`)}
+                      className="w-full py-3 bg-[#1D4ED8] hover:bg-[#1E40AF] text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Book an AI strategy call</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
 
               </div>
@@ -374,55 +427,40 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
         })}
       </section>
 
-      {/* Bottom CTA Banner */}
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 mb-16">
-        <div className="rounded-3xl bg-[#0A192F] text-white p-8 sm:p-14 border border-blue-900/60 shadow-2xl relative overflow-hidden text-left">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#1D4ED8]/25 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#DC2626]/15 blur-3xl pointer-events-none" />
+      {/* Strategic Callout Banner */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-left">
+        <div className="rounded-3xl bg-gradient-to-br from-[#1D4ED8] via-[#1E40AF] to-[#0A192F] text-white p-10 sm:p-14 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-2xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-blue-300 font-bold block mb-4">
-              MEASURABLE RESULTS //
-            </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-8">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-4">
+                Have a Complex Enterprise Workflow?
+              </h2>
+              <p className="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed">
+                Connect with our senior architects to evaluate feasibility, data security, and expected ROI.
+              </p>
+            </div>
 
-            <h3 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-              Turn Your AI Ideas Into Measurable Results
-            </h3>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 font-normal">
-              Whether you're exploring AI for the first time or expanding existing capabilities, Nair Corporation can help you turn ideas into measurable business results.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="lg:col-span-4 flex flex-col gap-3">
               <button
-                onClick={() => onBookCall('Case Studies - Start Your Journey')}
-                className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-3 cursor-pointer hover:scale-102"
+                onClick={() => onBookCall('Case Studies Bottom CTA')}
+                className="w-full px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 hover:scale-102 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Start Your AI Journey</span>
-                <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
+                <span>Book an AI strategy call</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
               <button
-                onClick={() => onNavigate('contact')}
-                className="px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-blue-700/60 bg-blue-950 hover:bg-blue-900 text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                onClick={onOpenAssessment}
+                className="w-full px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all text-center cursor-pointer"
               >
-                <span>Contact Our Architects</span>
+                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Return to Home Overview Button */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-        <button
-          onClick={onBackToHome}
-          className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider font-bold text-[#1D4ED8] hover:text-[#0A192F] transition-colors cursor-pointer"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Return to Homepage Overview</span>
-        </button>
-      </div>
 
     </div>
   );

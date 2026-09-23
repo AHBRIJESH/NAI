@@ -53,7 +53,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
         { name: 'Enterprise FAQ Knowledge Base', page: 'faq' as PageRoute },
         { name: 'Client Success Case Studies', page: 'case-studies' as PageRoute },
         { name: 'Interactive ROI Diagnostic', action: 'assessment' },
-        { name: 'Schedule Technical Briefing', action: 'book' },
+        { name: 'Book an AI Strategy Call', action: 'book' },
       ],
     },
   ];
@@ -145,7 +145,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
               onClick={() => onNavigate('contact')}
               className="hover:text-white transition-colors cursor-pointer"
             >
-              Contact
+              Book a Call
             </button>
             <button
               onClick={() => onNavigate('faq')}
