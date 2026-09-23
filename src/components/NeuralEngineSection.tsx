@@ -37,8 +37,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       latency: '12.4ms',
       throughput: '1,420 tps',
       retention: '0.00 KB',
-      image: '/images/solutions_architecture.jpg',
-      imageCaption: 'Distributed GPU Tensor Ingestion Pipeline',
+      image: '/images/telemetry_inference.jpg',
+      imageCaption: 'AI Inference: Text, Image, Audio & Video to Real-Time Insights & Actions',
       desc: 'Zero-latency streaming architecture for high-throughput enterprise decision systems and real-time inference.',
       logSample: [
         'orchestrator :: stream initialized on port 8443 (HTTP/3 QUIC)',
@@ -49,13 +49,13 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
     governance: {
       color: '#DC2626', // Crimson Red
       tag: 'AIR-GAPPED COMPLIANCE CORE',
-      title: 'Zero-Retention Guardrail',
+      title: 'Zero-Retention Guardrail & Governance',
       latency: '8.1ms',
       throughput: 'Deterministic',
       retention: '0.00 KB',
-      image: '/images/security_vault.jpg',
-      imageCaption: 'Cryptographic Zero-Retention Enclave',
-      desc: 'In-memory ephemeral token processing with provably zero external retention or disk writes.',
+      image: '/images/telemetry_governance.jpg',
+      imageCaption: 'AI Governance: Ethics, Policies, People, Compliance & Risk Management',
+      desc: 'In-memory ephemeral token processing with provably zero external retention, automated ethical boundaries, and SOC2 compliance.',
       logSample: [
         'guardrail :: scrubbing outbound prompts for PII & corporate credential leaks',
         'ephemeral-mem :: 0 bytes persisted to disk — volatile VPC memory wiped post-execution',
@@ -65,12 +65,12 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
     agentic: {
       color: '#0284C7', // Cerulean Blue
       tag: 'MULTI-AGENT ORCHESTRATION',
-      title: 'Multi-Agent Tool Orchestration',
+      title: 'Agentic AI & Multi-Agent Swarms',
       latency: '24.6ms',
       throughput: '8 Swarms',
       retention: '0.00 KB',
-      image: '/images/team_collaboration.jpg',
-      imageCaption: 'Autonomous Multi-Agent Collaborative Mesh',
+      image: '/images/telemetry_agentic.jpg',
+      imageCaption: 'Agentic AI: Plan, Reason, Collaborate & Act Autonomously with Real Impact',
       desc: 'Autonomous goal-seeking networks executing cross-platform operational workflows and API transactions.',
       logSample: [
         'swarm-master :: decomposing multi-step ERP reconciliation objective',
@@ -111,13 +111,12 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header: Clean typography without top pill */}
         <ScrollReveal y={24} duration={0.6}>
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 lg:mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-blue-200 text-[#1D4ED8] font-mono text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-              <span>Sovereign Architecture Telemetry</span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Sovereign Architecture Telemetry
+            </span>
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-4 leading-tight">
               The Autonomous <span className="text-[#1D4ED8]">Intelligence Core</span>.
@@ -159,12 +158,12 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 {/* Top Badge: Mode Status */}
                 <div className="relative z-10 p-5 flex items-center justify-between">
                   <span
-                    className="px-3 py-1 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md backdrop-blur-md"
+                    className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md backdrop-blur-md"
                     style={{ backgroundColor: `${currentMode.color}CC` }}
                   >
                     {currentMode.tag}
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/70 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-bold backdrop-blur-md">
+                  <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold backdrop-blur-md">
                     ● ACTIVE
                   </span>
                 </div>
@@ -227,8 +226,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       {currentMode.desc}
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#1D4ED8] px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 font-bold shrink-0 self-start sm:self-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] animate-pulse" />
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#1D4ED8] font-bold shrink-0 self-start sm:self-center">
+                    <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
                     <span>ONLINE · 99.99%</span>
                   </div>
                 </div>

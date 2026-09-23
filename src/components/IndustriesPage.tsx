@@ -127,12 +127,9 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-              <span className="font-mono text-[11px] font-bold tracking-wider text-[#1D4ED8] uppercase">
-                Enterprise Sovereign Infrastructure
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Enterprise Sovereign Infrastructure
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
               High-Stakes AI for <span className="text-[#1D4ED8]">Regulated Sectors</span>.
@@ -268,7 +265,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left"
                 >
                   <div className="lg:col-span-6 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/70 text-[#1D4ED8] font-mono text-xs font-bold">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-100/70 text-[#1D4ED8] font-mono text-xs font-bold">
                       <HeartPulse className="w-3.5 h-3.5" />
                       <span>CLINICAL INGESTION &amp; TRIAGE ENGINE</span>
                     </div>
@@ -326,7 +323,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left"
                 >
                   <div className="lg:col-span-6 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100/70 text-[#DC2626] font-mono text-xs font-bold">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-red-100/70 text-[#DC2626] font-mono text-xs font-bold">
                       <Landmark className="w-3.5 h-3.5" />
                       <span>HIGH-FREQUENCY FRAUD &amp; ANOMALY RADAR</span>
                     </div>
@@ -384,7 +381,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left"
                 >
                   <div className="lg:col-span-6 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100/70 text-[#0284C7] font-mono text-xs font-bold">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sky-100/70 text-[#0284C7] font-mono text-xs font-bold">
                       <Scale className="w-3.5 h-3.5" />
                       <span>AUTONOMOUS REDLINE &amp; DILIGENCE WORKSTATION</span>
                     </div>
@@ -537,10 +534,9 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
         <div id="healthcare" className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1D4ED8] font-mono text-xs font-extrabold uppercase">
-                <HeartPulse className="w-3.5 h-3.5" />
-                <span>Sector Focus 01 // Clinical &amp; Patient Systems</span>
-              </div>
+              <span className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#1D4ED8] block">
+                Sector Focus 01 // Clinical &amp; Patient Systems
+              </span>
 
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
                 Healthcare AI: Accelerating Patient Outcomes Without Privacy Compromise.
@@ -616,10 +612,9 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
         <div id="finance" className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-[#DC2626] font-mono text-xs font-extrabold uppercase">
-                <Landmark className="w-3.5 h-3.5" />
-                <span>Sector Focus 02 // Financial Services &amp; Banking</span>
-              </div>
+              <span className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#DC2626] block">
+                Sector Focus 02 // Financial Services &amp; Banking
+              </span>
 
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
                 Finance AI: Millisecond Fraud Defense &amp; Automated Ledger Audits.
@@ -695,10 +690,9 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
         <div id="legal" className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-50 border border-sky-200 text-[#0284C7] font-mono text-xs font-extrabold uppercase">
-                <Scale className="w-3.5 h-3.5" />
-                <span>Sector Focus 03 // Legal Operations &amp; Corporate Diligence</span>
-              </div>
+              <span className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#0284C7] block">
+                Sector Focus 03 // Legal Operations &amp; Corporate Diligence
+              </span>
 
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
                 Legal AI: Sovereign Diligence, Contract Redlining &amp; Zero IP Leakage.

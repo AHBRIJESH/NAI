@@ -210,12 +210,9 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-              <span className="font-mono text-[11px] font-bold tracking-wider text-[#1D4ED8] uppercase">
-                Proprietary AI Platform Suite
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Proprietary AI Platform Suite
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
               The Enterprise AI <span className="text-[#1D4ED8]">Operating System</span>.
@@ -297,7 +294,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 {/* Left Description & Capabilities */}
                 <div className="lg:col-span-7 space-y-4">
                   <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full font-mono text-xs font-bold"
+                    className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md font-mono text-xs font-bold"
                     style={{ backgroundColor: `${activePlatform.color}15`, color: activePlatform.color }}
                   >
                     <Sparkles className="w-3.5 h-3.5" />
@@ -438,7 +435,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
                     <span
-                      className="px-3 py-1 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider"
+                      className="px-2.5 py-0.5 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider"
                       style={{ backgroundColor: `${srv.color}15`, color: srv.color }}
                     >
                       {srv.tag}

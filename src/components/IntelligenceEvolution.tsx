@@ -104,10 +104,9 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
         {/* Section Header */}
         <ScrollReveal y={24} duration={0.6}>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1D4ED8] font-mono text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Cognitive Evolution Roadmap</span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Cognitive Evolution Roadmap
+            </span>
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-4">
               AI &rarr; AGI &rarr; ASI
@@ -183,7 +182,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
                     <span
-                      className="px-3 py-1 rounded-full font-mono text-[10px] uppercase font-bold tracking-wider inline-block mb-1.5 shadow-md"
+                      className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider inline-block mb-1.5 shadow-md"
                       style={{ backgroundColor: current.color }}
                     >
                       {current.acronym} // {current.status}

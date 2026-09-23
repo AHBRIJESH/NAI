@@ -35,15 +35,13 @@ const DEFAULT_FONTS = [
   '"Trebuchet MS", sans-serif',
 ]
 
-// Light, fun, and vibrant ransom tile palette
-const BRAND_PALETTE = [
-  { bg: '#E0F2FE', text: '#0284C7', border: '#7DD3FC' }, // Light Sky Blue
-  { bg: '#FEF08A', text: '#A16207', border: '#FACC15' }, // Sunny Pastel Yellow
-  { bg: '#DCFCE7', text: '#15803D', border: '#86EFAC' }, // Mint Green
-  { bg: '#FFE4E6', text: '#E11D48', border: '#FDA4AF' }, // Playful Rose Pink
-  { bg: '#EDE9FE', text: '#7C3AED', border: '#C4B5FD' }, // Soft Lavender Purple
-  { bg: '#FFEDD5', text: '#EA580C', border: '#FDBA74' }, // Warm Pastel Peach
-  { bg: '#F0F9FF', text: '#1D4ED8', border: '#93C5FD' }, // Crisp Ice Blue
+// Original high-end Green & Cream Palette scraps ("the green and all")
+const ORIGINAL_GREEN_PALETTE = [
+  { bg: '#06231D', text: '#FFFDEE', border: '#06231D' }, // Midnight Pine
+  { bg: '#E3EF26', text: '#06231D', border: '#076653' }, // Acid Lime
+  { bg: '#E2FBCE', text: '#076653', border: '#076653' }, // Soft Mint
+  { bg: '#076653', text: '#FFFDEE', border: '#0C342C' }, // Deep Forest Emerald
+  { bg: '#FFFDEE', text: '#06231D', border: '#0C342C' }, // Alabaster Cream
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({
@@ -52,7 +50,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
   intensity = 0.45,
   animate = 'assemble',
   fonts = DEFAULT_FONTS,
-  palette = BRAND_PALETTE,
+  palette = ORIGINAL_GREEN_PALETTE,
   rotation = 5,
   className,
   wordClassName,

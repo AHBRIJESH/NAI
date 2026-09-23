@@ -128,12 +128,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
 
 
             {/* Strategic AI Implementation Value Proposition */}
-            <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-blue-50/90 border border-blue-200/90 text-[#0F284E] text-xs sm:text-sm font-medium shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse shrink-0" />
-              <span>
-                Want to implement AI, but not sure where to start? Work smarter—not harder—with these proven strategies.
-              </span>
-            </motion.div>
+            <motion.p variants={itemVariants} className="text-sm sm:text-base font-semibold text-[#1D4ED8] mb-3.5 max-w-xl leading-relaxed">
+              Want to implement AI, but not sure where to start? Work smarter—not harder—with these proven strategies.
+            </motion.p>
 
             {/* Limited Punchy Headline */}
             <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.06] mb-4">

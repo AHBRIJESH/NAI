@@ -121,12 +121,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-              <span className="font-mono text-[11px] font-bold tracking-wider text-[#1D4ED8] uppercase">
-                Global Engineering Architecture
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Global Engineering Architecture
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
               Silicon Valley Vision.{' '}
@@ -314,10 +311,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* CORE ENGINEERING MANIFESTO: 4 Pillars */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
         <div className="text-left mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#1D4ED8] font-mono text-xs font-extrabold uppercase mb-3">
-            <Compass className="w-3.5 h-3.5" />
-            <span>Foundational Principles</span>
-          </div>
+          <span className="font-mono text-xs font-extrabold uppercase tracking-wider text-[#1D4ED8] mb-2 block">
+            Foundational Principles
+          </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
             The NAIR Engineering Manifesto.
           </h2>

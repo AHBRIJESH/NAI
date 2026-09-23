@@ -194,12 +194,9 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-              <span className="font-mono text-[11px] font-bold tracking-wider text-[#1D4ED8] uppercase">
-                Production Case Studies &amp; SLA Audits
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Production Case Studies &amp; SLA Audits
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
               AI That Delivers <span className="text-[#1D4ED8]">Measurable ROI</span>.
