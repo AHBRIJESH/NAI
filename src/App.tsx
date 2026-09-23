@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LenisProvider } from './components/LenisProvider';
-import { Navbar, type PageRoute } from './components/Navbar';
+import { Navbar, type PageRoute, type IndustrySector } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { LogoTrustBar } from './components/LogoTrustBar';
 import { NeuralEngineSection } from './components/NeuralEngineSection';
@@ -36,12 +36,23 @@ export function App() {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#/about' || hash === '#about') return 'about';
       if (hash === '#/services' || hash === '#services') return 'services';
-      if (hash === '#/industries' || hash === '#industries') return 'industries';
+      if (hash.startsWith('#/industries') || hash.startsWith('#industries')) return 'industries';
       if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
       if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') return 'contact';
       if (hash === '#/faq' || hash === '#faq') return 'faq';
     }
     return 'home';
+  });
+
+  // Track specific industry sector ('healthcare' | 'finance' | 'legal')
+  const [selectedIndustrySector, setSelectedIndustrySector] = useState<IndustrySector | undefined>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('healthcare')) return 'healthcare';
+      if (hash.includes('finance')) return 'finance';
+      if (hash.includes('legal')) return 'legal';
+    }
+    return undefined;
   });
 
   // Synchronize route with browser history and URL hash
@@ -52,8 +63,15 @@ export function App() {
         setCurrentPage('about');
       } else if (hash === '#/services' || hash === '#services') {
         setCurrentPage('services');
-      } else if (hash === '#/industries' || hash === '#industries') {
+      } else if (hash.startsWith('#/industries') || hash.startsWith('#industries')) {
         setCurrentPage('industries');
+        if (hash.includes('healthcare')) {
+          setSelectedIndustrySector('healthcare');
+        } else if (hash.includes('finance')) {
+          setSelectedIndustrySector('finance');
+        } else if (hash.includes('legal')) {
+          setSelectedIndustrySector('legal');
+        }
       } else if (hash === '#/case-studies' || hash === '#case-studies') {
         setCurrentPage('case-studies');
       } else if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') {
@@ -72,9 +90,12 @@ export function App() {
     };
   }, []);
 
-  const handleNavigate = (page: PageRoute) => {
+  const handleNavigate = (page: PageRoute, sector?: IndustrySector) => {
     setCurrentPage(page);
-    if (page === 'home') {
+    if (page === 'industries' && sector) {
+      setSelectedIndustrySector(sector);
+      window.location.hash = `#/${page}/${sector}`;
+    } else if (page === 'home') {
       window.history.pushState(null, '', window.location.pathname);
     } else {
       window.location.hash = `#/${page}`;
@@ -200,6 +221,7 @@ export function App() {
             onBookCall={handleOpenBooking}
             onOpenAssessment={handleOpenAssessment}
             onNavigate={handleNavigate}
+            initialSector={selectedIndustrySector}
           />
         )}
 

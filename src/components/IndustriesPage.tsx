@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -32,6 +32,7 @@ interface IndustriesPageProps {
   onBookCall: (service?: string) => void;
   onOpenAssessment: () => void;
   onNavigate: (page: PageRoute) => void;
+  initialSector?: ActiveSector;
 }
 
 type ActiveSector = 'healthcare' | 'finance' | 'legal';
@@ -40,9 +41,24 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
   onBackToHome,
   onBookCall,
   onOpenAssessment,
+  initialSector,
 }) => {
-  const [activeSector, setActiveSector] = useState<ActiveSector>('healthcare');
+  const [activeSector, setActiveSector] = useState<ActiveSector>(initialSector || 'healthcare');
   const { ref: scrollContainerRef, scrollLeft, scrollRight } = useHorizontalWheelScroll<HTMLDivElement>();
+
+  // Synchronize sector when navigating from Navbar dropdown
+  useEffect(() => {
+    if (initialSector) {
+      setActiveSector(initialSector);
+      const timer = setTimeout(() => {
+        const cockpit = document.getElementById('sector-cockpit');
+        if (cockpit) {
+          cockpit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, [initialSector]);
 
   const horizontalCards = [
     {
@@ -161,7 +177,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
         </div>
 
         {/* INTERACTIVE SECTOR SWITCHER COCKPIT */}
-        <div className="rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-6 sm:p-8 backdrop-blur-md">
+        <div id="sector-cockpit" className="rounded-3xl bg-white border border-slate-200/90 shadow-2xl p-6 sm:p-8 backdrop-blur-md">
           {/* Sector Tab Controller - EXACT ORDER: Healthcare, Finance, Legal */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pb-6 border-b border-slate-200/80">
             <button
