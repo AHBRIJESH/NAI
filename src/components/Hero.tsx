@@ -59,19 +59,22 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           />
         </picture>
 
-        {/* Ambient Top & Bottom Section Transitions (Leaves Artwork Clear) */}
+        {/* Left Reading Scrim (Soft transparent gradient blend, no box/container) */}
+        <div className="absolute inset-y-0 left-0 w-full sm:w-[65%] lg:w-[48%] bg-gradient-to-r from-white/95 via-white/75 to-transparent pointer-events-none" />
+
+        {/* Ambient Top & Bottom Section Transitions */}
         <div className="absolute top-0 inset-x-0 h-14 bg-gradient-to-b from-white/70 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/40 to-transparent pointer-events-none" />
       </div>
 
-      {/* HERO CONTENT: Left-Aligned Glassmorphic Card for 100% Crisp Legibility */}
+      {/* HERO CONTENT: Unboxed, Natural Full-Screen Typography */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-24 text-left"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-28 text-left"
       >
-        <div className="max-w-xl sm:max-w-2xl bg-white/85 sm:bg-white/75 backdrop-blur-xl rounded-3xl p-7 sm:p-9 lg:p-10 border border-white/90 shadow-[0_16px_40px_-10px_rgba(10,25,47,0.12)]">
+        <div className="max-w-xl sm:max-w-2xl lg:max-w-2xl xl:max-w-3xl">
           
           {/* Strategic AI Implementation Value Proposition */}
           <motion.p
