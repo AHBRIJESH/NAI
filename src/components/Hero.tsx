@@ -59,22 +59,22 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           />
         </picture>
 
-        {/* Left Reading Scrim (Soft transparent gradient blend, no box/container) */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-[65%] lg:w-[48%] bg-gradient-to-r from-white/95 via-white/75 to-transparent pointer-events-none" />
+        {/* Left Reading Scrim (Shifted tight to the left edge to free up the diagram) */}
+        <div className="absolute inset-y-0 left-0 w-full sm:w-[60%] lg:w-[42%] xl:w-[38%] bg-gradient-to-r from-white/95 via-white/70 to-transparent pointer-events-none" />
 
         {/* Ambient Top & Bottom Section Transitions */}
         <div className="absolute top-0 inset-x-0 h-14 bg-gradient-to-b from-white/70 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/40 to-transparent pointer-events-none" />
       </div>
 
-      {/* HERO CONTENT: Unboxed, Natural Full-Screen Typography */}
+      {/* HERO CONTENT: Shifted Left for Panoramic Artwork Freedom */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-28 text-left"
+        className="relative z-10 w-full max-w-[1536px] mx-auto px-6 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 py-16 sm:py-20 lg:py-28 text-left"
       >
-        <div className="max-w-xl sm:max-w-2xl lg:max-w-2xl xl:max-w-3xl">
+        <div className="max-w-xl lg:max-w-[540px] xl:max-w-[580px]">
           
           {/* Strategic AI Implementation Value Proposition */}
           <motion.p
