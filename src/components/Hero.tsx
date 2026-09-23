@@ -125,11 +125,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
           
           {/* Left Column: Limited Concise Written Content (7 cols) */}
           <div className="lg:col-span-7">
-            {/* Eyebrow Kicker */}
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-xs tracking-[0.24em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 shadow-xs mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-              <span>SOVEREIGN COGNITIVE RUNTIME</span>
-            </motion.div>
+
 
             {/* Limited Punchy Headline */}
             <motion.h1 variants={itemVariants} className="font-display text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.06] mb-4">

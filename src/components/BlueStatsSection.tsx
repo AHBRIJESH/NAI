@@ -41,10 +41,7 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
         {/* Top Content: Headline & Action */}
         <ScrollReveal y={32} duration={0.65}>
           <div className="max-w-3xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-              <span>PRAGMATIC EXECUTION VELOCITY</span>
-            </div>
+
 
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
               Sovereign Architecture. Zero Friction.{' '}

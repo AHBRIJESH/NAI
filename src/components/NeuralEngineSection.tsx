@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Sparkles,
-  Cpu,
   ArrowRight,
   Terminal,
 } from 'lucide-react';
@@ -72,11 +71,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 lg:mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-[11px] tracking-[0.2em] uppercase font-extrabold bg-blue-950/80 text-blue-300 border border-blue-800/50 shadow-xs mb-3.5">
-              <Cpu className="w-3 h-3 text-[#DC2626]" />
-              <span>PROPRIETARY MULTI-AGENT INFERENCE ENGINE</span>
-            </div>
-
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3 leading-tight">
               The Autonomous <span className="text-[#38BDF8]">Intelligence Core</span>.
             </h2>
@@ -106,11 +100,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   color={currentMode.color}
                   className="relative z-10 transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_15px_35px_rgba(37,99,235,0.3)]"
                 />
-
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#0A192F] text-white font-mono text-[10px] uppercase tracking-wider font-extrabold border border-blue-700/50 shadow-lg flex items-center gap-1.5 whitespace-nowrap">
-                  <Sparkles className="w-3 h-3 text-[#DC2626]" />
-                  <span>NEURAL CORE</span>
-                </div>
               </div>
 
               {/* Mode Toggles */}

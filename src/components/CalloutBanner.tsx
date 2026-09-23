@@ -1,6 +1,6 @@
 import React from 'react';
 import { RansomNote } from './RansomNote';
-import { ArrowRight, ArrowUp, Calculator, Flame, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUp, Calculator } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface CalloutBannerProps {
@@ -25,13 +25,7 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
 
       <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
         
-        {/* Eyebrow Chip */}
-        <ScrollReveal y={20} duration={0.5}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase font-extrabold bg-[#0A192F] text-white border border-blue-900 shadow-xs mb-6">
-            <Flame className="w-3.5 h-3.5 text-[#DC2626]" />
-            <span>THE UNCOMFORTABLE TRUTH // TECHNICAL FEASIBILITY</span>
-          </div>
-        </ScrollReveal>
+
 
         {/* High-Definition Razor-Sharp Ransom Note Headline in Blue, White & Red */}
         <ScrollReveal delay={0.08} y={24} duration={0.6}>

@@ -88,11 +88,6 @@ export const JourneyNavigator: React.FC<JourneyNavigatorProps> = ({
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-[11px] tracking-[0.24em] uppercase font-bold bg-[#E2FBCE] text-[#06231D] border border-[#076653]/20 shadow-xs mb-5">
-            <Sparkles className="w-3.5 h-3.5 text-[#076653]" />
-            <span>NAVIGATION PATHWAYS</span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 text-[#06231D]">
             Where are you in your <span className="text-[#076653]">AI journey?</span>
           </h2>
@@ -218,11 +213,6 @@ export const JourneyNavigator: React.FC<JourneyNavigatorProps> = ({
           {/* Right Column: Broader Full-Width Narrative Content to Right Viewport Edge (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-center px-8 sm:px-14 lg:px-16 xl:px-24 py-20 lg:py-28 text-left bg-gradient-to-br from-[#FFFDEE] via-[#FFFDEE] to-[#E2FBCE]/25">
             <div className="max-w-2xl xl:max-w-3xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-[#076653] font-black mb-4 px-3.5 py-1.5 rounded-full bg-[#E2FBCE]/60 border border-[#076653]/20">
-                <Users className="w-3.5 h-3.5 text-[#076653]" />
-                <span>HUMAN-CENTERED ENTERPRISE TRANSFORMATION</span>
-              </div>
-              
               <h3 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] text-[#06231D] tracking-tight mb-6 leading-[1.08]">
                 Built for Growing Teams, Directed by Veteran AI Strategists.
               </h3>

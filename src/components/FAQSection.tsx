@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQSectionProps {
   isCinematicDark: boolean;
@@ -54,10 +54,7 @@ export const FAQSection: React.FC<FAQSectionProps> = () => {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-[11px] tracking-[0.24em] uppercase font-bold bg-[#E2FBCE] text-[#06231D] border border-[#076653]/20 shadow-xs mb-6">
-            <HelpCircle className="w-3.5 h-3.5 text-[#076653]" />
-            <span>ENTERPRISE GOVERNANCE & FAQ</span>
-          </div>
+
 
           <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight mb-5 text-[#06231D]">
             Frequently Asked <span className="text-[#076653]">Questions</span>.

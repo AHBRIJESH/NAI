@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, TrendingUp, Building2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, TrendingUp } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface CustomerSuccessSectionProps {
@@ -19,11 +19,6 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
         {/* Top Header */}
         <ScrollReveal y={28} duration={0.6}>
           <div className="mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/20 text-white border border-white/30 mb-4">
-              <Building2 className="w-3.5 h-3.5 text-white" />
-              <span>VALIDATED PRODUCTION IMPACT</span>
-            </div>
-
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-2">
               Quantifiable Impact Across Mission-Critical Infrastructure
             </h2>

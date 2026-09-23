@@ -337,7 +337,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
               </div>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-mono text-[11px] tracking-wider uppercase bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-3 font-bold">
+            <div className="font-mono text-xs uppercase tracking-widest text-[#1D4ED8] font-bold mb-2">
               DIAGNOSTIC REPORT GENERATED
             </div>
 

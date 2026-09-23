@@ -34,10 +34,7 @@ export const TeamSplitSection: React.FC = () => {
           {/* Left Column: Headline and Feature List (6 cols) */}
           <div className="lg:col-span-6">
             <ScrollReveal y={28} duration={0.6}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-                <span>COLLABORATIVE SYSTEMS ENGINEERING</span>
-              </div>
+
 
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-8 leading-tight">
                 Architected by Principal Engineers.{' '}

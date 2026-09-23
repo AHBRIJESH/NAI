@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface PartnerCtaSectionProps {
@@ -12,12 +12,6 @@ export const PartnerCtaSection: React.FC<PartnerCtaSectionProps> = ({ onBookCall
       <div className="max-w-4xl mx-auto px-6 sm:px-8">
         
         <ScrollReveal y={28} duration={0.65}>
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-[#DC2626]" />
-            <span>TECHNICAL FEASIBILITY &amp; ENGAGEMENT</span>
-          </div>
-
           {/* Headline */}
           <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight text-[#0A192F] mb-6 leading-tight">
             Ready to Deploy Autonomous Intelligence{' '}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, TrendingUp, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { TrendingUp, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface ImpactCalculatorProps {
@@ -30,10 +30,7 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 mb-4">
-              <Calculator className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>ROI ESTIMATOR</span>
-            </div>
+
 
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-[#0A192F]">
               Quantify Your <span className="text-[#1D4ED8]">Efficiency Yield</span>.

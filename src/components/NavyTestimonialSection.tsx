@@ -45,10 +45,7 @@ export const NavyTestimonialSection: React.FC = () => {
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/10 text-blue-200 border border-white/20 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#DC2626]" />
-              <span>CLIENT PERSPECTIVES</span>
-            </div>
+
 
             <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
               Our Clients Say It Best

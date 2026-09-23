@@ -151,11 +151,6 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onBookCall }) => {
           
           {/* Left Column: STICKY WRITTEN CONTENT (5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 self-start pt-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-[11px] tracking-[0.24em] uppercase font-bold bg-[#E2FBCE] text-[#06231D] border border-[#076653]/20 shadow-xs mb-6">
-              <Layers className="w-3.5 h-3.5 text-[#076653]" />
-              <span>SOLUTIONS & CAPABILITIES</span>
-            </div>
-
             <h2 className="font-display text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight mb-5 text-[#06231D] leading-[1.08]">
               Practical AI Engineering, <span className="text-[#076653]">Zero Complexity</span>.
             </h2>
@@ -324,11 +319,6 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onBookCall }) => {
           {/* Right Column: Broader Full-Width Content Container to Right Viewport Edge (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-center px-8 sm:px-14 lg:px-16 xl:px-24 py-20 lg:py-28 text-left bg-gradient-to-br from-[#0C342C] via-[#0C342C] to-[#06231D]">
             <div className="max-w-2xl xl:max-w-3xl">
-              <div className="inline-flex items-center gap-2.5 text-xs font-mono uppercase tracking-[0.22em] text-[#E3EF26] font-black mb-4 px-3.5 py-1.5 rounded-full bg-[#06231D]/60 border border-[#076653]/40">
-                <Cpu className="w-3.5 h-3.5 text-[#E3EF26]" />
-                <span>CONFIDENTIAL 48-HOUR EVALUATION</span>
-              </div>
-
               <h4 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] text-[#FFFDEE] tracking-tight mb-6 leading-[1.08]">
                 Need a Custom Architectural Audit?
               </h4>

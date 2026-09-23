@@ -195,10 +195,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <div>
             {/* Header */}
             <div className="mb-7 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#1D4ED8] border border-blue-200 font-mono text-[10px] tracking-widest uppercase font-bold mb-3">
-                <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />
-                <span>30-MINUTE EXECUTIVE CONSULTATION • ZERO OBLIGATION</span>
-              </div>
               <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
                 Book an AI Strategy Call
               </h3>
@@ -430,9 +426,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <CheckCircle2 className="w-8 h-8 text-[#1D4ED8]" />
             </div>
 
-            <span className="font-mono text-xs uppercase tracking-widest text-[#1D4ED8] bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200 font-bold block w-fit mx-auto mb-3">
+            <div className="font-mono text-xs uppercase tracking-widest text-[#1D4ED8] font-bold block mb-2">
               STRATEGY CALL CONFIRMED
-            </span>
+            </div>
 
             <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-2">
               You're Booked, {fullName.split(' ')[0]}!

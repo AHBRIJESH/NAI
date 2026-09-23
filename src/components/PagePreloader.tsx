@@ -185,16 +185,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
               />
             </div>
 
-            {/* Architectural Telemetry Capsule Below Logo */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.22, duration: 0.5, ease: 'easeOut' }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-[10px] sm:text-[11px] tracking-[0.24em] uppercase font-bold bg-[#E2FBCE]/80 text-[#06231D] border border-[#076653]/25 shadow-2xs"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#076653] pulse-beacon" />
-              <span>ENTERPRISE AI ARCHITECTURE</span>
-            </motion.div>
+
           </motion.div>
         </motion.div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { Activity, ShieldCheck, Zap, TrendingUp, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Zap, TrendingUp, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface MetricNode {
   id: string;
@@ -114,10 +114,7 @@ export const SuccessByNumbersSection: React.FC = () => {
           {/* Left Column: Technical Narrative & Live Telemetry HUD (5 cols) */}
           <div className="lg:col-span-5 text-left">
             <ScrollReveal y={28} duration={0.6}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-blue-100/70 text-[#1D4ED8] border border-blue-200 mb-6">
-                <Activity className="w-3.5 h-3.5 text-[#DC2626]" />
-                <span>VALIDATED ENTERPRISE BENCHMARKS</span>
-              </div>
+
 
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.04] mb-6">
                 Deterministic Yield.<br />

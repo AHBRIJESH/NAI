@@ -59,10 +59,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs tracking-[0.2em] uppercase font-bold bg-white/15 text-white border border-white/20 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
-              <span>CORE CAPABILITIES &amp; RUNTIMES</span>
-            </div>
+
 
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 leading-tight">
               Autonomous Infrastructure Built for Enterprise Scale

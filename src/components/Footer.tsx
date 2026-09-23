@@ -55,11 +55,11 @@ export const Footer: React.FC<FooterProps> = ({ onBookCall, onNavigate }) => {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#E2FBCE]/90">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0C342C] border border-[#076653]/40">
+              <span className="inline-flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#E3EF26]" />
                 SOC2 Type II Ready
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0C342C] border border-[#076653]/40">
+              <span className="inline-flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#E3EF26]" />
                 Zero Data Retention
               </span>
