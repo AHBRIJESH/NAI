@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, Play, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import heroBgImage from '../assets/hero_ai_lifecycle.jpg';
+import heroBgImage from '../assets/new_hero_img.png';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -46,14 +46,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
         <img
           src={heroBgImage}
-          alt="NAIR.AI Autonomous AI Lifecycle Architecture"
-          className="w-full h-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-right xl:object-center"
+          alt="NAIR.AI Autonomous AI Collaboration and Enterprise Intelligence"
+          className="w-full h-full object-cover object-[82%_center] sm:object-[78%_center] lg:object-right xl:object-right"
           loading="eager"
           decoding="async"
         />
 
-        {/* Seamless Soft Dark Ambient Scrim on Left Edge to Protect Text Legibility without Washing out the Image */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-[68%] lg:w-[48%] xl:w-[42%] bg-gradient-to-r from-[#030712]/85 via-[#030712]/40 to-transparent pointer-events-none" />
+        {/* Seamless Soft Dark Ambient Scrim: Vertical on mobile for stacked readability, Horizontal on desktop to keep robot, team & holograms 100% untouched */}
+        <div className="absolute inset-0 sm:inset-y-0 sm:left-0 sm:right-auto sm:w-[65%] lg:w-[50%] xl:w-[45%] bg-gradient-to-b from-[#030712]/90 via-[#030712]/60 to-[#030712]/75 sm:bg-gradient-to-r sm:from-[#030712]/90 sm:via-[#030712]/50 sm:to-transparent pointer-events-none" />
       </div>
 
       {/* HERO CONTENT: Positioned on Left to Keep 3D Sculpture & Landscape Fully Visible */}
