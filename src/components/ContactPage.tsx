@@ -167,8 +167,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               Direct Inquiries &amp; Strategy Sessions
             </span>
 
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-              Contact <span className="text-[#1D4ED8]">NAIR.AI</span>
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04] flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-5">
+              <span>Contact</span>
+              <img
+                src="/images/logo.png"
+                alt="NAIR.AI"
+                className="h-9 sm:h-13 lg:h-16 w-auto object-contain inline-block drop-shadow-xs"
+              />
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed">
