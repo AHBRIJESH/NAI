@@ -72,14 +72,14 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
     {
       id: 'ai',
       acronym: 'AI',
-      name: 'Artificial Narrow Intelligence',
+      name: 'Artificial Intelligence',
       status: 'Active in Production Today',
-      horizon: 'Now · Present Day (2026)',
+      horizon: 'NOW',
       color: '#1D4ED8', // Royal Blue
       motto: 'A More Intelligent Tomorrow',
       corePillars: 'ANALYZE · LEARN · CREATE · SOLVE · EMPOWER',
       tagline: 'Specialized Domain Mastery with Deterministic Guardrails',
-      desc: 'Systems engineered to master specific, bounded objectives with superhuman precision. From parsing complex hospital prior authorizations to sub-15ms fraud detection, Narrow AI automates high-friction enterprise operations without hallucinations.',
+      desc: 'Systems engineered to master specific, bounded objectives with superhuman precision. From parsing complex hospital prior authorizations to sub-15ms fraud detection, AI automates high-friction enterprise operations without hallucinations.',
       image: '/images/evolution_ai.jpg',
       nodes: [
         { label: 'Analyze', desc: 'Real-time telemetry ingestion and multi-factor pattern recognition.' },
@@ -89,7 +89,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
         { label: 'Empower', desc: 'Augmenting human specialists to focus on high-judgment decisions.' },
       ],
       capabilities: [
-        'Deterministic multi-agent swarms (NAIR Chat™, NAIR Docs™)',
+        'Deterministic multi-agent swarms (NAIR.AI Chat™, NAIR.AI Docs™)',
         'Zero-retention private VPC & on-premise model execution',
         'Structured ERP, financial ledger & clinical FHIR automation',
         'Human-in-the-loop review tickets and signed cryptographic audit trails',
@@ -113,7 +113,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       acronym: 'AGI',
       name: 'Artificial General Intelligence',
       status: 'Emerging Frontier Research',
-      horizon: 'Next 3 – 5 Years (2027 – 2030)',
+      horizon: 'NEXT',
       color: '#7C3AED', // Electric Violet
       motto: 'One Intelligence, Endless Possibilities',
       corePillars: 'UNDERSTAND · LEARN · REASON · ADAPT',
@@ -155,7 +155,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       acronym: 'ASI',
       name: 'Artificial Superintelligence',
       status: 'Theoretical Horizon',
-      horizon: 'Frontier Horizon (Post-2030)',
+      horizon: 'FUTURE',
       color: '#0284C7', // Sky Cerulean
       motto: 'Beyond Human Limits',
       corePillars: 'UNDERSTAND · REASON · INNOVATE · TRANSCEND',
@@ -603,7 +603,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
               </p>
             </div>
             <span className="font-mono text-xs text-[#1D4ED8] font-bold hidden sm:inline-block">
-              NAIR Architectural Taxonomy
+              NAIR.AI Architectural Taxonomy
             </span>
           </div>
 

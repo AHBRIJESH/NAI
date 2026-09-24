@@ -232,36 +232,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Metric Cards in Light Tech Palette */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block font-bold mb-1">
-                      LATENCY
-                    </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#1D4ED8]">
-                      {currentMode.latency}
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block font-bold mb-1">
-                      THROUGHPUT
-                    </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#0A192F]">
-                      {currentMode.throughput}
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-2xl bg-red-50/70 border border-red-100">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 block font-bold mb-1">
-                      RETENTION
-                    </span>
-                    <div className="font-display font-black text-xl sm:text-2xl text-[#DC2626]">
-                      {currentMode.retention}
-                    </div>
-                  </div>
-                </div>
-
                 {/* Live Streaming Terminal Log Stream */}
                 <div className="p-4 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-md">
                   <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-700/80 text-slate-400 text-[10px]">

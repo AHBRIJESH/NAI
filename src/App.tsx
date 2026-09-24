@@ -30,15 +30,16 @@ export function App() {
   const [prefillService, setPrefillService] = useState<string>('');
   const [assessmentData, setAssessmentData] = useState<Record<string, string> | undefined>(undefined);
 
-  // Page Routing State ('home' | 'about' | 'services' | 'industries' | 'case-studies' | 'contact' | 'faq')
+  // Page Routing State ('home' | 'about' | 'services' | 'industries' | 'resources' | 'case-studies' | 'contact' | 'faq')
   const [currentPage, setCurrentPage] = useState<PageRoute>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#/about' || hash === '#about') return 'about';
       if (hash === '#/services' || hash === '#services') return 'services';
       if (hash.startsWith('#/industries') || hash.startsWith('#industries')) return 'industries';
+      if (hash === '#/resources' || hash === '#resources') return 'resources';
       if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
-      if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') return 'contact';
+      if (hash === '#/contact' || hash === '#contact' || hash === '#/contact-us' || hash === '#contact-us' || hash === '#/book-call' || hash === '#book-call') return 'contact';
       if (hash === '#/faq' || hash === '#faq') return 'faq';
     }
     return 'home';
@@ -72,9 +73,11 @@ export function App() {
         } else if (hash.includes('legal')) {
           setSelectedIndustrySector('legal');
         }
+      } else if (hash === '#/resources' || hash === '#resources') {
+        setCurrentPage('resources');
       } else if (hash === '#/case-studies' || hash === '#case-studies') {
         setCurrentPage('case-studies');
-      } else if (hash === '#/contact' || hash === '#contact' || hash === '#/book-call' || hash === '#book-call') {
+      } else if (hash === '#/contact' || hash === '#contact' || hash === '#/contact-us' || hash === '#contact-us' || hash === '#/book-call' || hash === '#book-call') {
         setCurrentPage('contact');
       } else if (hash === '#/faq' || hash === '#faq') {
         setCurrentPage('faq');
@@ -106,9 +109,10 @@ export function App() {
   // Refined Smooth Preloader (active on initial visit)
   const [preloaderActive, setPreloaderActive] = useState<boolean>(true);
 
+  // Directly navigate to Contact Us page where full booking calendar & scheduler lives
   const handleOpenBooking = (serviceName?: string) => {
     setPrefillService(serviceName || 'Enterprise AI Strategy & Delivery');
-    setIsBookingOpen(true);
+    handleNavigate('contact');
   };
 
   const handleOpenAssessment = () => {
@@ -138,6 +142,7 @@ export function App() {
           onBookCall={() => handleOpenBooking()}
           currentPage={currentPage}
           onNavigate={handleNavigate}
+          onOpenAssessment={handleOpenAssessment}
         />
 
         {/* Dynamic Page Views */}
@@ -171,7 +176,7 @@ export function App() {
 
             {/* 6. Customer Success Story */}
             <CustomerSuccessSection
-              onSelectCaseStudy={(storyTitle) => handleOpenBooking(`Case Study Inquiry: ${storyTitle}`)}
+              onSelectCaseStudy={() => handleNavigate('case-studies')}
             />
 
             {/* 7. Press & Recognition Logo Bar */}
@@ -187,7 +192,7 @@ export function App() {
 
             {/* 10. Expert Solutions Grid */}
             <BlueSolutionsSection
-              onSelectSolution={(sol) => handleOpenBooking(sol)}
+              onSelectSolution={() => handleNavigate('services')}
             />
 
             {/* 11. Unified Minimal Uncomfortable Truth & Technical Feasibility Section */}
@@ -242,7 +247,7 @@ export function App() {
           />
         )}
 
-        {currentPage === 'faq' && (
+        {(currentPage === 'faq' || currentPage === 'resources') && (
           <FAQPage
             onBackToHome={() => handleNavigate('home')}
             onBookCall={handleOpenBooking}

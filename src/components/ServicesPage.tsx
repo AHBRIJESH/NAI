@@ -45,7 +45,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   const proprietaryPlatforms = [
     {
       id: 'chat',
-      name: 'NAIR Chat™',
+      name: 'NAIR.AI Chat™',
       tagline: 'Conversational Runtime & Context Router',
       desc: 'Autonomous multi-turn conversational agents with stateful context preservation, enterprise CRM sync, and intelligent human escalation.',
       latency: '< 180ms TTFT',
@@ -62,7 +62,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     },
     {
       id: 'docs',
-      name: 'NAIR Docs™',
+      name: 'NAIR.AI Docs™',
       tagline: 'Deterministic Document Parser & Validator',
       desc: 'Pydantic-governed extraction converting complex PDFs, invoices, medical records, and supply manifests into verified database records.',
       latency: '99.8% Extraction Recall',
@@ -79,7 +79,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     },
     {
       id: 'insight',
-      name: 'NAIR Insight™',
+      name: 'NAIR.AI Insight™',
       tagline: 'Predictive Analytics & Anomaly Radar',
       desc: 'Continuous stream analytics that forecast demand shifts, flag operational anomalies, and surface actionable intelligence in real time.',
       latency: '< 15ms Stream Scoring',
@@ -96,7 +96,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     },
     {
       id: 'guard',
-      name: 'NAIR Guard™',
+      name: 'NAIR.AI Guard™',
       tagline: 'Hallucination Firewall & Governance Layer',
       desc: 'The mission-critical security layer preventing prompt injection, data exfiltration, schema drifting, and ungrounded model hallucinations.',
       latency: 'Zero Pipeline Overhead',
@@ -113,7 +113,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     },
     {
       id: 'learn',
-      name: 'NAIR Learn™',
+      name: 'NAIR.AI Learn™',
       tagline: 'Enterprise Enablement & Workflow Playbooks',
       desc: 'Hands-on enablement programs, interactive departmental playbooks, and continuous certification tracks to elevate your internal workforce.',
       latency: '100% Practical Adoption',
@@ -219,7 +219,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
-              From deterministic document parsing to sovereign multi-agent swarms, NAIR Corporation provides the modular software layer that turns enterprise data into measurable competitive advantage.
+              From deterministic document parsing to sovereign multi-agent swarms, NAIR.AI provides the modular software layer that turns enterprise data into measurable competitive advantage.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

@@ -52,7 +52,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       metric: '92%',
       label: 'Cycle Time Cut',
       sector: 'Finance',
-      detail: 'NAIR Docs™ ERP invoice reconciliation',
+      detail: 'NAIR.AI Docs™ ERP invoice reconciliation',
       color: '#DC2626',
     },
     {
@@ -93,7 +93,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       title: 'Autonomous Clinical Triage & Intake Swarm',
       client: 'Multi-Regional Hospital Network (14 Locations)',
       challenge: 'Overwhelming intake volume causing 45-minute patient waiting room delays, administrative burnout, and dropped prior-authorization paperwork during peak clinical shifts.',
-      solution: 'Deployed a HIPAA-compliant conversational triage agent (NAIR Chat™) calibrated to clinical specialty guidelines. Automatically verifies patient insurance, matches symptoms to department protocols, and handles appointment booking with context-preserved physician handoff.',
+      solution: 'Deployed a HIPAA-compliant conversational triage agent (NAIR.AI Chat™) calibrated to clinical specialty guidelines. Automatically verifies patient insurance, matches symptoms to department protocols, and handles appointment booking with context-preserved physician handoff.',
       metrics: [
         { label: 'Intake Wait Reduction', value: '88%' },
         { label: 'Routine Triage Coverage', value: '24/7 Active' },
@@ -112,7 +112,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       title: 'Deterministic ERP Invoice Reconciliation',
       client: 'National Logistics & Distribution Enterprise ($320M Rev)',
       challenge: 'Accounts payable overwhelmed by 12,000+ monthly multi-format vendor invoices, bills of lading, and paper manifests resulting in data entry errors and lost early-payment discounts.',
-      solution: 'Engineered a deterministic invoice extraction pipeline (NAIR Docs™) that parses multi-page PDFs, extracts line items, validates totals against ERP records via Pydantic schemas, and writes approved vouchers directly into SAP with zero human touch.',
+      solution: 'Engineered a deterministic invoice extraction pipeline (NAIR.AI Docs™) that parses multi-page PDFs, extracts line items, validates totals against ERP records via Pydantic schemas, and writes approved vouchers directly into SAP with zero human touch.',
       metrics: [
         { label: 'Cycle Time Reduction', value: '92%' },
         { label: 'Line-Item Extraction Precision', value: '99.8%' },
@@ -150,7 +150,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       title: 'Neural Restocking & Supply Chain Forensics',
       client: 'Precision Automotive Component Fabricator',
       challenge: 'Erratic component supply swings caused unexpected factory line shutdowns and over $600K in idle buffer inventory stored across regional warehouses.',
-      solution: 'Built a predictive forecasting engine (NAIR Insight™) tracking machine output rates, raw supplier transit times, and weather disruptions to trigger dynamic JIT restocking orders.',
+      solution: 'Built a predictive forecasting engine (NAIR.AI Insight™) tracking machine output rates, raw supplier transit times, and weather disruptions to trigger dynamic JIT restocking orders.',
       metrics: [
         { label: 'Emergency Stockouts', value: 'Reduced by 84%' },
         { label: 'Idle Inventory Recaptured', value: '$280K+' },
@@ -203,7 +203,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
-              Explore how NAIR Corporation engineers sovereign, production-grade AI systems that eliminate operational bottlenecks, slash response times, and deliver verified economic returns across demanding industries.
+              Explore how NAIR.AI engineers sovereign, production-grade AI systems that eliminate operational bottlenecks, slash response times, and deliver verified economic returns across demanding industries.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -434,13 +434,13 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                       <div className="p-3.5 rounded-2xl bg-rose-50/70 border border-rose-200/70">
                         <span className="font-mono text-[10px] uppercase font-bold text-rose-700 block mb-1">
-                          Before NAIR Deployment:
+                          Before NAIR.AI Deployment:
                         </span>
                         <span className="text-xs text-slate-700">{cs.before}</span>
                       </div>
                       <div className="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200/70">
                         <span className="font-mono text-[10px] uppercase font-bold text-emerald-700 block mb-1">
-                          After NAIR Deployment:
+                          After NAIR.AI Deployment:
                         </span>
                         <span className="text-xs text-slate-700">{cs.after}</span>
                       </div>
@@ -519,7 +519,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               Ready to Achieve Measurable Results?
             </h2>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-              Talk directly with a senior NAIR solutions architect. We will evaluate your business processes and provide an estimated ROI forecast.
+              Talk directly with a senior NAIR.AI solutions architect. We will evaluate your business processes and provide an estimated ROI forecast.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <button

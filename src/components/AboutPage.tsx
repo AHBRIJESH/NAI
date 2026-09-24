@@ -10,8 +10,6 @@ import {
   Cpu,
   Zap,
   Building2,
-  ChevronLeft,
-  ChevronRight,
   Compass,
   Award,
   Lock,
@@ -19,7 +17,6 @@ import {
 import { motion } from 'motion/react';
 import type { PageRoute } from './Navbar';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
-import { useHorizontalWheelScroll } from './useHorizontalWheelScroll';
 import { MotionDotCanvas } from './MotionDotCanvas';
 
 interface AboutPageProps {
@@ -35,7 +32,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenAssessment,
   onNavigate,
 }) => {
-  const { ref: scrollContainerRef, scrollLeft, scrollRight } = useHorizontalWheelScroll<HTMLDivElement>();
 
   const manifestoPillars = [
     {
@@ -68,33 +64,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
     },
   ];
 
-  const milestones = [
-    {
-      year: '2023',
-      title: 'Inception in Silicon Valley',
-      desc: 'Founded by enterprise systems veterans to bridge the chasm between raw LLM research and robust enterprise production environments.',
-      metric: 'Seed Phase',
-    },
-    {
-      year: '2024',
-      title: 'Bangalore Global Engineering Hub',
-      desc: 'Established our 24/7 technical deployment center in Bangalore, creating a continuous follow-the-sun engineering delivery pipeline.',
-      metric: '24/7 Swarms',
-    },
-    {
-      year: '2025',
-      title: 'NAIR Core Platforms Release',
-      desc: 'Launched NAIR Chat™, NAIR Docs™, NAIR Insight™, and NAIR Guard™ across healthcare, banking, and global manufacturing clients.',
-      metric: '5 Sovereign Kernels',
-    },
-    {
-      year: '2026',
-      title: '$14.2M+ Client Impact',
-      desc: 'Scaling enterprise agentic swarms processing millions of daily transactions with zero data retention and SOC 2 Type II assurance.',
-      metric: 'Enterprise Scale',
-    },
-  ];
-
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
       {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
@@ -113,7 +82,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </button>
       </div>
 
-      {/* BESPOKE HERO: Dual-Continent Global Radar & Strategic Engineering DNA */}
+      {/* HERO: Active Operations Across the United States & India */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
         <div className="text-left mb-10">
           <motion.div
@@ -122,16 +91,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             transition={{ duration: 0.55 }}
           >
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
-              Global Engineering Architecture
+              Global Operations &amp; Presence
             </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-              Silicon Valley Vision.{' '}
-              <span className="text-[#1D4ED8]">Global Engineering Scale.</span>
+              Operating Across <span className="text-[#1D4ED8]">India &amp; the United States</span>.
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
-              Nair Corporation pairs high-level architectural strategy in the San Francisco Bay Area with 24/7 deployment and fine-tuning engineering hubs in Bangalore, India. We deliver sovereign, battle-tested AI solutions tailored to modern enterprise workflows.
+              NAIR.AI actively operates across both India and the United States, seamlessly uniting strategic client consultation and compliance leadership with world-class engineering execution.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -155,156 +123,118 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </motion.div>
         </div>
 
-        {/* DUAL-CONTINENT OPERATIONAL TOPOLOGY BOARD */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-          {/* Hub 1: Silicon Valley */}
-          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
-                  <Building2 className="w-5 h-5" />
+        {/* ACTIVE US & INDIA OPERATIONS BOARD */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-8">
+          {/* Operations Hub 1: United States */}
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
+                    <Building2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-extrabold text-2xl text-[#0A192F]">
+                      United States Operations
+                    </h3>
+                    <span className="font-mono text-xs text-slate-500">
+                      Strategy, Client Advisory &amp; Architecture
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display font-extrabold text-xl text-[#0A192F]">
-                    Silicon Valley, California
-                  </h3>
-                  <span className="font-mono text-xs text-slate-500">
-                    San Francisco Bay Area · United States
-                  </span>
+                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-[#1D4ED8]">
+                  US ACTIVE
+                </span>
+              </div>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
+                Direct client engagements, executive discovery workshops, compliance alignment (HIPAA, SOC 2, FINRA), and enterprise architecture consulting for organizations across North America.
+              </p>
+
+              <div className="space-y-3 font-mono text-xs">
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Client Strategy:</span>
+                  <span className="font-bold text-[#1D4ED8]">Executive Discovery &amp; Advisory</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Compliance Scoping:</span>
+                  <span className="font-bold text-[#0A192F]">SOC 2 · HIPAA · Private Cloud</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Timezone Coverage:</span>
+                  <span className="font-bold text-slate-800">EST · CST · PST Business Hours</span>
                 </div>
               </div>
-              <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-blue-50 text-[#1D4ED8]">
-                STRATEGY HQ
-              </span>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-              Executive architectural leadership, regulatory compliance scoping, enterprise governance frameworks, and direct C-suite technology advisement.
-            </p>
-
-            <div className="space-y-2.5 font-mono text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
-                <span className="text-slate-600">Focus:</span>
-                <span className="font-bold text-[#1D4ED8]">Enterprise Systems Architecture</span>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
-                <span className="text-slate-600">Compliance:</span>
-                <span className="font-bold text-[#0A192F]">HIPAA · SOC 2 · FINRA Standards</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Hub 2: Bangalore */}
-          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-red-50 text-[#DC2626] flex items-center justify-center font-bold">
-                  <Globe2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-display font-extrabold text-xl text-[#0A192F]">
-                    Bangalore, Karnataka
-                  </h3>
-                  <span className="font-mono text-xs text-slate-500">
-                    Tech Corridor · India
-                  </span>
-                </div>
-              </div>
-              <span className="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-red-50 text-[#DC2626]">
-                24/7 DELIVERY
-              </span>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-              Continuous multi-agent swarm development, high-throughput data engineering, private model fine-tuning, and 24/7 SLA infrastructure monitoring.
-            </p>
-
-            <div className="space-y-2.5 font-mono text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
-                <span className="text-slate-600">Focus:</span>
-                <span className="font-bold text-[#DC2626]">Model Tuning &amp; Agent Mesh</span>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
-                <span className="text-slate-600">Execution:</span>
-                <span className="font-bold text-[#0A192F]">Continuous Follow-the-Sun Swarms</span>
-              </div>
+            <div className="pt-6 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500 mt-6">
+              <span>Dedicated Enterprise Success</span>
+              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* HORIZONTAL SCROLL SECTION: Milestones & Evolution Deck */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div className="text-left">
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0A192F]">
-              Engineering Milestones &amp; Trajectory
-            </h2>
-            <p className="text-sm text-slate-500 font-normal mt-1">
-              Scroll with mouse wheel or drag horizontally to view our operational timeline.
-            </p>
-          </div>
+          {/* Operations Hub 2: India */}
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-red-50 text-[#DC2626] flex items-center justify-center font-bold">
+                    <Globe2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-extrabold text-2xl text-[#0A192F]">
+                      India Operations
+                    </h3>
+                    <span className="font-mono text-xs text-slate-500">
+                      Engineering Scale &amp; 24/7 Deployment Swarms
+                    </span>
+                  </div>
+                </div>
+                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-red-50 text-[#DC2626]">
+                  INDIA ACTIVE
+                </span>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-              Wheel / Drag Scroll
-            </span>
-            <button
-              type="button"
-              onClick={scrollLeft}
-              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer active:scale-95"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              type="button"
-              onClick={scrollRight}
-              className="w-10 h-10 rounded-full bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-100 flex items-center justify-center text-slate-700 transition-colors shadow-xs cursor-pointer active:scale-95"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
+                Advanced AI software engineering, multi-agent pipeline development, high-throughput model fine-tuning, and 24/7 operational infrastructure monitoring.
+              </p>
+
+              <div className="space-y-3 font-mono text-xs">
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Core Engineering:</span>
+                  <span className="font-bold text-[#DC2626]">Multi-Agent Pipeline Synthesis</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Model Tuning:</span>
+                  <span className="font-bold text-[#0A192F]">Sovereign Llama &amp; DeepSeek Tuning</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
+                  <span className="text-slate-600">Timezone Coverage:</span>
+                  <span className="font-bold text-slate-800">IST · 24/7 Continuous Delivery</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-500 mt-6">
+              <span>Continuous Sprint Velocity</span>
+              <CheckCircle2 className="w-4 h-4 text-[#DC2626]" />
+            </div>
           </div>
         </div>
 
-        {/* The Horizontal Scroll Track */}
-        <div
-          ref={scrollContainerRef}
-          data-lenis-prevent="true"
-          className="flex gap-6 overflow-x-auto pb-6 pt-2 select-none scrollbar-none"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {milestones.map((m, idx) => (
-            <div
-              key={idx}
-              className="w-[300px] sm:w-[350px] shrink-0 p-7 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between text-left"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-display font-black text-3xl text-[#1D4ED8]">
-                    {m.year}
-                  </span>
-                  <span className="font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1D4ED8]">
-                    {m.metric}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3 leading-snug">
-                  {m.title}
-                </h3>
-
-                <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                  {m.desc}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-400">
-                <span>Enterprise Proven</span>
-                <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
-              </div>
-            </div>
-          ))}
+        {/* Cross-Border Delivery Model Banner */}
+        <div className="p-6 rounded-2xl bg-blue-50/70 border border-blue-200/80 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h4 className="font-display font-bold text-base text-[#0A192F]">
+              Follow-the-Sun Continuous Delivery Model
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 font-normal">
+              Clients consult directly during US business hours while engineering pipelines proceed around the clock in India—accelerating production deployments into rapid 3–4 week sprints.
+            </p>
+          </div>
+          <span className="font-mono text-xs font-extrabold text-[#1D4ED8] bg-white px-3.5 py-1.5 rounded-full border border-blue-200 shrink-0">
+            3–4 WEEK VELOCITY
+          </span>
         </div>
       </section>
 
@@ -315,7 +245,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             Foundational Principles
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[#0A192F] leading-tight">
-            The NAIR Engineering Manifesto.
+            The NAIR.AI Engineering Manifesto.
           </h2>
           <p className="text-base text-slate-600 max-w-2xl mt-3">
             How we write software, guard intellectual property, and measure customer success.

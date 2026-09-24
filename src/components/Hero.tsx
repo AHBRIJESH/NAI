@@ -87,9 +87,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight text-[#0A192F] leading-[1.08] mb-4"
+            className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight leading-[1.08] mb-4"
           >
-            Autonomous AI Systems.{' '}
+            <span className="text-[#DC2626]">Autonomous AI Systems.</span>{' '}
             <span className="text-[#1D4ED8]">Built to Ship.</span>
           </motion.h1>
 

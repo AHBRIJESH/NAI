@@ -163,12 +163,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+              Direct Inquiries &amp; Strategy Sessions
+            </span>
+
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-              Book an AI Strategy Call
+              Contact <span className="text-[#1D4ED8]">NAIR.AI</span>
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed">
-              Schedule an objective 30-minute consultation directly with our senior AI systems architects. We map out high-ROI opportunities, review compliance constraints, and outline a deterministic 30-day implementation plan.
+              Schedule an objective 30-minute consultation directly with our senior AI systems architects, or send us an inquiry below. We map out high-ROI opportunities, review compliance constraints, and outline a deterministic 30-day implementation plan.
             </p>
           </motion.div>
         </div>
@@ -202,9 +206,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Executive Email</span>
-                    <a href="mailto:contact@nair.ai" className="font-mono text-sm text-[#1D4ED8] hover:underline font-bold">
-                      contact@nair.ai
+                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Official Inquiries &amp; Strategy</span>
+                    <a href="mailto:info@nair.ai" className="font-mono text-sm text-[#1D4ED8] hover:underline font-bold">
+                      info@nair.ai
                     </a>
                   </div>
                 </div>
@@ -214,8 +218,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <Globe2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Global Engineering Topology</span>
-                    <span className="text-xs text-slate-700 font-medium">Silicon Valley, USA &amp; Bangalore, India</span>
+                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Global Operations</span>
+                    <span className="text-xs text-slate-700 font-medium">United States &amp; India Operations</span>
                   </div>
                 </div>
 
@@ -464,7 +468,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     >
                       <option>General AI Strategy &amp; Architecture Feasibility</option>
                       <option>Autonomous Agentic Swarms &amp; Workflow Automation</option>
-                      <option>NAIR Docs™ Intelligent Extraction &amp; OCR</option>
+                      <option>NAIR.AI Docs™ Intelligent Extraction &amp; OCR</option>
                       <option>Healthcare &amp; Life Sciences HIPAA Automation</option>
                       <option>Financial Services, Risk Modeling &amp; Fraud Defense</option>
                       <option>Legal Practice &amp; Automated Contract Review</option>

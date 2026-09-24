@@ -48,10 +48,10 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
     { name: 'About', page: 'about' },
     { name: 'Services', page: 'services' },
     { name: 'Industries', page: 'industries' },
+    { name: 'Resources', page: 'resources' },
     { name: 'Case Studies', page: 'case-studies' },
-    { name: 'FAQ', page: 'faq' },
+    { name: 'Contact Us', page: 'contact' },
     { name: 'Diagnostic', action: 'assessment' },
-    { name: 'Book a Call', action: 'book' },
   ];
 
   const socialLinks = [
@@ -114,6 +114,12 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
               <p className="text-xs sm:text-sm text-slate-600 max-w-sm font-normal leading-relaxed">
                 Autonomous AI systems, multi-agent swarms, and sovereign enterprise decision architectures.
               </p>
+              <a
+                href="mailto:info@nair.ai"
+                className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#1D4ED8] hover:underline"
+              >
+                <span>info@nair.ai</span>
+              </a>
             </div>
 
             {/* Streamlined Core Navigation Links */}
@@ -164,7 +170,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
         {/* Minimal Bottom Bar: Copyright & Back To Top */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} Nair Corporation. All rights reserved. Sovereign AI.
+            &copy; {new Date().getFullYear()} NAIR.AI. All rights reserved. Sovereign AI.
           </div>
 
           <div className="flex items-center gap-6">

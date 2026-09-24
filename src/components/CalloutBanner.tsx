@@ -27,19 +27,19 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
         <ScrollReveal delay={0.08} y={24} duration={0.6}>
           <div className="my-4 py-2 flex justify-center">
             <RansomNote
-              text="STOP WASTING HUMAN TALENT ON ROBOT TASKS"
-              intensity={0.45}
+              text="EMPOWERING HUMAN INGENUITY WITH INTELLIGENT AI"
+              intensity={0.3}
               animate="assemble"
-              rotation={4}
+              rotation={2.5}
               seed={2026}
             />
           </div>
         </ScrollReveal>
 
-        {/* Minimal Supporting Narrative */}
+        {/* Supporting Narrative: Respectful, Forward-Thinking & Results-Oriented */}
         <ScrollReveal delay={0.12} y={20} duration={0.55}>
           <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto mt-6 mb-8 leading-relaxed font-normal">
-            Enterprises lose up to <strong className="font-extrabold text-[#0A192F] bg-blue-100/80 px-2 py-0.5 rounded-md border border-blue-200">780 hours per person annually</strong> to manual cross-checks. Bypass speculative science experiments—partner with principal AI architects to deploy sovereign, production-grade agent swarms backed by guaranteed delivery SLAs.
+            Enterprises partner with <strong className="font-extrabold text-[#1D4ED8]">NAIR.AI</strong> to automate high-friction operational workflows, eliminate repetitive data reconciliation, and give teams the bandwidth to focus on high-judgment strategy, client relationships, and business growth.
           </p>
         </ScrollReveal>
 

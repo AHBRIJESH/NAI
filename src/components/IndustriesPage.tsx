@@ -152,7 +152,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
-              Mission-critical industries cannot risk generic consumer models or opaque wrappers. NAIR Corporation architects sovereign, deterministic multi-agent systems hardened against regulatory standards, air-gapped environments, and zero-data-retention mandates.
+              Mission-critical industries cannot risk generic consumer models or opaque wrappers. NAIR.AI architects sovereign, deterministic multi-agent systems hardened against regulatory standards, air-gapped environments, and zero-data-retention mandates.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -559,7 +559,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               </h2>
 
               <p className="text-base text-slate-600 leading-relaxed">
-                Healthcare organizations face mounting administrative loads, complex payer prior-authorizations, and fragmented electronic health records. NAIR Corporation deploys sovereign AI pipelines that extract structured diagnostics from messy doctor dictations while strictly preserving patient anonymity.
+                Healthcare organizations face mounting administrative loads, complex payer prior-authorizations, and fragmented electronic health records. NAIR.AI deploys sovereign AI pipelines that extract structured diagnostics from messy doctor dictations while strictly preserving patient anonymity.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -793,7 +793,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               Ready to Deploy Sovereign AI in Your Organization?
             </h2>
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-              Book a 30-minute technical evaluation with a senior NAIR solutions architect. We will evaluate your compliance boundaries, data infrastructure, and outline a 30-day production path.
+              Book a 30-minute technical evaluation with a senior NAIR.AI solutions architect. We will evaluate your compliance boundaries, data infrastructure, and outline a 30-day production path.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <button

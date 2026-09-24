@@ -30,28 +30,26 @@ function createSeededRandom(seed: number) {
 const DEFAULT_FONTS = [
   '"JetBrains Mono", ui-monospace, monospace',
   '"Sora", "Inter", sans-serif',
-  'Impact, "Arial Black", sans-serif',
-  'Georgia, "Times New Roman", serif',
-  '"Trebuchet MS", sans-serif',
+  '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
 ]
 
-// Original high-end Green & Cream Palette scraps ("the green and all")
-const ORIGINAL_GREEN_PALETTE = [
-  { bg: '#06231D', text: '#FFFDEE', border: '#06231D' }, // Midnight Pine
-  { bg: '#E3EF26', text: '#06231D', border: '#076653' }, // Acid Lime
-  { bg: '#E2FBCE', text: '#076653', border: '#076653' }, // Soft Mint
-  { bg: '#076653', text: '#FFFDEE', border: '#0C342C' }, // Deep Forest Emerald
-  { bg: '#FFFDEE', text: '#06231D', border: '#0C342C' }, // Alabaster Cream
+// High-definition Executive Palette in Royal Blue, Crimson Red, Deep Navy, and Pure White
+const EXECUTIVE_CRISP_PALETTE = [
+  { bg: '#0A192F', text: '#FFFFFF', border: '#1E293B' }, // Deep Navy
+  { bg: '#1D4ED8', text: '#FFFFFF', border: '#1E40AF' }, // Royal Blue
+  { bg: '#DC2626', text: '#FFFFFF', border: '#B91C1C' }, // Crimson Red
+  { bg: '#FFFFFF', text: '#0A192F', border: '#CBD5E1' }, // Crisp Pure White
+  { bg: '#EFF6FF', text: '#1D4ED8', border: '#BFDBFE' }, // Soft Blue Tint
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({
   text,
   seed = 2026,
-  intensity = 0.45,
+  intensity = 0.35,
   animate = 'assemble',
   fonts = DEFAULT_FONTS,
-  palette = ORIGINAL_GREEN_PALETTE,
-  rotation = 5,
+  palette = EXECUTIVE_CRISP_PALETTE,
+  rotation = 3,
   className,
   wordClassName,
   ...props
@@ -115,11 +113,12 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                 backgroundColor: scrap.colorPair.bg,
                 color: scrap.colorPair.text,
                 padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
-                border: `1.5px solid ${scrap.colorPair.border || '#0C342C'}`,
-                boxShadow: '0 4px 12px -2px rgba(6, 35, 29, 0.12), 2px 2px 0px rgba(6, 35, 29, 0.08)',
-                borderRadius: '4px',
+                border: `1.5px solid ${scrap.colorPair.border || '#CBD5E1'}`,
+                boxShadow: '0 4px 10px -1px rgba(10, 25, 47, 0.12), 0 2px 4px -1px rgba(10, 25, 47, 0.06)',
+                borderRadius: '6px',
                 WebkitFontSmoothing: 'antialiased',
                 MozOsxFontSmoothing: 'grayscale',
+                imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
