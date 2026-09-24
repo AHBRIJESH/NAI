@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
 export interface PagePreloaderProps {
   columns?: number
   rows?: number
-  words?: string[]
   active?: boolean
   defaultActive?: boolean
   duration?: number // hold duration in ms before pixel transition out
@@ -34,16 +33,9 @@ function generateDeterministicOrder(totalTiles: number, seed = 2026): number[] {
 export const PagePreloader: React.FC<PagePreloaderProps> = ({
   columns = 10,
   rows = 8,
-  words = [
-    'Autonomous Strategy.',
-    'Cryptographic Governance.',
-    'Multi-Agent Automation.',
-    'Intelligent Systems.',
-    'NAIR.AI',
-  ],
   active,
   defaultActive = true,
-  duration = 1350,
+  duration = 1300,
   container = false,
   onComplete,
   className,
@@ -52,10 +44,9 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
   const isControlled = typeof active === 'boolean'
   const [internalActive, setInternalActive] = useState(defaultActive)
   const [isMounted, setIsMounted] = useState(true)
-  const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const shouldReduceMotion = useReducedMotion()
 
-  const isActive = isControlled ? active : internalActive
+  const isShowing = isControlled ? active : internalActive
 
   // Total grid tiles
   const totalPixels = columns * rows
@@ -72,7 +63,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
 
   // Scroll locking for full-page mode
   useEffect(() => {
-    if (container || !isActive) {
+    if (container || !isShowing) {
       document.body.style.overflow = ''
       return
     }
@@ -80,38 +71,28 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
     return () => {
       document.body.style.overflow = ''
     }
-  }, [container, isActive])
+  }, [container, isShowing])
 
-  // Word cycling ticker while preloader holds
-  useEffect(() => {
-    if (words.length <= 1 || !isActive) return
-    const intervalMs = Math.max(240, Math.floor(duration / (words.length + 0.5)))
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => {
-        if (prev < words.length - 1) return prev + 1
-        return prev
-      })
-    }, intervalMs)
-    return () => clearInterval(interval)
-  }, [words, duration, isActive])
-
-  // Timer-driven exit trigger when uncontrolled
+  // Timer: After `duration` ms, initiate pixel dissolve exit
   useEffect(() => {
     if (isControlled || !isMounted) return
-    const timer = setTimeout(() => {
+
+    const holdTimer = setTimeout(() => {
       setInternalActive(false)
     }, duration)
-    return () => clearTimeout(timer)
+
+    return () => clearTimeout(holdTimer)
   }, [isControlled, duration, isMounted])
 
-  // Failsafe timer to guarantee overflow unlock & unmount
+  // Failsafe timer: Force unmount and restore overflow
   useEffect(() => {
-    const failsafe = setTimeout(() => {
+    const failsafeTimer = setTimeout(() => {
       document.body.style.overflow = ''
       setIsMounted(false)
       if (onComplete) onComplete()
     }, duration + 1400)
-    return () => clearTimeout(failsafe)
+
+    return () => clearTimeout(failsafeTimer)
   }, [duration, onComplete])
 
   const handleExitComplete = () => {
@@ -126,14 +107,13 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
     setTimeout(() => {
       setIsMounted(false)
       if (onComplete) onComplete()
-    }, 180)
+    }, 140)
   }
 
   if (!isMounted) return null
 
-  // Reduced motion: immediate unmount on exit
   if (shouldReduceMotion) {
-    if (!isActive) {
+    if (!isShowing) {
       if (onComplete) onComplete()
       return null
     }
@@ -144,17 +124,17 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
         onClick={handleSkip}
         className={cn(
           container ? 'absolute inset-0' : 'fixed inset-0',
-          'z-50 bg-[#030712] flex flex-col items-center justify-center text-white cursor-pointer',
+          'z-50 bg-[#FFFDEE] flex flex-col items-center justify-center text-[#06231D] cursor-pointer',
           className
         )}
       >
-        <span className="sr-only">Loading {brandName}... Click to skip.</span>
+        <span className="sr-only">Loading {brandName}...</span>
         <img
           src="/images/logo.png"
           alt={brandName}
-          className="h-12 w-auto object-contain mb-4 drop-shadow-[0_0_20px_rgba(255,255,255,0.7)]"
+          className="h-12 sm:h-14 w-auto object-contain mb-4"
         />
-        <div className="font-mono text-xs text-blue-400 tracking-widest uppercase font-bold">
+        <div className="font-mono text-xs text-[#076653] tracking-widest uppercase font-bold">
           CLICK TO ENTER
         </div>
       </div>
@@ -163,7 +143,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
 
   return (
     <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
-      {isActive && (
+      {isShowing && (
         <motion.div
           role="status"
           aria-live="polite"
@@ -179,7 +159,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
           exit={{
             opacity: 1,
             transition: {
-              // Keep parent visible until all pixel tiles dissolve
+              // Keep parent layer visible until all pixel tiles dissolve
               delay: totalPixels * 0.007 + 0.35,
             },
           }}
@@ -187,7 +167,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
           {/* Accessible Screen Reader Announcement */}
           <span className="sr-only">Loading {brandName}... Click to skip.</span>
 
-          {/* PIXEL TRANSITION OUT: Grid of Tiles Dissolving in Deterministic Order */}
+          {/* PIXEL TRANSITION OUT: Grid of Cream #FFFDEE Tiles Dissolving in Deterministic Order */}
           <div
             className="absolute inset-0 pointer-events-none grid z-0"
             style={{
@@ -199,11 +179,11 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
             {Array.from({ length: totalPixels }).map((_, tileIdx) => (
               <motion.div
                 key={tileIdx}
-                className="w-full h-full bg-[#030712]"
+                className="w-full h-full bg-[#FFFDEE]"
                 initial={{ opacity: 1 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.92,
+                  scale: 0.95,
                   transition: {
                     duration: 0.28,
                     delay: pixelDelays.get(tileIdx) || 0,
@@ -214,74 +194,50 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
             ))}
           </div>
 
-          {/* Ambient Radial Backlight Glow Behind Centerpiece */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-1">
-            <div className="w-[520px] h-[520px] rounded-full bg-blue-600/15 blur-3xl opacity-60 animate-pulse pointer-events-none" />
-            <div className="absolute w-[300px] h-[300px] rounded-full bg-sky-400/10 blur-2xl pointer-events-none" />
-          </div>
+          {/* Ambient Lighting Halo Background */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-1"
+            exit={{ opacity: 0, transition: { duration: 0.25 } }}
+          >
+            <div className="w-[500px] h-[500px] rounded-full bg-radial from-[#E2FBCE]/60 via-[#E3EF26]/15 to-transparent blur-3xl opacity-70 animate-pulse pointer-events-none" />
+            <div className="absolute w-[320px] h-[320px] rounded-full bg-radial from-white/90 via-transparent to-transparent blur-2xl pointer-events-none" />
+          </motion.div>
 
-          {/* Center Brand Showcase: Logo, Cycling Word Ticker, & Live Telemetry */}
+          {/* Center Brand Showcase with Smooth Reveal Animation */}
           <motion.div
             className="relative z-10 flex flex-col items-center justify-center pointer-events-none px-6 text-center"
-            initial={{ opacity: 0, y: 14, scale: 0.92 }}
+            initial={{ opacity: 0, y: 12, scale: 0.9, filter: 'blur(10px)' }}
             animate={{
               opacity: 1,
               y: 0,
               scale: 1,
+              filter: 'blur(0px)',
               transition: {
-                duration: 0.5,
+                duration: 0.65,
                 ease: [0.16, 1, 0.3, 1],
               },
             }}
             exit={{
               opacity: 0,
-              y: -10,
-              scale: 0.94,
+              y: -8,
+              scale: 1.04,
               filter: 'blur(6px)',
               transition: {
-                duration: 0.25,
+                duration: 0.3,
                 ease: [0.22, 1, 0.36, 1],
               },
             }}
           >
-            {/* Official Logo Display with Luminous Backing */}
-            <div className="relative flex items-center justify-center mb-5 px-6 py-2.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl shadow-blue-500/10">
+            {/* Official Logo Display */}
+            <div className="relative flex items-center justify-center mb-5">
               <motion.img
                 src="/images/logo.png"
                 alt={brandName}
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain relative z-10 drop-shadow-[0_2px_12px_rgba(255,255,255,0.4)]"
-                initial={{ opacity: 0, scale: 0.9 }}
+                className="h-12 sm:h-16 md:h-20 w-auto object-contain relative z-10 drop-shadow-[0_8px_24px_rgba(6,35,29,0.08)]"
+                initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
-            </div>
-
-            {/* Cycling Word Ticker with Vertical Roll Motion */}
-            <div className="h-8 overflow-hidden relative w-80 sm:w-96 flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentWordIndex}
-                  initial={{ y: 16, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -16, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-mono text-xs sm:text-[13px] uppercase tracking-[0.22em] text-[#38BDF8] font-bold"
-                >
-                  {words[currentWordIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-
-            {/* Micro Telemetry Bar */}
-            <div className="mt-4 flex items-center gap-2.5 sm:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-400 tracking-wider">
-              <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                CORE ACTIVE
-              </span>
-              <span className="text-slate-600">•</span>
-              <span className="text-slate-300">SOC2 COMPLIANT</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-blue-300">ZERO RETENTION</span>
             </div>
           </motion.div>
         </motion.div>

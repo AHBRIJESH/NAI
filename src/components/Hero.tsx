@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-[1536px] mx-auto px-6 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 py-16 sm:py-20 lg:py-28 text-left"
+        className="relative z-10 w-full max-w-[1536px] mx-auto px-6 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 text-left"
       >
         <div className="max-w-xl lg:max-w-[540px] xl:max-w-[580px]">
           
