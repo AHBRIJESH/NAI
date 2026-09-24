@@ -23,11 +23,11 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
         
 
 
-        {/* High-Definition Razor-Sharp Ransom Note Headline in Blue, White & Red */}
+        {/* High-Definition Razor-Sharp Ransom Note Headline in Green Combo Palette */}
         <ScrollReveal delay={0.08} y={24} duration={0.6}>
           <div className="my-4 py-2 flex justify-center">
             <RansomNote
-              text="EMPOWERING HUMAN INGENUITY WITH INTELLIGENT AI"
+              text="PUTTING PRACTICAL AI TO WORK FOR YOUR TEAM"
               intensity={0.3}
               animate="assemble"
               rotation={2.5}

@@ -128,59 +128,60 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
           </div>
         </ScrollReveal>
 
-        {/* Side-by-Side Lab Console: Left Full-Height Visual & Right Content Box */}
+        {/* Side-by-Side Lab Console: Left Visual Display & Right Telemetry Terminal */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch w-full">
           
-          {/* Left Column: Full-Height Filtering Image with Mode Selector (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col h-full min-h-[420px] sm:min-h-[480px] lg:min-h-[520px]">
+          {/* Left Column: Widescreen Visual Console (6 cols) */}
+          <div className="lg:col-span-6 flex flex-col h-full">
             <ScrollReveal delay={0.1} y={24} duration={0.65} className="h-full flex flex-col">
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-blue-200/90 shadow-xl bg-slate-900 group flex flex-col justify-between">
+              <div className="w-full h-full rounded-3xl overflow-hidden border border-blue-200/90 shadow-xl bg-[#0A192F] flex flex-col justify-between">
                 
-                {/* Cross-fading Full-Height Image */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={orbMode}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 w-full h-full"
-                  >
-                    <img
-                      src={currentMode.image}
-                      alt={currentMode.title}
-                      className="w-full h-full object-cover brightness-[0.92] contrast-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/30 to-transparent" />
-                  </motion.div>
-                </AnimatePresence>
-
                 {/* Top Badge: Mode Status */}
-                <div className="relative z-10 p-5 flex items-center justify-between">
+                <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-800 bg-[#060D1D]/90">
                   <span
-                    className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md backdrop-blur-md"
-                    style={{ backgroundColor: `${currentMode.color}CC` }}
+                    className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md"
+                    style={{ backgroundColor: `${currentMode.color}EE` }}
                   >
                     {currentMode.tag}
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold backdrop-blur-md">
-                    ● ACTIVE
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-md font-bold">
+                    ● ACTIVE STREAM
                   </span>
                 </div>
 
-                {/* Bottom Overlay: Caption & Interactive Filter Mode Toggles */}
-                <div className="relative z-10 p-5 sm:p-6 space-y-4">
-                  <div className="text-left text-white drop-shadow-md">
-                    <span className="font-mono text-[11px] text-blue-200 font-bold block mb-1">
+                {/* 100% VISIBLE IMAGE CONTAINER: Natural Aspect Ratio, Zero Cropping */}
+                <div className="relative w-full aspect-[16/10] sm:aspect-[3/2] bg-[#070F1E] flex items-center justify-center p-2 sm:p-3 overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={orbMode}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full flex items-center justify-center"
+                    >
+                      <img
+                        src={currentMode.image}
+                        alt={currentMode.title}
+                        className="w-full h-full object-contain rounded-xl shadow-lg"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Bottom Console: Caption & Interactive Mode Toggles Outside the Image */}
+                <div className="p-4 sm:p-5 bg-[#060D1D]/95 border-t border-slate-800/90 space-y-3.5">
+                  <div className="text-left text-white">
+                    <span className="font-mono text-xs sm:text-[13px] text-blue-200 font-bold block mb-1">
                       {currentMode.imageCaption}
                     </span>
-                    <span className="text-xs text-slate-200/90 font-normal">
-                      Automatically updating based on telemetry mode.
+                    <span className="text-xs text-slate-400 font-normal">
+                      Click below to switch the architecture view and inspect live stream logs.
                     </span>
                   </div>
 
                   {/* Mode Toggles */}
-                  <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/95 border border-slate-200 shadow-xl font-mono text-[11px] backdrop-blur-md">
+                  <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-900 border border-slate-700/80 font-mono text-xs shadow-inner">
                     {(['inference', 'governance', 'agentic'] as const).map((m) => (
                       <button
                         key={m}
@@ -189,10 +190,10 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                           setOrbMode(m);
                           setIsAutoCycling(false);
                         }}
-                        className={`flex-1 py-2 px-2 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center ${
+                        className={`flex-1 py-2.5 px-2 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
                           orbMode === m
                             ? 'bg-[#1D4ED8] text-white shadow-md font-black scale-[1.02]'
-                            : 'text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/50'
+                            : 'text-slate-400 hover:text-white hover:bg-slate-800'
                         }`}
                       >
                         {m === 'agentic' ? 'Agentic' : m}
@@ -205,10 +206,10 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Telemetry Readout & Controls (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-center min-w-0 w-full">
-            <ScrollReveal delay={0.15} y={24} duration={0.7}>
-              <div className="p-6 sm:p-8 rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-6">
+          {/* Right Column: Telemetry Readout & Controls (6 cols) */}
+          <div className="lg:col-span-6 flex flex-col justify-center min-w-0 w-full h-full">
+            <ScrollReveal delay={0.15} y={24} duration={0.7} className="h-full flex flex-col">
+              <div className="p-6 sm:p-8 rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-6 h-full flex flex-col justify-between">
                 
                 {/* Header Title & Status */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-200/80">
