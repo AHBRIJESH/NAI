@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Play, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
+import heroBgImage from '../assets/hero_ai_lifecycle.jpg';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -44,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
       {/* 100% UNTOUCHED HIGH-RESOLUTION HERO BACKGROUND */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
         <img
-          src="/images/hero_ai_lifecycle.jpg"
+          src={heroBgImage}
           alt="NAIR.AI Autonomous AI Lifecycle Architecture"
           className="w-full h-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-right xl:object-center"
           loading="eager"
