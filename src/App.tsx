@@ -9,7 +9,6 @@ import { BlueStatsSection } from './components/BlueStatsSection';
 import { TeamSplitSection } from './components/TeamSplitSection';
 import { CustomerSuccessSection } from './components/CustomerSuccessSection';
 import { CalloutBanner } from './components/CalloutBanner';
-import { PressBar } from './components/PressBar';
 import { SuccessByNumbersSection } from './components/SuccessByNumbersSection';
 import { ImpactCalculator } from './components/ImpactCalculator';
 import { BlueSolutionsSection } from './components/BlueSolutionsSection';
@@ -178,9 +177,6 @@ export function App() {
             <CustomerSuccessSection
               onSelectCaseStudy={() => handleNavigate('case-studies')}
             />
-
-            {/* 7. Press & Recognition Logo Bar */}
-            <PressBar />
 
             {/* 8. Success by the Numbers Circular Diagram */}
             <SuccessByNumbersSection />
