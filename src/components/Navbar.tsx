@@ -42,6 +42,18 @@ export const Navbar: React.FC<NavbarProps> = ({
   const resourcesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resourcesDropdownRef = useRef<HTMLDivElement | null>(null);
 
+  // Dynamic Scroll Detection for Seamless Top-Transparency & Cool Scrolled Transition
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Exact Requested Navbar Setup: About > Services > Industries > Resources > Case Studies > Contact Us
   const navLinks: { name: string; page: PageRoute; dropdownType?: 'industries' | 'resources' }[] = [
     { name: 'About', page: 'about' },
@@ -129,8 +141,20 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all shadow-xs">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-18 sm:h-20">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
+        mobileMenuOpen
+          ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-md py-0'
+          : isScrolled
+            ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-0'
+            : 'bg-transparent border-b border-transparent shadow-none py-1 sm:py-2'
+      }`}
+    >
+      <div
+        className={`max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between transition-all duration-300 ease-in-out ${
+          isScrolled ? 'h-16 sm:h-18' : 'h-18 sm:h-20'
+        }`}
+      >
         
         {/* Brand: Official Logo */}
         <div
