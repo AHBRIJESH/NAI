@@ -39,35 +39,23 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   };
 
   return (
-    <section className="relative w-full min-h-[85vh] sm:min-h-[88vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-[#F8FAFC] text-[#0A192F] border-b border-slate-200/80">
+    <section className="relative w-full min-h-[85vh] sm:min-h-[88vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
       
-      {/* 4K ULTRA-HIGH-RESOLUTION EDGE-TO-EDGE HERO BACKGROUND */}
+      {/* 100% UNTOUCHED HIGH-RESOLUTION HERO BACKGROUND */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
-        <picture>
-          <source
-            type="image/jpeg"
-            srcSet="/images/hero_ai_lifecycle_2k.jpg 2048w, /images/hero_ai_lifecycle_4k.jpg 4096w"
-            sizes="100vw"
-          />
-          <img
-            src="/images/hero_ai_lifecycle.jpg"
-            alt="NAIR.AI Autonomous AI Lifecycle Architecture"
-            className="w-full h-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right xl:object-center contrast-[1.03] brightness-[1.01]"
-            style={{ imageRendering: '-webkit-optimize-contrast' }}
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src="/images/hero_ai_lifecycle.jpg"
+          alt="NAIR.AI Autonomous AI Lifecycle Architecture"
+          className="w-full h-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-right xl:object-center"
+          loading="eager"
+          decoding="async"
+        />
 
-        {/* Left Reading Scrim (Shifted tight to the left edge to free up the diagram) */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-[60%] lg:w-[42%] xl:w-[38%] bg-gradient-to-r from-white/95 via-white/70 to-transparent pointer-events-none" />
-
-        {/* Ambient Top & Bottom Section Transitions */}
-        <div className="absolute top-0 inset-x-0 h-14 bg-gradient-to-b from-white/70 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/40 to-transparent pointer-events-none" />
+        {/* Seamless Soft Dark Ambient Scrim on Left Edge to Protect Text Legibility without Washing out the Image */}
+        <div className="absolute inset-y-0 left-0 w-full sm:w-[68%] lg:w-[48%] xl:w-[42%] bg-gradient-to-r from-[#030712]/85 via-[#030712]/40 to-transparent pointer-events-none" />
       </div>
 
-      {/* HERO CONTENT: Shifted Left for Panoramic Artwork Freedom */}
+      {/* HERO CONTENT: Positioned on Left to Keep 3D Sculpture & Landscape Fully Visible */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -79,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           {/* Strategic AI Implementation Value Proposition */}
           <motion.p
             variants={itemVariants}
-            className="text-xs sm:text-sm md:text-base font-bold text-[#1D4ED8] mb-3 leading-relaxed tracking-wide"
+            className="text-xs sm:text-sm md:text-base font-bold text-[#38BDF8] mb-3 leading-relaxed tracking-wide drop-shadow-sm"
           >
             Want to implement AI, but not sure where to start? Work smarter—not harder—with these proven strategies.
           </motion.p>
@@ -87,16 +75,16 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight leading-[1.08] mb-4"
+            className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight leading-[1.08] mb-4 text-white drop-shadow-md"
           >
             <span className="text-[#DC2626]">Autonomous AI Systems.</span>{' '}
-            <span className="text-[#1D4ED8]">Built to Ship.</span>
+            <span className="text-[#3B82F6]">Built to Ship.</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed mb-7 font-normal"
+            className="text-sm sm:text-base md:text-lg text-slate-200 leading-relaxed mb-7 font-normal drop-shadow-sm"
           >
             We engineer production-grade multi-agent swarms and zero-retention inference pipelines deployed directly within your private enterprise infrastructure.
           </motion.p>
@@ -109,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             <button
               type="button"
               onClick={onBookCall}
-              className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 hover:scale-102 active:scale-98 flex items-center justify-center gap-2.5 cursor-pointer"
+              className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:scale-102 active:scale-98 flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <span>Book an AI strategy call</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -118,9 +106,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             <button
               type="button"
               onClick={() => handleScrollToSection('capabilities')}
-              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-bold text-[#0A192F] hover:text-[#1D4ED8] border border-slate-300 hover:border-slate-400 bg-white/95 hover:bg-white transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-bold text-white hover:text-white border border-white/25 hover:border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Play className="w-3.5 h-3.5 fill-[#0A192F] text-[#0A192F]" />
+              <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>Explore Sovereign Engine</span>
             </button>
           </motion.div>
@@ -128,29 +116,23 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           {/* Trust Signals */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-5 sm:gap-6 text-xs font-mono text-slate-600 pt-4 border-t border-slate-200/80"
+            className="flex flex-wrap items-center gap-5 sm:gap-6 text-xs font-mono text-slate-300 pt-4 border-t border-white/15"
           >
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#1D4ED8]" />
-              <span className="font-semibold text-slate-800">Zero Data Retention</span>
+              <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
+              <span className="font-semibold text-slate-200">Zero Data Retention</span>
             </div>
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-[#DC2626]" />
-              <span className="font-semibold text-slate-800">3–4 Week Sprints</span>
+              <span className="font-semibold text-slate-200">3–4 Week Sprints</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
-              <span className="font-semibold text-slate-800">SOC2 Type II Aligned</span>
+              <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
+              <span className="font-semibold text-slate-200">SOC2 Type II Aligned</span>
             </div>
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Floating Lifecycle Indicator Badge on Bottom-Right */}
-      <div className="hidden lg:flex absolute bottom-8 right-8 xl:right-14 z-10 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-lg items-center gap-2 font-mono text-xs font-bold text-slate-700 pointer-events-none">
-        <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-        <span>Autonomous AI Lifecycle Architecture</span>
-      </div>
     </section>
   );
 };
