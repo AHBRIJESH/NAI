@@ -74,7 +74,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
       sector: 'Finance',
       title: 'Real-Time Fraud & Anomaly Defense',
       metric: '< 15ms Latency',
-      sla: 'SOC2 Type II',
+      sla: 'ISO 27001 / HIPAA',
       desc: 'Stream-processing neural scoring for millions of daily transactions, slashing false positives without human bottlenecking.',
       color: '#DC2626',
       icon: Landmark,
@@ -229,7 +229,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                     2. Finance
                   </span>
                   <span className="font-mono text-[11px] text-slate-500">
-                    SOC 2 Type II · &lt; 15ms Latency
+                    ISO 27001 · &lt; 15ms Latency
                   </span>
                 </div>
               </div>
@@ -355,8 +355,8 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                         <span className="text-[11px] font-mono text-slate-500">Inference Latency</span>
                       </div>
                       <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                        <span className="block font-display font-black text-xl text-[#0A192F]">SOC 2</span>
-                        <span className="text-[11px] font-mono text-slate-500">Type II Verified</span>
+                        <span className="block font-display font-black text-xl text-[#0A192F]">ISO 27001</span>
+                        <span className="text-[11px] font-mono text-slate-500">Security Aligned</span>
                       </div>
                       <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
                         <span className="block font-display font-black text-xl text-[#DC2626]">$2.4B+</span>
@@ -369,7 +369,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                     <div className="p-5 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-3">
                       <div className="flex items-center justify-between pb-3 border-b border-slate-700">
                         <span className="text-rose-400 font-bold">● RADAR MONITOR: TX_STREAM_US_EAST</span>
-                        <span className="text-[10px] text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded-sm">SOC 2 AUDITED</span>
+                        <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-sm">CRYPTOGRAPHIC AUDITED</span>
                       </div>
                       <div className="space-y-1.5 text-[11px] text-slate-300">
                         <p><span className="text-slate-500">[12ms]</span> Wire Event #88419: $64,200 (Zurich &rarr; NYC)</p>
@@ -682,7 +682,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                 <div className="space-y-3 font-mono text-xs">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-800">
                     <span className="text-slate-400">Audit Verification</span>
-                    <span className="text-emerald-400 font-bold">SOC 2 Type II Certified</span>
+                    <span className="text-emerald-400 font-bold">ISO 27001 Aligned</span>
                   </div>
                   <div className="flex items-center justify-between pb-2 border-b border-slate-800">
                     <span className="text-slate-400">P99 Inference Latency</span>

@@ -95,7 +95,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
         'Human-in-the-loop review tickets and signed cryptographic audit trails',
       ],
       safety: [
-        'SOC 2 Type II certified ephemeral memory pipelines',
+        'ISO 27001 aligned ephemeral memory pipelines',
         'Zero client data retained for foundation model retraining',
         'Deterministic Pydantic typing eliminating model hallucinations',
         'Role-based air-gapped VPC boundaries and access logging',

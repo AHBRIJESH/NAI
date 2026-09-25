@@ -63,7 +63,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onBookCall }) => {
       capabilities: [
         'Zero Data Leakage & Private VPC Isolation',
         'Hallucination & Bias Guardrails',
-        'EU AI Act & SOC2 Compliance Mappings',
+        'EU AI Act & ISO 27001 Compliance Mappings',
         'Full Audit Logging & Deterministic Bounds',
       ],
       icon: ShieldCheck,

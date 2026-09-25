@@ -33,13 +33,14 @@ const DEFAULT_FONTS = [
   '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
 ]
 
-// Original high-end Green & Cream Palette scraps ("the green combo palette")
-export const ORIGINAL_GREEN_PALETTE = [
-  { bg: '#06231D', text: '#FFFDEE', border: '#06231D' }, // Midnight Pine
-  { bg: '#E3EF26', text: '#06231D', border: '#076653' }, // Acid Lime
-  { bg: '#E2FBCE', text: '#076653', border: '#076653' }, // Soft Mint
-  { bg: '#076653', text: '#FFFDEE', border: '#0C342C' }, // Deep Forest Emerald
-  { bg: '#FFFDEE', text: '#06231D', border: '#0C342C' }, // Alabaster Cream
+// Official NAIR.AI Website Theme Palette scraps
+export const WEBSITE_THEME_PALETTE = [
+  { bg: '#0A192F', text: '#FFFFFF', border: '#1D4ED8' }, // Deep Sovereign Navy
+  { bg: '#DC2626', text: '#FFFFFF', border: '#991B1B' }, // Brand Crimson Red
+  { bg: '#1D4ED8', text: '#FFFFFF', border: '#1E40AF' }, // Royal Electric Blue
+  { bg: '#DBEAFE', text: '#0A192F', border: '#93C5FD' }, // Soft Ice Blue
+  { bg: '#FFFFFF', text: '#0A192F', border: '#CBD5E1' }, // Crisp Clean White
+  { bg: '#38BDF8', text: '#0A192F', border: '#0284C7' }, // Cyber Sky Blue
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({
@@ -48,7 +49,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
   intensity = 0.35,
   animate = 'assemble',
   fonts = DEFAULT_FONTS,
-  palette = ORIGINAL_GREEN_PALETTE,
+  palette = WEBSITE_THEME_PALETTE,
   rotation = 3,
   className,
   wordClassName,
@@ -113,8 +114,8 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                 backgroundColor: scrap.colorPair.bg,
                 color: scrap.colorPair.text,
                 padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
-                border: `1.5px solid ${scrap.colorPair.border || '#0C342C'}`,
-                boxShadow: '0 4px 12px -2px rgba(6, 35, 29, 0.16), 2px 2px 0px rgba(6, 35, 29, 0.09)',
+                border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
+                boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
                 borderRadius: '6px',
                 WebkitFontSmoothing: 'antialiased',
                 MozOsxFontSmoothing: 'grayscale',

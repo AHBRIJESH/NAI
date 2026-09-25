@@ -140,14 +140,31 @@ export const Navbar: React.FC<NavbarProps> = ({
     onNavigate('industries', sector);
   };
 
+  const isHeroTop = currentPage === 'home' && !isScrolled;
+
+  const getNavLinkClasses = (isActive: boolean, isOpen = false) => {
+    if (isHeroTop) {
+      if (isActive || isOpen) {
+        return 'text-[#38BDF8] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]';
+      }
+      return 'text-white/95 hover:text-white font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]';
+    }
+    if (isActive || isOpen) {
+      return 'text-[#1D4ED8] font-bold';
+    }
+    return 'text-slate-700 hover:text-[#1D4ED8] font-semibold';
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
         mobileMenuOpen
           ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-md py-0'
           : isScrolled
-            ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-0'
-            : 'bg-transparent border-b border-transparent shadow-none py-1 sm:py-2'
+            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-0'
+            : currentPage === 'home'
+              ? 'bg-gradient-to-b from-[#030712]/85 via-[#030712]/40 to-transparent border-b border-transparent shadow-none py-1 sm:py-2'
+              : 'bg-white/90 backdrop-blur-md border-b border-slate-200/70 shadow-xs py-0'
       }`}
     >
       <div
@@ -168,12 +185,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           <img
             src="/images/logo.png"
             alt="NAIR.AI"
-            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className={`h-9 sm:h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${
+              isHeroTop ? 'drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]' : ''
+            }`}
           />
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-5 lg:gap-8">
+        <nav
+          className={`hidden md:flex items-center gap-4 lg:gap-7 transition-all duration-300 ${
+            isHeroTop
+              ? 'px-5 py-2 rounded-full bg-slate-950/45 backdrop-blur-md border border-white/20 shadow-md shadow-black/20'
+              : ''
+          }`}
+        >
           {navLinks.map((link) => {
             const isActive =
               currentPage === link.page ||
@@ -193,11 +218,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     type="button"
                     onClick={() => handleLinkClick('industries')}
-                    className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 cursor-pointer py-1 relative group ${
-                      isActive || industriesOpen
-                        ? 'text-[#1D4ED8] font-bold'
-                        : 'text-slate-700 hover:text-[#1D4ED8]'
-                    }`}
+                    className={`inline-flex items-center gap-1.5 text-sm transition-all duration-200 cursor-pointer py-1 relative group ${getNavLinkClasses(
+                      isActive,
+                      industriesOpen
+                    )}`}
                     aria-expanded={industriesOpen}
                     aria-haspopup="true"
                   >
@@ -205,12 +229,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
                         industriesOpen
-                          ? 'rotate-180 text-[#1D4ED8]'
-                          : 'text-slate-400 group-hover:text-[#1D4ED8]'
+                          ? isHeroTop
+                            ? 'rotate-180 text-[#38BDF8]'
+                            : 'rotate-180 text-[#1D4ED8]'
+                          : isHeroTop
+                            ? 'text-slate-300 group-hover:text-white'
+                            : 'text-slate-400 group-hover:text-[#1D4ED8]'
                       }`}
                     />
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1D4ED8] rounded-full" />
+                      <span
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
+                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                        }`}
+                      />
                     )}
                   </button>
 
@@ -255,11 +287,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     type="button"
                     onClick={() => handleLinkClick('resources')}
-                    className={`inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 cursor-pointer py-1 relative group ${
-                      isActive || resourcesOpen
-                        ? 'text-[#1D4ED8] font-bold'
-                        : 'text-slate-700 hover:text-[#1D4ED8]'
-                    }`}
+                    className={`inline-flex items-center gap-1.5 text-sm transition-all duration-200 cursor-pointer py-1 relative group ${getNavLinkClasses(
+                      isActive,
+                      resourcesOpen
+                    )}`}
                     aria-expanded={resourcesOpen}
                     aria-haspopup="true"
                   >
@@ -267,12 +298,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
                         resourcesOpen
-                          ? 'rotate-180 text-[#1D4ED8]'
-                          : 'text-slate-400 group-hover:text-[#1D4ED8]'
+                          ? isHeroTop
+                            ? 'rotate-180 text-[#38BDF8]'
+                            : 'rotate-180 text-[#1D4ED8]'
+                          : isHeroTop
+                            ? 'text-slate-300 group-hover:text-white'
+                            : 'text-slate-400 group-hover:text-[#1D4ED8]'
                       }`}
                     />
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1D4ED8] rounded-full" />
+                      <span
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
+                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                        }`}
+                      />
                     )}
                   </button>
 
@@ -342,15 +381,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.name}
                 onClick={() => handleLinkClick(link.page)}
-                className={`text-sm font-semibold transition-all duration-200 cursor-pointer py-1 relative ${
+                className={`text-sm transition-all duration-200 cursor-pointer py-1 relative ${getNavLinkClasses(
                   isActive
-                    ? 'text-[#1D4ED8] font-bold'
-                    : 'text-slate-700 hover:text-[#1D4ED8]'
-                }`}
+                )}`}
               >
                 <span>{link.name}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1D4ED8] rounded-full" />
+                  <span
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
+                      isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                    }`}
+                  />
                 )}
               </button>
             );
@@ -376,10 +417,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-slate-700 hover:text-black focus:outline-hidden cursor-pointer"
+          className={`md:hidden p-2 focus:outline-hidden cursor-pointer transition-colors ${
+            isHeroTop && !mobileMenuOpen
+              ? 'text-white hover:text-[#38BDF8]'
+              : 'text-slate-700 hover:text-black'
+          }`}
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-6 h-6 text-slate-800" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 

@@ -19,7 +19,7 @@ export const IndustryExpertiseSection: React.FC<IndustryExpertiseSectionProps> =
     },
     {
       title: 'Institutional Banking & Capital Markets',
-      tag: 'FINRA & SOC2 COMPLIANCE',
+      tag: 'FINRA & SEC COMPLIANCE',
       desc: 'High-throughput transaction anomaly detection, automated KYC verification dossiers, and algorithmic ledger reconciliation.',
       image: '/images/isometric_finance.jpg',
       stat: '99.98% verifiable audit accuracy',

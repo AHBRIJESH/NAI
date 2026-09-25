@@ -6,7 +6,7 @@ export const PressBar: React.FC = () => {
     { title: 'Inc. 5000', subtitle: 'Fastest-Growing AI Systems' },
     { title: 'Clutch Top 1%', subtitle: 'Leader in Enterprise AI' },
     { title: 'Markets Insider', subtitle: 'Leading Automation Architecture' },
-    { title: 'SOC2 Type II', subtitle: 'Audited Enterprise Compliance' },
+    { title: 'ISO 27001', subtitle: 'Audited Enterprise Compliance' },
   ];
 
   return (

@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
-              <span className="font-semibold text-slate-200">SOC2 Type II Aligned</span>
+              <span className="font-semibold text-slate-200">ISO 27001 &amp; GDPR Aligned</span>
             </div>
           </motion.div>
         </div>

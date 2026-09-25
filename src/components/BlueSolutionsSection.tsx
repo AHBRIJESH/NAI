@@ -41,7 +41,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
       points: [
         'Cryptographic Ephemeral RAM Processing',
         'Real-Time PII & Credential Scrubbing',
-        'SOC2 Type II Aligned Cryptographic Logs',
+        'ISO 27001 Aligned Cryptographic Logs',
       ],
     },
   ];

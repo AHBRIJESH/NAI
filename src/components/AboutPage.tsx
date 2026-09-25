@@ -148,7 +148,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </div>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
-                Direct client engagements, executive discovery workshops, compliance alignment (HIPAA, SOC 2, FINRA), and enterprise architecture consulting for organizations across North America.
+                Direct client engagements, executive discovery workshops, compliance alignment (HIPAA, GDPR, FINRA), and enterprise architecture consulting for organizations across North America.
               </p>
 
               <div className="space-y-3 font-mono text-xs">
@@ -158,7 +158,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
                   <span className="text-slate-600">Compliance Scoping:</span>
-                  <span className="font-bold text-[#0A192F]">SOC 2 · HIPAA · Private Cloud</span>
+                  <span className="font-bold text-[#0A192F]">ISO 27001 · HIPAA · Private Cloud</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-50 flex items-center justify-between">
                   <span className="text-slate-600">Timezone Coverage:</span>

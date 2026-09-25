@@ -87,7 +87,7 @@ const QUESTIONS: Question[] = [
         detail: 'Can leverage zero-retention commercial enterprise API tiers.',
       },
       {
-        label: 'Strict regulatory standards (HIPAA, SOC2 Type II, GDPR, ISO 27001)',
+        label: 'Strict regulatory standards (HIPAA, GDPR, ISO 27001)',
         score: 25,
         detail: 'Requires dedicated VPC deployments with end-to-end cryptographic audit logs.',
       },

@@ -122,7 +122,7 @@ export const SuccessByNumbersSection: React.FC = () => {
               </h2>
 
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8">
-                Aggregated telemetry across 514+ private enterprise multi-agent deployments, benchmarked against rigorous SOC2 and operational SLA standards.
+                Aggregated telemetry across 514+ private enterprise multi-agent deployments, benchmarked against rigorous ISO 27001 and operational SLA standards.
               </p>
 
               {/* Active Metric Telemetry HUD Card */}

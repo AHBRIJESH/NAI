@@ -298,7 +298,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#1D4ED8] font-bold">2.</span>
-                  <span>Evaluation of compliance constraints (SOC2, HIPAA, air-gapped runtimes).</span>
+                  <span>Evaluation of compliance constraints (HIPAA, GDPR, air-gapped runtimes).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#1D4ED8] font-bold">3.</span>

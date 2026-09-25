@@ -71,10 +71,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     id: 'compliance-certifications',
     category: 'Security & Privacy',
-    question: 'Are NAIR.AI architectures aligned with SOC 2 Type II, HIPAA, and GDPR standards?',
+    question: 'Are NAIR.AI architectures aligned with ISO 27001, HIPAA, and GDPR standards?',
     answer:
-      'Yes. Our reference architectures are specifically engineered to conform with SOC 2 Type II, ISO 27001, HIPAA BAA provisions, and GDPR Article 28 data processor requirements. We mandate end-to-end TLS 1.3 encryption in transit, AES-256 at rest, strict zero-trust credential isolation, and comprehensive cryptographic audit trails.',
-    badge: 'SOC2 & HIPAA Ready',
+      'Yes. Our reference architectures are specifically engineered to conform with ISO 27001, HIPAA BAA provisions, and GDPR Article 28 data processor requirements. We mandate end-to-end TLS 1.3 encryption in transit, AES-256 at rest, strict zero-trust credential isolation, and comprehensive cryptographic audit trails.',
+    badge: 'ISO 27001 & HIPAA Ready',
   },
   {
     id: 'air-gapped-deployment',

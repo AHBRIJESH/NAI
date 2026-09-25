@@ -55,11 +55,11 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       retention: '0.00 KB',
       image: '/images/telemetry_governance.jpg',
       imageCaption: 'AI Governance: Ethics, Policies, People, Compliance & Risk Management',
-      desc: 'In-memory ephemeral token processing with provably zero external retention, automated ethical boundaries, and SOC2 compliance.',
+      desc: 'In-memory ephemeral token processing with provably zero external retention, automated ethical boundaries, and ISO 27001 compliance.',
       logSample: [
         'guardrail :: scrubbing outbound prompts for PII & corporate credential leaks',
         'ephemeral-mem :: 0 bytes persisted to disk — volatile VPC memory wiped post-execution',
-        'compliance :: SOC2 Type II cryptographic HMAC trace verified and signed',
+        'compliance :: ISO 27001 cryptographic HMAC audit trace verified and signed',
       ],
     },
     agentic: {

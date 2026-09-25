@@ -66,7 +66,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       tagline: 'Deterministic Document Parser & Validator',
       desc: 'Pydantic-governed extraction converting complex PDFs, invoices, medical records, and supply manifests into verified database records.',
       latency: '99.8% Extraction Recall',
-      security: 'SOC 2 Type II / PII Masked',
+      security: 'ISO 27001 / PII Masked',
       architecture: 'Vision-LLM OCR + Deterministic Schema Compiler',
       color: '#DC2626',
       icon: FileText,
@@ -107,7 +107,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       capabilities: [
         'Mathematical fact-checking against source ground truth',
         'Granular user-level and document-level cryptographic ACLs',
-        'Continuous compliance mapping for HIPAA, SOC 2, and GDPR',
+        'Continuous compliance mapping for HIPAA, ISO 27001, and GDPR',
         'Automated red-teaming and prompt vulnerability scanning',
       ],
     },
