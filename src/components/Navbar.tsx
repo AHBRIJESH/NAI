@@ -163,7 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           : isScrolled
             ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-0'
             : currentPage === 'home'
-              ? 'bg-gradient-to-b from-[#030712]/85 via-[#030712]/40 to-transparent border-b border-transparent shadow-none py-1 sm:py-2'
+              ? 'bg-transparent border-none border-b-0 shadow-none py-1 sm:py-2'
               : 'bg-white/90 backdrop-blur-md border-b border-slate-200/70 shadow-xs py-0'
       }`}
     >
