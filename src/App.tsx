@@ -19,6 +19,8 @@ import { IndustriesPage } from './components/IndustriesPage';
 import { CaseStudiesPage } from './components/CaseStudiesPage';
 import { ContactPage } from './components/ContactPage';
 import { FAQPage } from './components/FAQPage';
+import { ArtificialIntelligencePage } from './components/ArtificialIntelligencePage';
+import { DataAndAIFoundationPage } from './components/DataAndAIFoundationPage';
 import { AssessmentModal } from './components/AssessmentModal';
 import { BookingModal } from './components/BookingModal';
 import { PagePreloader } from './components/PagePreloader';
@@ -34,6 +36,8 @@ export function App() {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#/about' || hash === '#about') return 'about';
+      if (hash === '#/services/artificial-intelligence' || hash === '#services/artificial-intelligence' || hash === '#/artificial-intelligence' || hash === '#artificial-intelligence') return 'artificial-intelligence';
+      if (hash === '#/services/data-and-ai' || hash === '#services/data-and-ai' || hash === '#/data-and-ai' || hash === '#data-and-ai') return 'data-and-ai';
       if (hash === '#/services' || hash === '#services') return 'services';
       if (hash.startsWith('#/industries') || hash.startsWith('#industries')) return 'industries';
       if (hash === '#/resources' || hash === '#resources') return 'resources';
@@ -61,6 +65,10 @@ export function App() {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#/about' || hash === '#about') {
         setCurrentPage('about');
+      } else if (hash === '#/services/artificial-intelligence' || hash === '#services/artificial-intelligence' || hash === '#/artificial-intelligence' || hash === '#artificial-intelligence') {
+        setCurrentPage('artificial-intelligence');
+      } else if (hash === '#/services/data-and-ai' || hash === '#services/data-and-ai' || hash === '#/data-and-ai' || hash === '#data-and-ai') {
+        setCurrentPage('data-and-ai');
       } else if (hash === '#/services' || hash === '#services') {
         setCurrentPage('services');
       } else if (hash.startsWith('#/industries') || hash.startsWith('#industries')) {
@@ -97,6 +105,10 @@ export function App() {
     if (page === 'industries' && sector) {
       setSelectedIndustrySector(sector);
       window.location.hash = `#/${page}/${sector}`;
+    } else if (page === 'artificial-intelligence') {
+      window.location.hash = `#/services/artificial-intelligence`;
+    } else if (page === 'data-and-ai') {
+      window.location.hash = `#/services/data-and-ai`;
     } else if (page === 'home') {
       window.history.pushState(null, '', window.location.pathname);
     } else {
@@ -209,6 +221,24 @@ export function App() {
 
         {currentPage === 'services' && (
           <ServicesPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'artificial-intelligence' && (
+          <ArtificialIntelligencePage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'data-and-ai' && (
+          <DataAndAIFoundationPage
             onBackToHome={() => handleNavigate('home')}
             onBookCall={handleOpenBooking}
             onOpenAssessment={handleOpenAssessment}

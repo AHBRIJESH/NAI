@@ -20,6 +20,7 @@ import {
   Layers,
   Terminal,
   Activity,
+  Database,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { PageRoute } from './Navbar';
@@ -38,6 +39,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   onBackToHome,
   onBookCall,
   onOpenAssessment,
+  onNavigate,
 }) => {
   const [activePlatformIndex, setActivePlatformIndex] = useState(0);
   const { ref: scrollContainerRef, scrollLeft, scrollRight } = useHorizontalWheelScroll<HTMLDivElement>();
@@ -379,6 +381,125 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* DEDICATED SUBPRACTICES: Deep Dive Subpages */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
+        <div className="text-left mb-8">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-2 block">
+            Specialized Practice Areas
+          </span>
+          <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[#0A192F]">
+            Dedicated Architectural Practices
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl font-normal mt-1">
+            Explore our specialized subpages detailing private autonomous systems and enterprise data ingestion foundations.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Card 1: Artificial Intelligence Subpage */}
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all text-left flex flex-col justify-between group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-full pointer-events-none transition-all group-hover:scale-110" />
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#1D4ED8] group-hover:scale-105 transition-transform">
+                  <Bot className="w-7 h-7" />
+                </div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
+                  Subpage
+                </span>
+              </div>
+
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-3 group-hover:text-[#1D4ED8] transition-colors">
+                Artificial Intelligence
+              </h3>
+
+              <p className="text-sm font-semibold text-[#1D4ED8] mb-3">
+                Enterprise AI Development &amp; Automation
+              </p>
+
+              <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                Build private AI applications, multi-agent workflows, and document processing systems. Connect documents, enterprise systems, and human approvals in your private environment.
+              </p>
+
+              <div className="space-y-2 mb-8">
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+                  <span>Multi-Agent Swarm Orchestration</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+                  <span>Private Open-Weight Inference (VPC)</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+                  <span>Intelligent Document Parsing &amp; Review</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate('artificial-intelligence')}
+              className="w-full py-3.5 px-6 rounded-2xl bg-[#0A192F] hover:bg-[#1D4ED8] text-white font-mono text-xs uppercase tracking-wider font-extrabold transition-all shadow-md flex items-center justify-between cursor-pointer group"
+            >
+              <span>Explore AI Subpage</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
+          {/* Card 2: Data & AI Foundation Subpage */}
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all text-left flex flex-col justify-between group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-bl-full pointer-events-none transition-all group-hover:scale-110" />
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0284C7] group-hover:scale-105 transition-transform">
+                  <Database className="w-7 h-7" />
+                </div>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-3 py-1 rounded-full border border-sky-200/60">
+                  Subpage
+                </span>
+              </div>
+
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-3 group-hover:text-[#0284C7] transition-colors">
+                Data &amp; AI Foundation
+              </h3>
+
+              <p className="text-sm font-semibold text-[#0284C7] mb-3">
+                Enterprise Data &amp; AI Foundations
+              </p>
+
+              <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                Prepare enterprise information for private AI. Connect operational systems, structure business documents, and define controlled, least-privilege access for downstream agent workflows.
+              </p>
+
+              <div className="space-y-2 mb-8">
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#0284C7]" />
+                  <span>Data Readiness &amp; Dependency Mapping</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#0284C7]" />
+                  <span>Deterministic Schema Validation Gates</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-[#0284C7]" />
+                  <span>Knowledge Retrieval &amp; Granular ACLs</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onNavigate('data-and-ai')}
+              className="w-full py-3.5 px-6 rounded-2xl bg-[#0A192F] hover:bg-[#0284C7] text-white font-mono text-xs uppercase tracking-wider font-extrabold transition-all shadow-md flex items-center justify-between cursor-pointer group"
+            >
+              <span>Explore Data &amp; AI Subpage</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
       </section>

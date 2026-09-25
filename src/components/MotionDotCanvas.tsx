@@ -64,11 +64,8 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
     };
 
     window.addEventListener('resize', handleResize);
-    const parent = canvas.parentElement;
-    if (parent) {
-      parent.addEventListener('mousemove', handleMouseMove);
-      parent.addEventListener('mouseleave', handleMouseLeave);
-    }
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseleave', handleMouseLeave);
 
     // Initialize dots
     const dots: Dot[] = [];
@@ -154,10 +151,8 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      if (parent) {
-        parent.removeEventListener('mousemove', handleMouseMove);
-        parent.removeEventListener('mouseleave', handleMouseLeave);
-      }
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [dotColor, lineColor, dotCount, deflectionRadius]);
 

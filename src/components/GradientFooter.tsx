@@ -47,6 +47,8 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
   const navLinks: { name: string; page?: PageRoute; action?: string }[] = [
     { name: 'About', page: 'about' },
     { name: 'Services', page: 'services' },
+    { name: 'Artificial Intelligence', page: 'artificial-intelligence' },
+    { name: 'Data & AI', page: 'data-and-ai' },
     { name: 'Industries', page: 'industries' },
     { name: 'Resources', page: 'resources' },
     { name: 'Case Studies', page: 'case-studies' },

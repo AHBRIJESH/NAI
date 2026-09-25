@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export type PageRoute = 'home' | 'about' | 'services' | 'industries' | 'resources' | 'case-studies' | 'faq' | 'contact';
+export type PageRoute = 'home' | 'about' | 'services' | 'industries' | 'resources' | 'case-studies' | 'faq' | 'contact' | 'artificial-intelligence' | 'data-and-ai';
 export type IndustrySector = 'healthcare' | 'finance' | 'legal';
 
 export interface IndustrySubPage {
@@ -30,11 +30,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAssessment,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
 
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+
+  const servicesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -55,14 +60,32 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   // Exact Requested Navbar Setup: About > Services > Industries > Resources > Case Studies > Contact Us
-  const navLinks: { name: string; page: PageRoute; dropdownType?: 'industries' | 'resources' }[] = [
+  const navLinks: { name: string; page: PageRoute; dropdownType?: 'services' | 'industries' | 'resources' }[] = [
     { name: 'About', page: 'about' },
-    { name: 'Services', page: 'services' },
+    { name: 'Services', page: 'services', dropdownType: 'services' },
     { name: 'Industries', page: 'industries', dropdownType: 'industries' },
     { name: 'Resources', page: 'resources', dropdownType: 'resources' },
     { name: 'Case Studies', page: 'case-studies' },
     { name: 'Contact Us', page: 'contact' },
   ];
+
+  // Mouse hover handlers for Services dropdown
+  const handleServicesMouseEnter = () => {
+    if (servicesTimeoutRef.current) {
+      clearTimeout(servicesTimeoutRef.current);
+      servicesTimeoutRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    if (servicesTimeoutRef.current) {
+      clearTimeout(servicesTimeoutRef.current);
+    }
+    servicesTimeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 180);
+  };
 
   // Mouse hover handlers for Industries dropdown
   const handleMouseEnter = () => {
@@ -104,12 +127,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        setServicesOpen(false);
         setIndustriesOpen(false);
         setResourcesOpen(false);
         setMobileMenuOpen(false);
       }
     };
     const handleClickOutside = (e: MouseEvent) => {
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIndustriesOpen(false);
       }
@@ -122,6 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('mousedown', handleClickOutside);
+      if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
       if (resourcesTimeoutRef.current) clearTimeout(resourcesTimeoutRef.current);
     };
@@ -129,6 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handleLinkClick = (page: PageRoute) => {
     setMobileMenuOpen(false);
+    setServicesOpen(false);
     setIndustriesOpen(false);
     setResourcesOpen(false);
     onNavigate(page);
@@ -202,8 +231,112 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navLinks.map((link) => {
             const isActive =
               currentPage === link.page ||
+              (link.page === 'services' && (currentPage === 'services' || currentPage === 'artificial-intelligence' || currentPage === 'data-and-ai')) ||
               (link.page === 'resources' && (currentPage === 'resources' || currentPage === 'faq')) ||
               (link.page === 'contact' && currentPage === 'contact');
+
+            // Services Dropdown
+            if (link.dropdownType === 'services') {
+              return (
+                <div
+                  key={link.name}
+                  ref={servicesDropdownRef}
+                  className="relative py-2"
+                  onMouseEnter={handleServicesMouseEnter}
+                  onMouseLeave={handleServicesMouseLeave}
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleLinkClick('services')}
+                    className={`inline-flex items-center gap-1.5 text-sm transition-all duration-200 cursor-pointer py-1 relative group ${getNavLinkClasses(
+                      isActive,
+                      servicesOpen
+                    )}`}
+                    aria-expanded={servicesOpen}
+                    aria-haspopup="true"
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
+                        servicesOpen
+                          ? isHeroTop
+                            ? 'rotate-180 text-[#38BDF8]'
+                            : 'rotate-180 text-[#1D4ED8]'
+                          : isHeroTop
+                            ? 'text-slate-300 group-hover:text-white'
+                            : 'text-slate-400 group-hover:text-[#1D4ED8]'
+                      }`}
+                    />
+                    {isActive && (
+                      <span
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
+                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                        }`}
+                      />
+                    )}
+                  </button>
+
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                        transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 pointer-events-auto"
+                      >
+                        <div className="w-64 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl p-1.5 space-y-0.5 text-left">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setServicesOpen(false);
+                              handleLinkClick('services');
+                            }}
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                          >
+                            <div>
+                              <span className="block font-bold">All Services Overview</span>
+                              <span className="block text-[11px] text-slate-400 font-normal">Platform OS & Capabilities</span>
+                            </div>
+                            <span className="font-mono text-[10px] text-slate-400 font-bold">Overview</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setServicesOpen(false);
+                              handleLinkClick('artificial-intelligence');
+                            }}
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                          >
+                            <div>
+                              <span className="block font-bold">Artificial Intelligence</span>
+                              <span className="block text-[11px] text-slate-400 font-normal">Development & Automation</span>
+                            </div>
+                            <span className="font-mono text-[10px] text-[#1D4ED8] font-bold">Subpage</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setServicesOpen(false);
+                              handleLinkClick('data-and-ai');
+                            }}
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#0284C7] hover:bg-sky-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                          >
+                            <div>
+                              <span className="block font-bold">Data & AI Foundation</span>
+                              <span className="block text-[11px] text-slate-400 font-normal">Context & Retrieval Infra</span>
+                            </div>
+                            <span className="font-mono text-[10px] text-[#0284C7] font-bold">Subpage</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
 
             // Industries Dropdown
             if (link.dropdownType === 'industries') {
@@ -434,8 +567,64 @@ export const Navbar: React.FC<NavbarProps> = ({
           {navLinks.map((link) => {
             const isActive =
               currentPage === link.page ||
+              (link.page === 'services' && (currentPage === 'services' || currentPage === 'artificial-intelligence' || currentPage === 'data-and-ai')) ||
               (link.page === 'resources' && (currentPage === 'resources' || currentPage === 'faq')) ||
               (link.page === 'contact' && currentPage === 'contact');
+
+            // Services Accordion on Mobile
+            if (link.dropdownType === 'services') {
+              return (
+                <div key={link.name} className="space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className={`w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-base font-semibold cursor-pointer transition-colors ${
+                      isActive
+                        ? 'bg-blue-50 text-[#1D4ED8] font-bold'
+                        : 'text-slate-800 hover:text-[#1D4ED8]'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${
+                        mobileServicesOpen ? 'rotate-180 text-[#1D4ED8]' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {mobileServicesOpen && (
+                    <div className="pl-4 pr-1 py-1 space-y-1">
+                      <button
+                        type="button"
+                        onClick={() => handleLinkClick('services')}
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                      >
+                        <span>All Services Overview</span>
+                        <span className="font-mono text-xs text-slate-400">Overview</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleLinkClick('artificial-intelligence')}
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                      >
+                        <span>Artificial Intelligence</span>
+                        <span className="font-mono text-xs text-[#1D4ED8]">Subpage</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleLinkClick('data-and-ai')}
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#0284C7] hover:bg-sky-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                      >
+                        <span>Data &amp; AI Foundation</span>
+                        <span className="font-mono text-xs text-[#0284C7]">Subpage</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
             // Industries Accordion on Mobile
             if (link.dropdownType === 'industries') {
