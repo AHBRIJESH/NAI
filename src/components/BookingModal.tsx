@@ -498,7 +498,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               onClick={handleClose}
               className="px-8 py-3 bg-[#0A192F] hover:bg-[#1D4ED8] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full shadow-md transition-colors cursor-pointer"
             >
-              Done &amp; Return to Overview
+              Done &amp; Return to Site
             </button>
           </div>
         )}

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ArrowRight, RefreshCw, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { FluidOrb } from './FluidOrb';
 
 interface AssessmentModalProps {
   isOpen: boolean;
@@ -21,9 +20,9 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 'data',
-    category: '1. DATA READINESS & INFRASTRUCTURE',
+    category: 'DATA READINESS & INFRASTRUCTURE',
     title: 'Where does your organizational data currently reside?',
-    subtitle: 'High-performing AI solutions require structured or accessible domain data.',
+    subtitle: 'High-performing AI solutions require accessible domain data.',
     options: [
       {
         label: 'Dispersed across PDFs, emails & Google Sheets',
@@ -49,7 +48,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'bottleneck',
-    category: '2. OPERATIONAL BOTTLENECKS',
+    category: 'OPERATIONAL BOTTLENECKS',
     title: 'What is your primary operational efficiency bottleneck?',
     subtitle: 'Identifying high-friction repetitive workflows delivers immediate ROI.',
     options: [
@@ -77,7 +76,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'governance',
-    category: '3. GOVERNANCE & PRIVACY COMPLIANCE',
+    category: 'GOVERNANCE & PRIVACY COMPLIANCE',
     title: 'What are your enterprise data privacy and security requirements?',
     subtitle: 'Zero data leakage is the foundational prerequisite of practical AI.',
     options: [
@@ -105,7 +104,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'timeline',
-    category: '4. IMPLEMENTATION HORIZON',
+    category: 'IMPLEMENTATION HORIZON',
     title: 'What is your target deployment timeline?',
     subtitle: 'We prioritize 3-to-4 week quick wins to prove ROI rapidly.',
     options: [
@@ -190,8 +189,8 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
       setIsCompleted(true);
       try {
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 70,
+          spread: 60,
           origin: { y: 0.6 },
           colors: ['#1D4ED8', '#DC2626', '#0284C7', '#0A192F', '#38BDF8'],
         });
@@ -209,7 +208,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
   const getTier = (score: number) => {
     if (score >= 80) {
       return {
-        label: 'High Production Readiness — Immediate Pilot Deployable',
+        label: 'High Production Readiness',
         color: 'text-white bg-[#1D4ED8] px-3 py-1 rounded-full border border-blue-600',
         recommendation:
           'Your infrastructure and clarity place you in the top 15% of enterprise readiness. We recommend deploying an autonomous agent workflow directly to production in 3 to 4 weeks.',
@@ -217,14 +216,14 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
     }
     if (score >= 60) {
       return {
-        label: 'Moderate Readiness — Targeted Architectural Structuring',
+        label: 'Moderate Readiness — Structuring Phase',
         color: 'text-white bg-[#0A192F] px-3 py-1 rounded-full border border-blue-900',
         recommendation:
           'Your operational friction points are primed for AI, but data pipeline structuring or compliance guardrails should be installed first to guarantee reliability.',
       };
     }
     return {
-      label: 'Foundational Phase — Strategy & Governance Workshop',
+      label: 'Foundational Phase — Strategy Workshop',
       color: 'text-[#1D4ED8] bg-blue-50 px-3 py-1 rounded-full border border-blue-200',
       recommendation:
         'You will benefit most from our AI Readiness & Opportunity Audit, identifying high-yield quick wins while standardizing governance.',
@@ -259,172 +258,176 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
-      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-[#0A192F]/85 backdrop-blur-xl animate-in fade-in duration-200"
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#0A192F]/80 backdrop-blur-md animate-in fade-in duration-200"
     >
       <div
         ref={modalScrollRef}
         data-lenis-prevent="true"
         onWheel={handleWheelScroll}
-        className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-8 sm:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto overscroll-contain text-[#0A192F]"
+        className="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl max-w-xl w-full p-5 sm:p-7 md:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto overscroll-contain text-[#0A192F] transition-all"
       >
-        {/* Close Button */}
+        {/* Minimal Round Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-[#0A192F] hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-[#0A192F] flex items-center justify-center transition-colors cursor-pointer z-10"
           aria-label="Close assessment"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {!isCompleted ? (
           <div>
-            {/* Header with Step Tracker */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-500 mb-2.5 font-bold">
-                <span className="uppercase tracking-wider">{currentQ.category}</span>
-                <span>
-                  STEP {currentStep + 1} OF {QUESTIONS.length}
-                </span>
+            {/* Minimal Segmented Progress Bar & Category Header */}
+            <div className="mb-4 sm:mb-5 pr-8">
+              <div className="flex items-center justify-between text-[11px] font-mono font-bold text-slate-400 mb-2 uppercase tracking-wider">
+                <span className="text-[#1D4ED8]">{currentQ.category}</span>
+                <span>Question {currentStep + 1} of {QUESTIONS.length}</span>
               </div>
-              <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#1D4ED8] transition-all duration-300 rounded-full"
-                  style={{ width: `${((currentStep + 1) / QUESTIONS.length) * 100}%` }}
-                />
+              <div className="grid grid-cols-4 gap-1.5 h-1.5">
+                {QUESTIONS.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`rounded-full transition-all duration-300 ${
+                      idx <= currentStep ? 'bg-[#1D4ED8]' : 'bg-slate-100'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
 
             {/* Question Details */}
-            <div className="mb-8">
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F] mb-2 leading-tight">
+            <div className="mb-4 sm:mb-5">
+              <h3 className="font-display font-extrabold text-lg sm:text-xl md:text-2xl text-[#0A192F] mb-1.5 leading-snug">
                 {currentQ.title}
               </h3>
-              <p className="text-base text-slate-600 font-normal">
+              <p className="text-xs sm:text-sm text-slate-500 font-normal">
                 {currentQ.subtitle}
               </p>
             </div>
 
-            {/* Answer Options */}
-            <div className="space-y-3.5">
+            {/* Answer Options - Streamlined & Minimal */}
+            <div className="space-y-2.5 sm:space-y-3">
               {currentQ.options.map((option, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleSelectOption(option)}
-                  className="w-full text-left p-5 rounded-2xl border border-slate-200 hover:border-[#1D4ED8] bg-white hover:bg-blue-50/50 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex items-start justify-between gap-4 group cursor-pointer"
+                  className="w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#1D4ED8] bg-white hover:bg-blue-50/40 shadow-xs hover:shadow-sm transition-all duration-150 flex items-start gap-3 group cursor-pointer"
                 >
-                  <div>
-                    <span className="font-bold text-[#0A192F] text-base block group-hover:text-[#1D4ED8]">
+                  <div className="w-4 h-4 rounded-full border-2 border-slate-300 group-hover:border-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5 transition-colors">
+                    <div className="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#1D4ED8] transition-colors" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="font-bold text-[#0A192F] text-xs sm:text-sm block group-hover:text-[#1D4ED8] leading-snug">
                       {option.label}
                     </span>
-                    <span className="text-xs text-slate-600 mt-1 block font-normal">
+                    <span className="text-[11px] sm:text-xs text-slate-500 mt-0.5 block font-normal leading-relaxed">
                       {option.detail}
                     </span>
-                  </div>
-                  <div className="w-6 h-6 rounded-full border border-slate-200 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
-                    <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </button>
               ))}
             </div>
 
-            {/* Previous Step Navigator */}
+            {/* Minimal Previous Step Link */}
             {currentStep > 0 && (
-              <div className="mt-8 flex justify-start">
+              <div className="mt-4 sm:mt-5 flex justify-start">
                 <button
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="text-xs font-mono text-slate-500 hover:text-[#0A192F] font-bold cursor-pointer underline"
+                  className="text-xs font-mono text-slate-500 hover:text-[#1D4ED8] font-bold cursor-pointer inline-flex items-center gap-1"
                 >
-                  ← Previous Question
+                  <span>← Previous Question</span>
                 </button>
               </div>
             )}
           </div>
         ) : (
-          /* Assessment Completed Screen */
-          <div className="text-center py-4">
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl scale-130" />
-                <FluidOrb size={96} color="#1D4ED8" className="shadow-xl ring-4 ring-[#DC2626]/20" />
+          /* Minimal Diagnostic Results Screen */
+          <div className="text-center py-2 sm:py-3 space-y-5">
+            {/* Score Ring / Pill */}
+            <div className="inline-flex flex-col items-center justify-center w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-blue-50/80 border-2 border-blue-200 shadow-inner mx-auto">
+              <span className="font-display font-black text-3xl sm:text-4xl text-[#1D4ED8] leading-none">
+                {totalScore}%
+              </span>
+              <span className="font-mono text-[9px] uppercase tracking-wider text-slate-500 font-bold mt-1">
+                Readiness
+              </span>
+            </div>
+
+            <div>
+              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-[#1D4ED8] font-bold block mb-1">
+                DIAGNOSTIC REPORT GENERATED
+              </span>
+              <h3 className="font-display font-extrabold text-xl sm:text-2xl text-[#0A192F]">
+                Assessment Complete
+              </h3>
+              <div className="mt-2 inline-block">
+                <span className={getTier(totalScore).color + ' text-xs font-bold'}>{getTier(totalScore).label}</span>
               </div>
             </div>
 
-            <div className="font-mono text-xs uppercase tracking-widest text-[#1D4ED8] font-bold mb-2">
-              DIAGNOSTIC REPORT GENERATED
-            </div>
-
-            <h3 className="font-display font-extrabold text-3xl sm:text-4xl text-[#0A192F] mb-3">
-              AI Readiness Score: <span className="text-[#1D4ED8]">{totalScore}%</span>
-            </h3>
-
-            <div className="inline-block font-mono text-xs uppercase tracking-wider font-bold mb-8">
-              <span className={getTier(totalScore).color}>{getTier(totalScore).label}</span>
-            </div>
-
-            {/* Score Summary Metrics */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left mb-8">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
-                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
-                  EFFICIENCY GAIN
+            {/* Compact Metric Breakdown */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 text-left">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-[9px] font-mono text-slate-400 uppercase font-bold block">
+                  EFFICIENCY
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#0A192F]">
-                  35% to 55%
+                <span className="font-display font-extrabold text-sm sm:text-base text-[#0A192F] block mt-0.5">
+                  35%–55%
                 </span>
-                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
+                <span className="text-[10px] text-slate-500 block truncate">
                   Overhead reduction
                 </span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
-                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
-                  RECOMMENDED ARCHITECTURE
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-[9px] font-mono text-slate-400 uppercase font-bold block">
+                  ARCHITECTURE
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#0A192F]">
-                  Agentic Automation
+                <span className="font-display font-extrabold text-sm sm:text-base text-[#0A192F] block mt-0.5 truncate">
+                  Agentic RAG
                 </span>
-                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
-                  Private RAG + Tool-use
+                <span className="text-[10px] text-slate-500 block truncate">
+                  Private Tool-Use
                 </span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
-                <span className="text-[10px] font-mono text-slate-500 uppercase block mb-1 font-bold">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span className="text-[9px] font-mono text-slate-400 uppercase font-bold block">
                   TIME TO PILOT
                 </span>
-                <span className="font-display font-extrabold text-lg text-[#0A192F]">
-                  3 to 4 Weeks
+                <span className="font-display font-extrabold text-sm sm:text-base text-[#0A192F] block mt-0.5">
+                  3–4 Wks
                 </span>
-                <span className="text-xs text-slate-600 block mt-0.5 font-medium">
-                  To live production test
+                <span className="text-[10px] text-slate-500 block truncate">
+                  Live production test
                 </span>
               </div>
             </div>
 
-            {/* Diagnostic Takeaways */}
-            <div className="p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-left mb-8 shadow-xs">
-              <div className="flex items-center gap-2 text-[#0A192F] font-extrabold text-sm mb-2">
-                <ShieldCheck className="w-4 h-4 text-[#1D4ED8]" />
-                <span>Executive Strategy Takeaway:</span>
+            {/* Strategic Recommendation */}
+            <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200/80 text-left text-xs text-slate-700 leading-relaxed">
+              <div className="flex items-center gap-1.5 font-bold text-[#0A192F] mb-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                <span>Executive Recommendation:</span>
               </div>
-              <p className="text-sm text-slate-700 leading-relaxed font-normal">
-                Based on your bottleneck in <strong className="font-bold text-[#0A192F]">{answers.bottleneck?.label.toLowerCase()}</strong> and your compliance posture,
-                NAIR.AI can immediately deploy zero-data-retention agentic workflows that preserve your IP while slashing cycle time.
+              <p className="text-[11px] sm:text-xs text-slate-600">
+                Based on your bottleneck in <strong className="text-[#0A192F]">{answers.bottleneck?.label.toLowerCase()}</strong> and your compliance posture, NAIR.AI can deploy a sovereign zero-retention agentic workflow pilot within 3 to 4 weeks.
               </p>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
+            {/* Actions: Primary Red CTA, Secondary Royal Blue CTA */}
+            <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
               <button
                 onClick={handleProceedToCall}
-                className="px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/25 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-102 transition-all"
+                className="flex-1 py-3.5 px-5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-102 transition-all"
               >
-                <span>Book Strategy Call With These Results</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Book Call With Results</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
               <button
                 onClick={handleReset}
-                className="px-5 py-4 border border-slate-200 text-[#0A192F] font-mono text-xs uppercase tracking-wider font-bold rounded-full hover:bg-slate-100 flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="py-3.5 px-6 bg-[#1D4ED8] hover:bg-[#1e40af] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full border border-[#1D4ED8] shadow-md shadow-blue-600/20 hover:scale-102 flex items-center justify-center gap-2 cursor-pointer transition-all"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Retake</span>

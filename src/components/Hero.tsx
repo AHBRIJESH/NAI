@@ -107,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             <button
               type="button"
               onClick={() => handleScrollToSection('capabilities')}
-              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-bold text-white hover:text-white border border-white/25 hover:border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="px-6 py-3.5 rounded-full font-mono text-xs sm:text-sm tracking-wider font-extrabold text-white hover:text-white border border-blue-400/40 bg-[#1D4ED8] hover:bg-[#1e40af] transition-all duration-200 shadow-xl shadow-blue-600/30 hover:scale-102 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>Explore Sovereign Engine</span>

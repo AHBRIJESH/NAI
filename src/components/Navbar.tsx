@@ -292,13 +292,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               setServicesOpen(false);
                               handleLinkClick('services');
                             }}
-                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer block"
                           >
-                            <div>
-                              <span className="block font-bold">All Services Overview</span>
-                              <span className="block text-[11px] text-slate-400 font-normal">Platform OS & Capabilities</span>
-                            </div>
-                            <span className="font-mono text-[10px] text-slate-400 font-bold">Overview</span>
+                            <span className="block font-bold">All Services</span>
+                            <span className="block text-[11px] text-slate-400 font-normal">Platform OS &amp; Capabilities</span>
                           </button>
 
                           <button
@@ -307,13 +304,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               setServicesOpen(false);
                               handleLinkClick('artificial-intelligence');
                             }}
-                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#1D4ED8] hover:bg-blue-50/75 transition-all duration-150 cursor-pointer block"
                           >
-                            <div>
-                              <span className="block font-bold">Artificial Intelligence</span>
-                              <span className="block text-[11px] text-slate-400 font-normal">Development & Automation</span>
-                            </div>
-                            <span className="font-mono text-[10px] text-[#1D4ED8] font-bold">Subpage</span>
+                            <span className="block font-bold">Artificial Intelligence</span>
+                            <span className="block text-[11px] text-slate-400 font-normal">Development &amp; Automation</span>
                           </button>
 
                           <button
@@ -322,13 +316,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               setServicesOpen(false);
                               handleLinkClick('data-and-ai');
                             }}
-                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#0284C7] hover:bg-sky-50/75 transition-all duration-150 cursor-pointer flex items-center justify-between"
+                            className="w-full px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-slate-700 hover:text-[#0284C7] hover:bg-sky-50/75 transition-all duration-150 cursor-pointer block"
                           >
-                            <div>
-                              <span className="block font-bold">Data & AI Foundation</span>
-                              <span className="block text-[11px] text-slate-400 font-normal">Context & Retrieval Infra</span>
-                            </div>
-                            <span className="font-mono text-[10px] text-[#0284C7] font-bold">Subpage</span>
+                            <span className="block font-bold">Data &amp; AI Foundation</span>
+                            <span className="block text-[11px] text-slate-400 font-normal">Context &amp; Retrieval Infra</span>
                           </button>
                         </div>
                       </motion.div>
@@ -597,28 +588,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <button
                         type="button"
                         onClick={() => handleLinkClick('services')}
-                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer block"
                       >
-                        <span>All Services Overview</span>
-                        <span className="font-mono text-xs text-slate-400">Overview</span>
+                        All Services
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleLinkClick('artificial-intelligence')}
-                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#1D4ED8] hover:bg-blue-50/60 transition-colors cursor-pointer block"
                       >
-                        <span>Artificial Intelligence</span>
-                        <span className="font-mono text-xs text-[#1D4ED8]">Subpage</span>
+                        Artificial Intelligence
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleLinkClick('data-and-ai')}
-                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#0284C7] hover:bg-sky-50/60 transition-colors cursor-pointer flex items-center justify-between"
+                        className="w-full text-left py-2 px-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-[#0284C7] hover:bg-sky-50/60 transition-colors cursor-pointer block"
                       >
-                        <span>Data &amp; AI Foundation</span>
-                        <span className="font-mono text-xs text-[#0284C7]">Subpage</span>
+                        Data &amp; AI Foundation
                       </button>
                     </div>
                   )}

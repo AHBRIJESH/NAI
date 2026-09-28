@@ -200,7 +200,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           <div className="w-7 h-7 rounded-full bg-blue-50 group-hover:bg-[#1D4ED8] text-[#1D4ED8] group-hover:text-white border border-blue-200 flex items-center justify-center transition-all">
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           </div>
-          <span>Back to Home Overview</span>
+          <span>Back to Home</span>
         </button>
       </div>
 
@@ -237,7 +237,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>
@@ -395,7 +395,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             Dedicated Architectural Practices
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl font-normal mt-1">
-            Explore our specialized subpages detailing private autonomous systems and enterprise data ingestion foundations.
+            Explore our specialized practices detailing private autonomous systems and enterprise data ingestion foundations.
           </p>
         </div>
 
@@ -409,7 +409,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   <Bot className="w-7 h-7" />
                 </div>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
-                  Subpage
+                  Specialized Practice
                 </span>
               </div>
 
@@ -446,7 +446,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               onClick={() => onNavigate('artificial-intelligence')}
               className="w-full py-3.5 px-6 rounded-2xl bg-[#0A192F] hover:bg-[#1D4ED8] text-white font-mono text-xs uppercase tracking-wider font-extrabold transition-all shadow-md flex items-center justify-between cursor-pointer group"
             >
-              <span>Explore AI Subpage</span>
+              <span>Explore AI Practice</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -460,7 +460,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   <Database className="w-7 h-7" />
                 </div>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-3 py-1 rounded-full border border-sky-200/60">
-                  Subpage
+                  Specialized Practice
                 </span>
               </div>
 
@@ -497,7 +497,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               onClick={() => onNavigate('data-and-ai')}
               className="w-full py-3.5 px-6 rounded-2xl bg-[#0A192F] hover:bg-[#0284C7] text-white font-mono text-xs uppercase tracking-wider font-extrabold transition-all shadow-md flex items-center justify-between cursor-pointer group"
             >
-              <span>Explore Data &amp; AI Subpage</span>
+              <span>Explore Data &amp; AI Practice</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -623,7 +623,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>

@@ -151,7 +151,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="w-7 h-7 rounded-full bg-blue-50 group-hover:bg-[#1D4ED8] text-[#1D4ED8] group-hover:text-white border border-blue-200 flex items-center justify-center transition-all">
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           </div>
-          <span>Back to Home Overview</span>
+          <span>Back to Home</span>
         </button>
       </div>
 

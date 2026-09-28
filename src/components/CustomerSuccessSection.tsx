@@ -71,7 +71,7 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
                 <div className="pt-2">
                     <button
                     onClick={() => onSelectCaseStudy?.('Global Logistics Architecture')}
-                    className="px-7 py-3 rounded-full bg-white hover:bg-slate-100 text-[#0284C7] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all shadow-md hover:scale-102 flex items-center gap-2 cursor-pointer"
+                    className="px-7 py-3 rounded-full bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-blue-400/40 font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all shadow-md hover:scale-102 flex items-center gap-2 cursor-pointer"
                   >
                     <span>Explore Architectural Blueprint</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />

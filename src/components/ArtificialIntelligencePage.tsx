@@ -351,10 +351,10 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
 
                 <a
                   href="#ai-services"
-                  className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer flex items-center gap-2"
+                  className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer flex items-center gap-2"
                 >
                   <span>Explore AI services</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-4 h-4 text-white" />
                 </a>
               </div>
             </motion.div>
@@ -810,7 +810,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>

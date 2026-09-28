@@ -389,7 +389,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({
           <div className="w-7 h-7 rounded-full bg-blue-50 group-hover:bg-[#1D4ED8] text-[#1D4ED8] group-hover:text-white border border-blue-200 flex items-center justify-center transition-all">
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           </div>
-          <span>Back to Home Overview</span>
+          <span>Back to Home</span>
         </button>
       </div>
 
@@ -639,7 +639,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({
 
               <button
                 onClick={onOpenAssessment}
-                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-[#0A192F] transition-all flex items-center justify-center gap-2 cursor-pointer text-center shadow-xs"
+                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full border border-[#1D4ED8] bg-[#1D4ED8] hover:bg-[#1e40af] text-white shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer text-center hover:scale-102"
               >
                 <span>Take Readiness Diagnostic</span>
               </button>
@@ -655,7 +655,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({
           className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider font-bold text-[#1D4ED8] hover:text-[#0A192F] transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Return to Homepage Overview</span>
+          <span>Return to Homepage</span>
         </button>
       </div>
 

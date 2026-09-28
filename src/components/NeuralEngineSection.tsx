@@ -269,7 +269,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   <button
                     type="button"
                     onClick={onBookCall}
-                    className="px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-colors flex items-center justify-center cursor-pointer shadow-xs"
+                    className="px-6 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 flex items-center justify-center cursor-pointer"
                   >
                     <span>Book an AI strategy call</span>
                   </button>

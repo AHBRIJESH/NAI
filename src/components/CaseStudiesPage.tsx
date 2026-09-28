@@ -182,7 +182,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
           <div className="w-7 h-7 rounded-full bg-blue-50 group-hover:bg-[#1D4ED8] text-[#1D4ED8] group-hover:text-white border border-blue-200 flex items-center justify-center transition-all">
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           </div>
-          <span>Back to Home Overview</span>
+          <span>Back to Home</span>
         </button>
       </div>
 
@@ -219,7 +219,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white hover:bg-slate-100 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>
@@ -533,7 +533,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold rounded-full transition-all shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
               >
                 <span>Take Feasibility Diagnostic</span>
               </button>

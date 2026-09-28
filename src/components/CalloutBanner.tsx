@@ -56,11 +56,11 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
 
             <a
               href="#calculator"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-xs font-mono uppercase tracking-wider text-slate-700 hover:text-[#1D4ED8] font-bold px-6 py-4 bg-white hover:bg-slate-50 border border-slate-300 rounded-full shadow-xs hover:scale-102 transition-all duration-200 group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-xs font-mono uppercase tracking-wider text-white font-extrabold px-7 py-4 bg-[#1D4ED8] hover:bg-[#1e40af] border border-[#1D4ED8] rounded-full shadow-lg shadow-blue-600/25 hover:scale-102 transition-all duration-200 group cursor-pointer"
             >
-              <Calculator className="w-4 h-4 text-[#1D4ED8]" />
+              <Calculator className="w-4 h-4 text-white" />
               <span>Quantify Reclaimable Hours</span>
-              <ArrowUp className="w-3.5 h-3.5 stroke-[2.5] text-slate-400 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUp className="w-3.5 h-3.5 stroke-[2.5] text-white/80 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
         </ScrollReveal>
