@@ -57,123 +57,140 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
 }) => {
   const shouldReduceMotion = useReducedMotion()
 
-  const wordsLayout = useMemo(() => {
+  const sentencesLayout = useMemo(() => {
     const rng = createSeededRandom(seed)
-    const words = text.split(' ')
+    // Split into sentences / lines by newline or period
+    const rawSentences = text.includes('\n')
+      ? text.split('\n')
+      : text.split(/(?<=\.)\s+/)
     let globalCharIndex = 0
 
-    return words.map((word) => {
-      const chars = Array.from(word).map((char) => {
-        const charIdx = globalCharIndex++
-        const font = fonts[Math.floor(rng() * fonts.length)]
-        const colorPair = palette[Math.floor(rng() * palette.length)]
-        const rot = Math.round((rng() * 2 - 1) * rotation * intensity * 10) / 10
-        const offsetY = Math.round((rng() * 2 - 1) * 3 * intensity)
-        const offsetX = Math.round((rng() * 2 - 1) * 2 * intensity)
-        const paddingX = Math.round(9 + rng() * 4 * intensity)
-        const paddingY = Math.round(7 + rng() * 3 * intensity)
+    return rawSentences.map((sentence) => {
+      const words = sentence.trim().split(/\s+/).filter(Boolean)
+      return words.map((word) => {
+        const chars = Array.from(word).map((char) => {
+          const charIdx = globalCharIndex++
+          const font = fonts[Math.floor(rng() * fonts.length)]
+          const colorPair = palette[Math.floor(rng() * palette.length)]
+          const rot = Math.round((rng() * 2 - 1) * rotation * intensity * 10) / 10
+          const offsetY = Math.round((rng() * 2 - 1) * 3 * intensity)
+          const offsetX = Math.round((rng() * 2 - 1) * 2 * intensity)
+          const paddingX = Math.round(8 + rng() * 3 * intensity)
+          const paddingY = Math.round(6 + rng() * 3 * intensity)
 
-        const flyX = Math.round((rng() * 2 - 1) * 35)
-        const flyY = Math.round((rng() * 2 - 1) * 35 + 10)
+          const flyX = Math.round((rng() * 2 - 1) * 35)
+          const flyY = Math.round((rng() * 2 - 1) * 35 + 10)
 
-        return {
-          char,
-          charIdx,
-          font,
-          colorPair,
-          rot,
-          offsetY,
-          offsetX,
-          paddingX,
-          paddingY,
-          flyX,
-          flyY,
-        }
+          return {
+            char,
+            charIdx,
+            font,
+            colorPair,
+            rot,
+            offsetY,
+            offsetX,
+            paddingX,
+            paddingY,
+            flyX,
+            flyY,
+          }
+        })
+        return chars
       })
-      return chars
     })
   }, [text, seed, intensity, fonts, palette, rotation])
 
   return (
     <div
       data-slot="ransom-note"
-      className={cn('relative inline-flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-7 gap-y-4 sm:gap-y-6 select-none', className)}
+      className={cn('relative flex flex-col items-center justify-center gap-5 sm:gap-7 md:gap-8 select-none', className)}
       {...props}
     >
-      <span className="sr-only">{text}</span>
+      <span className="sr-only">{text.replace('\n', ' ')}</span>
 
-      <div className="inline-flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-7 md:gap-x-8 gap-y-4 sm:gap-y-5" aria-hidden="true">
-        {wordsLayout.map((wordChars, wIdx) => (
-          <span
-            key={wIdx}
-            className={cn('inline-flex items-center gap-1.5 sm:gap-2.5 md:gap-3 whitespace-nowrap', wordClassName)}
-          >
-            {wordChars.map((scrap) => {
-              const baseStyle: React.CSSProperties = {
-                fontFamily: scrap.font,
-                backgroundColor: scrap.colorPair.bg,
-                color: scrap.colorPair.text,
-                padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
-                margin: '2px 2px',
-                border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
-                boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
-                borderRadius: '6px',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                imageRendering: 'crisp-edges',
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
-              }
+      {sentencesLayout.map((wordsInSentence, sIdx) => (
+        <div
+          key={sIdx}
+          className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3.5 md:gap-x-4 gap-y-2 sm:gap-y-3"
+          aria-hidden="true"
+        >
+          {wordsInSentence.map((wordChars, wIdx) => (
+            <span
+              key={wIdx}
+              className={cn('inline-flex items-center gap-0.5 sm:gap-1 whitespace-nowrap', wordClassName)}
+            >
+              {wordChars.map((scrap) => {
+                const baseStyle: React.CSSProperties = {
+                  fontFamily: scrap.font,
+                  backgroundColor: scrap.colorPair.bg,
+                  color: scrap.colorPair.text,
+                  padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
+                  border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
+                  boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
+                  borderRadius: '6px',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  imageRendering: 'crisp-edges',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                }
 
-              if (shouldReduceMotion || animate === 'none') {
+                if (shouldReduceMotion || animate === 'none') {
+                  return (
+                    <span
+                      key={scrap.charIdx}
+                      style={{
+                        ...baseStyle,
+                        transform: `rotate(${scrap.rot}deg) translate(${scrap.offsetX}px, ${scrap.offsetY}px) translateZ(0)`,
+                      }}
+                      className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight"
+                    >
+                      {scrap.char}
+                    </span>
+                  )
+                }
+
                 return (
-                  <span
+                  <motion.span
                     key={scrap.charIdx}
-                    style={{
-                      ...baseStyle,
-                      transform: `rotate(${scrap.rot}deg) translate(${scrap.offsetX}px, ${scrap.offsetY}px) translateZ(0)`,
+                    style={baseStyle}
+                    initial={{
+                      opacity: 0,
+                      x: scrap.flyX,
+                      y: scrap.flyY,
+                      rotate: scrap.rot * 1.6,
+                      scale: 0.8,
                     }}
-                    className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight"
+                    whileInView={{
+                      opacity: 1,
+                      x: scrap.offsetX,
+                      y: scrap.offsetY,
+                      rotate: scrap.rot,
+                      scale: 1,
+                    }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.05 + (scrap.charIdx % 10) * 0.025,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    whileHover={{
+                      scale: 1.15,
+                      rotate: scrap.rot * 2,
+                      zIndex: 30,
+                      transition: { duration: 0.15 },
+                    }}
+                    className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight cursor-default select-none"
                   >
                     {scrap.char}
-                  </span>
+                  </motion.span>
                 )
-              }
-
-              return (
-                <motion.span
-                  key={scrap.charIdx}
-                  style={baseStyle}
-                  initial={{
-                    opacity: 0,
-                    x: scrap.flyX,
-                    y: scrap.flyY,
-                    rotate: scrap.rot * 1.6,
-                    scale: 0.8,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: scrap.offsetX,
-                    y: scrap.offsetY,
-                    rotate: scrap.rot,
-                    scale: 1,
-                  }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: scrap.charIdx * 0.018,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight will-change-transform transform-gpu"
-                >
-                  {scrap.char}
-                </motion.span>
-              )
-            })}
-          </span>
-        ))}
-      </div>
+              })}
+            </span>
+          ))}
+        </div>
+      ))}
     </div>
   )
 }

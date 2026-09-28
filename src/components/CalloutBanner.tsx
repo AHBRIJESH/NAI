@@ -27,7 +27,7 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
         <ScrollReveal delay={0.08} y={24} duration={0.6}>
           <div className="my-4 py-2 flex justify-center">
             <RansomNote
-              text="PUTTING PRACTICAL AI TO WORK FOR YOUR TEAM"
+              text={"PUTTING PRACTICAL AI\nTO WORK FOR YOUR TEAM"}
               intensity={0.3}
               animate="assemble"
               rotation={2.5}
