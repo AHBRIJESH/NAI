@@ -21,10 +21,10 @@ export const SubPageMotionBackground: React.FC = () => {
       />
 
       {/* Live Interactive Neural Dotted Motion Canvas with Enhanced Dot Density */}
-      <div className="absolute inset-0 opacity-80 pointer-events-none">
+      <div className="fixed inset-0 opacity-80 pointer-events-none z-0">
         <MotionDotCanvas
-          dotCount={130}
-          deflectionRadius={150}
+          dotCount={120}
+          deflectionRadius={125}
           dotColor="rgba(29, 78, 216, "
           lineColor="rgba(56, 189, 248, "
         />
