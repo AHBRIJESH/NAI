@@ -23,7 +23,7 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
   dotColor = 'rgba(29, 78, 216, ', // royal blue base
   lineColor = 'rgba(59, 130, 246, ',
   dotCount = 100,
-  deflectionRadius = 125,
+  deflectionRadius = 135,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -43,8 +43,8 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
     ctx.scale(dpr, dpr);
 
     const mouse = {
-      x: -2000,
-      y: -2000,
+      x: -3000,
+      y: -3000,
       isActive: false,
     };
 
@@ -74,8 +74,21 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
     };
 
     const handleMouseLeave = () => {
-      mouse.x = -2000;
-      mouse.y = -2000;
+      mouse.x = -3000;
+      mouse.y = -3000;
+      mouse.isActive = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+        mouse.isActive = true;
+      }
+    };
+
+    const handleTouchEnd = () => {
       mouse.isActive = false;
     };
 
@@ -83,8 +96,11 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
     window.addEventListener('scroll', updateRect, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('blur', handleMouseLeave);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
 
-    // Initialize dots with responsive density
+    // Initialize dots with balanced spatial density
     const dots: Dot[] = [];
     const surfaceDensity = Math.floor((width * height) / 8000) + 35;
     const count = Math.min(Math.max(dotCount, 80), Math.min(180, surfaceDensity));
@@ -109,60 +125,82 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
       for (let i = 0; i < dots.length; i++) {
         const d = dots[i];
 
-        // Natural gentle drift
+        // Apply velocities
         d.x += d.vx;
         d.y += d.vy;
 
-        // Wrap around boundaries
-        if (d.x < -15) d.x = width + 15;
-        if (d.x > width + 15) d.x = -15;
-        if (d.y < -15) d.y = height + 15;
-        if (d.y > height + 15) d.y = -15;
-
-        // Instant electrostatic discharge & glow on cursor proximity
+        // Decisive electrostatic repulsion physics
         let isDischarging = false;
-        let force = 0;
 
         if (mouse.isActive) {
-          const dx = d.x - mouse.x;
-          const dy = d.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          let dx = d.x - mouse.x;
+          let dy = d.y - mouse.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < deflectionRadius && dist > 0) {
+          // If directly on top of the cursor (dist < 1), randomize angle so it NEVER gets stuck
+          if (dist < 1) {
+            const randomAngle = Math.random() * Math.PI * 2;
+            dx = Math.cos(randomAngle);
+            dy = Math.sin(randomAngle);
+            dist = 1;
+          }
+
+          if (dist < deflectionRadius) {
             isDischarging = true;
-            force = (deflectionRadius - dist) / deflectionRadius;
+            const factor = (deflectionRadius - dist) / deflectionRadius;
             const angle = Math.atan2(dy, dx);
 
-            // Immediate electrostatic repulsion push away from cursor (zero delay)
-            const push = force * 6.5;
-            d.x += Math.cos(angle) * push;
-            d.y += Math.sin(angle) * push;
+            // Powerful repulsive push: guarantees dot instantly shoots away from cursor
+            const pushForce = Math.pow(factor, 1.2) * 16 + 4.5;
+            d.x += Math.cos(angle) * pushForce;
+            d.y += Math.sin(angle) * pushForce;
 
-            // Impart immediate velocity momentum
-            d.vx += Math.cos(angle) * force * 0.4;
-            d.vy += Math.sin(angle) * force * 0.4;
+            // Impart immediate velocity momentum so it stays away
+            const velocityKick = factor * 8.5;
+            d.vx = Math.cos(angle) * velocityKick + d.vx * 0.25;
+            d.vy = Math.sin(angle) * velocityKick + d.vy * 0.25;
+
+            // Instant discharge glow
+            d.glow = Math.max(d.glow, 0.65 + factor * 0.35);
           }
         }
 
-        // Instant glow activation without hesitation
-        if (isDischarging) {
-          d.glow = Math.max(d.glow, 0.5 + force * 0.5);
-        } else if (d.glow > 0) {
-          d.glow = Math.max(0, d.glow - 0.08);
+        // Smooth glow fade-out when cursor is no longer on the dot
+        if (!isDischarging && d.glow > 0) {
+          d.glow = Math.max(0, d.glow - 0.06);
         }
 
-        // Natural velocity damping
-        d.vx *= 0.96;
-        d.vy *= 0.96;
-        if (Math.abs(d.vx) < 0.15) d.vx += (Math.random() - 0.5) * 0.08;
-        if (Math.abs(d.vy) < 0.15) d.vy += (Math.random() - 0.5) * 0.08;
+        // Velocity damping back to natural peaceful drift
+        d.vx *= 0.94;
+        d.vy *= 0.94;
+        const currentSpeed = Math.sqrt(d.vx * d.vx + d.vy * d.vy);
+        if (currentSpeed < 0.25) {
+          d.vx += (Math.random() - 0.5) * 0.1;
+          d.vy += (Math.random() - 0.5) * 0.1;
+        }
+
+        // Screen boundary bounce: dots never get stuck on edges or teleport offscreen
+        if (d.x < 8) {
+          d.x = 8;
+          d.vx = Math.abs(d.vx) * 0.7;
+        } else if (d.x > width - 8) {
+          d.x = width - 8;
+          d.vx = -Math.abs(d.vx) * 0.7;
+        }
+        if (d.y < 8) {
+          d.y = 8;
+          d.vy = Math.abs(d.vy) * 0.7;
+        } else if (d.y > height - 8) {
+          d.y = height - 8;
+          d.vy = -Math.abs(d.vy) * 0.7;
+        }
 
         // Draw dot: GLOW ONLY the ones the cursor comes upon (fast hardware-accelerated concentric glow)
         if (d.glow > 0.05) {
           // 1. Soft radial electric discharge aura
           ctx.beginPath();
           ctx.arc(d.x, d.y, d.radius * (1.8 + d.glow * 1.5), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(56, 189, 248, ${d.glow * 0.32})`;
+          ctx.fillStyle = `rgba(56, 189, 248, ${d.glow * 0.35})`;
           ctx.fill();
 
           // 2. Concentrated inner glow
@@ -219,6 +257,9 @@ export const MotionDotCanvas: React.FC<MotionDotCanvasProps> = ({
       window.removeEventListener('scroll', updateRect);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('blur', handleMouseLeave);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [dotColor, lineColor, dotCount, deflectionRadius]);
 
