@@ -277,7 +277,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </div>
       </section>
 
-      {/* Booking Grid: Left Channels & Right Embedded Spacious Calendar Scheduler */}
+      {/* Booking Grid: Left Channels & Right Side-by-Side Scheduler Card */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
@@ -402,85 +402,88 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Embedded Interactive Scheduler (8 cols on lg - spacious & un-congested) */}
+          {/* Right Column: Embedded Interactive Scheduler with Date & Time and Form SIDE BY SIDE */}
           <div className="lg:col-span-8 text-left">
-            <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-xl space-y-8">
+            <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-xl space-y-6">
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Scheduler Title & Status Bar */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-100">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
                     <div>
-                      <div className="flex items-center gap-2 mb-1.5">
+                      <div className="flex items-center gap-2 mb-1">
                         <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-blue-100/70 text-[#1D4ED8] flex items-center gap-1">
                           <Sparkles className="w-3 h-3" /> Live Calendar
                         </span>
+                        <span className="text-[11px] font-mono text-slate-400">30-min strategy session</span>
                       </div>
                       <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
                         Schedule Strategy Call
                       </h2>
-                      <p className="text-slate-500 text-xs sm:text-sm font-normal mt-1">
-                        Select your preferred date and time for a 30-minute private briefing with our senior AI architects.
+                      <p className="text-slate-500 text-xs sm:text-sm font-normal mt-0.5">
+                        Select a date &amp; time, and enter your details to confirm your briefing.
                       </p>
                     </div>
 
-                    <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shrink-0">
+                    <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shrink-0 self-start">
                       <Clock className="w-3.5 h-3.5 text-[#1D4ED8]" />
                       <span>EST (UTC-5)</span>
                     </div>
                   </div>
 
-                  {/* Step 1: Inline Month Calendar & Time Slot Selector (Side-by-side on desktop, stacked on mobile) */}
-                  <div className="rounded-2xl bg-slate-50/70 border border-slate-200/80 p-5 sm:p-6 lg:p-7">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
-                      <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                          1
-                        </span>
-                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
-                          Select Date &amp; Time
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-mono bg-white px-3 py-1 rounded-lg border border-slate-200 text-slate-600">
-                        <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                        <span>Selected: <strong className="text-[#1D4ED8] font-bold">{selectedDate.label}</strong> at <strong className="text-[#0A192F] font-bold">{selectedTime}</strong></span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
+                  {/* SIDE BY SIDE: Date & Time Section on Left, Form on Right */}
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                    
+                    {/* LEFT SIDE (md:col-span-6): Compact Date & Time Picker */}
+                    <div className="md:col-span-6 space-y-4">
                       
-                      {/* Left: Full Interactive Month Calendar (7 cols on md) */}
-                      <div className="md:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs space-y-4">
+                      {/* Step 1 Header with Selected Badge */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="w-5 h-5 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-[11px] flex items-center justify-center shrink-0">
+                            1
+                          </span>
+                          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
+                            Date &amp; Time
+                          </span>
+                        </div>
+                        <span className="text-[11px] font-mono text-[#1D4ED8] font-bold">
+                          {selectedDate.monthName} {selectedDate.dayNumber} · {selectedTime}
+                        </span>
+                      </div>
+
+                      {/* Compact Month Calendar */}
+                      <div className="bg-slate-50/80 rounded-2xl border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs space-y-2.5">
                         {/* Month Navigation Strip */}
-                        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                          <div className="flex items-center gap-2">
-                            <span className="font-display font-extrabold text-lg sm:text-xl text-[#0A192F]">
+                        <div className="flex items-center justify-between pb-2 border-b border-slate-200/70">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-display font-extrabold text-sm sm:text-base text-[#0A192F]">
                               {MONTH_NAMES[currentMonth]} {currentYear}
                             </span>
                             <button
                               type="button"
                               onClick={jumpToToday}
-                              className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 rounded-md transition-colors cursor-pointer"
+                              className="px-1.5 py-0.5 text-[9px] font-mono uppercase font-bold text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 rounded transition-colors cursor-pointer"
                             >
                               Today
                             </button>
                           </div>
 
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1">
                             <button
                               type="button"
                               onClick={prevMonth}
-                              className="w-8 h-8 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50 text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
+                              className="w-7 h-7 rounded-lg border border-slate-200 hover:border-blue-400 hover:bg-white text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
                               aria-label="Previous month"
                             >
-                              <ChevronLeft className="w-4 h-4" />
+                              <ChevronLeft className="w-3.5 h-3.5" />
                             </button>
                             <button
                               type="button"
                               onClick={nextMonth}
-                              className="w-8 h-8 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50 text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
+                              className="w-7 h-7 rounded-lg border border-slate-200 hover:border-blue-400 hover:bg-white text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
                               aria-label="Next month"
                             >
-                              <ChevronRight className="w-4 h-4" />
+                              <ChevronRight className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         </div>
@@ -490,24 +493,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           {DAY_NAMES.map((name, idx) => (
                             <div
                               key={name}
-                              className={`text-[11px] font-mono font-bold uppercase py-1 ${
+                              className={`text-[10px] font-mono font-bold uppercase py-0.5 ${
                                 idx === 0 || idx === 6 ? 'text-slate-400' : 'text-slate-600'
                               }`}
                             >
-                              {name}
+                              {name.slice(0, 2)}
                             </div>
                           ))}
                         </div>
 
                         {/* Calendar Days Matrix */}
-                        <div className="grid grid-cols-7 gap-1.5">
+                        <div className="grid grid-cols-7 gap-1">
                           {/* Previous Month Inactive Trailing Days */}
                           {Array.from({ length: firstDayOfWeek }).map((_, i) => {
                             const prevDayNum = daysInPrevMonth - firstDayOfWeek + i + 1;
                             return (
                               <div
                                 key={`prev-${i}`}
-                                className="h-10 sm:h-11 rounded-xl flex items-center justify-center text-xs font-mono text-slate-300 select-none bg-slate-50/40"
+                                className="h-8 rounded-lg flex items-center justify-center text-[11px] font-mono text-slate-300 select-none bg-slate-50/40"
                               >
                                 {prevDayNum}
                               </div>
@@ -536,217 +539,211 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                                 type="button"
                                 disabled={isPast}
                                 onClick={() => handleDayClick(dayNumber)}
-                                className={`h-10 sm:h-11 rounded-xl flex flex-col items-center justify-center relative transition-all duration-150 cursor-pointer ${
+                                className={`h-8 rounded-lg flex flex-col items-center justify-center relative transition-all duration-150 cursor-pointer ${
                                   isSelected
                                     ? 'bg-[#1D4ED8] text-white font-bold shadow-md shadow-blue-600/30 scale-105 z-10'
                                     : isPast
-                                    ? 'text-slate-300 bg-slate-50/30 cursor-not-allowed'
+                                    ? 'text-slate-300 bg-slate-50/20 cursor-not-allowed'
                                     : isWeekend
-                                    ? 'text-slate-500 bg-slate-50/50 hover:bg-blue-50/60 hover:text-[#1D4ED8] border border-transparent hover:border-blue-200'
-                                    : 'text-slate-800 bg-white hover:bg-blue-50/80 hover:text-[#1D4ED8] border border-slate-100 hover:border-blue-200 shadow-2xs'
+                                    ? 'text-slate-500 bg-slate-50/50 hover:bg-blue-50/60 hover:text-[#1D4ED8] border border-transparent'
+                                    : 'text-slate-800 bg-white hover:bg-blue-50 hover:text-[#1D4ED8] border border-slate-100 hover:border-blue-200 shadow-2xs'
                                 }`}
                               >
-                                <span className="text-xs sm:text-sm font-semibold leading-none">
+                                <span className="text-xs font-semibold leading-none">
                                   {dayNumber}
                                 </span>
 
-                                {/* Today or Available dot indicators */}
+                                {/* Indicators */}
                                 {isSelected ? (
-                                  <span className="w-1.5 h-1.5 rounded-full bg-white mt-1" />
+                                  <span className="w-1 h-1 rounded-full bg-white mt-0.5" />
                                 ) : isTodayDate ? (
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-1" title="Today" />
+                                  <span className="w-1 h-1 rounded-full bg-[#1D4ED8] mt-0.5" title="Today" />
                                 ) : !isPast && !isWeekend ? (
-                                  <span className="w-1 h-1 rounded-full bg-blue-300 mt-1 opacity-70" />
+                                  <span className="w-0.5 h-0.5 rounded-full bg-blue-300 mt-0.5 opacity-70" />
                                 ) : null}
                               </button>
                             );
                           })}
 
-                          {/* Next Month Inactive Leading Days to complete grid row */}
+                          {/* Next Month Inactive Leading Days */}
                           {Array.from({
                             length: (7 - ((firstDayOfWeek + daysInMonth) % 7)) % 7,
                           }).map((_, i) => (
                             <div
                               key={`next-${i}`}
-                              className="h-10 sm:h-11 rounded-xl flex items-center justify-center text-xs font-mono text-slate-300 select-none bg-slate-50/40"
+                              className="h-8 rounded-lg flex items-center justify-center text-[11px] font-mono text-slate-300 select-none bg-slate-50/40"
                             >
                               {i + 1}
                             </div>
                           ))}
                         </div>
-
-                        {/* Calendar Footer Legend */}
-                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                          <div className="flex items-center gap-3">
-                            <span className="flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full bg-[#1D4ED8]" /> Selected
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-blue-300" /> Open Slots
-                            </span>
-                          </div>
-                          <span className="text-[10px] text-slate-400">Click any open day</span>
-                        </div>
                       </div>
 
-                      {/* Right: Available Time Slots (5 cols on md) */}
-                      <div className="md:col-span-5 space-y-4">
-                        <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs space-y-3">
-                          <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
-                            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
-                              <Clock className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                              <span>Available Times</span>
-                            </span>
-                            <span className="text-[10px] font-mono text-slate-500">30 min slots</span>
-                          </div>
+                      {/* Available Time Slots Underneath the Calendar */}
+                      <div className="bg-slate-50/80 rounded-2xl border border-slate-200/90 p-3 sm:p-3.5 shadow-2xs space-y-2">
+                        <div className="flex items-center justify-between pb-1 border-b border-slate-200/70">
+                          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                            <Clock className="w-3 h-3 text-[#1D4ED8]" />
+                            <span>Time Slots ({selectedDate.dayName})</span>
+                          </span>
+                          <span className="text-[10px] font-mono text-slate-400">30 min</span>
+                        </div>
 
-                          <div className="space-y-2">
-                            {AVAILABLE_TIME_SLOTS.map((timeSlot) => {
-                              const isSelected = selectedTime === timeSlot;
-                              return (
-                                <button
-                                  key={timeSlot}
-                                  type="button"
-                                  onClick={() => setSelectedTime(timeSlot)}
-                                  className={`w-full py-2.5 px-3.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer flex items-center justify-between ${
-                                    isSelected
-                                      ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-sm'
-                                      : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
-                                  }`}
-                                >
-                                  <span>{timeSlot}</span>
-                                  {isSelected && (
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                                  )}
-                                </button>
-                              );
-                            })}
-                          </div>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {AVAILABLE_TIME_SLOTS.map((timeSlot) => {
+                            const isSelected = selectedTime === timeSlot;
+                            return (
+                              <button
+                                key={timeSlot}
+                                type="button"
+                                onClick={() => setSelectedTime(timeSlot)}
+                                className={`py-2 px-2.5 rounded-xl border text-[11px] font-mono font-bold transition-all cursor-pointer flex items-center justify-between ${
+                                  isSelected
+                                    ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-xs'
+                                    : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                }`}
+                              >
+                                <span>{timeSlot}</span>
+                                {isSelected && (
+                                  <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
 
-                          <div className="pt-2 border-t border-slate-100 flex items-center gap-2 text-[11px] font-mono text-slate-500">
-                            <Video className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
-                            <span>Google Meet / Zoom</span>
-                          </div>
+                        <div className="pt-1.5 border-t border-slate-200/60 flex items-center justify-between text-[10px] font-mono text-slate-500">
+                          <span className="flex items-center gap-1">
+                            <Video className="w-3 h-3 text-[#1D4ED8]" /> Google Meet / Zoom
+                          </span>
+                          <span className="flex items-center gap-1 text-slate-500">
+                            <ShieldCheck className="w-3 h-3 text-[#1D4ED8]" /> Mutual NDA
+                          </span>
                         </div>
                       </div>
 
                     </div>
-                  </div>
 
-                  {/* Step 2: Attendee & Business Information Form */}
-                  <div className="space-y-5 pt-2">
-                    <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                          2
-                        </span>
-                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
-                          Attendee &amp; Project Information
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-mono text-slate-400">* Required fields</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                          Your Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Sarah Jenkins"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                        />
+                    {/* RIGHT SIDE (md:col-span-6): Attendee Details Form */}
+                    <div className="md:col-span-6 space-y-3.5">
+                      
+                      {/* Step 2 Header */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="w-5 h-5 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-[11px] flex items-center justify-center shrink-0">
+                            2
+                          </span>
+                          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
+                            Your Information
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400">* Required</span>
                       </div>
 
-                      <div>
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                          Work Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="s.jenkins@enterprise.com"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                        />
-                      </div>
-                    </div>
+                      {/* Inputs */}
+                      <div className="space-y-3">
+                        <div>
+                          <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                            Your Full Name *
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            placeholder="Sarah Jenkins"
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all bg-white"
+                          />
+                        </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                          Company Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          placeholder="Acme Health Holdings"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                        />
+                        <div>
+                          <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                            Work Email Address *
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            placeholder="s.jenkins@enterprise.com"
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all bg-white"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                              Company *
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={formData.company}
+                              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                              placeholder="Acme Health"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all bg-white"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                              Phone
+                            </label>
+                            <input
+                              type="tel"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              placeholder="+1 (555) 019"
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all bg-white"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                            Strategic Consultation Focus
+                          </label>
+                          <select
+                            value={formData.interest}
+                            onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                            className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-xs sm:text-sm outline-none bg-white transition-all font-medium"
+                          >
+                            <option>General AI Strategy &amp; Architecture Feasibility</option>
+                            <option>Autonomous Agentic Swarms &amp; Workflow Automation</option>
+                            <option>NAIR.AI Docs™ Intelligent Extraction &amp; OCR</option>
+                            <option>Healthcare &amp; Life Sciences HIPAA Automation</option>
+                            <option>Financial Services, Risk Modeling &amp; Fraud Defense</option>
+                            <option>Legal Practice &amp; Automated Contract Review</option>
+                            <option>Private VPC &amp; Air-Gapped Sovereign Deployment</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
+                            Current Challenges / Stack (Optional)
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            placeholder="Briefly describe your existing software stack or workflow challenges..."
+                            className="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-xs sm:text-sm outline-none transition-all resize-none font-medium bg-white"
+                          />
+                        </div>
                       </div>
 
-                      <div>
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+1 (555) 019-2834"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Strategic Consultation Focus
-                      </label>
-                      <select
-                        value={formData.interest}
-                        onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none bg-white transition-all font-medium"
+                      {/* Submit Button */}
+                      <button
+                        type="submit"
+                        className="w-full mt-2 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
                       >
-                        <option>General AI Strategy &amp; Architecture Feasibility</option>
-                        <option>Autonomous Agentic Swarms &amp; Workflow Automation</option>
-                        <option>NAIR.AI Docs™ Intelligent Extraction &amp; OCR</option>
-                        <option>Healthcare &amp; Life Sciences HIPAA Automation</option>
-                        <option>Financial Services, Risk Modeling &amp; Fraud Defense</option>
-                        <option>Legal Practice &amp; Automated Contract Review</option>
-                        <option>Private VPC &amp; Air-Gapped Sovereign Deployment</option>
-                      </select>
+                        <span>Confirm AI Strategy Call • {selectedDate.monthName} {selectedDate.dayNumber} ({selectedTime})</span>
+                        <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                      </button>
+
                     </div>
 
-                    <div>
-                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Current Systems or Workflow Challenges (Optional)
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Briefly describe your existing software stack, key workflow friction, or compliance requirements..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all resize-none font-medium"
-                      />
-                    </div>
                   </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full py-4.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
-                  >
-                    <span>Confirm AI Strategy Call • {selectedDate.label} ({selectedTime})</span>
-                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                  </button>
                 </form>
               ) : (
                 <div className="py-8 text-center space-y-5">
