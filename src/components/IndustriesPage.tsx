@@ -457,14 +457,11 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               Cross-Sector Architecture Modules
             </h2>
             <p className="text-sm text-slate-500 font-normal mt-1">
-              Scroll with mouse wheel or drag horizontally to inspect modular deployment kernels.
+              Inspect modular deployment kernels engineered for specific industry verticals.
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-              Wheel / Drag Scroll
-            </span>
             <button
               type="button"
               onClick={scrollLeft}

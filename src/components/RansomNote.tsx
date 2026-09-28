@@ -97,16 +97,16 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
   return (
     <div
       data-slot="ransom-note"
-      className={cn('relative inline-flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-4 sm:gap-y-5 select-none', className)}
+      className={cn('relative inline-flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-7 gap-y-4 sm:gap-y-6 select-none', className)}
       {...props}
     >
       <span className="sr-only">{text}</span>
 
-      <div className="inline-flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-4.5 gap-y-3.5" aria-hidden="true">
+      <div className="inline-flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-7 md:gap-x-8 gap-y-4 sm:gap-y-5" aria-hidden="true">
         {wordsLayout.map((wordChars, wIdx) => (
           <span
             key={wIdx}
-            className={cn('inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap', wordClassName)}
+            className={cn('inline-flex items-center gap-1.5 sm:gap-2.5 md:gap-3 whitespace-nowrap', wordClassName)}
           >
             {wordChars.map((scrap) => {
               const baseStyle: React.CSSProperties = {
@@ -114,6 +114,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                 backgroundColor: scrap.colorPair.bg,
                 color: scrap.colorPair.text,
                 padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
+                margin: '2px 2px',
                 border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
                 boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
                 borderRadius: '6px',

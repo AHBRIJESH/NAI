@@ -512,14 +512,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               End-to-End Enterprise AI Capabilities
             </h2>
             <p className="text-sm text-slate-500 font-normal mt-1">
-              Scroll with mouse wheel or drag horizontally across core technical disciplines.
+              Explore specialized enterprise architectures across core technical disciplines.
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-500 mr-2 hidden sm:inline-block">
-              Wheel / Drag Scroll
-            </span>
             <button
               type="button"
               onClick={scrollLeft}

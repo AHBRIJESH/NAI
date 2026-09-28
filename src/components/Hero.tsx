@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             variants={itemVariants}
             className="text-xs sm:text-sm md:text-base font-bold text-[#38BDF8] mb-3 leading-relaxed tracking-wide drop-shadow-sm"
           >
-            Want to implement AI, but not sure where to start? Work smarter—not harder—with these proven strategies.
+            Want to implement AI, but not sure where to start? Work smarter not harder with these proven strategies.
           </motion.p>
 
           {/* Headline */}
@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#38BDF8]" />
-              <span className="font-semibold text-slate-200">ISO 27001 &amp; GDPR Aligned</span>
+              <span className="font-semibold text-slate-200">ISO 27001 Security Standards</span>
             </div>
           </motion.div>
         </div>

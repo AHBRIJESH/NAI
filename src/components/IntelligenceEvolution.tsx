@@ -239,7 +239,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
           <div className="p-2 sm:p-3 rounded-3xl bg-white/95 border border-slate-200/90 shadow-lg backdrop-blur-md">
             
             {/* Timeline Steps */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
               {stages.map((stage, idx) => {
                 const isSelected = stage.id === activeStage;
                 return (
@@ -250,7 +250,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                       setActiveStage(stage.id);
                       setIsAutoPlaying(false);
                     }}
-                    className={`relative p-3.5 sm:p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer overflow-hidden group ${
+                    className={`relative p-3 sm:p-3.5 md:p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer overflow-hidden group min-h-[64px] sm:min-h-[72px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-blue-50/90 border-[#1D4ED8] shadow-md scale-[1.02]'
                         : 'bg-white hover:bg-slate-50 border-slate-200/70 text-slate-700'
@@ -266,26 +266,26 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                       />
                     )}
 
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+                      <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3 flex-1 min-w-0">
                         <div
-                          className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center font-display font-black text-xs sm:text-sm text-white shadow-xs shrink-0 transition-transform group-hover:scale-105"
+                          className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center font-display font-black text-xs sm:text-sm text-white shadow-xs shrink-0 transition-transform group-hover:scale-105"
                           style={{ backgroundColor: stage.color }}
                         >
                           {stage.acronym}
                         </div>
-                        <div className="min-w-0">
-                          <span className="font-display font-extrabold text-xs sm:text-base text-[#0A192F] block truncate">
+                        <div className="min-w-0 flex-1">
+                          <span className="font-display font-extrabold text-xs sm:text-[13px] md:text-sm lg:text-[15px] text-[#0A192F] block leading-snug whitespace-normal break-words">
                             {stage.name}
                           </span>
-                          <span className="font-mono text-[10px] sm:text-[11px] text-slate-500 block truncate">
+                          <span className="font-mono text-[10px] sm:text-[11px] text-slate-500 block mt-0.5 uppercase tracking-wider">
                             {stage.horizon}
                           </span>
                         </div>
                       </div>
 
                       {isSelected && (
-                        <span className="w-2 h-2 rounded-full bg-[#1D4ED8] shrink-0 hidden sm:block animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-[#1D4ED8] shrink-0 hidden sm:block animate-pulse ml-1" />
                       )}
                     </div>
                   </button>
