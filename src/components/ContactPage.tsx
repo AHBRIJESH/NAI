@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,12 +11,13 @@ import {
   Video,
   Download,
   ExternalLink,
-  Maximize2,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
-import { EnlargedCalendarModal } from './EnlargedCalendarModal';
 
 interface ContactPageProps {
   onBackToHome: () => void;
@@ -24,7 +25,7 @@ interface ContactPageProps {
   onOpenAssessment: () => void;
 }
 
-interface DateSlot {
+export interface DateSlot {
   dateStr: string;
   dayName: string;
   dayNumber: number;
@@ -32,36 +33,37 @@ interface DateSlot {
   label: string;
 }
 
-function getUpcomingBusinessDays(): DateSlot[] {
-  const slots: DateSlot[] = [];
-  const now = new Date();
-  let candidate = new Date(now);
-  candidate.setDate(candidate.getDate() + 1);
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const SHORT_MONTH_NAMES = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
-  while (slots.length < 6) {
-    const dayOfWeek = candidate.getDay();
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      const dateStr = candidate.toISOString().split('T')[0];
-      const dayName = dayNames[dayOfWeek];
-      const dayNumber = candidate.getDate();
-      const monthName = monthNames[candidate.getMonth()];
-      const isTomorrow = slots.length === 0;
-
-      slots.push({
-        dateStr,
-        dayName,
-        dayNumber,
-        monthName,
-        label: isTomorrow ? 'Tomorrow' : `${dayName}, ${monthName} ${dayNumber}`,
-      });
-    }
-    candidate.setDate(candidate.getDate() + 1);
-  }
-  return slots;
-}
+const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const AVAILABLE_TIME_SLOTS = [
   '09:30 AM EST',
@@ -71,14 +73,46 @@ const AVAILABLE_TIME_SLOTS = [
   '04:30 PM EST',
 ];
 
+function getInitialBusinessDate(): DateSlot {
+  const now = new Date();
+  const candidate = new Date(now);
+  candidate.setDate(candidate.getDate() + 1);
+
+  while (candidate.getDay() === 0 || candidate.getDay() === 6) {
+    candidate.setDate(candidate.getDate() + 1);
+  }
+
+  const dayOfWeek = candidate.getDay();
+  const dateStr = `${candidate.getFullYear()}-${String(candidate.getMonth() + 1).padStart(2, '0')}-${String(
+    candidate.getDate()
+  ).padStart(2, '0')}`;
+
+  return {
+    dateStr,
+    dayName: DAY_NAMES[dayOfWeek],
+    dayNumber: candidate.getDate(),
+    monthName: SHORT_MONTH_NAMES[candidate.getMonth()],
+    label: `${DAY_NAMES[dayOfWeek]}, ${SHORT_MONTH_NAMES[candidate.getMonth()]} ${candidate.getDate()}`,
+  };
+}
+
 export const ContactPage: React.FC<ContactPageProps> = ({
   onBackToHome,
   onBookCall,
 }) => {
-  const dateSlots = React.useMemo(() => getUpcomingBusinessDays(), []);
-  const [selectedDate, setSelectedDate] = useState<DateSlot>(dateSlots[0]);
+  const initialDateSlot = useMemo(() => getInitialBusinessDate(), []);
+  const [selectedDate, setSelectedDate] = useState<DateSlot>(initialDateSlot);
   const [selectedTime, setSelectedTime] = useState<string>(AVAILABLE_TIME_SLOTS[1]);
-  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
+
+  // Calendar month & year viewing state
+  const [currentYear, setCurrentYear] = useState<number>(() => {
+    const parts = initialDateSlot.dateStr.split('-');
+    return parts.length === 3 ? parseInt(parts[0], 10) : new Date().getFullYear();
+  });
+  const [currentMonth, setCurrentMonth] = useState<number>(() => {
+    const parts = initialDateSlot.dateStr.split('-');
+    return parts.length === 3 ? parseInt(parts[1], 10) - 1 : new Date().getMonth();
+  });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -90,6 +124,63 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Calendar calculations
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const firstDayOfWeek = new Date(currentYear, currentMonth, 1).getDay(); // 0 for Sunday
+  const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+  const today = useMemo(() => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
+
+  const prevMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear((y) => y - 1);
+    } else {
+      setCurrentMonth((m) => m - 1);
+    }
+  };
+
+  const nextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear((y) => y + 1);
+    } else {
+      setCurrentMonth((m) => m + 1);
+    }
+  };
+
+  const jumpToToday = () => {
+    const now = new Date();
+    setCurrentYear(now.getFullYear());
+    setCurrentMonth(now.getMonth());
+  };
+
+  const handleDayClick = (dayNumber: number) => {
+    const candidate = new Date(currentYear, currentMonth, dayNumber);
+    candidate.setHours(0, 0, 0, 0);
+
+    if (candidate < today) return;
+
+    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(
+      dayNumber
+    ).padStart(2, '0')}`;
+    const dayOfWeek = candidate.getDay();
+    const dayName = DAY_NAMES[dayOfWeek];
+    const monthName = SHORT_MONTH_NAMES[currentMonth];
+
+    setSelectedDate({
+      dateStr,
+      dayName,
+      dayNumber,
+      monthName,
+      label: `${dayName}, ${monthName} ${dayNumber}`,
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,7 +197,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     }
   };
 
-  const googleCalendarUrl = React.useMemo(() => {
+  const googleCalendarUrl = useMemo(() => {
     const title = encodeURIComponent('NAIR.AI Executive AI Strategy Call');
     const details = encodeURIComponent(
       `Executive 30-minute AI Strategy Call with NAIR.AI Senior Architect.\n\nAttendee: ${formData.name} (${formData.company})\nEmail: ${formData.email}\nPhone: ${formData.phone}\nFocus: ${formData.interest}\nNotes: ${formData.message}`
@@ -142,7 +233,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
-      {/* Light Colored Motion Background with Subtle Hero Sculpture & Ambient Orbs */}
+      {/* Light Colored Motion Background with Subtle Ambient Elements */}
       <SubPageMotionBackground />
 
       {/* Top Breadcrumb Navigation Bar */}
@@ -158,8 +249,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </button>
       </div>
 
-      {/* Wide Hero Header: Full Space Utilization */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-14 text-left">
+      {/* Wide Hero Header */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 text-left">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -186,13 +277,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         </div>
       </section>
 
-      {/* Booking Grid: Left Info & Right Interactive Scheduler - Wide 12-Column Layout */}
+      {/* Booking Grid: Left Channels & Right Embedded Spacious Calendar Scheduler */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Left Column: Direct Info & Operational Parameters (5 cols) */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="rounded-3xl bg-white border border-slate-200/90 p-8 shadow-md space-y-6">
+          {/* Left Column: Direct Info & Operational Parameters (4 cols on lg) */}
+          <div className="lg:col-span-4 space-y-6 text-left">
+            <div className="rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-md space-y-6">
               <span className="font-mono text-xs uppercase tracking-wider text-[#1D4ED8] font-extrabold block border-b border-slate-100 pb-3">
                 DIRECT CHANNELS &amp; OPERATIONAL HOURS
               </span>
@@ -236,7 +327,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <span className="font-mono text-xs text-slate-500 uppercase block font-semibold mb-2">
                     Official Social Channels
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <a
                       href="https://www.linkedin.com/company/nairai"
                       target="_blank"
@@ -286,8 +377,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
             </div>
 
-            {/* Quick Consultation Perks - Upgraded to Light Blue Aesthetic */}
-            <div className="rounded-3xl bg-gradient-to-br from-blue-50/90 via-sky-50 to-blue-100/70 border border-blue-200/90 text-[#0A192F] p-8 shadow-md text-left">
+            {/* Quick Consultation Perks */}
+            <div className="rounded-3xl bg-gradient-to-br from-blue-50/90 via-sky-50 to-blue-100/70 border border-blue-200/90 text-[#0A192F] p-7 sm:p-8 shadow-md text-left">
               <span className="font-mono text-[10px] uppercase tracking-widest text-[#1D4ED8] block mb-2 font-bold">
                 WHAT HAPPENS ON THE CALL
               </span>
@@ -301,7 +392,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#1D4ED8] font-bold">2.</span>
-                  <span>Evaluation of compliance constraints (HIPAA, GDPR, air-gapped runtimes).</span>
+                  <span>Evaluation of compliance constraints (HIPAA, SOC 2, air-gapped runtimes).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#1D4ED8] font-bold">3.</span>
@@ -311,244 +402,344 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Interactive Appointment Scheduler (7 cols) */}
-          <div className="lg:col-span-7 text-left">
-            <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-10 shadow-xl">
+          {/* Right Column: Embedded Interactive Scheduler (8 cols on lg - spacious & un-congested) */}
+          <div className="lg:col-span-8 text-left">
+            <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-xl space-y-8">
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
-                      Schedule Strategy Call
-                    </h2>
-                    <p className="text-slate-500 text-xs sm:text-sm font-normal mt-1">
-                      Choose an available time slot for your 30-minute session with a principal architect.
-                    </p>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Scheduler Title & Status Bar */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-100">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-blue-100/70 text-[#1D4ED8] flex items-center gap-1">
+                          <Sparkles className="w-3 h-3" /> Live Calendar
+                        </span>
+                      </div>
+                      <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
+                        Schedule Strategy Call
+                      </h2>
+                      <p className="text-slate-500 text-xs sm:text-sm font-normal mt-1">
+                        Select your preferred date and time for a 30-minute private briefing with our senior AI architects.
+                      </p>
+                    </div>
+
+                    <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shrink-0">
+                      <Clock className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                      <span>EST (UTC-5)</span>
+                    </div>
                   </div>
 
-                  {/* Interactive Date & Time Slot Picker */}
-                  <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-4">
-                      {/* Step 1: Select Date */}
-                      <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <label className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                            <span>1. Select Preferred Date</span>
-                          </label>
+                  {/* Step 1: Inline Month Calendar & Time Slot Selector (Side-by-side on desktop, stacked on mobile) */}
+                  <div className="rounded-2xl bg-slate-50/70 border border-slate-200/80 p-5 sm:p-6 lg:p-7">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                          1
+                        </span>
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
+                          Select Date &amp; Time
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-mono bg-white px-3 py-1 rounded-lg border border-slate-200 text-slate-600">
+                        <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                        <span>Selected: <strong className="text-[#1D4ED8] font-bold">{selectedDate.label}</strong> at <strong className="text-[#0A192F] font-bold">{selectedTime}</strong></span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
+                      
+                      {/* Left: Full Interactive Month Calendar (7 cols on md) */}
+                      <div className="md:col-span-7 bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs space-y-4">
+                        {/* Month Navigation Strip */}
+                        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                           <div className="flex items-center gap-2">
-                            <span className="text-[11px] font-mono text-slate-500 font-medium">
-                              {selectedDate.label}
+                            <span className="font-display font-extrabold text-lg sm:text-xl text-[#0A192F]">
+                              {MONTH_NAMES[currentMonth]} {currentYear}
                             </span>
                             <button
                               type="button"
-                              onClick={() => setIsCalendarModalOpen(true)}
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all hover:scale-102 cursor-pointer shadow-2xs"
-                              title="Enlarge Full Calendar"
+                              onClick={jumpToToday}
+                              className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 rounded-md transition-colors cursor-pointer"
                             >
-                              <Maximize2 className="w-3 h-3" />
-                              <span>Enlarge</span>
+                              Today
+                            </button>
+                          </div>
+
+                          <div className="flex items-center gap-1.5">
+                            <button
+                              type="button"
+                              onClick={prevMonth}
+                              className="w-8 h-8 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50 text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
+                              aria-label="Previous month"
+                            >
+                              <ChevronLeft className="w-4 h-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={nextMonth}
+                              className="w-8 h-8 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50 text-slate-600 hover:text-[#1D4ED8] flex items-center justify-center transition-all cursor-pointer"
+                              aria-label="Next month"
+                            >
+                              <ChevronRight className="w-4 h-4" />
                             </button>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                          {dateSlots.map((slot) => {
-                            const isSelected = selectedDate.dateStr === slot.dateStr;
+                        {/* Weekday Names Header */}
+                        <div className="grid grid-cols-7 gap-1 text-center">
+                          {DAY_NAMES.map((name, idx) => (
+                            <div
+                              key={name}
+                              className={`text-[11px] font-mono font-bold uppercase py-1 ${
+                                idx === 0 || idx === 6 ? 'text-slate-400' : 'text-slate-600'
+                              }`}
+                            >
+                              {name}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar Days Matrix */}
+                        <div className="grid grid-cols-7 gap-1.5">
+                          {/* Previous Month Inactive Trailing Days */}
+                          {Array.from({ length: firstDayOfWeek }).map((_, i) => {
+                            const prevDayNum = daysInPrevMonth - firstDayOfWeek + i + 1;
+                            return (
+                              <div
+                                key={`prev-${i}`}
+                                className="h-10 sm:h-11 rounded-xl flex items-center justify-center text-xs font-mono text-slate-300 select-none bg-slate-50/40"
+                              >
+                                {prevDayNum}
+                              </div>
+                            );
+                          })}
+
+                          {/* Current Month Active Days */}
+                          {Array.from({ length: daysInMonth }).map((_, i) => {
+                            const dayNumber = i + 1;
+                            const candidate = new Date(currentYear, currentMonth, dayNumber);
+                            candidate.setHours(0, 0, 0, 0);
+
+                            const isPast = candidate < today;
+                            const isTodayDate = candidate.getTime() === today.getTime();
+                            const isWeekend = candidate.getDay() === 0 || candidate.getDay() === 6;
+
+                            const candidateDateStr = `${currentYear}-${String(currentMonth + 1).padStart(
+                              2,
+                              '0'
+                            )}-${String(dayNumber).padStart(2, '0')}`;
+                            const isSelected = selectedDate.dateStr === candidateDateStr;
+
                             return (
                               <button
-                                key={slot.dateStr}
+                                key={dayNumber}
                                 type="button"
-                                onClick={() => setSelectedDate(slot)}
-                                className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
+                                disabled={isPast}
+                                onClick={() => handleDayClick(dayNumber)}
+                                className={`h-10 sm:h-11 rounded-xl flex flex-col items-center justify-center relative transition-all duration-150 cursor-pointer ${
                                   isSelected
-                                    ? 'bg-[#1D4ED8] text-white border-[#1D4ED8] shadow-md shadow-blue-500/20 scale-[1.02]'
-                                    : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                    ? 'bg-[#1D4ED8] text-white font-bold shadow-md shadow-blue-600/30 scale-105 z-10'
+                                    : isPast
+                                    ? 'text-slate-300 bg-slate-50/30 cursor-not-allowed'
+                                    : isWeekend
+                                    ? 'text-slate-500 bg-slate-50/50 hover:bg-blue-50/60 hover:text-[#1D4ED8] border border-transparent hover:border-blue-200'
+                                    : 'text-slate-800 bg-white hover:bg-blue-50/80 hover:text-[#1D4ED8] border border-slate-100 hover:border-blue-200 shadow-2xs'
                                 }`}
                               >
-                                <span className="block text-[10px] font-mono font-semibold uppercase opacity-80">
-                                  {slot.dayName}
+                                <span className="text-xs sm:text-sm font-semibold leading-none">
+                                  {dayNumber}
                                 </span>
-                                <span className="block text-sm sm:text-base font-extrabold font-display leading-tight my-0.5">
-                                  {slot.dayNumber}
-                                </span>
-                                <span className="block text-[10px] font-mono uppercase opacity-75">
-                                  {slot.monthName}
-                                </span>
+
+                                {/* Today or Available dot indicators */}
+                                {isSelected ? (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-white mt-1" />
+                                ) : isTodayDate ? (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] mt-1" title="Today" />
+                                ) : !isPast && !isWeekend ? (
+                                  <span className="w-1 h-1 rounded-full bg-blue-300 mt-1 opacity-70" />
+                                ) : null}
                               </button>
                             );
                           })}
+
+                          {/* Next Month Inactive Leading Days to complete grid row */}
+                          {Array.from({
+                            length: (7 - ((firstDayOfWeek + daysInMonth) % 7)) % 7,
+                          }).map((_, i) => (
+                            <div
+                              key={`next-${i}`}
+                              className="h-10 sm:h-11 rounded-xl flex items-center justify-center text-xs font-mono text-slate-300 select-none bg-slate-50/40"
+                            >
+                              {i + 1}
+                            </div>
+                          ))}
                         </div>
 
-                        {/* Custom Date Notice if selected via Full Calendar */}
-                        {!dateSlots.some((s) => s.dateStr === selectedDate.dateStr) && (
-                          <div className="mt-2.5 p-2.5 rounded-xl bg-blue-50/90 border border-blue-200 flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <div className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-                              <span className="text-xs font-bold text-[#0A192F]">
-                                Custom Date Selected: {selectedDate.label}
-                              </span>
-                            </div>
-                            <span className="text-[10px] font-mono text-[#1D4ED8] font-bold uppercase tracking-wider">
-                              From Full Calendar
+                        {/* Calendar Footer Legend */}
+                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                          <div className="flex items-center gap-3">
+                            <span className="flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full bg-[#1D4ED8]" /> Selected
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-blue-300" /> Open Slots
                             </span>
                           </div>
-                        )}
-
-                        {/* Enlarged Calendar Trigger Bar */}
-                        <button
-                          type="button"
-                          onClick={() => setIsCalendarModalOpen(true)}
-                          className="w-full mt-3 py-2.5 px-3.5 rounded-xl border border-dashed border-blue-300 hover:border-[#1D4ED8] bg-blue-50/50 hover:bg-blue-50/90 text-left transition-all duration-150 flex items-center justify-between group cursor-pointer"
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-lg bg-blue-100 text-[#1D4ED8] flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
-                              <Calendar className="w-3.5 h-3.5" />
-                            </div>
-                            <div>
-                              <span className="text-xs font-bold text-[#0A192F] group-hover:text-[#1D4ED8] block">
-                                Open Full Interactive Calendar
-                              </span>
-                              <span className="text-[10px] font-mono text-slate-500 block">
-                                View all months, flexible custom dates &amp; real-time slots
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#1D4ED8] group-hover:translate-x-0.5 transition-transform">
-                            <span>Enlarge Calendar</span>
-                            <Maximize2 className="w-3.5 h-3.5" />
-                          </div>
-                        </button>
+                          <span className="text-[10px] text-slate-400">Click any open day</span>
+                        </div>
                       </div>
 
-                    {/* Step 2: Select Time Slot */}
-                    <div className="pt-2 border-t border-slate-200/70">
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                          <span>2. Select Time (30 min)</span>
-                        </label>
-                        <span className="text-[11px] font-mono text-[#1D4ED8] font-bold">
-                          {selectedTime}
+                      {/* Right: Available Time Slots (5 cols on md) */}
+                      <div className="md:col-span-5 space-y-4">
+                        <div className="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-2xs space-y-3">
+                          <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
+                              <Clock className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                              <span>Available Times</span>
+                            </span>
+                            <span className="text-[10px] font-mono text-slate-500">30 min slots</span>
+                          </div>
+
+                          <div className="space-y-2">
+                            {AVAILABLE_TIME_SLOTS.map((timeSlot) => {
+                              const isSelected = selectedTime === timeSlot;
+                              return (
+                                <button
+                                  key={timeSlot}
+                                  type="button"
+                                  onClick={() => setSelectedTime(timeSlot)}
+                                  className={`w-full py-2.5 px-3.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer flex items-center justify-between ${
+                                    isSelected
+                                      ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-sm'
+                                      : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                  }`}
+                                >
+                                  <span>{timeSlot}</span>
+                                  {isSelected && (
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          <div className="pt-2 border-t border-slate-100 flex items-center gap-2 text-[11px] font-mono text-slate-500">
+                            <Video className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
+                            <span>Google Meet / Zoom</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* Step 2: Attendee & Business Information Form */}
+                  <div className="space-y-5 pt-2">
+                    <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                          2
+                        </span>
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F]">
+                          Attendee &amp; Project Information
                         </span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {AVAILABLE_TIME_SLOTS.map((timeSlot) => {
-                          const isSelected = selectedTime === timeSlot;
-                          return (
-                            <button
-                              key={timeSlot}
-                              type="button"
-                              onClick={() => setSelectedTime(timeSlot)}
-                              className={`py-2 px-3 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer ${
-                                isSelected
-                                  ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-sm'
-                                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-100'
-                              }`}
-                            >
-                              {timeSlot}
-                            </button>
-                          );
-                        })}
+                      <span className="text-[11px] font-mono text-slate-400">* Required fields</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
+                          Your Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="Sarah Jenkins"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
+                          Work Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="s.jenkins@enterprise.com"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
+                        />
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 text-[11px] font-mono text-slate-600 pt-1">
-                      <Video className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
-                      <span>Remote Video Call via Google Meet / Zoom</span>
-                    </div>
-                  </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
+                          Company Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Acme Health Holdings"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
+                        />
+                      </div>
 
-                  {/* Attendee Details */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Your Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Sarah Jenkins"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Work Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="s.jenkins@enterprise.com"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Company Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        placeholder="Acme Health Holdings"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
-                      />
+                      <div>
+                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="+1 (555) 019-2834"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
+                        />
+                      </div>
                     </div>
 
                     <div>
                       <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                        Phone Number
+                        Strategic Consultation Focus
                       </label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+1 (555) 019-2834"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all"
+                      <select
+                        value={formData.interest}
+                        onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none bg-white transition-all font-medium"
+                      >
+                        <option>General AI Strategy &amp; Architecture Feasibility</option>
+                        <option>Autonomous Agentic Swarms &amp; Workflow Automation</option>
+                        <option>NAIR.AI Docs™ Intelligent Extraction &amp; OCR</option>
+                        <option>Healthcare &amp; Life Sciences HIPAA Automation</option>
+                        <option>Financial Services, Risk Modeling &amp; Fraud Defense</option>
+                        <option>Legal Practice &amp; Automated Contract Review</option>
+                        <option>Private VPC &amp; Air-Gapped Sovereign Deployment</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
+                        Current Systems or Workflow Challenges (Optional)
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Briefly describe your existing software stack, key workflow friction, or compliance requirements..."
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all resize-none font-medium"
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                      Strategic Consultation Focus
-                    </label>
-                    <select
-                      value={formData.interest}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none bg-white transition-all font-medium"
-                    >
-                      <option>General AI Strategy &amp; Architecture Feasibility</option>
-                      <option>Autonomous Agentic Swarms &amp; Workflow Automation</option>
-                      <option>NAIR.AI Docs™ Intelligent Extraction &amp; OCR</option>
-                      <option>Healthcare &amp; Life Sciences HIPAA Automation</option>
-                      <option>Financial Services, Risk Modeling &amp; Fraud Defense</option>
-                      <option>Legal Practice &amp; Automated Contract Review</option>
-                      <option>Private VPC &amp; Air-Gapped Sovereign Deployment</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="font-mono text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1.5">
-                      Current Systems or Workflow Challenges (Optional)
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Briefly describe your existing software stack, key workflow friction, or compliance requirements..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#1D4ED8] focus:ring-2 focus:ring-blue-100 text-sm outline-none transition-all resize-none font-medium"
-                    />
-                  </div>
-
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     className="w-full py-4.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
@@ -584,7 +775,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <div className="space-y-1 text-xs font-mono text-slate-700">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[#1D4ED8]" />
-                        <span className="font-bold">{selectedDate.label}, 2026</span>
+                        <span className="font-bold">{selectedDate.label}, {currentYear}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4 text-[#1D4ED8]" />
@@ -634,17 +825,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
         </div>
       </section>
-
-      {/* Enlarged Full Month Interactive Calendar Modal */}
-      <EnlargedCalendarModal
-        isOpen={isCalendarModalOpen}
-        onClose={() => setIsCalendarModalOpen(false)}
-        selectedDate={selectedDate}
-        onSelectDate={setSelectedDate}
-        selectedTime={selectedTime}
-        onSelectTime={setSelectedTime}
-        availableTimeSlots={AVAILABLE_TIME_SLOTS}
-      />
 
     </div>
   );
