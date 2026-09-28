@@ -114,7 +114,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
                 />
               </div>
               <p className="text-xs sm:text-sm text-slate-600 max-w-sm font-normal leading-relaxed">
-                Autonomous AI systems, multi-agent swarms, and sovereign enterprise decision architectures.
+                Autonomous AI systems, multi-agent swarms, and sovereign enterprise decision architecture.
               </p>
               <a
                 href="mailto:info@nair.ai"
