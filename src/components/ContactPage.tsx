@@ -11,10 +11,12 @@ import {
   Video,
   Download,
   ExternalLink,
+  Maximize2,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { SubPageMotionBackground } from './SubPageMotionBackground';
+import { EnlargedCalendarModal } from './EnlargedCalendarModal';
 
 interface ContactPageProps {
   onBackToHome: () => void;
@@ -76,6 +78,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const dateSlots = React.useMemo(() => getUpcomingBusinessDays(), []);
   const [selectedDate, setSelectedDate] = useState<DateSlot>(dateSlots[0]);
   const [selectedTime, setSelectedTime] = useState<string>(AVAILABLE_TIME_SLOTS[1]);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -324,45 +327,97 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                   {/* Interactive Date & Time Slot Picker */}
                   <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-4">
-                    {/* Step 1: Select Date */}
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                          <span>1. Select Preferred Date</span>
-                        </label>
-                        <span className="text-[11px] font-mono text-slate-500 font-medium">
-                          {selectedDate.label}
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                        {dateSlots.map((slot) => {
-                          const isSelected = selectedDate.dateStr === slot.dateStr;
-                          return (
+                      {/* Step 1: Select Date */}
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <label className="font-mono text-xs font-bold uppercase tracking-wider text-[#0A192F] flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                            <span>1. Select Preferred Date</span>
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-mono text-slate-500 font-medium">
+                              {selectedDate.label}
+                            </span>
                             <button
-                              key={slot.dateStr}
                               type="button"
-                              onClick={() => setSelectedDate(slot)}
-                              className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
-                                isSelected
-                                  ? 'bg-[#1D4ED8] text-white border-[#1D4ED8] shadow-md shadow-blue-500/20 scale-[1.02]'
-                                  : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
-                              }`}
+                              onClick={() => setIsCalendarModalOpen(true)}
+                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all hover:scale-102 cursor-pointer shadow-2xs"
+                              title="Enlarge Full Calendar"
                             >
-                              <span className="block text-[10px] font-mono font-semibold uppercase opacity-80">
-                                {slot.dayName}
-                              </span>
-                              <span className="block text-sm sm:text-base font-extrabold font-display leading-tight my-0.5">
-                                {slot.dayNumber}
-                              </span>
-                              <span className="block text-[10px] font-mono uppercase opacity-75">
-                                {slot.monthName}
-                              </span>
+                              <Maximize2 className="w-3 h-3" />
+                              <span>Enlarge</span>
                             </button>
-                          );
-                        })}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                          {dateSlots.map((slot) => {
+                            const isSelected = selectedDate.dateStr === slot.dateStr;
+                            return (
+                              <button
+                                key={slot.dateStr}
+                                type="button"
+                                onClick={() => setSelectedDate(slot)}
+                                className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
+                                  isSelected
+                                    ? 'bg-[#1D4ED8] text-white border-[#1D4ED8] shadow-md shadow-blue-500/20 scale-[1.02]'
+                                    : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                }`}
+                              >
+                                <span className="block text-[10px] font-mono font-semibold uppercase opacity-80">
+                                  {slot.dayName}
+                                </span>
+                                <span className="block text-sm sm:text-base font-extrabold font-display leading-tight my-0.5">
+                                  {slot.dayNumber}
+                                </span>
+                                <span className="block text-[10px] font-mono uppercase opacity-75">
+                                  {slot.monthName}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Custom Date Notice if selected via Full Calendar */}
+                        {!dateSlots.some((s) => s.dateStr === selectedDate.dateStr) && (
+                          <div className="mt-2.5 p-2.5 rounded-xl bg-blue-50/90 border border-blue-200 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
+                              <span className="text-xs font-bold text-[#0A192F]">
+                                Custom Date Selected: {selectedDate.label}
+                              </span>
+                            </div>
+                            <span className="text-[10px] font-mono text-[#1D4ED8] font-bold uppercase tracking-wider">
+                              From Full Calendar
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Enlarged Calendar Trigger Bar */}
+                        <button
+                          type="button"
+                          onClick={() => setIsCalendarModalOpen(true)}
+                          className="w-full mt-3 py-2.5 px-3.5 rounded-xl border border-dashed border-blue-300 hover:border-[#1D4ED8] bg-blue-50/50 hover:bg-blue-50/90 text-left transition-all duration-150 flex items-center justify-between group cursor-pointer"
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-7 h-7 rounded-lg bg-blue-100 text-[#1D4ED8] flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+                              <Calendar className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <span className="text-xs font-bold text-[#0A192F] group-hover:text-[#1D4ED8] block">
+                                Open Full Interactive Calendar
+                              </span>
+                              <span className="text-[10px] font-mono text-slate-500 block">
+                                View all months, flexible custom dates &amp; real-time slots
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#1D4ED8] group-hover:translate-x-0.5 transition-transform">
+                            <span>Enlarge Calendar</span>
+                            <Maximize2 className="w-3.5 h-3.5" />
+                          </div>
+                        </button>
                       </div>
-                    </div>
 
                     {/* Step 2: Select Time Slot */}
                     <div className="pt-2 border-t border-slate-200/70">
@@ -579,6 +634,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
         </div>
       </section>
+
+      {/* Enlarged Full Month Interactive Calendar Modal */}
+      <EnlargedCalendarModal
+        isOpen={isCalendarModalOpen}
+        onClose={() => setIsCalendarModalOpen(false)}
+        selectedDate={selectedDate}
+        onSelectDate={setSelectedDate}
+        selectedTime={selectedTime}
+        onSelectTime={setSelectedTime}
+        availableTimeSlots={AVAILABLE_TIME_SLOTS}
+      />
 
     </div>
   );

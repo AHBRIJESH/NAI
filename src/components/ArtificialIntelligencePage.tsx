@@ -266,7 +266,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       {/* Interactive Motion Dot Canvas Background covering the entire subpage */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <MotionDotCanvas
-          dotCount={75}
+          dotCount={135}
           deflectionRadius={150}
           dotColor="rgba(29, 78, 216, "
           lineColor="rgba(56, 189, 248, "
@@ -782,7 +782,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       {/* CLOSING CTA SECTION */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] border border-blue-200/90 text-[#0A192F] text-center shadow-xl relative overflow-hidden">
-          <MotionDotCanvas dotCount={40} deflectionRadius={120} />
+          <MotionDotCanvas dotCount={60} deflectionRadius={130} />
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] block">

@@ -310,7 +310,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       {/* Interactive Motion Dot Canvas Background covering the entire page */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <MotionDotCanvas
-          dotCount={75}
+          dotCount={135}
           deflectionRadius={150}
           dotColor="rgba(2, 132, 199, "
           lineColor="rgba(56, 189, 248, "
@@ -889,7 +889,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       {/* CLOSING CTA SECTION */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#F0F9FF] via-[#E0F2FE] to-[#F1F5F9] border border-sky-200/90 text-[#0A192F] text-center shadow-xl relative overflow-hidden">
-          <MotionDotCanvas dotCount={40} deflectionRadius={120} />
+          <MotionDotCanvas dotCount={60} deflectionRadius={130} />
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0284C7] block">

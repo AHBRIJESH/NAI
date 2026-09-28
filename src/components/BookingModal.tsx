@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Calendar, CheckCircle2, ArrowRight, ShieldCheck, Clock, Video, Download, ExternalLink } from 'lucide-react';
+import { X, Calendar, CheckCircle2, ArrowRight, ShieldCheck, Clock, Video, Download, ExternalLink, Maximize2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { EnlargedCalendarModal } from './EnlargedCalendarModal';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -70,6 +71,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const [selectedDate, setSelectedDate] = useState<DateSlot>(dateSlots[0]);
   const [selectedTime, setSelectedTime] = useState<string>(AVAILABLE_TIME_SLOTS[1]);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -239,9 +241,20 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <Calendar className="w-3.5 h-3.5 text-[#1D4ED8]" />
                     <span>1. Select Date</span>
                   </label>
-                  <span className="text-[11px] font-mono text-slate-500 font-medium">
-                    {selectedDate.label}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-mono text-slate-500 font-medium">
+                      {selectedDate.label}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsCalendarModalOpen(true)}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all hover:scale-102 cursor-pointer"
+                      title="Enlarge Full Calendar"
+                    >
+                      <Maximize2 className="w-3 h-3" />
+                      <span>Enlarge</span>
+                    </button>
+                  </div>
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {dateSlots.map((slot) => {
@@ -503,6 +516,17 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         )}
       </div>
+
+      {/* Enlarged Full Month Interactive Calendar Modal */}
+      <EnlargedCalendarModal
+        isOpen={isCalendarModalOpen}
+        onClose={() => setIsCalendarModalOpen(false)}
+        selectedDate={selectedDate}
+        onSelectDate={setSelectedDate}
+        selectedTime={selectedTime}
+        onSelectTime={setSelectedTime}
+        availableTimeSlots={AVAILABLE_TIME_SLOTS}
+      />
     </div>,
     document.body
   );

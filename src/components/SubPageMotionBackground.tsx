@@ -1,23 +1,34 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { MotionDotCanvas } from './MotionDotCanvas';
 
 export const SubPageMotionBackground: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden select-none -z-0">
       {/* Light Sculpture Architectural Texture from Hero */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-multiply filter contrast-125 brightness-105 pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.12] mix-blend-multiply filter contrast-125 brightness-105 pointer-events-none"
         style={{ backgroundImage: `url('/images/hero_sculpture.jpg')` }}
       />
 
-      {/* Subtle Architectural Dot Grid */}
+      {/* Subtle Architectural Dot Grid Base */}
       <div
-        className="absolute inset-0 opacity-35 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(#1E3A8A 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
+
+      {/* Live Interactive Neural Dotted Motion Canvas with Enhanced Dot Density */}
+      <div className="absolute inset-0 opacity-80 pointer-events-none">
+        <MotionDotCanvas
+          dotCount={130}
+          deflectionRadius={150}
+          dotColor="rgba(29, 78, 216, "
+          lineColor="rgba(56, 189, 248, "
+        />
+      </div>
 
       {/* Primary Floating Ambient Blue Glow */}
       <motion.div
@@ -31,7 +42,7 @@ export const SubPageMotionBackground: React.FC = () => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-16 right-1/4 w-[540px] h-[540px] rounded-full bg-blue-200/50 blur-[130px] pointer-events-none"
+        className="absolute top-16 right-1/4 w-[540px] h-[540px] rounded-full bg-blue-200/40 blur-[130px] pointer-events-none"
       />
 
       {/* Secondary Floating Ambient Crimson Accent */}
@@ -46,7 +57,7 @@ export const SubPageMotionBackground: React.FC = () => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-1/3 left-8 w-[440px] h-[440px] rounded-full bg-red-100/40 blur-[125px] pointer-events-none"
+        className="absolute top-1/3 left-8 w-[440px] h-[440px] rounded-full bg-red-100/35 blur-[125px] pointer-events-none"
       />
 
       {/* Soft Sky Blue Bottom Glow */}
@@ -60,7 +71,7 @@ export const SubPageMotionBackground: React.FC = () => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute bottom-20 right-10 w-[480px] h-[480px] rounded-full bg-sky-100/50 blur-[140px] pointer-events-none"
+        className="absolute bottom-20 right-10 w-[480px] h-[480px] rounded-full bg-sky-100/45 blur-[140px] pointer-events-none"
       />
     </div>
   );
