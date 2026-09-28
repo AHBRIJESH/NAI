@@ -24,7 +24,7 @@ export const SubPageMotionBackground: React.FC = () => {
       <div className="fixed inset-0 opacity-80 pointer-events-none z-0">
         <MotionDotCanvas
           dotCount={120}
-          deflectionRadius={125}
+          deflectionRadius={140}
           dotColor="rgba(29, 78, 216, "
           lineColor="rgba(56, 189, 248, "
         />
