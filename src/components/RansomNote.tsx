@@ -103,7 +103,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
   return (
     <div
       data-slot="ransom-note"
-      className={cn('relative flex flex-col items-center justify-center gap-5 sm:gap-7 md:gap-8 select-none', className)}
+      className={cn('relative flex flex-col items-center justify-center gap-8 sm:gap-12 md:gap-16 select-none', className)}
       {...props}
     >
       <span className="sr-only">{text.replace('\n', ' ')}</span>

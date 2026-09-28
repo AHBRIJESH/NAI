@@ -23,22 +23,23 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
         
 
 
-        {/* High-Definition Razor-Sharp Ransom Note Headline in Green Combo Palette */}
+        {/* High-Definition Razor-Sharp Ransom Note Headline */}
         <ScrollReveal delay={0.08} y={24} duration={0.6}>
-          <div className="my-4 py-2 flex justify-center">
+          <div className="my-6 sm:my-8 md:my-10 py-2 flex justify-center">
             <RansomNote
               text={"PUTTING PRACTICAL AI\nTO WORK FOR YOUR TEAM"}
               intensity={0.3}
               animate="assemble"
               rotation={2.5}
               seed={2026}
+              className="gap-8 sm:gap-12 md:gap-16"
             />
           </div>
         </ScrollReveal>
 
         {/* Supporting Narrative: Respectful, Forward-Thinking & Results-Oriented */}
         <ScrollReveal delay={0.12} y={20} duration={0.55}>
-          <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto mt-6 mb-8 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto mt-8 sm:mt-10 mb-8 leading-relaxed font-normal">
             Enterprises partner with <strong className="font-extrabold text-[#1D4ED8]">NAIR.AI</strong> to automate high-friction operational workflows, eliminate repetitive data reconciliation, and give teams the bandwidth to focus on high-judgment strategy, client relationships, and business growth.
           </p>
         </ScrollReveal>
