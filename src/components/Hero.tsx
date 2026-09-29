@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           {/* Strategic AI Implementation Value Proposition */}
           <motion.p
             variants={itemVariants}
-            className="text-[11px] sm:text-sm md:text-base font-bold text-[#38BDF8] mb-2 sm:mb-3 leading-relaxed tracking-wide drop-shadow-sm"
+            className="text-[11px] sm:text-sm md:text-base font-bold text-amber-400 mb-2 sm:mb-3 leading-relaxed tracking-wide drop-shadow-md"
           >
             Want to implement AI, but not sure where to start? Work smarter not harder with these proven strategies.
           </motion.p>

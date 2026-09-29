@@ -33,14 +33,14 @@ const DEFAULT_FONTS = [
   '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
 ]
 
-// Official NAIR.AI Website Theme Palette scraps
+// Official NAIR.AI Website Theme Palette scraps (high-contrast, distinct cards in website colors)
 export const WEBSITE_THEME_PALETTE = [
-  { bg: '#0A192F', text: '#FFFFFF', border: '#1D4ED8' }, // Deep Sovereign Navy
-  { bg: '#DC2626', text: '#FFFFFF', border: '#991B1B' }, // Brand Crimson Red
-  { bg: '#1D4ED8', text: '#FFFFFF', border: '#1E40AF' }, // Royal Electric Blue
-  { bg: '#DBEAFE', text: '#0A192F', border: '#93C5FD' }, // Soft Ice Blue
-  { bg: '#FFFFFF', text: '#0A192F', border: '#CBD5E1' }, // Crisp Clean White
-  { bg: '#38BDF8', text: '#0A192F', border: '#0284C7' }, // Cyber Sky Blue
+  { bg: '#0A192F', text: '#FFFFFF', border: '#030712' }, // Sovereign Midnight Navy
+  { bg: '#DC2626', text: '#FFFFFF', border: '#7F1D1D' }, // Brand Crimson Red
+  { bg: '#FFFFFF', text: '#0A192F', border: '#0A192F' }, // Crisp White / Navy Letter & Dark Border
+  { bg: '#1D4ED8', text: '#FFFFFF', border: '#172554' }, // Royal Electric Blue
+  { bg: '#FFFFFF', text: '#DC2626', border: '#DC2626' }, // Crisp White / Red Letter & Red Border
+  { bg: '#0F172A', text: '#38BDF8', border: '#0284C7' }, // Deep Slate / Cyan Letter & Blue Border
 ]
 
 export const RansomNote: React.FC<RansomNoteProps> = ({
@@ -64,6 +64,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
       ? text.split('\n')
       : text.split(/(?<=\.)\s+/)
     let globalCharIndex = 0
+    let lastColorIndex = -1
 
     return rawSentences.map((sentence) => {
       const words = sentence.trim().split(/\s+/).filter(Boolean)
@@ -71,7 +72,15 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
         const chars = Array.from(word).map((char) => {
           const charIdx = globalCharIndex++
           const font = fonts[Math.floor(rng() * fonts.length)]
-          const colorPair = palette[Math.floor(rng() * palette.length)]
+
+          // Guarantee adjacent letters never share the same color pair
+          let colorIdx = Math.floor(rng() * palette.length)
+          if (colorIdx === lastColorIndex) {
+            colorIdx = (colorIdx + 1) % palette.length
+          }
+          lastColorIndex = colorIdx
+          const colorPair = palette[colorIdx]
+
           const rot = Math.round((rng() * 2 - 1) * rotation * intensity * 10) / 10
           const offsetY = Math.round((rng() * 2 - 1) * 3 * intensity)
           const offsetX = Math.round((rng() * 2 - 1) * 2 * intensity)
@@ -111,22 +120,22 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
       {sentencesLayout.map((wordsInSentence, sIdx) => (
         <div
           key={sIdx}
-          className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3.5 md:gap-x-4 gap-y-2 sm:gap-y-3"
+          className="inline-flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-5 md:gap-x-6 gap-y-2.5 sm:gap-y-3.5"
           aria-hidden="true"
         >
           {wordsInSentence.map((wordChars, wIdx) => (
             <span
               key={wIdx}
-              className={cn('inline-flex items-center gap-0.5 sm:gap-1 whitespace-nowrap', wordClassName)}
+              className={cn('inline-flex items-center gap-1 sm:gap-1.5 md:gap-2 whitespace-nowrap', wordClassName)}
             >
               {wordChars.map((scrap) => {
                 const baseStyle: React.CSSProperties = {
                   fontFamily: scrap.font,
                   backgroundColor: scrap.colorPair.bg,
                   color: scrap.colorPair.text,
-                  border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
-                  boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
-                  borderRadius: '5px',
+                  border: `2px solid ${scrap.colorPair.border || '#0A192F'}`,
+                  boxShadow: '0 4px 10px -2px rgba(10, 25, 47, 0.22), 2px 2px 0px rgba(10, 25, 47, 0.18)',
+                  borderRadius: '6px',
                   WebkitFontSmoothing: 'antialiased',
                   MozOsxFontSmoothing: 'grayscale',
                   imageRendering: 'crisp-edges',

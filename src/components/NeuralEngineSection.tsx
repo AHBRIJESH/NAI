@@ -18,7 +18,7 @@ interface NeuralEngineSectionProps {
   onBookCall: () => void;
 }
 
-export type EngineMode = 'inference' | 'governance' | 'agentic';
+export type EngineMode = 'inference' | 'governance';
 
 export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   onOpenAssessment,
@@ -27,7 +27,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   const [orbMode, setOrbMode] = useState<EngineMode>('inference');
   const [isAutoCycling, setIsAutoCycling] = useState<boolean>(true);
 
-  const modes: EngineMode[] = ['inference', 'governance', 'agentic'];
+  const modes: EngineMode[] = ['inference', 'governance'];
 
   const modeDetails = {
     inference: {
@@ -60,22 +60,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
         'guardrail :: scrubbing outbound prompts for PII & corporate credential leaks',
         'ephemeral-mem :: 0 bytes persisted to disk — volatile VPC memory wiped post-execution',
         'compliance :: ISO 27001 cryptographic HMAC audit trace verified and signed',
-      ],
-    },
-    agentic: {
-      color: '#0284C7', // Cerulean Blue
-      tag: 'MULTI-AGENT ORCHESTRATION',
-      title: 'Agentic AI & Multi-Agent Swarms',
-      latency: '24.6ms',
-      throughput: '8 Swarms',
-      retention: '0.00 KB',
-      image: '/images/telemetry_agentic.jpg',
-      imageCaption: 'Agentic AI: Plan, Reason, Collaborate & Act Autonomously with Real Impact',
-      desc: 'Autonomous goal-seeking networks executing cross-platform operational workflows and API transactions.',
-      logSample: [
-        'swarm-master :: decomposing multi-step ERP reconciliation objective',
-        'worker-agent-3 :: querying PostgreSQL sandbox with automated rollback lock',
-        'consensus :: 4 of 4 verification nodes confirm deterministic ledger parity',
       ],
     },
   };
@@ -123,7 +107,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
             </h2>
 
             <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-              Real-time telemetry across multi-agent tool orchestration, cryptographic zero-retention guardrails, and sovereign enterprise decision systems.
+              Real-time telemetry across neural inference pipelines, cryptographic zero-retention guardrails, and sovereign enterprise decision systems.
             </p>
           </div>
         </ScrollReveal>
@@ -182,7 +166,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
 
                   {/* Mode Toggles */}
                   <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-900 border border-slate-700/80 font-mono text-xs shadow-inner">
-                    {(['inference', 'governance', 'agentic'] as const).map((m) => (
+                    {(['inference', 'governance'] as const).map((m) => (
                       <button
                         key={m}
                         type="button"
@@ -190,13 +174,15 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                           setOrbMode(m);
                           setIsAutoCycling(false);
                         }}
-                        className={`flex-1 py-2.5 px-2 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
+                        className={`flex-1 py-2.5 px-3 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
                           orbMode === m
-                            ? 'bg-[#1D4ED8] text-white shadow-md font-black scale-[1.02]'
+                            ? m === 'governance'
+                              ? 'bg-[#DC2626] text-white shadow-md font-black scale-[1.01]'
+                              : 'bg-[#1D4ED8] text-white shadow-md font-black scale-[1.01]'
                             : 'text-slate-400 hover:text-white hover:bg-slate-800'
                         }`}
                       >
-                        {m === 'agentic' ? 'Agentic' : m}
+                        {m}
                       </button>
                     ))}
                   </div>
