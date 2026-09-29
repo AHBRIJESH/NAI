@@ -124,10 +124,9 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                   fontFamily: scrap.font,
                   backgroundColor: scrap.colorPair.bg,
                   color: scrap.colorPair.text,
-                  padding: `${scrap.paddingY}px ${scrap.paddingX}px`,
                   border: `1.5px solid ${scrap.colorPair.border || '#1D4ED8'}`,
                   boxShadow: '0 4px 12px -2px rgba(10, 25, 47, 0.16), 2px 2px 0px rgba(10, 25, 47, 0.08)',
-                  borderRadius: '6px',
+                  borderRadius: '5px',
                   WebkitFontSmoothing: 'antialiased',
                   MozOsxFontSmoothing: 'grayscale',
                   imageRendering: 'crisp-edges',
@@ -144,7 +143,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                         ...baseStyle,
                         transform: `rotate(${scrap.rot}deg) translate(${scrap.offsetX}px, ${scrap.offsetY}px) translateZ(0)`,
                       }}
-                      className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight"
+                      className="inline-block px-1.5 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 font-black text-xs sm:text-lg md:text-2xl lg:text-3xl leading-none uppercase tracking-tight"
                     >
                       {scrap.char}
                     </span>
@@ -181,7 +180,7 @@ export const RansomNote: React.FC<RansomNoteProps> = ({
                       zIndex: 30,
                       transition: { duration: 0.15 },
                     }}
-                    className="inline-block font-black text-lg sm:text-2xl md:text-3xl leading-none uppercase tracking-tight cursor-default select-none"
+                    className="inline-block px-1.5 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 font-black text-xs sm:text-lg md:text-2xl lg:text-3xl leading-none uppercase tracking-tight cursor-default select-none"
                   >
                     {scrap.char}
                   </motion.span>

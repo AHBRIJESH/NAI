@@ -93,9 +93,9 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[250px] bg-sky-300/15 blur-[120px] pointer-events-none rounded-full" />
 
       {/* Main Minimal Footer Container */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-14 pb-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-10 sm:pt-14 pb-8 sm:pb-10 relative z-10">
         <ScrollReveal y={20} duration={0.55}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-blue-200/70">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 pb-8 sm:pb-10 border-b border-blue-200/70">
             
             {/* Brand Logo Only (NO duplicate text next to it) */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -110,7 +110,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
                 <img
                   src="/images/logo.png"
                   alt="NAIR.AI"
-                  className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-8 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <p className="text-xs sm:text-sm text-slate-600 max-w-sm font-normal leading-relaxed">
@@ -125,7 +125,7 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
             </div>
 
             {/* Streamlined Core Navigation Links */}
-            <nav className="flex flex-wrap items-center justify-center gap-5 sm:gap-7">
+            <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-7">
               {navLinks.map((link) => (
                 <button
                   key={link.name}

@@ -31,30 +31,29 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
   return (
     <section
       id="capabilities"
-      className="py-24 md:py-32 bg-[#1D4ED8] text-white relative overflow-hidden"
+      className="py-14 sm:py-20 md:py-32 bg-[#1D4ED8] text-white relative overflow-hidden"
     >
       {/* Translucent Geometric Loop Watermark */}
       <WatermarkPattern color="#FFFFFF" opacity={0.09} />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Top Content: Headline & Action */}
         <ScrollReveal y={32} duration={0.65}>
-          <div className="max-w-3xl mb-16">
+          <div className="max-w-3xl mb-10 sm:mb-16">
 
-
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+            <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 sm:mb-6 leading-tight">
               Sovereign Architecture. Zero Friction.{' '}
               <span className="text-blue-100">Engineered to Deploy.</span>
             </h2>
 
-            <p className="text-lg sm:text-xl text-blue-100/90 leading-relaxed mb-8 font-normal">
+            <p className="text-sm sm:text-lg lg:text-xl text-blue-100/90 leading-relaxed mb-6 sm:mb-8 font-normal">
               Bypass months of speculative research. We engineer resilient autonomous pipelines hardened directly into your private enterprise infrastructure.
             </p>
 
             <button
               onClick={onExploreCapabilities}
-              className="px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 text-[#1D4ED8] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-blue-900/30 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
+              className="px-5 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white hover:bg-slate-100 text-[#1D4ED8] font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 shadow-xl shadow-blue-900/30 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
             >
               <span>Explore Architectural Topology</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -66,15 +65,15 @@ export const BlueStatsSection: React.FC<BlueStatsSectionProps> = ({
         <StaggerContainer
           stagger={0.12}
           delay={0.1}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-white/20"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-8 sm:pt-12 border-t border-white/20"
         >
           {stats.map((stat, index) => (
             <StaggerItem key={index} y={30} duration={0.65}>
               <div className="flex flex-col">
-                <div className="font-display font-black text-5xl sm:text-6xl lg:text-7xl text-white tracking-tight mb-2">
+                <div className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight mb-1 sm:mb-2">
                   {stat.value}
                 </div>
-                <h3 className="font-display font-bold text-lg sm:text-xl text-white mb-1">
+                <h3 className="font-display font-bold text-base sm:text-xl text-white mb-1">
                   {stat.label}
                 </h3>
                 <p className="text-xs sm:text-sm text-blue-100/75 font-mono">

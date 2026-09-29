@@ -207,7 +207,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
   }, [isAutoPlaying, stages.length]);
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-[#F8FAFC] via-[#F0F7FF] to-[#F8FAFC] border-t border-b border-blue-200/80 text-[#0A192F] relative overflow-hidden">
+    <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-b from-[#F8FAFC] via-[#F0F7FF] to-[#F8FAFC] border-t border-b border-blue-200/80 text-[#0A192F] relative overflow-hidden">
       {/* Interactive Motion Dot Deflection Effect */}
       <MotionDotCanvas dotCount={50} deflectionRadius={130} />
 
@@ -215,31 +215,31 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[480px] h-[360px] bg-blue-300/15 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[440px] h-[320px] bg-sky-300/15 blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header: Clean typography without top pill */}
         <ScrollReveal y={24} duration={0.6}>
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-2 sm:mb-3 block">
               Cognitive Evolution Roadmap
             </span>
 
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0A192F] mb-4">
+            <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0A192F] mb-3 sm:mb-4">
               AI <span className="text-[#1D4ED8]">&rarr;</span> AGI <span className="text-[#7C3AED]">&rarr;</span> ASI
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 font-normal leading-relaxed">
               Explore the arc of synthetic intelligence: from today’s production-grade automation to tomorrow’s generalized reasoning and transcendent frontiers.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Interactive Evolutionary Stepper Bar with Play/Pause */}
-        <div className="max-w-4xl mx-auto mb-10">
-          <div className="p-2 sm:p-3 rounded-3xl bg-white/95 border border-slate-200/90 shadow-lg backdrop-blur-md">
+        <div className="max-w-4xl mx-auto mb-8 sm:mb-10">
+          <div className="p-2 sm:p-3 rounded-2xl sm:rounded-3xl bg-white/95 border border-slate-200/90 shadow-lg backdrop-blur-md">
             
-            {/* Timeline Steps */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
+            {/* Timeline Steps: 3-column row on all screen sizes */}
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
               {stages.map((stage, idx) => {
                 const isSelected = stage.id === activeStage;
                 return (
@@ -250,7 +250,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                       setActiveStage(stage.id);
                       setIsAutoPlaying(false);
                     }}
-                    className={`relative p-3 sm:p-3.5 md:p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer overflow-hidden group min-h-[64px] sm:min-h-[72px] flex flex-col justify-center ${
+                    className={`relative p-2 sm:p-3.5 md:p-4 rounded-xl sm:rounded-2xl border text-left transition-all duration-300 cursor-pointer overflow-hidden group min-h-[54px] sm:min-h-[72px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-blue-50/90 border-[#1D4ED8] shadow-md scale-[1.02]'
                         : 'bg-white hover:bg-slate-50 border-slate-200/70 text-slate-700'
@@ -266,19 +266,20 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                       />
                     )}
 
-                    <div className="flex items-center justify-between gap-1.5 sm:gap-2">
-                      <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3 flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-1 sm:gap-2">
+                      <div className="flex items-center gap-1.5 sm:gap-2.5 md:gap-3 flex-1 min-w-0">
                         <div
-                          className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center font-display font-black text-xs sm:text-sm text-white shadow-xs shrink-0 transition-transform group-hover:scale-105"
+                          className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-display font-black text-[11px] sm:text-sm text-white shadow-xs shrink-0 transition-transform group-hover:scale-105"
                           style={{ backgroundColor: stage.color }}
                         >
                           {stage.acronym}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="font-display font-extrabold text-xs sm:text-[13px] md:text-sm lg:text-[15px] text-[#0A192F] block leading-snug whitespace-normal break-words">
-                            {stage.name}
+                          <span className="font-display font-extrabold text-[11px] sm:text-[13px] md:text-sm lg:text-[15px] text-[#0A192F] block leading-tight truncate sm:whitespace-normal sm:break-words">
+                            <span className="sm:hidden">{stage.acronym}</span>
+                            <span className="hidden sm:inline">{stage.name}</span>
                           </span>
-                          <span className="font-mono text-[10px] sm:text-[11px] text-slate-500 block mt-0.5 uppercase tracking-wider">
+                          <span className="font-mono text-[9px] sm:text-[11px] text-slate-500 block mt-0.5 uppercase tracking-wider">
                             {stage.horizon}
                           </span>
                         </div>
@@ -348,13 +349,13 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45 }}
-              className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-2xl text-left"
+              className="p-4 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-2xl text-left"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
                 
                 {/* Left Column: Official Artwork with Interactive Node Badges (5 cols) */}
-                <div className="lg:col-span-5 space-y-4">
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[320px] sm:h-[400px] group bg-slate-900">
+                <div className="lg:col-span-5 space-y-3.5 sm:space-y-4">
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[220px] sm:h-[400px] group bg-slate-900">
                     <img
                       src={current.image}
                       alt={current.name}
@@ -363,7 +364,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/20 to-transparent" />
                     
                     {/* Top Overlay Badge */}
-                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between">
                       <span
                         className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md backdrop-blur-md"
                         style={{ backgroundColor: `${current.color}DD` }}
@@ -376,19 +377,19 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     </div>
 
                     {/* Bottom Artwork Captions */}
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-blue-200 block mb-1">
+                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 text-white">
+                      <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-blue-200 block mb-0.5 sm:mb-1">
                         {current.corePillars}
                       </span>
-                      <span className="font-display font-black text-base sm:text-lg block drop-shadow-md">
+                      <span className="font-display font-black text-sm sm:text-lg block drop-shadow-md">
                         "{current.motto}"
                       </span>
                     </div>
                   </div>
 
                   {/* Interactive Hotspot Nodes Extracted from Artwork */}
-                  <div className="p-4 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-2">
-                    <div className="flex items-center justify-between text-[11px] font-mono font-bold text-slate-500 uppercase">
+                  <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-2">
+                    <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono font-bold text-slate-500 uppercase">
                       <span>Artwork Interactive Nodes</span>
                       <span className="text-[#1D4ED8] font-semibold">Hover to explore</span>
                     </div>
@@ -402,7 +403,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                             type="button"
                             onMouseEnter={() => setHoveredNode(node.label)}
                             onMouseLeave={() => setHoveredNode(null)}
-                            className={`px-2.5 py-1 rounded-md font-mono text-xs font-bold transition-all cursor-pointer ${
+                            className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md font-mono text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                               isHovered
                                 ? 'bg-[#1D4ED8] text-white shadow-sm scale-105'
                                 : 'bg-white hover:bg-blue-50 text-slate-700 border border-slate-200'
@@ -415,14 +416,14 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     </div>
 
                     {/* Active Node Tooltip Readout */}
-                    <div className="min-h-[32px] pt-1">
+                    <div className="min-h-[28px] sm:min-h-[32px] pt-0.5 sm:pt-1">
                       {hoveredNode ? (
                         <p className="text-xs text-[#1D4ED8] font-medium leading-relaxed animate-in fade-in duration-150">
                           <strong>{hoveredNode}:</strong>{' '}
                           {current.nodes.find((n) => n.label === hoveredNode)?.desc}
                         </p>
                       ) : (
-                        <p className="text-[11px] text-slate-400 italic">
+                        <p className="text-[10px] sm:text-[11px] text-slate-400 italic">
                           Hover over any node above to inspect its role in {current.acronym}.
                         </p>
                       )}
@@ -431,38 +432,38 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                 </div>
 
                 {/* Right Column: Architectural Readout & Interactive Tabs (7 cols) */}
-                <div className="lg:col-span-7 space-y-6">
+                <div className="lg:col-span-7 space-y-4 sm:space-y-6">
                   
                   {/* Header & Tagline */}
                   <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-[#DC2626] font-bold">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-[#DC2626] font-bold">
                         COGNITIVE STAGE //
                       </span>
-                      <span className="font-mono text-[11px] text-slate-500 font-semibold">
+                      <span className="font-mono text-[10px] sm:text-[11px] text-slate-500 font-semibold">
                         {current.benchmark}
                       </span>
                     </div>
 
-                    <h3 className="font-display font-black text-2xl sm:text-4xl text-[#0A192F] leading-tight">
+                    <h3 className="font-display font-black text-xl sm:text-4xl text-[#0A192F] leading-tight">
                       {current.name} ({current.acronym})
                     </h3>
 
-                    <p className="font-mono text-xs sm:text-sm text-[#1D4ED8] font-bold mt-1.5">
+                    <p className="font-mono text-xs sm:text-sm text-[#1D4ED8] font-bold mt-1">
                       {current.tagline}
                     </p>
                   </div>
 
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-base text-slate-600 leading-relaxed font-normal">
                     {current.desc}
                   </p>
 
                   {/* Interactive Sub-tabs within the Card */}
-                  <div className="border-b border-slate-200 flex items-center gap-4 text-xs font-mono font-bold">
+                  <div className="border-b border-slate-200 flex items-center gap-2 sm:gap-4 text-xs font-mono font-bold overflow-x-auto scrollbar-none pb-0.5">
                     <button
                       type="button"
                       onClick={() => setActiveDetailTab('capabilities')}
-                      className={`pb-2.5 transition-all cursor-pointer border-b-2 ${
+                      className={`pb-2 transition-all cursor-pointer border-b-2 whitespace-nowrap text-xs ${
                         activeDetailTab === 'capabilities'
                           ? 'border-[#1D4ED8] text-[#1D4ED8]'
                           : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -473,7 +474,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <button
                       type="button"
                       onClick={() => setActiveDetailTab('safety')}
-                      className={`pb-2.5 transition-all cursor-pointer border-b-2 ${
+                      className={`pb-2 transition-all cursor-pointer border-b-2 whitespace-nowrap text-xs ${
                         activeDetailTab === 'safety'
                           ? 'border-[#1D4ED8] text-[#1D4ED8]'
                           : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -484,7 +485,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <button
                       type="button"
                       onClick={() => setActiveDetailTab('matrix')}
-                      className={`pb-2.5 transition-all cursor-pointer border-b-2 ${
+                      className={`pb-2 transition-all cursor-pointer border-b-2 whitespace-nowrap text-xs ${
                         activeDetailTab === 'matrix'
                           ? 'border-[#1D4ED8] text-[#1D4ED8]'
                           : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -499,12 +500,12 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <motion.div
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3"
                     >
                       {current.capabilities.map((cap, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-2xl bg-blue-50/60 border border-blue-100 shadow-xs"
+                          className="flex items-start gap-2 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-blue-50/60 border border-blue-100 shadow-xs"
                         >
                           <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#1D4ED8]" />
                           <span className="text-xs sm:text-sm text-slate-700 leading-snug">
@@ -520,12 +521,12 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <motion.div
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3"
                     >
                       {current.safety.map((saf, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100 shadow-xs"
+                          className="flex items-start gap-2 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-emerald-50/60 border border-emerald-100 shadow-xs"
                         >
                           <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
                           <span className="text-xs sm:text-sm text-slate-700 leading-snug">
@@ -541,17 +542,17 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     <motion.div
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5 text-xs font-mono"
+                      className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-mono"
                     >
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <div className="flex items-center justify-between pb-1.5 border-b border-slate-200">
                         <span className="text-slate-500 font-bold">Cognitive Scope</span>
                         <span className="font-extrabold text-[#0A192F]">{current.comparison.cognition}</span>
                       </div>
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <div className="flex items-center justify-between pb-1.5 border-b border-slate-200">
                         <span className="text-slate-500 font-bold">Autonomy Level</span>
                         <span className="font-extrabold text-[#1D4ED8]">{current.comparison.autonomy}</span>
                       </div>
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <div className="flex items-center justify-between pb-1.5 border-b border-slate-200">
                         <span className="text-slate-500 font-bold">Deployment Status</span>
                         <span className="font-extrabold text-emerald-700">{current.comparison.deployment}</span>
                       </div>
@@ -563,11 +564,11 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                   )}
 
                   {/* Direct Actions */}
-                  <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3">
                     <button
                       type="button"
                       onClick={onBookCall}
-                      className="px-7 py-3 rounded-full bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold shadow-lg shadow-red-600/25 transition-all flex items-center gap-2 cursor-pointer hover:scale-102"
+                      className="px-5 py-2.5 sm:px-7 sm:py-3 rounded-full bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold shadow-lg shadow-red-600/25 transition-all flex items-center gap-2 cursor-pointer hover:scale-102"
                     >
                       <span>Book an AI strategy call</span>
                       <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -577,7 +578,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                       <button
                         type="button"
                         onClick={onExploreCapabilities}
-                        className="px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold shadow-xs transition-colors cursor-pointer"
+                        className="px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-white hover:bg-slate-50 text-[#0A192F] border border-slate-300 font-mono text-xs sm:text-sm uppercase tracking-wider font-bold shadow-xs transition-colors cursor-pointer"
                       >
                         <span>Explore Capabilities</span>
                       </button>
@@ -592,10 +593,10 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
         </div>
 
         {/* Global Evolution Comparison Table: Side-by-Side Clarity */}
-        <div className="max-w-6xl mx-auto rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-xl text-left">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-8 shadow-xl text-left">
+          <div className="flex items-center justify-between mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-100">
             <div>
-              <h4 className="font-display font-extrabold text-xl sm:text-2xl text-[#0A192F]">
+              <h4 className="font-display font-extrabold text-lg sm:text-2xl text-[#0A192F]">
                 Evolutionary Trajectory Comparison
               </h4>
               <p className="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
@@ -607,7 +608,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
             {stages.map((st) => {
               const isActive = st.id === activeStage;
               return (
@@ -617,7 +618,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     setActiveStage(st.id);
                     setIsAutoPlaying(false);
                   }}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer ${
+                  className={`p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all cursor-pointer ${
                     isActive
                       ? 'bg-blue-50/80 border-[#1D4ED8] shadow-md ring-2 ring-blue-500/20'
                       : 'bg-slate-50 hover:bg-slate-100/80 border-slate-200'

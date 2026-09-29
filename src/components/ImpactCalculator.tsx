@@ -24,44 +24,43 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
   return (
     <section
       id="calculator"
-      className="py-24 md:py-32 bg-white border-t border-b border-slate-200/80 text-[#0A192F] relative"
+      className="py-14 sm:py-20 md:py-32 bg-white border-t border-b border-slate-200/80 text-[#0A192F] relative"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-16">
 
-
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-[#0A192F]">
+            <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-3 sm:mb-4 text-[#0A192F]">
               Quantify Your <span className="text-[#1D4ED8]">Efficiency Yield</span>.
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed">
               Adjust the operational parameters below to estimate the annual bandwidth and budget recaptured by automating repetitive enterprise workflows.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Interactive Calculator Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch">
           
           {/* Controls Column (6 cols) */}
           <div className="lg:col-span-6 flex flex-col">
             <ScrollReveal delay={0.08} y={32} duration={0.65} className="h-full flex flex-col">
-              <div className="rounded-3xl border border-slate-200 bg-slate-50/70 p-8 sm:p-10 shadow-xs flex-1 flex flex-col justify-between">
+              <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-slate-50/70 p-4 sm:p-10 shadow-xs flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-display font-extrabold text-2xl mb-8 text-[#0A192F]">
+                  <h3 className="font-display font-extrabold text-xl sm:text-2xl mb-6 sm:mb-8 text-[#0A192F]">
                     Operational Parameters
                   </h3>
 
                   {/* Slider 1: Team Size */}
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="mb-5 sm:mb-8">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
                       <label className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold">
                         Team Members Handling Workflows
                       </label>
-                      <span className="font-mono font-black text-2xl text-[#1D4ED8]">
+                      <span className="font-mono font-black text-xl sm:text-2xl text-[#1D4ED8]">
                         {teamSize} People
                       </span>
                     </div>
@@ -82,12 +81,12 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   </div>
 
                   {/* Slider 2: Weekly Repetitive Hours */}
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="mb-5 sm:mb-8">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
                       <label className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold">
                         Repetitive Hours / Person / Week
                       </label>
-                      <span className="font-mono font-black text-2xl text-[#1D4ED8]">
+                      <span className="font-mono font-black text-xl sm:text-2xl text-[#1D4ED8]">
                         {hoursPerWeek} hrs/wk
                       </span>
                     </div>
@@ -108,12 +107,12 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   </div>
 
                   {/* Slider 3: Hourly Rate */}
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="mb-5 sm:mb-8">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
                       <label className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold">
                         Blended Hourly Compensation
                       </label>
-                      <span className="font-mono font-black text-2xl text-[#1D4ED8]">
+                      <span className="font-mono font-black text-xl sm:text-2xl text-[#1D4ED8]">
                         ${hourlyRate}/hr
                       </span>
                     </div>
@@ -134,7 +133,7 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-500 font-mono pt-5 border-t border-slate-200 font-medium">
+                <p className="text-xs text-slate-500 font-mono pt-4 sm:pt-5 border-t border-slate-200 font-medium">
                   *Calculation based on industry benchmark 75% automated time recovery rate across back-office operations.
                 </p>
               </div>
@@ -144,38 +143,38 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
           {/* Results Column (Light Blue Container with Motion Dot Deflection & Red/Navy accents) */}
           <div className="lg:col-span-6 flex flex-col">
             <ScrollReveal delay={0.15} y={32} duration={0.7} className="h-full flex flex-col">
-              <div className="rounded-3xl border border-blue-200/90 bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] text-[#0A192F] p-6 sm:p-10 flex-1 flex flex-col justify-between shadow-xl min-w-0 overflow-hidden relative">
+              <div className="rounded-2xl sm:rounded-3xl border border-blue-200/90 bg-gradient-to-br from-[#F0F7FF] via-[#E0F2FE] to-[#EFF6FF] text-[#0A192F] p-4 sm:p-10 flex-1 flex flex-col justify-between shadow-xl min-w-0 overflow-hidden relative">
                 {/* Motion Dot Deflection Canvas */}
                 <MotionDotCanvas dotCount={35} deflectionRadius={110} />
 
                 <div className="min-w-0 relative z-10">
-                  <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#1D4ED8] font-bold mb-6">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#1D4ED8] font-bold mb-4 sm:mb-6">
                     <TrendingUp className="w-4 h-4 text-[#DC2626] shrink-0" />
                     <span>PROJECTED RECOVERED VALUE</span>
                   </div>
 
                   {/* Responsive Main Headline Value with Dynamic Overflow Protection */}
-                  <div className="mb-8 min-w-0 overflow-hidden">
-                    <span className="text-xs font-mono uppercase tracking-wider text-slate-500 block mb-2 font-bold">
+                  <div className="mb-5 sm:mb-8 min-w-0 overflow-hidden">
+                    <span className="text-xs font-mono uppercase tracking-wider text-slate-500 block mb-1.5 sm:mb-2 font-bold">
                       Estimated Annual Cost Recovery
                     </span>
                     <div
                       className={`font-display font-black text-[#0A192F] tracking-tight leading-none break-all sm:break-normal transition-all duration-150 ${
                         `$${annualCostSaved.toLocaleString()}`.length >= 11
-                          ? 'text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl'
+                          ? 'text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl'
                           : `$${annualCostSaved.toLocaleString()}`.length >= 9
-                          ? 'text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl'
-                          : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
+                          ? 'text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl'
+                          : 'text-3xl sm:text-5xl md:text-6xl lg:text-7xl'
                       }`}
                     >
                       ${annualCostSaved.toLocaleString()}
                     </div>
-                    <div className="flex flex-wrap items-center gap-2.5 mt-2.5">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mt-2 sm:mt-2.5">
                       <span className="text-xs sm:text-sm font-mono font-medium text-slate-500">
                         budget recaptured per year
                       </span>
                       {annualCostSaved >= 1000000 && (
-                        <span className="text-[11px] font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-blue-100 text-[#0284C7] border border-blue-200">
+                        <span className="text-[10px] sm:text-[11px] font-mono font-extrabold px-2 sm:px-2.5 py-0.5 rounded-full bg-blue-100 text-[#0284C7] border border-blue-200">
                           ~${(annualCostSaved / 1000000).toFixed(1)}M / yr
                         </span>
                       )}
@@ -183,41 +182,41 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   </div>
 
                   {/* Output Metric Badges */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
-                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1.5 font-bold">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-5 sm:mb-8">
+                    <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1 sm:mb-1.5 font-bold">
                         <Clock className="w-4 h-4 text-[#0284C7] shrink-0" />
                         <span className="truncate">HOURS RECOVERED</span>
                       </div>
-                      <div className="font-display font-black text-2xl sm:text-3xl text-[#0A192F] truncate">
+                      <div className="font-display font-black text-xl sm:text-3xl text-[#0A192F] truncate">
                         {annualHoursRecovered.toLocaleString()}
                       </div>
-                      <span className="text-xs text-slate-500 block mt-1 font-mono">
+                      <span className="text-xs text-slate-500 block mt-0.5 sm:mt-1 font-mono">
                         Hours returned / yr
                       </span>
                     </div>
 
-                    <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
-                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1.5 font-bold">
+                    <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white/90 border border-blue-200/80 shadow-xs min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-2 text-slate-600 text-xs font-mono mb-1 sm:mb-1.5 font-bold">
                         <TrendingUp className="w-4 h-4 text-[#DC2626] shrink-0" />
                         <span className="truncate">FTE BANDWIDTH</span>
                       </div>
-                      <div className="font-display font-black text-2xl sm:text-3xl text-[#0A192F] truncate">
+                      <div className="font-display font-black text-xl sm:text-3xl text-[#0A192F] truncate">
                         +{fteEquivalentReturned} FTEs
                       </div>
-                      <span className="text-xs text-slate-500 block mt-1 font-mono">
+                      <span className="text-xs text-slate-500 block mt-0.5 sm:mt-1 font-mono">
                         Capacity unlocked
                       </span>
                     </div>
                   </div>
 
                   {/* Strategic Context */}
-                  <div className="space-y-3 mb-8">
-                    <div className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                  <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
                       <CheckCircle2 className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                       <span>Immediate deployment without retraining existing operational staff.</span>
                     </div>
-                    <div className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                    <div className="flex items-start gap-2 text-xs text-slate-700 font-medium">
                       <CheckCircle2 className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                       <span>Zero proprietary data used for public foundation model training.</span>
                     </div>
@@ -227,7 +226,7 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                 {/* Direct CTA */}
                 <button
                   onClick={onBookCall}
-                  className="w-full py-4 px-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 flex items-center justify-center gap-3 cursor-pointer hover:scale-102 relative z-10"
+                  className="w-full py-3.5 px-5 sm:py-4 sm:px-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-[11px] sm:text-xs uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 flex items-center justify-center gap-2 sm:gap-3 cursor-pointer hover:scale-102 relative z-10"
                 >
                   <span>Validate ROI With An AI Strategy Call</span>
                   <ArrowRight className="w-4 h-4" />

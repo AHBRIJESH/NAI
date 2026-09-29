@@ -98,7 +98,7 @@ export const SuccessByNumbersSection: React.FC = () => {
   const cy = 240;
 
   return (
-    <section className="py-24 md:py-32 bg-[#F8FAFC] text-[#0A192F] border-b border-slate-200/80 relative overflow-hidden">
+    <section className="py-14 sm:py-20 md:py-32 bg-[#F8FAFC] text-[#0A192F] border-b border-slate-200/80 relative overflow-hidden">
       {/* Background Architectural Grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-30"
@@ -108,32 +108,31 @@ export const SuccessByNumbersSection: React.FC = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* Left Column: Technical Narrative & Live Telemetry HUD (5 cols) */}
           <div className="lg:col-span-5 text-left">
             <ScrollReveal y={28} duration={0.6}>
 
-
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.04] mb-6">
+              <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0A192F] leading-[1.04] mb-4 sm:mb-6">
                 Deterministic Yield.<br />
                 <span className="text-[#1D4ED8]">Proven in Production.</span>
               </h2>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8">
+              <p className="text-sm sm:text-lg text-slate-600 leading-relaxed font-normal mb-6 sm:mb-8">
                 Aggregated telemetry across 514+ private enterprise multi-agent deployments, benchmarked against rigorous ISO 27001 and operational SLA standards.
               </p>
 
               {/* Active Metric Telemetry HUD Card */}
-              <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-xl relative overflow-hidden">
+              <div className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-xl relative overflow-hidden">
                 <div
                   className="absolute top-0 left-0 right-0 h-1.5 transition-colors duration-300"
                   style={{ backgroundColor: activeNode.color }}
                 />
 
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="font-mono text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                <div className="flex items-center justify-between gap-3 mb-3 sm:mb-4">
+                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-extrabold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                     {activeNode.category}
                   </span>
                   <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#1D4ED8]">
@@ -142,20 +141,20 @@ export const SuccessByNumbersSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-baseline gap-3 mb-2">
+                <div className="flex items-baseline gap-2.5 sm:gap-3 mb-2">
                   <span
-                    className="font-display font-black text-5xl sm:text-6xl tracking-tight transition-all duration-300"
+                    className="font-display font-black text-4xl sm:text-6xl tracking-tight transition-all duration-300"
                     style={{ color: activeNode.color }}
                   >
                     {activeNode.pct}
                   </span>
-                  <span className="font-display font-extrabold text-lg sm:text-xl text-[#0A192F] leading-tight">
+                  <span className="font-display font-extrabold text-base sm:text-xl text-[#0A192F] leading-tight">
                     {activeNode.label}
                   </span>
                 </div>
 
                 {/* Progress Metric Bar */}
-                <div className="w-full bg-slate-100 rounded-full h-2 mb-4 overflow-hidden">
+                <div className="w-full bg-slate-100 rounded-full h-1.5 sm:h-2 mb-3 sm:mb-4 overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-500 ease-out"
                     style={{
@@ -165,11 +164,11 @@ export const SuccessByNumbersSection: React.FC = () => {
                   />
                 </div>
 
-                <p className="text-sm text-slate-600 font-normal leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed mb-3 sm:mb-4">
                   {activeNode.detail}
                 </p>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
+                <div className="pt-2.5 sm:pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] sm:text-xs font-mono text-slate-500">
                   <span className="font-bold text-[#0A192F]">VERIFIED GAIN:</span>
                   <span className="font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-[#1D4ED8]">
                     {activeNode.impactMetric}
@@ -178,12 +177,12 @@ export const SuccessByNumbersSection: React.FC = () => {
               </div>
 
               {/* Quick Node Selector Pills */}
-              <div className="flex flex-wrap items-center gap-2 mt-5">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-4 sm:mt-5">
                 {nodes.map((node) => (
                   <button
                     key={node.id}
                     onClick={() => setActiveNode(node)}
-                    className={`px-3 py-1.5 rounded-full font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
                       activeNode.id === node.id
                         ? 'bg-[#0A192F] text-white shadow-md scale-105'
                         : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
@@ -199,7 +198,7 @@ export const SuccessByNumbersSection: React.FC = () => {
           {/* Right Column: Hexagonal Orbital Radar Constellation (7 cols) */}
           <div className="lg:col-span-7 flex justify-center items-center">
             <ScrollReveal delay={0.12} y={30} scale={0.96} duration={0.7} className="w-full flex justify-center">
-              <div className="relative w-[340px] h-[340px] sm:w-[480px] sm:h-[480px]">
+              <div className="relative w-[300px] h-[300px] sm:w-[480px] sm:h-[480px]">
                 
                 {/* SVG Orbital Circuit Network */}
                 <svg
@@ -290,20 +289,20 @@ export const SuccessByNumbersSection: React.FC = () => {
                 </svg>
 
                 {/* Central Sovereign Engine Core Hub */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[#0A192F] text-white border-4 border-blue-900 shadow-2xl flex flex-col items-center justify-center p-3 text-center z-20 select-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-[#0A192F] text-white border-2 sm:border-4 border-blue-900 shadow-2xl flex flex-col items-center justify-center p-2 sm:p-3 text-center z-20 select-none">
                   {/* Outer glowing pulsing aura */}
                   <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping pointer-events-none" />
                   
                   <div className="relative z-10 flex flex-col items-center">
-                    <Cpu className="w-5 h-5 text-[#DC2626] mb-1 animate-pulse" />
-                    <span className="font-mono text-[8px] uppercase tracking-widest text-[#38BDF8] font-bold block mb-0.5">
+                    <Cpu className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-[#DC2626] mb-0.5 sm:mb-1 animate-pulse" />
+                    <span className="font-mono text-[7px] sm:text-[8px] uppercase tracking-widest text-[#38BDF8] font-bold block mb-0.5">
                       SOVEREIGN CORE
                     </span>
-                    <span className="font-display font-extrabold text-xs text-white leading-tight">
+                    <span className="font-display font-extrabold text-[10px] sm:text-xs text-white leading-tight">
                       NAIR.AI Intelligence
                     </span>
-                    <span className="text-[8px] font-mono text-[#38BDF8] font-semibold mt-1">
-                      ● TELEMETRY ACTIVE
+                    <span className="text-[7px] sm:text-[8px] font-mono text-[#38BDF8] font-semibold mt-0.5 sm:mt-1">
+                      ● ACTIVE
                     </span>
                   </div>
                 </div>
@@ -320,9 +319,9 @@ export const SuccessByNumbersSection: React.FC = () => {
                       key={node.id}
                       onClick={() => setActiveNode(node)}
                       onMouseEnter={() => setActiveNode(node)}
-                      className={`absolute z-30 group flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full font-mono transition-all duration-300 shadow-lg cursor-pointer ${
+                      className={`absolute z-30 group flex items-center gap-1 sm:gap-2 px-2 py-1 sm:px-3.5 sm:py-2 rounded-full font-mono transition-all duration-300 shadow-lg cursor-pointer ${
                         isActive
-                          ? 'scale-110 sm:scale-115 text-white shadow-2xl ring-4 ring-offset-2'
+                          ? 'scale-105 sm:scale-115 text-white shadow-2xl ring-2 sm:ring-4 ring-offset-1 sm:ring-offset-2'
                           : 'bg-white text-[#0A192F] hover:scale-105 border border-slate-200/90 hover:border-slate-300'
                       }`}
                       style={{
@@ -335,7 +334,7 @@ export const SuccessByNumbersSection: React.FC = () => {
                     >
                       {/* Pulsing beacon dot inside pill */}
                       <span
-                        className={`w-2 h-2 rounded-full ${
+                        className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
                           isActive
                             ? 'bg-white animate-pulse'
                             : ''
@@ -347,7 +346,7 @@ export const SuccessByNumbersSection: React.FC = () => {
 
                       {/* Percentage Badge */}
                       <span
-                        className={`font-display font-black text-sm sm:text-base leading-none tracking-tight ${
+                        className={`font-display font-black text-xs sm:text-base leading-none tracking-tight ${
                           isActive ? 'text-white' : ''
                         }`}
                         style={{
@@ -359,7 +358,7 @@ export const SuccessByNumbersSection: React.FC = () => {
 
                       {/* Short Label */}
                       <span
-                        className={`text-[10px] sm:text-[11px] font-mono uppercase font-bold tracking-wider ${
+                        className={`text-[9px] sm:text-[11px] font-mono uppercase font-bold tracking-wider ${
                           isActive ? 'text-white' : 'text-slate-700'
                         }`}
                       >
