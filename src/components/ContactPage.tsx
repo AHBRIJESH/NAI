@@ -284,12 +284,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-24 pb-24 overflow-hidden">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white pt-16 sm:pt-24 pb-12 sm:pb-24 overflow-hidden">
       {/* Light Colored Motion Background with Subtle Ambient Elements */}
       <SubPageMotionBackground />
 
       {/* Top Breadcrumb Navigation Bar */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 pb-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-4 sm:pt-6 pb-4 sm:pb-6">
         <button
           onClick={onBackToHome}
           className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider font-extrabold text-[#1D4ED8] hover:text-[#0A192F] transition-colors group cursor-pointer"
@@ -302,27 +302,27 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       </div>
 
       {/* Wide Hero Header */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12 text-left">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 mb-8 sm:mb-12 text-left">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-2 sm:mb-3 block">
               Direct Inquiries &amp; Strategy Sessions
             </span>
 
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04] flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-5">
+            <h1 className="font-display text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-4 sm:mb-6 leading-[1.04] flex flex-wrap items-center gap-2 sm:gap-4 lg:gap-5">
               <span>Contact</span>
               <img
                 src="/images/logo.png"
                 alt="NAIR.AI"
-                className="h-9 sm:h-13 lg:h-16 w-auto object-contain inline-block drop-shadow-xs"
+                className="h-8 sm:h-13 lg:h-16 w-auto object-contain inline-block drop-shadow-xs"
               />
             </h1>
 
-            <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed">
+            <p className="text-sm sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed">
               Schedule an objective 30-minute consultation directly with our senior AI systems architects, or send us an inquiry below. We map out high-ROI opportunities, review compliance constraints, and outline a deterministic 30-day implementation plan.
             </p>
           </motion.div>
@@ -330,53 +330,53 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       </section>
 
       {/* Booking Grid: Left Channels & Right Side-by-Side Scheduler Card */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 mb-12 sm:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
           
-          {/* Left Column: Direct Info & Operational Parameters (4 cols on lg) */}
-          <div className="lg:col-span-4 space-y-6 text-left">
-            <div className="rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-md space-y-6">
+          {/* Left Column: Direct Info & Operational Parameters (4 cols on lg, order-2 on mobile so form appears first) */}
+          <div className="lg:col-span-4 order-2 lg:order-1 space-y-4 sm:space-y-6 text-left">
+            <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-8 shadow-md space-y-4 sm:space-y-6">
               <span className="font-mono text-xs uppercase tracking-wider text-[#1D4ED8] font-extrabold block border-b border-slate-100 pb-3">
                 DIRECT CHANNELS &amp; OPERATIONAL HOURS
               </span>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Operational Window</span>
-                    <span className="font-display font-bold text-sm text-[#0A192F]">Mon – Sun, 6:00 AM – 11:00 PM EST</span>
-                    <span className="text-xs text-slate-500 block mt-0.5">Response within 24 business hours</span>
+                    <span className="font-mono text-[11px] sm:text-xs text-slate-500 uppercase block font-semibold">Operational Window</span>
+                    <span className="font-display font-bold text-xs sm:text-sm text-[#0A192F]">Mon – Sun, 6:00 AM – 11:00 PM EST</span>
+                    <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Response within 24 business hours</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Official Inquiries &amp; Strategy</span>
-                    <a href="mailto:info@nair.ai" className="font-mono text-sm text-[#1D4ED8] hover:underline font-bold">
+                    <span className="font-mono text-[11px] sm:text-xs text-slate-500 uppercase block font-semibold">Official Inquiries &amp; Strategy</span>
+                    <a href="mailto:info@nair.ai" className="font-mono text-xs sm:text-sm text-[#1D4ED8] hover:underline font-bold">
                       info@nair.ai
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="flex items-start gap-3 sm:gap-3.5">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center shrink-0 mt-0.5">
                     <Globe2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs text-slate-500 uppercase block font-semibold">Global Operations</span>
+                    <span className="font-mono text-[11px] sm:text-xs text-slate-500 uppercase block font-semibold">Global Operations</span>
                     <span className="text-xs text-slate-700 font-medium">United States &amp; India Operations</span>
                   </div>
                 </div>
 
                 {/* Social Channels */}
                 <div className="pt-2">
-                  <span className="font-mono text-xs text-slate-500 uppercase block font-semibold mb-2.5">
+                  <span className="font-mono text-[11px] sm:text-xs text-slate-500 uppercase block font-semibold mb-2 sm:mb-2.5">
                     Official Social Channels
                   </span>
                   <div className="flex items-center gap-2.5">
@@ -390,7 +390,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           rel="noopener noreferrer"
                           aria-label={`Follow NAIR.AI on ${s.name}`}
                           title={s.name}
-                          className={`w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center transition-all duration-200 shadow-xs hover:scale-110 active:scale-95 ${s.hoverClass}`}
+                          className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center transition-all duration-200 shadow-xs hover:scale-110 active:scale-95 ${s.hoverClass}`}
                         >
                           <IconComp />
                         </a>
@@ -400,13 +400,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/60 text-xs text-slate-600 space-y-2">
+              <div className="pt-3 sm:pt-4 border-t border-slate-100">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200/60 text-xs text-slate-600 space-y-1.5 sm:space-y-2">
                   <div className="flex items-center gap-2 font-bold text-[#0A192F]">
                     <ShieldCheck className="w-4 h-4 text-[#1D4ED8]" />
                     <span>Strict Mutual NDA Protected</span>
                   </div>
-                  <p className="font-normal leading-relaxed">
+                  <p className="font-normal leading-relaxed text-[11px] sm:text-xs">
                     All initial discussions operate under standard mutual NDA protocol. Your business metrics, system architecture, and proprietary datasets remain strictly confidential.
                   </p>
                 </div>
@@ -414,14 +414,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
 
             {/* Quick Consultation Perks */}
-            <div className="rounded-3xl bg-gradient-to-br from-blue-50/90 via-sky-50 to-blue-100/70 border border-blue-200/90 text-[#0A192F] p-7 sm:p-8 shadow-md text-left">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#1D4ED8] block mb-2 font-bold">
+            <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-50/90 via-sky-50 to-blue-100/70 border border-blue-200/90 text-[#0A192F] p-4 sm:p-8 shadow-md text-left">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#1D4ED8] block mb-1.5 sm:mb-2 font-bold">
                 WHAT HAPPENS ON THE CALL
               </span>
-              <h3 className="font-display font-extrabold text-xl text-[#0A192F] mb-3">
+              <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#0A192F] mb-2 sm:mb-3">
                 Zero Fluff. Pure Engineering.
               </h3>
-              <ul className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-2.5 font-normal">
+              <ul className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-2 sm:space-y-2.5 font-normal">
                 <li className="flex items-start gap-2">
                   <span className="text-[#1D4ED8] font-bold">1.</span>
                   <span>Objective breakdown of where AI creates immediate ROI in your workflows.</span>
@@ -438,9 +438,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Embedded Interactive Scheduler with Date & Time and Form SIDE BY SIDE */}
-          <div className="lg:col-span-8 text-left">
-            <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 shadow-xl space-y-6">
+          {/* Right Column: Embedded Interactive Scheduler with Date & Time and Form SIDE BY SIDE (order-1 on mobile so it displays first) */}
+          <div className="lg:col-span-8 order-1 lg:order-2 text-left">
+            <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-8 shadow-xl space-y-5 sm:space-y-6">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Scheduler Title & Status Bar */}
@@ -706,7 +706,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <div>
                             <label className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-1">
                               Company *
@@ -771,9 +771,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       {/* Submit Button */}
                       <button
                         type="submit"
-                        className="w-full mt-2 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
+                        className="w-full mt-2 py-3.5 px-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
                       >
-                        <span>Confirm AI Strategy Call • {selectedDate.monthName} {selectedDate.dayNumber} ({selectedTime})</span>
+                        <span className="hidden sm:inline">Confirm AI Strategy Call • {selectedDate.monthName} {selectedDate.dayNumber} ({selectedTime})</span>
+                        <span className="sm:hidden">Confirm Call • {selectedDate.monthName.slice(0, 3)} {selectedDate.dayNumber} ({selectedTime.replace(' EST', '')})</span>
                         <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                       </button>
 

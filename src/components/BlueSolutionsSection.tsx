@@ -49,55 +49,54 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
   return (
     <section
       id="services"
-      className="py-24 md:py-32 bg-[#1D4ED8] text-white relative overflow-hidden"
+      className="py-14 sm:py-20 md:py-32 bg-[#1D4ED8] text-white relative overflow-hidden"
     >
       {/* Translucent Geometric Loop Watermark */}
       <WatermarkPattern color="#FFFFFF" opacity={0.08} />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal y={28} duration={0.6}>
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
 
-
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+            <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-3 sm:mb-4 leading-tight">
               Autonomous Infrastructure Built for Enterprise Scale
             </h2>
 
-            <p className="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-blue-100/90 font-normal leading-relaxed">
               Resilient cognitive software engineered to integrate seamlessly into your mission-critical private infrastructure.
             </p>
           </div>
         </ScrollReveal>
 
         {/* 3 White Feature Cards */}
-        <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {solutions.map((item, idx) => {
             const IconComp = item.icon;
             return (
               <StaggerItem key={idx} y={30} duration={0.65}>
                 <div
-                  className="h-full bg-white rounded-3xl p-8 text-[#0A192F] shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-100"
+                  className="h-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-[#0A192F] shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-100"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] border border-blue-200 flex items-center justify-center mb-6 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
-                      <IconComp className="w-6 h-6" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-50 text-[#1D4ED8] border border-blue-200 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+                      <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
 
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#DC2626] font-extrabold block mb-2">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[#DC2626] font-extrabold block mb-1.5 sm:mb-2">
                       {item.tag}
                     </span>
 
-                    <h3 className="font-display font-black text-2xl text-[#0A192F] mb-3 group-hover:text-[#1D4ED8] transition-colors">
+                    <h3 className="font-display font-black text-xl sm:text-2xl text-[#0A192F] mb-2 sm:mb-3 group-hover:text-[#1D4ED8] transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-6 font-normal">
                       {item.desc}
                     </p>
 
-                    <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-8">
+                    <div className="space-y-2 sm:space-y-2.5 pt-3 sm:pt-4 border-t border-slate-100 mb-6 sm:mb-8">
                       {item.points.map((pt, pIdx) => (
                         <div key={pIdx} className="flex items-center gap-2 text-xs font-mono text-slate-700">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />
@@ -109,7 +108,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
 
                   <button
                     onClick={() => onSelectSolution?.(item.title)}
-                    className="w-full py-3 rounded-full bg-slate-50 hover:bg-[#1D4ED8] text-[#0A192F] hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-slate-200"
+                    className="w-full py-2.5 sm:py-3 rounded-full bg-slate-50 hover:bg-[#1D4ED8] text-[#0A192F] hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer border border-slate-200"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="w-3.5 h-3.5" />

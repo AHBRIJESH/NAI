@@ -18,7 +18,7 @@ interface NeuralEngineSectionProps {
   onBookCall: () => void;
 }
 
-export type EngineMode = 'inference' | 'governance' | 'agentic';
+export type EngineMode = 'inference' | 'governance';
 
 export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   onOpenAssessment,
@@ -27,7 +27,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   const [orbMode, setOrbMode] = useState<EngineMode>('inference');
   const [isAutoCycling, setIsAutoCycling] = useState<boolean>(true);
 
-  const modes: EngineMode[] = ['inference', 'governance', 'agentic'];
+  const modes: EngineMode[] = ['inference', 'governance'];
 
   const modeDetails = {
     inference: {
@@ -62,22 +62,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
         'compliance :: ISO 27001 cryptographic HMAC audit trace verified and signed',
       ],
     },
-    agentic: {
-      color: '#0284C7', // Cerulean Blue
-      tag: 'MULTI-AGENT ORCHESTRATION',
-      title: 'Agentic AI & Multi-Agent Swarms',
-      latency: '24.6ms',
-      throughput: '8 Swarms',
-      retention: '0.00 KB',
-      image: '/images/telemetry_agentic.jpg',
-      imageCaption: 'Agentic AI: Plan, Reason, Collaborate & Act Autonomously with Real Impact',
-      desc: 'Autonomous goal-seeking networks executing cross-platform operational workflows and API transactions.',
-      logSample: [
-        'swarm-master :: decomposing multi-step ERP reconciliation objective',
-        'worker-agent-3 :: querying PostgreSQL sandbox with automated rollback lock',
-        'consensus :: 4 of 4 verification nodes confirm deterministic ledger parity',
-      ],
-    },
   };
 
   // Automatic filtering cycle every 6 seconds if not paused
@@ -97,7 +81,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   return (
     <section
       id="capabilities"
-      className="py-16 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] text-[#0A192F] relative overflow-hidden border-t border-b border-blue-200/80"
+      className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] text-[#0A192F] relative overflow-hidden border-t border-b border-blue-200/80"
       onMouseEnter={() => setIsAutoCycling(false)}
       onMouseLeave={() => setIsAutoCycling(true)}
     >
@@ -109,35 +93,35 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-sky-300/15 blur-[130px] pointer-events-none" />
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header: Clean typography without top pill */}
         <ScrollReveal y={24} duration={0.6}>
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 lg:mb-14">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-14">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-2 sm:mb-3 block">
               Sovereign Architecture Telemetry
             </span>
 
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-4 leading-tight">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A192F] mb-3 sm:mb-4 leading-tight">
               The Autonomous <span className="text-[#1D4ED8]">Intelligence Core</span>.
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-              Real-time telemetry across multi-agent tool orchestration, cryptographic zero-retention guardrails, and sovereign enterprise decision systems.
+            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+              Real-time telemetry across neural inference pipelines, cryptographic zero-retention guardrails, and sovereign enterprise decision systems.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Side-by-Side Lab Console: Left Visual Display & Right Telemetry Terminal */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch w-full">
           
           {/* Left Column: Widescreen Visual Console (6 cols) */}
           <div className="lg:col-span-6 flex flex-col h-full">
             <ScrollReveal delay={0.1} y={24} duration={0.65} className="h-full flex flex-col">
-              <div className="w-full h-full rounded-3xl overflow-hidden border border-blue-200/90 shadow-xl bg-[#0A192F] flex flex-col justify-between">
+              <div className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-blue-200/90 shadow-xl bg-[#0A192F] flex flex-col justify-between">
                 
                 {/* Top Badge: Mode Status */}
-                <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-800 bg-[#060D1D]/90">
+                <div className="p-3 sm:p-5 flex items-center justify-between border-b border-slate-800 bg-[#060D1D]/90">
                   <span
                     className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md"
                     style={{ backgroundColor: `${currentMode.color}EE` }}
@@ -170,7 +154,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 </div>
 
                 {/* Bottom Console: Caption & Interactive Mode Toggles Outside the Image */}
-                <div className="p-4 sm:p-5 bg-[#060D1D]/95 border-t border-slate-800/90 space-y-3.5">
+                <div className="p-3.5 sm:p-5 bg-[#060D1D]/95 border-t border-slate-800/90 space-y-2.5 sm:space-y-3.5">
                   <div className="text-left text-white">
                     <span className="font-mono text-xs sm:text-[13px] text-blue-200 font-bold block mb-1">
                       {currentMode.imageCaption}
@@ -182,7 +166,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
 
                   {/* Mode Toggles */}
                   <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-900 border border-slate-700/80 font-mono text-xs shadow-inner">
-                    {(['inference', 'governance', 'agentic'] as const).map((m) => (
+                    {(['inference', 'governance'] as const).map((m) => (
                       <button
                         key={m}
                         type="button"
@@ -190,13 +174,15 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                           setOrbMode(m);
                           setIsAutoCycling(false);
                         }}
-                        className={`flex-1 py-2.5 px-2 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
+                        className={`flex-1 py-2.5 px-3 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
                           orbMode === m
-                            ? 'bg-[#1D4ED8] text-white shadow-md font-black scale-[1.02]'
+                            ? m === 'governance'
+                              ? 'bg-[#DC2626] text-white shadow-md font-black scale-[1.01]'
+                              : 'bg-[#1D4ED8] text-white shadow-md font-black scale-[1.01]'
                             : 'text-slate-400 hover:text-white hover:bg-slate-800'
                         }`}
                       >
-                        {m === 'agentic' ? 'Agentic' : m}
+                        {m}
                       </button>
                     ))}
                   </div>
@@ -209,7 +195,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
           {/* Right Column: Telemetry Readout & Controls (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-center min-w-0 w-full h-full">
             <ScrollReveal delay={0.15} y={24} duration={0.7} className="h-full flex flex-col">
-              <div className="p-6 sm:p-8 rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-6 h-full flex flex-col justify-between">
+              <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-4 sm:space-y-6 h-full flex flex-col justify-between">
                 
                 {/* Header Title & Status */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-200/80">
@@ -220,7 +206,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       </span>
                       <span className="font-mono text-[11px] text-slate-500 font-semibold">NAI-CORE-09</span>
                     </div>
-                    <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#0A192F]">
+                    <h3 className="font-display font-extrabold text-xl sm:text-3xl text-[#0A192F]">
                       {currentMode.title}
                     </h3>
                     <p className="text-sm text-slate-600 font-normal mt-1 leading-relaxed">
@@ -234,7 +220,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 </div>
 
                 {/* Live Streaming Terminal Log Stream */}
-                <div className="p-4 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-md">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-md">
                   <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-700/80 text-slate-400 text-[10px]">
                     <div className="flex items-center gap-1.5">
                       <Terminal className="w-3.5 h-3.5 text-[#38BDF8]" />
@@ -256,11 +242,11 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 </div>
 
                 {/* Quick Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
                   <button
                     type="button"
                     onClick={onOpenAssessment}
-                    className="px-7 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-102"
+                    className="px-5 py-3 sm:px-7 sm:py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-102"
                   >
                     <span>Launch Diagnostic</span>
                     <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
@@ -269,7 +255,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   <button
                     type="button"
                     onClick={onBookCall}
-                    className="px-6 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 flex items-center justify-center cursor-pointer"
+                    className="px-5 py-3 sm:px-6 sm:py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 flex items-center justify-center cursor-pointer"
                   >
                     <span>Book an AI strategy call</span>
                   </button>

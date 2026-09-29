@@ -11,7 +11,7 @@ interface CalloutBannerProps {
 
 export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] border-t border-b border-blue-200/80 text-center relative overflow-hidden">
+    <section className="py-12 sm:py-20 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] border-t border-b border-blue-200/80 text-center relative overflow-hidden">
       {/* Interactive Motion Dot Deflection Background */}
       <MotionDotCanvas dotCount={45} deflectionRadius={130} />
 
@@ -19,37 +19,35 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-blue-300/20 blur-3xl pointer-events-none rounded-full" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[420px] h-[260px] bg-sky-300/15 blur-3xl pointer-events-none rounded-full" />
 
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
-        
-
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 relative z-10">
 
         {/* High-Definition Razor-Sharp Ransom Note Headline */}
         <ScrollReveal delay={0.08} y={24} duration={0.6}>
-          <div className="my-6 sm:my-8 md:my-10 py-2 flex justify-center">
+          <div className="my-4 sm:my-8 md:my-10 py-2 flex justify-center">
             <RansomNote
               text={"PUTTING PRACTICAL AI\nTO WORK FOR YOUR TEAM"}
               intensity={0.3}
               animate="assemble"
               rotation={2.5}
               seed={2026}
-              className="gap-8 sm:gap-12 md:gap-16"
+              className="gap-5 sm:gap-12 md:gap-16"
             />
           </div>
         </ScrollReveal>
 
         {/* Supporting Narrative: Respectful, Forward-Thinking & Results-Oriented */}
         <ScrollReveal delay={0.12} y={20} duration={0.55}>
-          <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto mt-8 sm:mt-10 mb-8 leading-relaxed font-normal">
+          <p className="text-sm sm:text-lg text-slate-700 max-w-2xl mx-auto mt-5 sm:mt-10 mb-6 sm:mb-8 leading-relaxed font-normal">
             Enterprises partner with <strong className="font-extrabold text-[#1D4ED8]">NAIR.AI</strong> to automate high-friction operational workflows, eliminate repetitive data reconciliation, and give teams the bandwidth to focus on high-judgment strategy, client relationships, and business growth.
           </p>
         </ScrollReveal>
 
         {/* Unified Dual Actions (Primary Briefing CTA + Calculator Anchor) */}
         <ScrollReveal delay={0.16} y={20} duration={0.5}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <button
               onClick={onBookCall}
-              className="w-full sm:w-auto px-8 py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:scale-102 flex items-center justify-center gap-2.5 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/30 hover:scale-102 flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <span>Book an AI strategy call</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -57,7 +55,7 @@ export const CalloutBanner: React.FC<CalloutBannerProps> = ({ onBookCall }) => {
 
             <a
               href="#calculator"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-xs font-mono uppercase tracking-wider text-white font-extrabold px-7 py-4 bg-[#1D4ED8] hover:bg-[#1e40af] border border-[#1D4ED8] rounded-full shadow-lg shadow-blue-600/25 hover:scale-102 transition-all duration-200 group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-2.5 text-xs font-mono uppercase tracking-wider text-white font-extrabold px-5 py-3.5 sm:px-7 sm:py-4 bg-[#1D4ED8] hover:bg-[#1e40af] border border-[#1D4ED8] rounded-full shadow-lg shadow-blue-600/25 hover:scale-102 transition-all duration-200 group cursor-pointer"
             >
               <Calculator className="w-4 h-4 text-white" />
               <span>Quantify Reclaimable Hours</span>
