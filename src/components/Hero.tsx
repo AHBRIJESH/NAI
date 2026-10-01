@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   };
 
   return (
-    <section className="relative w-full min-h-[60vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
+    <section className="relative w-full min-h-[72vh] sm:min-h-[76vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
       
       {/* HIGH-RESOLUTION HERO VIDEO BACKGROUND */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
@@ -66,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 pt-16 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 lg:pb-16 text-left"
+        className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 pt-20 sm:pt-28 lg:pt-32 pb-14 sm:pb-18 lg:pb-20 text-left"
       >
         <div className="max-w-xl lg:max-w-[540px] xl:max-w-[580px]">
           
