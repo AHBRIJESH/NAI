@@ -102,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onBookCall, onNavigate }) => {
                 onClick={onBookCall}
                 className="w-full py-4 px-6 bg-[#E3EF26] hover:bg-[#d2de1e] text-[#06231D] font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-transform hover:scale-102 text-center cursor-pointer shadow-lg shadow-[#E3EF26]/15 flex items-center justify-center gap-2"
               >
-                <span>Book an AI Strategy Call</span>
+                <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button

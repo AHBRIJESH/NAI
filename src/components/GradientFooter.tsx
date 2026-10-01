@@ -53,7 +53,6 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
     { name: 'Resources', page: 'resources' },
     { name: 'Case Studies', page: 'case-studies' },
     { name: 'Contact Us', page: 'contact' },
-    { name: 'Diagnostic', action: 'assessment' },
   ];
 
   const socialLinks = [

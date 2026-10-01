@@ -211,32 +211,6 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
     },
   ];
 
-  const engagementSteps = [
-    {
-      step: '01',
-      title: 'Scope the Task',
-      desc: 'Identify users, systems, risks, and a measurable definition of success.',
-      deliverable: 'Task Charter & Success Matrix',
-    },
-    {
-      step: '02',
-      title: 'Validate the Approach',
-      desc: 'Test a focused implementation on representative business examples.',
-      deliverable: 'Functional Proof of Concept',
-    },
-    {
-      step: '03',
-      title: 'Integrate the Workflow',
-      desc: 'Add system connections, access controls, approval steps, and exception handling.',
-      deliverable: 'Enterprise-Hardened Architecture',
-    },
-    {
-      step: '04',
-      title: 'Prepare for Operation',
-      desc: 'Establish monitoring, documentation, ownership, and a process for improvements.',
-      deliverable: 'Production Handover & SLA Runbook',
-    },
-  ];
 
   const faqs = [
     {
@@ -345,7 +319,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
                   onClick={() => onBookCall('Artificial Intelligence Project')}
                   className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
                 >
-                  <span>Discuss your AI project</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </button>
 
@@ -646,52 +620,6 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
         </div>
       </section>
 
-      {/* SECTION: "How an engagement takes shape" (4 Steps) */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-28">
-        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl text-left">
-          <div className="mb-10">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
-              Engagement Lifecycle
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0A192F] mb-3">
-              How an engagement takes shape.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 max-w-3xl">
-              Delivery milestones are agreed around the scope and readiness of your environment. We operate with radical transparency at each delivery stage.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            {engagementSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-4 relative group hover:bg-blue-50/50 hover:border-blue-300 transition-all"
-              >
-                <div>
-                  <span className="font-mono text-xs font-bold text-[#1D4ED8] block mb-2">
-                    Phase {step.step}
-                  </span>
-                  <h3 className="font-display font-extrabold text-lg text-[#0A192F] mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    {step.desc}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-200/60">
-                  <span className="font-mono text-[10px] uppercase font-bold text-slate-500 block">
-                    Deliverable:
-                  </span>
-                  <span className="font-mono text-xs font-bold text-[#0A192F]">
-                    {step.deliverable}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* COMPANION CROSS-LINK: "Build on information you can use" */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-28">
@@ -803,16 +731,8 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
                 onClick={() => onBookCall('AI Workflow Discussion')}
                 className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 hover:scale-102 flex items-center gap-2 cursor-pointer"
               >
-                <span>Discuss your AI project</span>
+                <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>

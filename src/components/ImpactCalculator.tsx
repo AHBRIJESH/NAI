@@ -228,7 +228,7 @@ export const ImpactCalculator: React.FC<ImpactCalculatorProps> = ({ onBookCall }
                   onClick={onBookCall}
                   className="w-full py-3.5 px-5 sm:py-4 sm:px-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-[11px] sm:text-xs uppercase tracking-wider font-extrabold rounded-full transition-all duration-200 shadow-xl shadow-red-600/25 flex items-center justify-center gap-2 sm:gap-3 cursor-pointer hover:scale-102 relative z-10"
                 >
-                  <span>Validate ROI With An AI Strategy Call</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

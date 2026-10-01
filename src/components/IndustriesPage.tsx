@@ -6,6 +6,7 @@ import {
   Landmark,
   Scale,
   ShieldCheck,
+  Shield,
   Zap,
   CheckCircle2,
   FileText,
@@ -165,13 +166,6 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Readiness Diagnostic</span>
-              </button>
             </div>
           </motion.div>
         </div>
@@ -308,21 +302,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   </div>
 
                   <div className="lg:col-span-6">
-                    <div className="p-5 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-3">
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-700">
-                        <span className="text-[#38BDF8] font-bold">● FHIR STREAM: EHR_GATEWAY_v4.1</span>
-                        <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-sm">DE-ID ACTIVE</span>
+                    <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl space-y-4 text-left">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <div className="flex items-center gap-2">
+                          <Shield className="w-4 h-4 text-[#1D4ED8]" />
+                          <span className="text-[#0A192F] font-display font-bold text-sm">Clinical Data Governance Framework</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                          HIPAA VERIFIED
+                        </span>
                       </div>
-                      <div className="space-y-1.5 text-[11px] text-slate-300">
-                        <p><span className="text-slate-500">[0.02s]</span> Ingesting clinical note: Prior-Auth Cardiology</p>
-                        <p><span className="text-slate-500">[0.08s]</span> <span className="text-yellow-400">PHI Tokens Detected:</span> Redacting SSN, DOB, MRN</p>
-                        <p><span className="text-slate-500">[0.15s]</span> Extracting CPT codes: 93000 (ECG), 93306 (Echo)</p>
-                        <p><span className="text-slate-500">[0.21s]</span> Validating against CMS Medicare LCD Guidelines</p>
-                        <p className="text-emerald-400 font-bold"><span className="text-slate-500">[0.29s]</span> ✓ FHIR Bundle Ready: DiagnosticReport/DR-99214</p>
+                      
+                      <div className="space-y-3 text-xs">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Zero-Retention Gateway De-Identification</span>
+                            <span className="text-slate-600 text-[11px]">Real-time PHI tokenization &amp; redacting (SSN, DOB, MRN) prior to model ingestion.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Clinical Coding &amp; Guidelines Validation</span>
+                            <span className="text-slate-600 text-[11px]">Deterministic mapping against CPT, ICD-10, and CMS Medicare LCD requirements.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">EHR &amp; Health System Interoperability</span>
+                            <span className="text-slate-600 text-[11px]">Direct bi-directional sync with Epic Systems, Cerner, and AthenaHealth environments.</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
-                        <span>Integration: Epic Systems · Cerner · AthenaHealth</span>
-                        <span className="text-blue-400 font-semibold">Doctor-in-the-Loop</span>
+
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>Workflow: Doctor-in-the-Loop</span>
+                        <span className="text-[#1D4ED8] font-bold">100% Cryptographic Audit</span>
                       </div>
                     </div>
                   </div>
@@ -366,21 +385,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   </div>
 
                   <div className="lg:col-span-6">
-                    <div className="p-5 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-3">
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-700">
-                        <span className="text-rose-400 font-bold">● RADAR MONITOR: TX_STREAM_US_EAST</span>
-                        <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-sm">CRYPTOGRAPHIC AUDITED</span>
+                    <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl space-y-4 text-left">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <div className="flex items-center gap-2">
+                          <Landmark className="w-4 h-4 text-[#DC2626]" />
+                          <span className="text-[#0A192F] font-display font-bold text-sm">Real-Time Risk Scoring Architecture</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-red-700 bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-full">
+                          SUB-15MS SCORING
+                        </span>
                       </div>
-                      <div className="space-y-1.5 text-[11px] text-slate-300">
-                        <p><span className="text-slate-500">[12ms]</span> Wire Event #88419: $64,200 (Zurich &rarr; NYC)</p>
-                        <p><span className="text-slate-500">[13ms]</span> Evaluating IP velocity, biometric hash &amp; AML sanctions list</p>
-                        <p><span className="text-slate-500">[14ms]</span> Multi-factor anomaly score: <span className="text-emerald-400 font-bold">0.03 (Safe)</span></p>
-                        <p className="text-emerald-400 font-bold"><span className="text-slate-500">[14.2ms]</span> ✓ Transaction Passed to SWIFT Gateway</p>
-                        <p className="text-slate-400 text-[10px]">Zero drift model guardrails: P99.9 latency maintained.</p>
+                      
+                      <div className="space-y-3 text-xs">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">High-Frequency Transaction Evaluation</span>
+                            <span className="text-slate-600 text-[11px]">Instantaneous AML velocity checks, sanction list matching, and biometric heuristics.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Deterministic Model Drift Guardrails</span>
+                            <span className="text-slate-600 text-[11px]">Sub-microsecond latency predictability without false-positive checkout abandonment.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Multi-Currency Reconciliation</span>
+                            <span className="text-slate-600 text-[11px]">Automated ledger matching across SWIFT, Fedwire, SEPA, and core ERP systems.</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
-                        <span>Compliance: FINRA · SEC 17a-4 · PCI-DSS</span>
-                        <span className="text-rose-400 font-semibold">100% Deterministic</span>
+
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>Framework: FINRA · SEC 17a-4 · PCI-DSS</span>
+                        <span className="text-[#DC2626] font-bold">Zero Data Drift</span>
                       </div>
                     </div>
                   </div>
@@ -424,21 +468,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   </div>
 
                   <div className="lg:col-span-6">
-                    <div className="p-5 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-3">
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-700">
-                        <span className="text-sky-400 font-bold">● REDLINE ENGINE: CONTRACT_DIFF_V2</span>
-                        <span className="text-[10px] text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded-sm">AIR-GAPPED</span>
+                    <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl space-y-4 text-left">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <div className="flex items-center gap-2">
+                          <Scale className="w-4 h-4 text-[#0284C7]" />
+                          <span className="text-[#0A192F] font-display font-bold text-sm">Contract Diligence &amp; Redline Pipeline</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-sky-700 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-full">
+                          AIR-GAPPED ENCLAVE
+                        </span>
                       </div>
-                      <div className="space-y-1.5 text-[11px] text-slate-300">
-                        <p><span className="text-slate-500">[Doc 14A]</span> Ingesting Vendor Master Services Agreement</p>
-                        <p><span className="text-rose-400 font-bold">[Risk Flag]</span> Clause 14.2: Unlimited Consequential Damages</p>
-                        <p><span className="text-sky-300 font-semibold">[Auto-Redline]</span> Cap liabilities at 12-month fees paid ($250,000)</p>
-                        <p><span className="text-slate-500">[Audit]</span> Verifying compliance against Delaware General Corporation Law</p>
-                        <p className="text-emerald-400 font-bold">✓ Redline Diff Exported to Word / PDF with Tracking Tags</p>
+                      
+                      <div className="space-y-3 text-xs">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Automated Clause Variance Identification</span>
+                            <span className="text-slate-600 text-[11px]">Instant detection of non-standard indemnities, liability caps, and termination penalties.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Zero-Retention Sovereign Hosting</span>
+                            <span className="text-slate-600 text-[11px]">Sensitive M&amp;A diligence and vendor contracts are processed purely in ephemeral memory.</span>
+                          </div>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-bold text-[#0A192F] block">Format-Preserving Word &amp; PDF Export</span>
+                            <span className="text-slate-600 text-[11px]">Generates native Track Changes documents ready for immediate attorney finalization.</span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
-                        <span>Security: Zero-Retention IP · Private Enclave</span>
-                        <span className="text-sky-400 font-semibold">100% Sovereign</span>
+
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span>Jurisdiction: Enterprise Playbooks</span>
+                        <span className="text-[#0284C7] font-bold">100% Client Sovereign</span>
                       </div>
                     </div>
                   </div>
@@ -457,7 +526,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               Cross-Sector Architecture Modules
             </h2>
             <p className="text-sm text-slate-500 font-normal mt-1">
-              Inspect modular deployment kernels engineered for specific industry verticals.
+              Inspect modular deployment systems engineered for specific industry verticals.
             </p>
           </div>
 
@@ -530,7 +599,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                     onClick={() => onBookCall(`${card.sector}: ${card.title}`)}
                     className="text-xs font-mono font-bold text-slate-500 hover:text-[#0A192F] flex items-center gap-1 group-hover:text-[#1D4ED8] transition-colors cursor-pointer"
                   >
-                    <span>Deploy Kernel</span>
+                    <span>Deploy Architecture</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -587,7 +656,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   onClick={() => onBookCall('Healthcare AI Blueprint')}
                   className="px-6 py-3 rounded-full bg-[#1D4ED8] hover:bg-blue-800 text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-colors"
                 >
-                  <span>Request Healthcare Architecture Blueprint</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -665,7 +734,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   onClick={() => onBookCall('Finance AI Blueprint')}
                   className="px-6 py-3 rounded-full bg-[#DC2626] hover:bg-red-800 text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-colors"
                 >
-                  <span>Request Finance Architecture Blueprint</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -743,7 +812,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                   onClick={() => onBookCall('Legal AI Blueprint')}
                   className="px-6 py-3 rounded-full bg-[#0284C7] hover:bg-sky-700 text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-colors"
                 >
-                  <span>Request Legal Architecture Blueprint</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -800,13 +869,6 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
               >
                 <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>

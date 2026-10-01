@@ -18,7 +18,6 @@ import {
   Workflow,
   Server,
   Layers,
-  Terminal,
   Activity,
   Database,
 } from 'lucide-react';
@@ -81,7 +80,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     },
     {
       id: 'insight',
-      name: 'NAIR.AI Insight™',
+      name: 'NAIR.AI Insights™',
       tagline: 'Predictive Analytics & Anomaly Radar',
       desc: 'Continuous stream analytics that forecast demand shifts, flag operational anomalies, and surface actionable intelligence in real time.',
       latency: '< 15ms Stream Scoring',
@@ -213,15 +212,15 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             transition={{ duration: 0.55 }}
           >
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-3 block">
-              Proprietary AI Platform Suite
+              Core Enterprise AI Services Suite
             </span>
 
             <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] mb-6 leading-[1.04]">
-              The Enterprise AI <span className="text-[#1D4ED8]">Operating System</span>.
+              NAIR AI <span className="text-[#1D4ED8]">Chat, Docs, Insights, Guard &amp; Learn</span>.
             </h1>
 
             <p className="text-base sm:text-xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-8">
-              From deterministic document parsing to sovereign multi-agent swarms, NAIR.AI provides the modular software layer that turns enterprise data into measurable competitive advantage.
+              Our 5 flagship core services deliver the deterministic software foundation to automate workflows, extract intelligence, and deploy sovereign AI across your enterprise.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -232,14 +231,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               >
                 <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </motion.div>
@@ -335,52 +326,161 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                       className="px-6 py-3 rounded-full text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-colors"
                       style={{ backgroundColor: activePlatform.color }}
                     >
-                      <span>Deploy {activePlatform.name}</span>
+                      <span>Book an AI strategy call</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
 
-                {/* Right Architectural Telemetry Terminal */}
+                {/* Right Enterprise System Architecture & Compliance Card */}
                 <div className="lg:col-span-5">
-                  <div className="p-6 rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-xl space-y-4">
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-700">
+                  <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl space-y-4 text-left">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                       <div className="flex items-center gap-2">
-                        <Terminal className="w-4 h-4 text-[#38BDF8]" />
-                        <span className="text-[#38BDF8] font-bold">KERNEL ARCHITECTURE</span>
+                        <Shield className="w-4 h-4 text-[#1D4ED8]" />
+                        <span className="text-[#0A192F] font-display font-bold text-sm">Enterprise System Architecture</span>
                       </div>
-                      <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-sm">
-                        ACTIVE
+                      <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                        PRODUCTION ACTIVE
                       </span>
                     </div>
 
-                    <div className="space-y-3 font-mono text-xs">
-                      <div>
-                        <span className="text-slate-400 text-[10px] uppercase block">Topology:</span>
-                        <span className="text-white font-bold">{activePlatform.architecture}</span>
+                    <div className="space-y-3 text-xs">
+                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                        <span className="text-slate-500 text-[10px] font-mono uppercase font-bold block mb-1">
+                          Deployment Topology
+                        </span>
+                        <span className="font-bold text-[#0A192F] text-xs">
+                          {activePlatform.architecture}
+                        </span>
                       </div>
-                      <div>
-                        <span className="text-slate-400 text-[10px] uppercase block">Benchmark Latency:</span>
-                        <span className="text-emerald-400 font-bold">{activePlatform.latency}</span>
+
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                          <span className="text-slate-500 text-[10px] font-mono uppercase font-bold block mb-1">
+                            SLA Benchmark
+                          </span>
+                          <span className="font-bold text-emerald-600 text-xs">
+                            {activePlatform.latency}
+                          </span>
+                        </div>
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                          <span className="text-slate-500 text-[10px] font-mono uppercase font-bold block mb-1">
+                            Security Posture
+                          </span>
+                          <span className="font-bold text-[#1D4ED8] text-xs">
+                            {activePlatform.security}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-slate-400 text-[10px] uppercase block">Security Posture:</span>
-                        <span className="text-sky-300 font-bold">{activePlatform.security}</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 text-[10px] uppercase block">Infrastructure Fabric:</span>
-                        <span className="text-slate-300 font-medium">AWS ECS · Azure Private Cloud · Bare Metal GPU</span>
+
+                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                        <span className="text-slate-500 text-[10px] font-mono uppercase font-bold block mb-1">
+                          Infrastructure Compatibility
+                        </span>
+                        <span className="text-slate-700 text-xs font-medium">
+                          AWS VPC · Azure Private Enclave · Bare-Metal GPU Clusters
+                        </span>
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
-                      <span>Telemetry: Ephemeral Memory</span>
-                      <span className="text-blue-400 font-semibold">100% Deterministic</span>
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                      <span>Audit: Zero-Retention Memory</span>
+                      <span className="text-[#1D4ED8] font-bold">100% Deterministic</span>
                     </div>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+        </div>
+
+        {/* 5 CORE ENGINES COMPLETE SUITE GRID */}
+        <div className="mt-14 text-left">
+          <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#1D4ED8] block mb-1.5">
+                The Flagship Portfolio
+              </span>
+              <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[#0A192F]">
+                Our 5 Core Services at a Glance
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-md font-normal">
+              Deploy individually as targeted modular components, or integrate as a unified enterprise intelligence mesh.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {proprietaryPlatforms.map((platform, idx) => {
+              const IconComp = platform.icon;
+              return (
+                <div
+                  key={platform.id}
+                  className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between group"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white shadow-xs group-hover:scale-105 transition-transform"
+                        style={{ backgroundColor: platform.color }}
+                      >
+                        <IconComp className="w-6 h-6" />
+                      </div>
+                      <span
+                        className="font-mono text-[10px] font-bold uppercase px-2.5 py-1 rounded-full border"
+                        style={{
+                          backgroundColor: `${platform.color}10`,
+                          color: platform.color,
+                          borderColor: `${platform.color}30`,
+                        }}
+                      >
+                        Core Engine 0{idx + 1}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display font-extrabold text-xl text-[#0A192F] mb-1">
+                        {platform.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-slate-500 mb-2">
+                        {platform.tagline}
+                      </p>
+                      <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                        {platform.desc}
+                      </p>
+                    </div>
+
+                    <div className="space-y-2 pt-2 border-t border-slate-100">
+                      {platform.capabilities.slice(0, 3).map((cap, cIdx) => (
+                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-700">
+                          <CheckCircle2
+                            className="w-3.5 h-3.5 shrink-0 mt-0.5"
+                            style={{ color: platform.color }}
+                          />
+                          <span className="text-[11px] font-medium leading-snug">{cap}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <span className="font-mono text-[10px] font-bold text-slate-500">
+                      {platform.latency}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => onBookCall(`Core Service: ${platform.name}`)}
+                      className="px-4 py-2 rounded-xl text-white font-mono text-xs font-bold uppercase tracking-wider shadow-xs hover:opacity-95 transition-all flex items-center gap-1.5 cursor-pointer"
+                      style={{ backgroundColor: platform.color }}
+                    >
+                      <span>Book an AI strategy call</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -616,13 +716,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               >
                 <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>

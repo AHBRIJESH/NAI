@@ -216,13 +216,6 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
-              </button>
             </div>
           </motion.div>
         </div>
@@ -526,13 +519,6 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               >
                 <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>

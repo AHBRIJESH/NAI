@@ -389,7 +389,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
                   onClick={() => onBookCall('Data & AI Foundation Project')}
                   className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
                 >
-                  <span>Discuss your data foundation</span>
+                  <span>Book an AI strategy call</span>
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </button>
 
@@ -910,16 +910,8 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
                 onClick={() => onBookCall('Data Foundation Discussion')}
                 className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/30 hover:scale-102 flex items-center gap-2 cursor-pointer"
               >
-                <span>Discuss your data foundation</span>
+                <span>Book an AI strategy call</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={onOpenAssessment}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
-              >
-                <span>Take Feasibility Diagnostic</span>
               </button>
             </div>
           </div>

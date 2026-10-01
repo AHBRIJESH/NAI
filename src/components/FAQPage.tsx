@@ -637,12 +637,6 @@ export const FAQPage: React.FC<FAQPageProps> = ({
                 <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
               </button>
 
-              <button
-                onClick={onOpenAssessment}
-                className="w-full px-8 py-4 font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full border border-[#1D4ED8] bg-[#1D4ED8] hover:bg-[#1e40af] text-white shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer text-center hover:scale-102"
-              >
-                <span>Take Readiness Diagnostic</span>
-              </button>
             </div>
           </div>
         </div>

@@ -241,23 +241,14 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Quick Actions */}
                 <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
                   <button
                     type="button"
-                    onClick={onOpenAssessment}
+                    onClick={onBookCall}
                     className="px-5 py-3 sm:px-7 sm:py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer hover:scale-102"
                   >
-                    <span>Launch Diagnostic</span>
-                    <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={onBookCall}
-                    className="px-5 py-3 sm:px-6 sm:py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 flex items-center justify-center cursor-pointer"
-                  >
                     <span>Book an AI strategy call</span>
+                    <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
                   </button>
                 </div>
 
