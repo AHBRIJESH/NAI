@@ -42,17 +42,26 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   return (
     <section className="relative w-full min-h-[85vh] sm:min-h-[88vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
       
-      {/* 100% UNTOUCHED HIGH-RESOLUTION HERO BACKGROUND */}
+      {/* HIGH-RESOLUTION HERO VIDEO BACKGROUND */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
-        <img
-          src={heroBgImage}
-          alt="NAIR.AI Autonomous AI Collaboration and Enterprise Intelligence"
-          className="w-full h-full object-cover object-[82%_center] sm:object-[78%_center] lg:object-right xl:object-right"
-          loading="eager"
-          decoding="async"
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={heroBgImage}
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/her_vid.mp4" type="video/mp4" />
+          <img
+            src={heroBgImage}
+            alt="NAIR.AI Autonomous AI Collaboration and Enterprise Intelligence"
+            className="w-full h-full object-cover object-center"
+          />
+        </video>
 
-        {/* Seamless Soft Dark Ambient Scrim: Vertical on mobile for stacked readability, Horizontal on desktop to keep robot, team & holograms 100% untouched */}
+        {/* Seamless Soft Dark Ambient Scrim: Vertical on mobile for stacked readability, Horizontal on desktop to keep visual depth 100% readable */}
         <div className="absolute inset-0 sm:inset-y-0 sm:left-0 sm:right-auto sm:w-[65%] lg:w-[50%] xl:w-[45%] bg-gradient-to-b from-[#030712]/90 via-[#030712]/60 to-[#030712]/75 sm:bg-gradient-to-r sm:from-[#030712]/90 sm:via-[#030712]/50 sm:to-transparent pointer-events-none" />
       </div>
 
