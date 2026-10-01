@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   };
 
   return (
-    <section className="relative w-full min-h-[72vh] sm:min-h-[76vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
+    <section className="relative w-full min-h-[85vh] sm:min-h-[88vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-[#030712] text-white border-b border-slate-800">
       
       {/* HIGH-RESOLUTION HERO VIDEO BACKGROUND */}
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
@@ -61,12 +61,12 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
         <div className="absolute inset-0 sm:inset-y-0 sm:left-0 sm:right-auto sm:w-[65%] lg:w-[50%] xl:w-[45%] bg-gradient-to-b from-[#030712]/80 via-[#030712]/40 to-[#030712]/60 sm:bg-gradient-to-r sm:from-[#030712]/80 sm:via-[#030712]/35 sm:to-transparent pointer-events-none" />
       </div>
 
-      {/* HERO CONTENT: Compact, Minimal, High-Contrast */}
+      {/* HERO CONTENT: Full-Size, Minimal, High-Contrast */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 pt-20 sm:pt-28 lg:pt-32 pb-14 sm:pb-18 lg:pb-20 text-left"
+        className="relative z-10 w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-10 lg:pl-12 lg:pr-8 xl:pl-16 xl:pr-12 pt-20 sm:pt-32 lg:pt-36 pb-12 sm:pb-20 lg:pb-24 text-left"
       >
         <div className="max-w-xl lg:max-w-[540px] xl:max-w-[580px]">
           
