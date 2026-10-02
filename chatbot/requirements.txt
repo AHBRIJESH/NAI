@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+meilisearch
+numpy
+model2vec
+langchain_core
+langchain_openai
+langgraph
