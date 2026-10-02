@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   ArrowRight,
   Sparkles,
@@ -8,8 +8,6 @@ import {
   CheckCircle2,
   ChevronRight,
   ShieldCheck,
-  Play,
-  Pause,
   RotateCcw,
   Layers,
   Globe2,
@@ -64,7 +62,6 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
   onExploreCapabilities,
 }) => {
   const [activeStage, setActiveStage] = useState<StageKey>('ai');
-  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
   const [activeDetailTab, setActiveDetailTab] = useState<'capabilities' | 'safety' | 'matrix'>('capabilities');
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
@@ -194,17 +191,6 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
   const currentIdx = stages.findIndex((s) => s.id === activeStage);
   const current = stages[currentIdx];
 
-  // Auto-play timeline progression
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(() => {
-      setActiveStage((prev) => {
-        const nextIdx = (stages.findIndex((s) => s.id === prev) + 1) % stages.length;
-        return stages[nextIdx].id;
-      });
-    }, 8000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, stages.length]);
 
   return (
     <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-b from-[#F8FAFC] via-[#F0F7FF] to-[#F8FAFC] border-t border-b border-blue-200/80 text-[#0A192F] relative overflow-hidden">
@@ -246,25 +232,13 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                   <button
                     key={stage.id}
                     type="button"
-                    onClick={() => {
-                      setActiveStage(stage.id);
-                      setIsAutoPlaying(false);
-                    }}
+                    onClick={() => setActiveStage(stage.id)}
                     className={`relative p-2 sm:p-3.5 md:p-4 rounded-xl sm:rounded-2xl border text-left transition-all duration-300 cursor-pointer overflow-hidden group min-h-[54px] sm:min-h-[72px] flex flex-col justify-center ${
                       isSelected
                         ? 'bg-blue-50/90 border-[#1D4ED8] shadow-md scale-[1.02]'
                         : 'bg-white hover:bg-slate-50 border-slate-200/70 text-slate-700'
                     }`}
                   >
-                    {/* Active Progress Bar Underline */}
-                    {isSelected && isAutoPlaying && (
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-1 bg-[#1D4ED8]"
-                        initial={{ width: '0%' }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 8, ease: 'linear' }}
-                      />
-                    )}
 
                     <div className="flex items-center justify-between gap-1 sm:gap-2">
                       <div className="flex items-center gap-1.5 sm:gap-2.5 md:gap-3 flex-1 min-w-0">
@@ -294,48 +268,6 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
               })}
             </div>
 
-            {/* Sub-bar: Auto-play toggle & step controls */}
-            <div className="flex items-center justify-between pt-2.5 px-3 border-t border-slate-100 text-xs font-mono text-slate-500 mt-2">
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoPlaying((prev) => !prev)}
-                  className="inline-flex items-center gap-1.5 font-bold hover:text-[#1D4ED8] transition-colors cursor-pointer"
-                >
-                  {isAutoPlaying ? (
-                    <>
-                      <Pause className="w-3.5 h-3.5 text-[#1D4ED8]" />
-                      <span>Auto-Cycle: Active (8s)</span>
-                    </>
-                  ) : (
-                    <>
-                      <Play className="w-3.5 h-3.5 text-slate-500" />
-                      <span>Auto-Cycle: Paused</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span>Phase {currentIdx + 1} of 3</span>
-                <div className="flex items-center gap-1">
-                  {stages.map((st) => (
-                    <button
-                      key={st.id}
-                      type="button"
-                      onClick={() => {
-                        setActiveStage(st.id);
-                        setIsAutoPlaying(false);
-                      }}
-                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                        st.id === activeStage ? 'bg-[#1D4ED8] w-6' : 'bg-slate-300 hover:bg-slate-400'
-                      }`}
-                      aria-label={`Jump to ${st.acronym}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
