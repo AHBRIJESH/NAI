@@ -33,18 +33,11 @@ interface Message {
   };
 }
 
-const STARTER_SERVICES = [
-  { id: '1', label: 'Autonomous Agent Swarms' },
-  { id: '2', label: 'Zero-Retention Governance' },
-  { id: '3', label: 'Enterprise RAG Architecture' },
-  { id: '4', label: 'Schedule AI Strategy Call' },
-];
 
 const INITIAL_WELCOME: Message = {
   id: 'welcome',
   role: 'assistant',
-  content: 'Hello! Welcome to NAIR.AI. Which enterprise capability would you like to explore today?',
-  options: STARTER_SERVICES,
+  content: 'Hello! Welcome to NAIR.AI. How can I assist you with our enterprise AI platforms today?',
   timestamp: 'Just now',
 };
 

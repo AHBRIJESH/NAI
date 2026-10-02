@@ -159,27 +159,6 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onBookCall }) => {
               We eliminate the trial-and-error of enterprise AI. Follow our proven execution timeline architected with strict governance, deterministic testing, and clear ROI metrics.
             </p>
 
-            {/* Sticky Timeline Phase Directory */}
-            <div className="space-y-2.5 hidden sm:block pt-6 border-t border-[#0C342C]/15">
-              <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#076653] font-black block mb-3">
-                DEPLOYMENT TIMELINE MILESTONES
-              </span>
-              {solutions.map((s) => (
-                <div key={s.id} className="flex items-center gap-3 text-xs font-mono group">
-                  <span className="w-5 font-extrabold text-[#076653] group-hover:text-[#06231D] transition-colors">{s.step}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E3EF26] border border-[#076653]/40" />
-                  <span className="text-[#0C342C]/80 font-medium group-hover:text-[#076653] transition-colors">
-                    {s.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Quick Status Pill */}
-            <div className="mt-8 pt-6 border-t border-[#0C342C]/15 flex items-center gap-3 text-xs font-mono text-[#076653]">
-              <span className="w-2 h-2 rounded-full bg-[#076653] pulse-beacon" />
-              <span className="font-bold">CONTINUOUS INTEGRATION // PROVABLY BOUNDED</span>
-            </div>
           </div>
 
           {/* Right Column: MOVING TIMELINE WITH SCROLL ANIMATION (7 cols) */}

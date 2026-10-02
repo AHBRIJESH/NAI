@@ -176,22 +176,7 @@ export const SuccessByNumbersSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Quick Node Selector Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-4 sm:mt-5">
-                {nodes.map((node) => (
-                  <button
-                    key={node.id}
-                    onClick={() => setActiveNode(node)}
-                    className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                      activeNode.id === node.id
-                        ? 'bg-[#0A192F] text-white shadow-md scale-105'
-                        : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
-                    }`}
-                  >
-                    {node.pct} {node.tag}
-                  </button>
-                ))}
-              </div>
+
             </ScrollReveal>
           </div>
 
@@ -301,9 +286,7 @@ export const SuccessByNumbersSection: React.FC = () => {
                     <span className="font-display font-extrabold text-[10px] sm:text-xs text-white leading-tight">
                       NAIR.AI Intelligence
                     </span>
-                    <span className="text-[7px] sm:text-[8px] font-mono text-[#38BDF8] font-semibold mt-0.5 sm:mt-1">
-                      ● ACTIVE
-                    </span>
+
                   </div>
                 </div>
 

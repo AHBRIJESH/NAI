@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Sparkles,
   ArrowRight,
@@ -25,7 +25,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
   onBookCall,
 }) => {
   const [orbMode, setOrbMode] = useState<EngineMode>('inference');
-  const [isAutoCycling, setIsAutoCycling] = useState<boolean>(true);
 
   const modes: EngineMode[] = ['inference', 'governance'];
 
@@ -64,26 +63,12 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
     },
   };
 
-  // Automatic filtering cycle every 6 seconds if not paused
-  useEffect(() => {
-    if (!isAutoCycling) return;
-    const interval = setInterval(() => {
-      setOrbMode((prev) => {
-        const nextIdx = (modes.indexOf(prev) + 1) % modes.length;
-        return modes[nextIdx];
-      });
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isAutoCycling]);
-
   const currentMode = modeDetails[orbMode];
 
   return (
     <section
       id="capabilities"
       className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-[#F0F7FF] via-[#E6F0FA] to-[#F8FAFC] text-[#0A192F] relative overflow-hidden border-t border-b border-blue-200/80"
-      onMouseEnter={() => setIsAutoCycling(false)}
-      onMouseLeave={() => setIsAutoCycling(true)}
     >
       {/* Interactive Motion Dot Deflection Effect */}
       <MotionDotCanvas dotCount={65} deflectionRadius={140} />
@@ -128,9 +113,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   >
                     {currentMode.tag}
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-md font-bold">
-                    ● ACTIVE STREAM
-                  </span>
                 </div>
 
                 {/* 100% VISIBLE IMAGE CONTAINER: Natural Aspect Ratio, Zero Cropping */}
@@ -156,11 +138,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                 {/* Bottom Console: Caption & Interactive Mode Toggles Outside the Image */}
                 <div className="p-3.5 sm:p-5 bg-[#060D1D]/95 border-t border-slate-800/90 space-y-2.5 sm:space-y-3.5">
                   <div className="text-left text-white">
-                    <span className="font-mono text-xs sm:text-[13px] text-blue-200 font-bold block mb-1">
+                    <span className="font-mono text-xs sm:text-[13px] text-blue-200 font-bold block">
                       {currentMode.imageCaption}
-                    </span>
-                    <span className="text-xs text-slate-400 font-normal">
-                      Click below to switch the architecture view and inspect live stream logs.
                     </span>
                   </div>
 
@@ -170,10 +149,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                       <button
                         key={m}
                         type="button"
-                        onClick={() => {
-                          setOrbMode(m);
-                          setIsAutoCycling(false);
-                        }}
+                        onClick={() => setOrbMode(m)}
                         className={`flex-1 py-2.5 px-3 rounded-xl uppercase tracking-wider font-bold transition-all cursor-pointer text-center text-xs ${
                           orbMode === m
                             ? m === 'governance'

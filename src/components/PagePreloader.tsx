@@ -132,11 +132,8 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
         <img
           src="/images/logo.png"
           alt={brandName}
-          className="h-12 sm:h-14 w-auto object-contain mb-4"
+          className="h-12 sm:h-14 w-auto object-contain"
         />
-        <div className="font-mono text-xs text-[#076653] tracking-widest uppercase font-bold">
-          CLICK TO ENTER
-        </div>
       </div>
     )
   }
