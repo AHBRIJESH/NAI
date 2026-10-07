@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowRight,
   Sparkles,
@@ -64,6 +64,19 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
   const [activeStage, setActiveStage] = useState<StageKey>('ai');
   const [activeDetailTab, setActiveDetailTab] = useState<'capabilities' | 'safety' | 'matrix'>('capabilities');
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+
+  // Auto-advance tabs every 5 seconds
+  useEffect(() => {
+    const stageKeys: StageKey[] = ['ai', 'agi', 'asi'];
+    const timer = setInterval(() => {
+      setActiveStage((prev) => {
+        const nextIdx = (stageKeys.indexOf(prev) + 1) % stageKeys.length;
+        return stageKeys[nextIdx];
+      });
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [activeStage]);
 
   const stages: EvolutionStage[] = [
     {
@@ -263,6 +276,17 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                         <span className="w-2 h-2 rounded-full bg-[#1D4ED8] shrink-0 hidden sm:block animate-pulse ml-1" />
                       )}
                     </div>
+
+                    {/* Auto-cycling 5-second progress bar */}
+                    {isSelected && (
+                      <motion.div
+                        key={`progress-${activeStage}`}
+                        initial={{ width: '0%' }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 5, ease: 'linear' }}
+                        className="absolute bottom-0 left-0 h-1 bg-[#1D4ED8]"
+                      />
+                    )}
                   </button>
                 );
               })}

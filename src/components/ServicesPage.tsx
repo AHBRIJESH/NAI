@@ -48,6 +48,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'chat',
       name: 'NAIR.AI Chat™',
       tagline: 'Conversational Runtime & Context Router',
+      image: '/images/service_agent_swarms.jpg',
+      tag: 'CONVERSATIONAL RUNTIME',
       desc: 'Autonomous multi-turn conversational agents with stateful context preservation, enterprise CRM sync, and intelligent human escalation.',
       latency: '< 180ms TTFT',
       security: 'Zero Retention / VPC Isolated',
@@ -65,6 +67,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'docs',
       name: 'NAIR.AI Docs™',
       tagline: 'Deterministic Document Parser & Validator',
+      image: '/images/solutions_architecture.jpg',
+      tag: 'DOCUMENT AI & OCR',
       desc: 'Pydantic-governed extraction converting complex PDFs, invoices, medical records, and supply manifests into verified database records.',
       latency: '99.8% Extraction Recall',
       security: 'ISO 27001 / PII Masked',
@@ -82,6 +86,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'insight',
       name: 'NAIR.AI Insights™',
       tagline: 'Predictive Analytics & Anomaly Radar',
+      image: '/images/isometric_finance.jpg',
+      tag: 'PREDICTIVE RADAR',
       desc: 'Continuous stream analytics that forecast demand shifts, flag operational anomalies, and surface actionable intelligence in real time.',
       latency: '< 15ms Stream Scoring',
       security: 'Immutable Event Telemetry',
@@ -99,6 +105,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'guard',
       name: 'NAIR.AI Guard™',
       tagline: 'Hallucination Firewall & Governance Layer',
+      image: '/images/telemetry_governance.jpg',
+      tag: 'GOVERNANCE & FIREWALL',
       desc: 'The mission-critical security layer preventing prompt injection, data exfiltration, schema drifting, and ungrounded model hallucinations.',
       latency: 'Zero Pipeline Overhead',
       security: 'Cryptographic ACLs / Air-Gap',
@@ -116,6 +124,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'learn',
       name: 'NAIR.AI Learn™',
       tagline: 'Enterprise Enablement & Workflow Playbooks',
+      image: '/images/team_collaboration.jpg',
+      tag: 'WORKFORCE ENABLEMENT',
       desc: 'Hands-on enablement programs, interactive departmental playbooks, and continuous certification tracks to elevate your internal workforce.',
       latency: '100% Practical Adoption',
       security: 'Role-Based Playbooks',
@@ -335,6 +345,20 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 {/* Right Enterprise System Architecture & Compliance Card */}
                 <div className="lg:col-span-5">
                   <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xl space-y-4 text-left">
+                    {/* Architectural Image Banner */}
+                    <div className="relative w-full h-44 rounded-xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900">
+                      <img
+                        src={activePlatform.image}
+                        alt={activePlatform.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
+                        {activePlatform.tag}
+                      </span>
+                    </div>
+
                     <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                       <div className="flex items-center gap-2">
                         <Shield className="w-4 h-4 text-[#1D4ED8]" />
@@ -420,12 +444,26 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
+                    {/* Relatable Architectural Image Banner */}
+                    <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                      <img
+                        src={platform.image}
+                        alt={platform.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
+                        {platform.tag}
+                      </span>
+                    </div>
+
                     <div className="flex items-center justify-between">
                       <div
-                        className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white shadow-xs group-hover:scale-105 transition-transform"
+                        className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-xs group-hover:scale-105 transition-transform"
                         style={{ backgroundColor: platform.color }}
                       >
-                        <IconComp className="w-6 h-6" />
+                        <IconComp className="w-5 h-5" />
                       </div>
                       <span
                         className="font-mono text-[10px] font-bold uppercase px-2.5 py-1 rounded-full border"
@@ -504,9 +542,23 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all text-left flex flex-col justify-between group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-full pointer-events-none transition-all group-hover:scale-110" />
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#1D4ED8] group-hover:scale-105 transition-transform">
-                  <Bot className="w-7 h-7" />
+              {/* Relatable Architectural Image Banner */}
+              <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/hero_enterprise_ai.jpg"
+                  alt="Artificial Intelligence Practice"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-extrabold shadow-xs">
+                  SPECIALIZED PRACTICE // AI
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#1D4ED8] group-hover:scale-105 transition-transform">
+                  <Bot className="w-6 h-6" />
                 </div>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
                   Specialized Practice
@@ -555,9 +607,23 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all text-left flex flex-col justify-between group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-bl-full pointer-events-none transition-all group-hover:scale-110" />
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0284C7] group-hover:scale-105 transition-transform">
-                  <Database className="w-7 h-7" />
+              {/* Relatable Architectural Image Banner */}
+              <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/hero_ai_lifecycle_2k.jpg"
+                  alt="Data & AI Foundation Practice"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#0284C7] font-extrabold shadow-xs">
+                  SPECIALIZED PRACTICE // DATA FOUNDATION
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0284C7] group-hover:scale-105 transition-transform">
+                  <Database className="w-6 h-6" />
                 </div>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-3 py-1 rounded-full border border-sky-200/60">
                   Specialized Practice

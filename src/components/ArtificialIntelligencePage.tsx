@@ -96,6 +96,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'strategy',
       title: 'Enterprise AI Strategy & Architecture',
       tag: 'Strategic Advisory',
+      image: '/images/new_hs.png',
       icon: Compass,
       color: '#1D4ED8',
       desc: 'Decide where AI belongs in your business and what it will take to operate it. Assess candidate workflows, compare model approaches, and plan the infrastructure around your performance, privacy, and cost requirements.',
@@ -112,6 +113,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'multi-agent',
       title: 'Multi-Agent Workflow Automation',
       tag: 'Autonomous Systems',
+      image: '/images/service_agent_swarms.jpg',
       icon: Workflow,
       color: '#DC2626',
       desc: 'Coordinate specialized agents across a defined business process. Connect them to approved tools and systems, specify the actions each can take, and route sensitive decisions to a person.',
@@ -128,6 +130,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'private-llm',
       title: 'Private Language-Model Applications',
       tag: 'Sovereign Hosting',
+      image: '/images/service_private_inference.jpg',
       icon: Cpu,
       color: '#0284C7',
       desc: 'Bring language-model capabilities into a deployment environment that meets your organization’s requirements. Plan how models access information, how requests are processed, and which records need to be retained for operation and oversight.',
@@ -144,6 +147,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'assistants',
       title: 'Enterprise Knowledge Assistants',
       tag: 'Internal Intelligence',
+      image: '/images/team_collaboration.jpg',
       icon: Bot,
       color: '#1D4ED8',
       desc: 'Help employees work with internal information through a conversational interface. Connect an assistant to approved knowledge sources, preserve access restrictions, and provide references that help users check its answers.',
@@ -160,6 +164,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'doc-processing',
       title: 'Intelligent Document Processing',
       tag: 'Deterministic Extraction',
+      image: '/images/solutions_architecture.jpg',
       icon: FileText,
       color: '#DC2626',
       desc: 'Turn incoming documents into information your workflows can use. Combine document recognition, extraction, and validation to prepare structured records and surface exceptions for review.',
@@ -176,6 +181,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'production-ops',
       title: 'Integration & Production Operation',
       tag: 'LLMOps & SRE',
+      image: '/images/telemetry_governance.jpg',
       icon: Layers,
       color: '#0284C7',
       desc: 'Connect AI applications to enterprise APIs, databases, and existing tools. Define tool permissions, approval gates, failure handling, and operational monitoring so the application can be supported after launch.',
@@ -517,20 +523,27 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
                 className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between group text-left relative overflow-hidden"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-5">
-                    <span
-                      className="px-2.5 py-0.5 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider"
-                      style={{ backgroundColor: `${service.color}15`, color: service.color }}
-                    >
+                  {/* Relatable Architectural Image Banner */}
+                  <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden mb-5 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
                       {service.tag}
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-500 font-bold">
-                      Enterprise Grade
                     </span>
                   </div>
 
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                    <IconComp className="w-6 h-6" style={{ color: service.color }} />
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <IconComp className="w-5 h-5" style={{ color: service.color }} />
+                    </div>
+                    <span className="font-mono text-[10px] text-slate-500 font-bold">
+                      Enterprise Grade
+                    </span>
                   </div>
 
                   <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3 leading-snug">

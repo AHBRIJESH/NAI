@@ -92,6 +92,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'healthcare',
       title: 'Autonomous Clinical Triage & Intake Swarm',
       client: 'Multi-Regional Hospital Network (14 Locations)',
+      image: '/images/isometric_health.jpg',
       challenge: 'Overwhelming intake volume causing 45-minute patient waiting room delays, administrative burnout, and dropped prior-authorization paperwork during peak clinical shifts.',
       solution: 'Deployed a HIPAA-compliant conversational triage agent (NAIR.AI Chat™) calibrated to clinical specialty guidelines. Automatically verifies patient insurance, matches symptoms to department protocols, and handles appointment booking with context-preserved physician handoff.',
       metrics: [
@@ -111,6 +112,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'finance',
       title: 'Deterministic ERP Invoice Reconciliation',
       client: 'National Logistics & Distribution Enterprise ($320M Rev)',
+      image: '/images/isometric_finance.jpg',
       challenge: 'Accounts payable overwhelmed by 12,000+ monthly multi-format vendor invoices, bills of lading, and paper manifests resulting in data entry errors and lost early-payment discounts.',
       solution: 'Engineered a deterministic invoice extraction pipeline (NAIR.AI Docs™) that parses multi-page PDFs, extracts line items, validates totals against ERP records via Pydantic schemas, and writes approved vouchers directly into SAP with zero human touch.',
       metrics: [
@@ -130,6 +132,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'sales',
       title: 'Sub-20s Autonomous Sales Qualification Mesh',
       client: 'B2B Enterprise Cloud Software Provider',
+      image: '/images/team_collaboration.jpg',
       challenge: 'Inbound high-value enterprise leads waited an average of 4.5 hours for sales rep email replies, causing a 35% pipeline drop-off to faster-moving competitors.',
       solution: 'Implemented an autonomous conversational sales agent trained on enterprise product documentation, security certifications, and pricing tiers. Interacts in real time with website buyers, qualifies budget/authority, and schedules qualified meetings on rep calendars.',
       metrics: [
@@ -149,6 +152,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'manufacturing',
       title: 'Neural Restocking & Supply Chain Forensics',
       client: 'Precision Automotive Component Fabricator',
+      image: '/images/isometric_manufacturing.jpg',
       challenge: 'Erratic component supply swings caused unexpected factory line shutdowns and over $600K in idle buffer inventory stored across regional warehouses.',
       solution: 'Built a predictive forecasting engine (NAIR.AI Insight™) tracking machine output rates, raw supplier transit times, and weather disruptions to trigger dynamic JIT restocking orders.',
       metrics: [
@@ -448,26 +452,40 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                     </div>
                   </div>
 
-                  {/* Right Column: Key Quantified Outcomes */}
+                  {/* Right Column: Key Quantified Outcomes (Clean & Professional Light Design) */}
                   <div className="lg:col-span-5 space-y-4">
-                    <div className="p-7 rounded-3xl bg-[#0A192F] text-white shadow-xl space-y-6">
-                      <div className="flex items-center justify-between pb-4 border-b border-slate-700">
-                        <div className="flex items-center gap-2">
-                          <IconComp className="w-5 h-5" style={{ color: cs.accentColor }} />
-                          <span className="font-display font-extrabold text-base">Verified Outcomes</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded-sm">
-                          AUDITED
+                    <div className="p-6 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-md space-y-5 group/card">
+                      {/* Relatable Architectural Image Banner */}
+                      <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover/card:scale-[1.01] transition-transform">
+                        <img
+                          src={cs.image}
+                          alt={cs.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                        <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
+                          {cs.category}
                         </span>
                       </div>
 
-                      <div className="space-y-4">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                        <div className="flex items-center gap-2">
+                          <IconComp className="w-5 h-5" style={{ color: cs.accentColor }} />
+                          <span className="font-display font-extrabold text-base text-[#0A192F]">Verified Outcomes</span>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                          AUDITED SLA
+                        </span>
+                      </div>
+
+                      <div className="space-y-3">
                         {cs.metrics.map((metric, mIdx) => (
                           <div
                             key={mIdx}
-                            className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between"
+                            className="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex items-center justify-between"
                           >
-                            <span className="font-mono text-xs text-slate-300 font-medium">
+                            <span className="font-mono text-xs text-slate-600 font-semibold">
                               {metric.label}
                             </span>
                             <span
@@ -483,7 +501,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                       <button
                         type="button"
                         onClick={() => onBookCall(`Case Study Consultation: ${cs.title}`)}
-                        className="w-full py-3.5 rounded-full text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer"
+                        className="w-full py-3 sm:py-3.5 rounded-full text-white font-mono text-xs uppercase tracking-wider font-extrabold shadow-md flex items-center justify-center gap-2 transition-all hover:scale-102 cursor-pointer"
                         style={{ backgroundColor: cs.accentColor }}
                       >
                         <span>Schedule Technical Debrief</span>

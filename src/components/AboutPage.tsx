@@ -126,8 +126,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         {/* ACTIVE US & INDIA OPERATIONS BOARD */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-8">
           {/* Operations Hub 1: United States */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between group">
             <div>
+              {/* Relatable Architectural Image Banner */}
+              <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/hero_green_office.jpg"
+                  alt="United States Operations"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-extrabold shadow-xs">
+                  US CLIENT STRATEGY &amp; ADVISORY
+                </span>
+              </div>
+
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1D4ED8] flex items-center justify-center font-bold">
@@ -174,8 +188,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
 
           {/* Operations Hub 2: India */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between group">
             <div>
+              {/* Relatable Architectural Image Banner */}
+              <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                <img
+                  src="/images/team_collaboration.jpg"
+                  alt="India Operations"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
+                  INDIA 24/7 ENGINEERING SCALE
+                </span>
+              </div>
+
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-2xl bg-red-50 text-[#DC2626] flex items-center justify-center font-bold">

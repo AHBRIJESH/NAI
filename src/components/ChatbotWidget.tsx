@@ -7,8 +7,7 @@ import {
   ArrowUp, 
   ChevronRight, 
   Sparkles, 
-  RotateCcw, 
-  Paperclip, 
+  RotateCcw,
   Check, 
   Bot,
   Search,
@@ -335,8 +334,9 @@ export function ChatbotWidget() {
                 <h3 className="text-sm font-semibold tracking-tight text-slate-900">
                   Support Assistant
                 </h3>
-                <span className="text-[10px] text-slate-400 font-medium">
-                  {wsConnected ? 'Online • Nair Core' : 'Interactive Demo'}
+                <span className="text-[10px] text-slate-400 font-medium flex items-center gap-1.5">
+                  <span className="inline-block size-1.5 rounded-full bg-emerald-500" />
+                  Online • Nair Core
                 </span>
               </div>
 
@@ -494,27 +494,19 @@ export function ChatbotWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Bottom Composer Bar (Pill design matching reference bottom input) */}
+            {/* Bottom Composer Bar */}
             <div className="p-3 bg-white border-t border-slate-100">
-              <div className="flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200/90 px-3 py-1.5 focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-xs transition-all">
-                <button
-                  type="button"
-                  title="Attach file"
-                  aria-label="Attach file"
-                  className="flex size-7 shrink-0 items-center justify-center rounded-full text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
-                >
-                  <Paperclip className="size-4" />
-                </button>
-
+              <div className="flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200/90 pl-4 pr-1.5 py-1.5 focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-xs transition-all no-focus-ring">
                 <input
                   ref={inputRef}
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask something"
+                  placeholder="Ask something..."
                   disabled={isStreaming}
-                  className="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none disabled:opacity-50"
+                  className="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 outline-none border-none no-focus-ring disabled:opacity-50"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 />
 
                 <button

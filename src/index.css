@@ -51,9 +51,23 @@ body {
 }
 
 /* Interactive focus ring */
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+button:focus-visible:not(.no-focus-ring),
+a:focus-visible:not(.no-focus-ring),
+input:focus-visible:not(.no-focus-ring),
+select:focus-visible:not(.no-focus-ring),
+textarea:focus-visible:not(.no-focus-ring) {
   outline: 2px solid #1D4ED8;
   outline-offset: 2px;
+}
+
+.no-focus-ring,
+.no-focus-ring:focus,
+.no-focus-ring:focus-visible,
+input.no-focus-ring:focus-visible,
+textarea.no-focus-ring:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Custom scrollbar */

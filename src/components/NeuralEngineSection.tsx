@@ -195,25 +195,58 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Live Streaming Terminal Log Stream */}
-                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#0A192F] text-slate-200 font-mono text-xs shadow-md">
-                  <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-700/80 text-slate-400 text-[10px]">
-                    <div className="flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5 text-[#38BDF8]" />
-                      <span className="text-white font-bold">STREAM TELEMETRY</span>
+                {/* Enterprise Architecture Verification Matrix (Clean & Professional Light Design) */}
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 border border-slate-200/90 shadow-xs space-y-3.5">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-slate-200/80">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-6 h-6 rounded-lg flex items-center justify-center text-white"
+                        style={{ backgroundColor: currentMode.color }}
+                      >
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A192F]">
+                        Operational Specifications &amp; SLA
+                      </span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[10px] text-[#38BDF8]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-                      <span>LIVE LOG</span>
-                    </div>
+                    <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-[10px] font-mono font-bold text-emerald-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>VERIFIED COMPLIANT</span>
+                    </span>
                   </div>
-                  <div className="space-y-1.5 text-slate-300 text-[11px]">
+
+                  {/* Structured Verification Entries */}
+                  <div className="space-y-2">
                     {currentMode.logSample.map((log, idx) => (
-                      <div key={idx} className="flex items-start gap-1.5 min-w-0">
-                        <span className="text-[#38BDF8] font-bold shrink-0">{'>'}</span>
-                        <span className="leading-tight break-words min-w-0 flex-1">{log}</span>
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-colors"
+                      >
+                        <CheckCircle2
+                          className="w-4 h-4 shrink-0 mt-0.5"
+                          style={{ color: currentMode.color }}
+                        />
+                        <span className="text-xs text-slate-700 font-medium leading-relaxed">
+                          {log}
+                        </span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Verified Telemetry Benchmark Badges */}
+                  <div className="grid grid-cols-3 gap-2 pt-1 border-t border-slate-200/70">
+                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
+                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Latency</span>
+                      <span className="text-xs font-mono font-bold text-[#1D4ED8]">{currentMode.latency}</span>
+                    </div>
+                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
+                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Throughput</span>
+                      <span className="text-xs font-mono font-bold text-[#0A192F]">{currentMode.throughput}</span>
+                    </div>
+                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
+                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Disk Cache</span>
+                      <span className="text-xs font-mono font-bold text-emerald-600">{currentMode.retention}</span>
+                    </div>
                   </div>
                 </div>
 

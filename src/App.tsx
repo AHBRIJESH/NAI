@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Agentation } from 'agentation';
 import { ChatbotWidget } from './components/ChatbotWidget';
 import { LenisProvider } from './components/LenisProvider';
 import { Navbar, type PageRoute, type IndustrySector } from './components/Navbar';
@@ -304,6 +305,7 @@ export function App() {
         />
       </div>
       <ChatbotWidget />
+      {import.meta.env.DEV && <Agentation appName="NAIR.AI" />}
     </LenisProvider>
   );
 }

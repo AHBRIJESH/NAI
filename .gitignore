@@ -38,3 +38,9 @@ env/
 venv/
 ENV/
 .venv
+
+# Audit & Draft Documents
+CONTENT_COMPARISON_NAIR_AI_VS_RTS_LABS.md
+NAIR_AI_vs_RTS_Labs_Audit_and_Update_Plan.pdf
+audit_report.html
+*-draft.md

@@ -663,26 +663,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-lg space-y-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-[#38BDF8] font-bold block">
-                  Healthcare Compliance Verification
-                </span>
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">HIPAA BAA Guarantee</span>
-                    <span className="text-emerald-400 font-bold">100% Signed</span>
+              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-md space-y-4 group">
+                {/* Relatable Architectural Image Banner */}
+                <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                  <img
+                    src="/images/isometric_health.jpg"
+                    alt="Healthcare Compliance Verification"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-extrabold shadow-xs">
+                    HEALTHCARE ARCHITECTURE
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#0A192F] font-bold">
+                    Healthcare Compliance Verification
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                    AUDITED SLA
+                  </span>
+                </div>
+
+                <div className="space-y-2.5 font-mono text-xs">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">HIPAA BAA Guarantee</span>
+                    <span className="text-emerald-600 font-bold">100% Signed</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">PHI Token Ingestion</span>
-                    <span className="text-emerald-400 font-bold">De-Identified at Gateway</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">PHI Token Ingestion</span>
+                    <span className="text-emerald-600 font-bold">De-Identified at Gateway</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Clinical Coding Match</span>
-                    <span className="text-blue-400 font-bold">ICD-10 / SNOMED CT</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Clinical Coding Match</span>
+                    <span className="text-[#1D4ED8] font-bold">ICD-10 / SNOMED CT</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-400">EHR Interoperability</span>
-                    <span className="text-white font-bold">HL7 / FHIR v4 REST API</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">EHR Interoperability</span>
+                    <span className="text-[#0A192F] font-bold">HL7 / FHIR v4 REST API</span>
                   </div>
                 </div>
               </div>
@@ -741,26 +761,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-lg space-y-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-rose-400 font-bold block">
-                  Financial Regulatory Standards
-                </span>
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Audit Verification</span>
-                    <span className="text-emerald-400 font-bold">ISO 27001 Aligned</span>
+              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-md space-y-4 group">
+                {/* Relatable Architectural Image Banner */}
+                <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                  <img
+                    src="/images/isometric_finance.jpg"
+                    alt="Financial Regulatory Standards"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
+                    FINANCE INTELLIGENCE
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#0A192F] font-bold">
+                    Financial Regulatory Standards
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">
+                    ISO 27001 AUDITED
+                  </span>
+                </div>
+
+                <div className="space-y-2.5 font-mono text-xs">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Audit Verification</span>
+                    <span className="text-emerald-600 font-bold">ISO 27001 Aligned</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">P99 Inference Latency</span>
-                    <span className="text-rose-400 font-bold">&lt; 14.8 milliseconds</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">P99 Inference Latency</span>
+                    <span className="text-rose-600 font-bold">&lt; 14.8 milliseconds</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Data Integrity</span>
-                    <span className="text-white font-bold">Immutable Event Ledgers</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Data Integrity</span>
+                    <span className="text-[#0A192F] font-bold">Immutable Event Ledgers</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-400">Model Drift Detection</span>
-                    <span className="text-emerald-400 font-bold">Active 24/7 Canary Monitored</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Model Drift Detection</span>
+                    <span className="text-emerald-600 font-bold">Active 24/7 Canary Monitored</span>
                   </div>
                 </div>
               </div>
@@ -819,26 +859,46 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-lg space-y-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-sky-400 font-bold block">
-                  Legal IP Sovereignty Guarantees
-                </span>
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Zero Retention Mandate</span>
-                    <span className="text-emerald-400 font-bold">100% Cryptographic Ephemeral</span>
+              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-md space-y-4 group">
+                {/* Relatable Architectural Image Banner */}
+                <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                  <img
+                    src="/images/telemetry_governance.jpg"
+                    alt="Legal IP Sovereignty Guarantees"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#0284C7] font-extrabold shadow-xs">
+                    LEGAL IP SOVEREIGNTY
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#0A192F] font-bold">
+                    Legal IP Sovereignty Guarantees
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">
+                    AIR-GAPPED
+                  </span>
+                </div>
+
+                <div className="space-y-2.5 font-mono text-xs">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Zero Retention Mandate</span>
+                    <span className="text-emerald-600 font-bold">100% Cryptographic Ephemeral</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Public Model Isolation</span>
-                    <span className="text-emerald-400 font-bold">Strict Air-Gapped VPC</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Public Model Isolation</span>
+                    <span className="text-emerald-600 font-bold">Strict Air-Gapped VPC</span>
                   </div>
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className="text-slate-400">Attorney-Client Privilege</span>
-                    <span className="text-white font-bold">Protected Architecture</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Attorney-Client Privilege</span>
+                    <span className="text-[#0A192F] font-bold">Protected Architecture</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-400">Extraction Precision</span>
-                    <span className="text-sky-400 font-bold">Deterministic Pydantic Schemas</span>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/70">
+                    <span className="text-slate-600 font-medium">Extraction Precision</span>
+                    <span className="text-[#0284C7] font-bold">Deterministic Pydantic Schemas</span>
                   </div>
                 </div>
               </div>

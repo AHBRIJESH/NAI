@@ -95,6 +95,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'readiness',
       title: 'Data & AI Readiness Assessment',
       tag: 'Audit & Roadmapping',
+      image: '/images/executive_architect.jpg',
       icon: Search,
       color: '#0284C7',
       desc: 'Identify the sources your proposed application needs. Review their availability, structure, update frequency, quality, and access restrictions to find the gaps that would affect delivery.',
@@ -110,6 +111,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'integration',
       title: 'Enterprise System Integration',
       tag: 'Connectors & APIs',
+      image: '/images/solutions_architecture.jpg',
       icon: Network,
       color: '#1D4ED8',
       desc: 'Connect the application to the databases, enterprise APIs, and operational systems involved in the workflow. Specify how information is retrieved, refreshed, and passed between components.',
@@ -125,6 +127,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'doc-prep',
       title: 'Document Preparation & Validation',
       tag: 'Structured Parsing',
+      image: '/images/isometric_finance.jpg',
       icon: FileCheck2,
       color: '#DC2626',
       desc: 'Prepare business documents for extraction and downstream use. Define the fields the application needs, normalize incoming information, and check records against agreed rules before further processing.',
@@ -140,6 +143,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'retrieval',
       title: 'Knowledge Retrieval Foundations',
       tag: 'RAG & Vector Fabric',
+      image: '/images/hero_ai_lifecycle_2k.jpg',
       icon: Database,
       color: '#0284C7',
       desc: 'Organize approved content so an AI application can find relevant context. Design indexing and retrieval around the documents, metadata, permissions, and update requirements of the use case.',
@@ -155,6 +159,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'access-governance',
       title: 'Access, Ownership & Data Handling',
       tag: 'Zero-Trust Controls',
+      image: '/images/security_vault.jpg',
       icon: Shield,
       color: '#1D4ED8',
       desc: 'Define who owns each source and which people or application components can use it. Establish handling requirements for sensitive fields and clarify what should be retained, logged, or removed.',
@@ -170,6 +175,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'observability',
       title: 'Private Infrastructure & Observability',
       tag: 'Telemetry & SRE',
+      image: '/images/telemetry_inference.jpg',
       icon: Activity,
       color: '#059669',
       desc: 'Plan the supporting infrastructure around your AI workload. Make information flows and processing failures visible so the people operating the system can investigate issues and maintain it.',
@@ -187,6 +193,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
     {
       title: 'For a Knowledge Assistant',
       badge: 'Conversational Context',
+      image: '/images/telemetry_agentic.jpg',
       icon: Sparkles,
       color: '#1D4ED8',
       desc: 'Prepare current documents, preserve permissions, and retain source references. Test whether retrieval returns the information needed to answer representative questions.',
@@ -199,6 +206,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
     {
       title: 'For Document Automation',
       badge: 'High-Volume Extraction',
+      image: '/images/solutions_architecture.jpg',
       icon: FileText,
       color: '#DC2626',
       desc: 'Define schemas, validation rules, and exception handling. Keep enough context for reviewers to compare an extracted value with its source.',
@@ -211,6 +219,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
     {
       title: 'For an Agent Workflow',
       badge: 'Autonomous Systems',
+      image: '/images/isometric_manufacturing.jpg',
       icon: Workflow,
       color: '#0284C7',
       desc: 'Provide controlled system connections and explicit action permissions. Identify which operations need approval and how failed updates should be handled.',
@@ -586,20 +595,27 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
                 className="rounded-3xl bg-white border border-slate-200/90 p-7 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between group text-left relative overflow-hidden"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-5">
-                    <span
-                      className="px-2.5 py-0.5 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider"
-                      style={{ backgroundColor: `${service.color}15`, color: service.color }}
-                    >
+                  {/* Relatable Architectural Image Banner */}
+                  <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden mb-5 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#DC2626] font-extrabold shadow-xs">
                       {service.tag}
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-500 font-bold">
-                      Infrastructure Tier
                     </span>
                   </div>
 
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                    <IconComp className="w-6 h-6" style={{ color: service.color }} />
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <IconComp className="w-5 h-5" style={{ color: service.color }} />
+                    </div>
+                    <span className="font-mono text-[10px] text-slate-500 font-bold">
+                      Infrastructure Tier
+                    </span>
                   </div>
 
                   <h3 className="font-display font-bold text-xl text-[#0A192F] mb-3 leading-snug">
@@ -665,21 +681,35 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
             return (
               <div
                 key={idx}
-                className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all text-left space-y-4 flex flex-col justify-between"
+                className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all text-left space-y-4 flex flex-col justify-between group"
               >
                 <div>
+                  {/* Relatable Architectural Image Banner */}
+                  <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden mb-5 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none" />
+                    <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-extrabold shadow-xs">
+                      {item.badge}
+                    </span>
+                  </div>
+
                   <div className="flex items-center justify-between mb-4">
                     <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white shadow-xs"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-xs"
                       style={{ backgroundColor: item.color }}
                     >
-                      <IconComp className="w-6 h-6" />
+                      <IconComp className="w-5 h-5" />
                     </div>
                     <span
                       className="px-2.5 py-0.5 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider"
                       style={{ backgroundColor: `${item.color}15`, color: item.color }}
                     >
-                      {item.badge}
+                      Workload Directive
                     </span>
                   </div>
 
