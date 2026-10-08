@@ -96,7 +96,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'strategy',
       title: 'Enterprise AI Strategy & Architecture',
       tag: 'Strategic Advisory',
-      image: '/images/new_hs.png',
+      image: '/images/banner_ai_readiness.webp',
       icon: Compass,
       color: '#1D4ED8',
       desc: 'Decide where AI belongs in your business and what it will take to operate it. Assess candidate workflows, compare model approaches, and plan the infrastructure around your performance, privacy, and cost requirements.',
@@ -113,7 +113,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'multi-agent',
       title: 'Multi-Agent Workflow Automation',
       tag: 'Autonomous Systems',
-      image: '/images/service_agent_swarms.jpg',
+      image: '/images/service_agent_swarms.webp',
       icon: Workflow,
       color: '#DC2626',
       desc: 'Coordinate specialized agents across a defined business process. Connect them to approved tools and systems, specify the actions each can take, and route sensitive decisions to a person.',
@@ -130,7 +130,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'private-llm',
       title: 'Private Language-Model Applications',
       tag: 'Sovereign Hosting',
-      image: '/images/service_private_inference.jpg',
+      image: '/images/service_private_inference.webp',
       icon: Cpu,
       color: '#0284C7',
       desc: 'Bring language-model capabilities into a deployment environment that meets your organization’s requirements. Plan how models access information, how requests are processed, and which records need to be retained for operation and oversight.',
@@ -147,7 +147,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'assistants',
       title: 'Enterprise Knowledge Assistants',
       tag: 'Internal Intelligence',
-      image: '/images/team_collaboration.jpg',
+      image: '/images/service_knowledge_retrieval.webp',
       icon: Bot,
       color: '#1D4ED8',
       desc: 'Help employees work with internal information through a conversational interface. Connect an assistant to approved knowledge sources, preserve access restrictions, and provide references that help users check its answers.',
@@ -164,7 +164,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'doc-processing',
       title: 'Intelligent Document Processing',
       tag: 'Deterministic Extraction',
-      image: '/images/solutions_architecture.jpg',
+      image: '/images/service_document_extraction.webp',
       icon: FileText,
       color: '#DC2626',
       desc: 'Turn incoming documents into information your workflows can use. Combine document recognition, extraction, and validation to prepare structured records and surface exceptions for review.',
@@ -181,7 +181,7 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
       id: 'production-ops',
       title: 'Integration & Production Operation',
       tag: 'LLMOps & SRE',
-      image: '/images/telemetry_governance.jpg',
+      image: '/images/service_realtime_analytics.webp',
       icon: Layers,
       color: '#0284C7',
       desc: 'Connect AI applications to enterprise APIs, databases, and existing tools. Define tool permissions, approval gates, failure handling, and operational monitoring so the application can be supported after launch.',
@@ -636,29 +636,50 @@ export const ArtificialIntelligencePage: React.FC<ArtificialIntelligencePageProp
 
       {/* COMPANION CROSS-LINK: "Build on information you can use" */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-28">
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-blue-900 via-[#1D4ED8] to-blue-800 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 text-left relative overflow-hidden">
-          <div className="space-y-4 max-w-2xl relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-bold uppercase tracking-wider">
-              <Database className="w-3.5 h-3.5" />
-              <span>Foundation Architecture</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-white">
-              Build on information you can use.
-            </h2>
-            <p className="text-blue-100 text-sm sm:text-base leading-relaxed font-normal">
-              Disconnected sources and inconsistent records can limit an AI application before it reaches users. Our Data & AI Foundation services address the integration, organization, and access requirements behind the application.
-            </p>
+        <div
+          onClick={() => onNavigate('data-and-ai')}
+          className="rounded-3xl border border-blue-400/30 shadow-2xl bg-gradient-to-r from-[#061329] via-[#0A192F] to-[#0F284E] text-white flex flex-col lg:flex-row items-stretch overflow-hidden group cursor-pointer hover:border-blue-400/60 transition-all duration-300"
+        >
+          {/* Visual Image Container */}
+          <div className="lg:w-5/12 relative min-h-[240px] sm:min-h-[280px] overflow-hidden">
+            <img
+              src="/images/banner_data_foundation.webp"
+              alt="Data and AI Foundation"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-[#061329]/40 to-[#061329] pointer-events-none" />
+            <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-blue-200 font-mono text-[11px] font-bold uppercase tracking-wider shadow-xs">
+              Foundation Architecture
+            </span>
           </div>
 
-          <div className="shrink-0 relative z-10">
-            <button
-              type="button"
-              onClick={() => onNavigate('data-and-ai')}
-              className="px-7 py-3.5 bg-white text-[#1D4ED8] hover:bg-slate-100 font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg flex items-center gap-2 cursor-pointer group"
-            >
-              <span>Explore Data & AI Foundations</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+          {/* Content & Action Area */}
+          <div className="lg:w-7/12 p-8 sm:p-10 lg:p-12 flex flex-col justify-between text-left space-y-6">
+            <div className="space-y-3">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-sky-400 block">
+                Foundational Architecture
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white group-hover:text-sky-300 transition-colors">
+                Build on information you can use.
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                Disconnected sources and inconsistent records can limit an AI application before it reaches users. Our Data &amp; AI Foundation services address the integration, organization, and access requirements behind the application.
+              </p>
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavigate('data-and-ai');
+                }}
+                className="px-7 py-3.5 bg-white text-[#1D4ED8] group-hover:bg-blue-50 font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg flex items-center gap-2 cursor-pointer"
+              >
+                <span>Explore Data &amp; AI Foundations</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

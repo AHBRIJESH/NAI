@@ -40,6 +40,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       desc: 'Consumer AI celebrates creative unpredictability. Enterprise software demands mathematical certainty. We build deterministic multi-agent swarms with strict Pydantic schemas, hallucination firewalls, and verified audit trails.',
       icon: Cpu,
       color: '#1D4ED8',
+      image: '/images/manifesto_01_determinism.webp',
     },
     {
       step: '02',
@@ -47,6 +48,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       desc: 'Your proprietary corporate intelligence must never train third-party public models or sit in shared consumer databases. We deploy private VPC and on-premise AI models with cryptographic access control and zero retention.',
       icon: Lock,
       color: '#DC2626',
+      image: '/images/manifesto_02_sovereign_ip.webp',
     },
     {
       step: '03',
@@ -54,6 +56,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       desc: 'We reject multi-million-dollar slideware and endless theoretical roadmaps. Every engagement ships working, tested, production-grade AI code to your team within 30 days, backed by measurable SLAs.',
       icon: Zap,
       color: '#0284C7',
+      image: '/images/manifesto_03_velocity.webp',
     },
     {
       step: '04',
@@ -61,6 +64,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       desc: 'The greatest AI value comes from amplifying expert doctors, financial analysts, and corporate attorneys — eliminating administrative drudgery while keeping high-judgment decisions in human hands.',
       icon: Users2,
       color: '#1D4ED8',
+      image: '/images/manifesto_04_human_in_loop.webp',
     },
   ];
 
@@ -131,7 +135,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               {/* Relatable Architectural Image Banner */}
               <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/hero_green_office.jpg"
+                  src="/images/banner_ai_readiness.webp"
                   alt="United States Operations"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -193,7 +197,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               {/* Relatable Architectural Image Banner */}
               <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/team_collaboration.jpg"
+                  src="/images/c9d11ba6-c2c9-428f-8d67-1f013aa3d701.webp"
                   alt="India Operations"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -286,8 +290,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             return (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all space-y-4"
+                className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all space-y-4 group"
               >
+                {/* Relatable Manifesto Architectural Diagram Banner */}
+                <div className="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/50 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-[#1D4ED8] font-extrabold shadow-xs">
+                    PILLAR {p.step} // ARCHITECTURE
+                  </span>
+                </div>
+
                 <div className="flex items-center justify-between">
                   <div
                     className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white shadow-xs"

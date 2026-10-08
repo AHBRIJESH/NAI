@@ -23,6 +23,8 @@ import { ContactPage } from './components/ContactPage';
 import { FAQPage } from './components/FAQPage';
 import { ArtificialIntelligencePage } from './components/ArtificialIntelligencePage';
 import { DataAndAIFoundationPage } from './components/DataAndAIFoundationPage';
+import { TermsOfServicePage } from './components/TermsOfServicePage';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { AssessmentModal } from './components/AssessmentModal';
 import { BookingModal } from './components/BookingModal';
 import { PagePreloader } from './components/PagePreloader';
@@ -45,6 +47,8 @@ export function App() {
       if (hash === '#/resources' || hash === '#resources') return 'resources';
       if (hash === '#/case-studies' || hash === '#case-studies') return 'case-studies';
       if (hash === '#/contact' || hash === '#contact' || hash === '#/contact-us' || hash === '#contact-us' || hash === '#/book-call' || hash === '#book-call') return 'contact';
+      if (hash === '#/terms' || hash === '#terms' || hash === '#/terms-of-service' || hash === '#terms-of-service') return 'terms';
+      if (hash === '#/privacy' || hash === '#privacy' || hash === '#/privacy-policy' || hash === '#privacy-policy') return 'privacy';
       if (hash === '#/faq' || hash === '#faq') return 'faq';
     }
     return 'home';
@@ -88,6 +92,10 @@ export function App() {
         setCurrentPage('case-studies');
       } else if (hash === '#/contact' || hash === '#contact' || hash === '#/contact-us' || hash === '#contact-us' || hash === '#/book-call' || hash === '#book-call') {
         setCurrentPage('contact');
+      } else if (hash === '#/terms' || hash === '#terms' || hash === '#/terms-of-service' || hash === '#terms-of-service') {
+        setCurrentPage('terms');
+      } else if (hash === '#/privacy' || hash === '#privacy' || hash === '#/privacy-policy' || hash === '#privacy-policy') {
+        setCurrentPage('privacy');
       } else if (hash === '#/faq' || hash === '#faq') {
         setCurrentPage('faq');
       } else {
@@ -280,6 +288,24 @@ export function App() {
             onBackToHome={() => handleNavigate('home')}
             onBookCall={handleOpenBooking}
             onOpenAssessment={handleOpenAssessment}
+          />
+        )}
+
+        {currentPage === 'terms' && (
+          <TermsOfServicePage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'privacy' && (
+          <PrivacyPolicyPage
+            onBackToHome={() => handleNavigate('home')}
+            onBookCall={handleOpenBooking}
+            onOpenAssessment={handleOpenAssessment}
+            onNavigate={handleNavigate}
           />
         )}
 

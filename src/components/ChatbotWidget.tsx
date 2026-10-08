@@ -13,8 +13,16 @@ import {
   Search,
   ChevronLeft
 } from 'lucide-react';
-import { AIOrbFace } from './AIOrbFace';
+import SiriOrb from './smoothui/siri-orb';
 import AILoader from './smoothui/ai-loader';
+
+const BRAND_ORB_COLORS = {
+  bg: '#0A192F',
+  c1: '#DC2626',
+  c2: '#1D4ED8',
+  c3: '#38BDF8',
+  c4: '#2563EB',
+};
 
 interface Message {
   id: string;
@@ -137,16 +145,8 @@ export function ChatbotWidget() {
 
     const connectWebSocket = () => {
       try {
-        const isLocal = typeof window !== 'undefined' && (
-          window.location.hostname === 'localhost' || 
-          window.location.hostname === '127.0.0.1'
-        );
-
-        const defaultWsUrl = isLocal
-          ? (window.location.protocol === 'https:' ? 'wss://localhost:8000/ws/chat' : 'ws://localhost:8000/ws/chat')
-          : 'wss://nai-sand.onrender.com/ws/chat';
-        
         const rawUrl = (import.meta.env.VITE_WS_URL as string)?.trim();
+        const defaultWsUrl = 'wss://nai-chatbot.onrender.com/ws/chat';
         let wsUrl = rawUrl || defaultWsUrl;
 
         if (wsUrl) {
@@ -286,8 +286,8 @@ export function ChatbotWidget() {
               aria-label="Talk with NAIR.AI"
             >
               <span className="relative flex size-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                <span className={`absolute inline-flex h-full w-full rounded-full ${wsConnected ? 'animate-ping bg-emerald-400 opacity-75' : 'bg-amber-400/50'}`} />
+                <span className={`relative inline-flex size-2 rounded-full ${wsConnected ? 'bg-emerald-500' : 'bg-amber-500'}`} />
               </span>
               <span className="text-xs font-semibold tracking-tight text-slate-800 group-hover:text-blue-600 transition-colors">
                 Talk with NAIR.AI
@@ -305,7 +305,11 @@ export function ChatbotWidget() {
           className="relative cursor-pointer select-none outline-none filter drop-shadow-[0_12px_36px_rgba(37,99,235,0.42)] transition-transform flex items-center justify-center p-0 bg-transparent border-0"
           aria-label={isOpen ? 'Close chat' : 'Open chat'}
         >
-          <AIOrbFace size={80} state={isOpen ? 'thinking' : 'idle'} />
+          <SiriOrb
+            size="84px"
+            state={isOpen ? 'thinking' : 'idle'}
+            colors={BRAND_ORB_COLORS}
+          />
         </motion.button>
       </div>
 
@@ -335,8 +339,8 @@ export function ChatbotWidget() {
                   Support Assistant
                 </h3>
                 <span className="text-[10px] text-slate-400 font-medium flex items-center gap-1.5">
-                  <span className="inline-block size-1.5 rounded-full bg-emerald-500" />
-                  Online • Nair Core
+                  <span className={`inline-block size-1.5 rounded-full ${wsConnected ? 'bg-emerald-500' : 'bg-amber-400 animate-pulse'}`} />
+                  {wsConnected ? 'Online • Nair Core' : 'Connecting • Nair Core'}
                 </span>
               </div>
 
@@ -376,8 +380,8 @@ export function ChatbotWidget() {
                   {msg.role === 'assistant' ? (
                     <div className="flex items-start gap-2.5 max-w-[88%]">
                       {/* Avatar from reference */}
-                      <div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 shadow-xs overflow-hidden">
-                        <AIOrbFace size={28} state="idle" />
+                      <div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-slate-900 border border-slate-200 shadow-xs overflow-hidden">
+                        <SiriOrb size="28px" state="idle" colors={BRAND_ORB_COLORS} />
                       </div>
 
                       <div className="flex flex-col">
@@ -470,8 +474,8 @@ export function ChatbotWidget() {
               {/* Streaming In-Progress Assistant Bubble */}
               {isStreaming && (
                 <div className="flex items-start gap-2.5 max-w-[88%]">
-                  <div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 shadow-xs overflow-hidden">
-                    <AIOrbFace size={28} state={aiState} />
+                  <div className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-slate-900 border border-slate-200 shadow-xs overflow-hidden">
+                    <SiriOrb size="28px" state={aiState} colors={BRAND_ORB_COLORS} />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-medium text-slate-400 mb-1 pl-1">

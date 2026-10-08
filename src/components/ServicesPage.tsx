@@ -48,7 +48,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'chat',
       name: 'NAIR.AI Chat™',
       tagline: 'Conversational Runtime & Context Router',
-      image: '/images/service_agent_swarms.jpg',
+      image: '/images/service_agent_swarms.webp',
       tag: 'CONVERSATIONAL RUNTIME',
       desc: 'Autonomous multi-turn conversational agents with stateful context preservation, enterprise CRM sync, and intelligent human escalation.',
       latency: '< 180ms TTFT',
@@ -67,7 +67,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'docs',
       name: 'NAIR.AI Docs™',
       tagline: 'Deterministic Document Parser & Validator',
-      image: '/images/solutions_architecture.jpg',
+      image: '/images/service_document_extraction.webp',
       tag: 'DOCUMENT AI & OCR',
       desc: 'Pydantic-governed extraction converting complex PDFs, invoices, medical records, and supply manifests into verified database records.',
       latency: '99.8% Extraction Recall',
@@ -86,7 +86,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'insight',
       name: 'NAIR.AI Insights™',
       tagline: 'Predictive Analytics & Anomaly Radar',
-      image: '/images/isometric_finance.jpg',
+      image: '/images/service_realtime_analytics.webp',
       tag: 'PREDICTIVE RADAR',
       desc: 'Continuous stream analytics that forecast demand shifts, flag operational anomalies, and surface actionable intelligence in real time.',
       latency: '< 15ms Stream Scoring',
@@ -105,7 +105,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'guard',
       name: 'NAIR.AI Guard™',
       tagline: 'Hallucination Firewall & Governance Layer',
-      image: '/images/telemetry_governance.jpg',
+      image: '/images/9a4f7d06-ca4b-4b0f-99ff-24ca95925ec0.webp',
       tag: 'GOVERNANCE & FIREWALL',
       desc: 'The mission-critical security layer preventing prompt injection, data exfiltration, schema drifting, and ungrounded model hallucinations.',
       latency: 'Zero Pipeline Overhead',
@@ -124,7 +124,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       id: 'learn',
       name: 'NAIR.AI Learn™',
       tagline: 'Enterprise Enablement & Workflow Playbooks',
-      image: '/images/team_collaboration.jpg',
+      image: '/images/banner_ai_academy.webp',
       tag: 'WORKFORCE ENABLEMENT',
       desc: 'Hands-on enablement programs, interactive departmental playbooks, and continuous certification tracks to elevate your internal workforce.',
       latency: '100% Practical Adoption',
@@ -545,7 +545,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               {/* Relatable Architectural Image Banner */}
               <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/hero_enterprise_ai.jpg"
+                  src="/images/banner_ai_practice.webp"
                   alt="Artificial Intelligence Practice"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -610,7 +610,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               {/* Relatable Architectural Image Banner */}
               <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/hero_ai_lifecycle_2k.jpg"
+                  src="/images/banner_data_foundation.webp"
                   alt="Data & AI Foundation Practice"
                   className="w-full h-full object-cover"
                   loading="lazy"

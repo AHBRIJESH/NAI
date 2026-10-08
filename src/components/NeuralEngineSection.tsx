@@ -36,7 +36,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       latency: '12.4ms',
       throughput: '1,420 tps',
       retention: '0.00 KB',
-      image: '/images/telemetry_inference.jpg',
+      image: '/images/service_ai_inference.webp',
       imageCaption: 'AI Inference: Text, Image, Audio & Video to Real-Time Insights & Actions',
       desc: 'Zero-latency streaming architecture for high-throughput enterprise decision systems and real-time inference.',
       logSample: [
@@ -52,7 +52,7 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
       latency: '8.1ms',
       throughput: 'Deterministic',
       retention: '0.00 KB',
-      image: '/images/telemetry_governance.jpg',
+      image: '/images/0cb61398-6bd2-4f57-b2bc-0af130e21c88.webp',
       imageCaption: 'AI Governance: Ethics, Policies, People, Compliance & Risk Management',
       desc: 'In-memory ephemeral token processing with provably zero external retention, automated ethical boundaries, and ISO 27001 compliance.',
       logSample: [
@@ -105,18 +105,8 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
             <ScrollReveal delay={0.1} y={24} duration={0.65} className="h-full flex flex-col">
               <div className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-blue-200/90 shadow-xl bg-[#0A192F] flex flex-col justify-between">
                 
-                {/* Top Badge: Mode Status */}
-                <div className="p-3 sm:p-5 flex items-center justify-between border-b border-slate-800 bg-[#060D1D]/90">
-                  <span
-                    className="px-2.5 py-1 rounded-md font-mono text-[10px] uppercase font-bold tracking-wider text-white shadow-md"
-                    style={{ backgroundColor: `${currentMode.color}EE` }}
-                  >
-                    {currentMode.tag}
-                  </span>
-                </div>
-
                 {/* 100% VISIBLE IMAGE CONTAINER: Natural Aspect Ratio, Zero Cropping */}
-                <div className="relative w-full aspect-[16/10] sm:aspect-[3/2] bg-[#070F1E] flex items-center justify-center p-2 sm:p-3 overflow-hidden">
+                <div className="relative w-full aspect-[16/10] sm:aspect-[3/2] bg-[#070F1E] flex items-center justify-center p-3 sm:p-5 overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={orbMode}
@@ -171,47 +161,35 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
           {/* Right Column: Telemetry Readout & Controls (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-center min-w-0 w-full h-full">
             <ScrollReveal delay={0.15} y={24} duration={0.7} className="h-full flex flex-col">
-              <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-4 sm:space-y-6 h-full flex flex-col justify-between">
+              <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/95 border border-blue-200/90 shadow-xl backdrop-blur-md min-w-0 text-left space-y-4 sm:space-y-6 h-full flex flex-col justify-between">
                 
-                {/* Header Title & Status */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-200/80">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-[#DC2626] font-bold">
-                        SUBSYSTEM //
-                      </span>
-                      <span className="font-mono text-[11px] text-slate-500 font-semibold">NAI-CORE-09</span>
-                    </div>
-                    <h3 className="font-display font-extrabold text-xl sm:text-3xl text-[#0A192F]">
-                      {currentMode.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 font-normal mt-1 leading-relaxed">
-                      {currentMode.desc}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#1D4ED8] font-bold shrink-0 self-start sm:self-center">
-                    <span className="w-2 h-2 rounded-full bg-[#1D4ED8] animate-pulse" />
-                    <span>ONLINE · 99.99%</span>
-                  </div>
+                {/* Header Title */}
+                <div className="pb-4 sm:pb-5 border-b border-slate-200/80">
+                  <h3 className="font-display font-extrabold text-2xl sm:text-4xl text-[#0A192F] leading-tight">
+                    {currentMode.title}
+                  </h3>
+                  <p
+                    className={`text-sm sm:text-base mt-2 leading-relaxed ${
+                      orbMode === 'inference'
+                        ? 'text-[#1D4ED8] font-medium'
+                        : 'text-slate-600 font-normal'
+                    }`}
+                  >
+                    {currentMode.desc}
+                  </p>
                 </div>
 
                 {/* Enterprise Architecture Verification Matrix (Clean & Professional Light Design) */}
                 <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 border border-slate-200/90 shadow-xs space-y-3.5">
-                  <div className="flex items-center justify-between pb-2.5 border-b border-slate-200/80">
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-6 h-6 rounded-lg flex items-center justify-center text-white"
-                        style={{ backgroundColor: currentMode.color }}
-                      >
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A192F]">
-                        Operational Specifications &amp; SLA
-                      </span>
+                  <div className="flex items-center gap-2 pb-2.5 border-b border-slate-200/80">
+                    <div
+                      className="w-6 h-6 rounded-lg flex items-center justify-center text-white"
+                      style={{ backgroundColor: currentMode.color }}
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5" />
                     </div>
-                    <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-[10px] font-mono font-bold text-emerald-700">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>VERIFIED COMPLIANT</span>
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A192F]">
+                      Operational Specifications &amp; SLA
                     </span>
                   </div>
 
@@ -231,22 +209,6 @@ export const NeuralEngineSection: React.FC<NeuralEngineSectionProps> = ({
                         </span>
                       </div>
                     ))}
-                  </div>
-
-                  {/* Verified Telemetry Benchmark Badges */}
-                  <div className="grid grid-cols-3 gap-2 pt-1 border-t border-slate-200/70">
-                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
-                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Latency</span>
-                      <span className="text-xs font-mono font-bold text-[#1D4ED8]">{currentMode.latency}</span>
-                    </div>
-                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
-                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Throughput</span>
-                      <span className="text-xs font-mono font-bold text-[#0A192F]">{currentMode.throughput}</span>
-                    </div>
-                    <div className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/70 text-center">
-                      <span className="text-[10px] font-mono uppercase text-slate-500 block font-semibold">Disk Cache</span>
-                      <span className="text-xs font-mono font-bold text-emerald-600">{currentMode.retention}</span>
-                    </div>
                   </div>
                 </div>
 

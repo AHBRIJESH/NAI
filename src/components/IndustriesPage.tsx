@@ -765,7 +765,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                 {/* Relatable Architectural Image Banner */}
                 <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                   <img
-                    src="/images/isometric_finance.jpg"
+                    src="/images/service_realtime_analytics.webp"
                     alt="Financial Regulatory Standards"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -863,7 +863,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({
                 {/* Relatable Architectural Image Banner */}
                 <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                   <img
-                    src="/images/telemetry_governance.jpg"
+                    src="/images/service_private_inference.webp"
                     alt="Legal IP Sovereignty Guarantees"
                     className="w-full h-full object-cover"
                     loading="lazy"

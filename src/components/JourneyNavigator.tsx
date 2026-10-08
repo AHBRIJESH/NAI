@@ -186,7 +186,7 @@ export const JourneyNavigator: React.FC<JourneyNavigatorProps> = ({
           {/* Left Column: Full-Size Image from Left Viewport Edge (6 cols) */}
           <div className="lg:col-span-6 relative w-full min-h-[460px] sm:min-h-[540px] lg:min-h-full overflow-hidden group bg-[#0C342C]">
             <img
-              src="/images/team_collaboration.jpg"
+              src="/images/banner_ai_academy.webp"
               alt="Enterprise executives and AI architects collaborating in studio"
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />

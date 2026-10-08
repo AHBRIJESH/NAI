@@ -168,10 +168,28 @@ export const GradientFooter: React.FC<GradientFooterProps> = ({
           </div>
         </ScrollReveal>
 
-        {/* Minimal Bottom Bar: Copyright & Back To Top */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        {/* Minimal Bottom Bar: Copyright, Legal Links & Back To Top */}
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
             &copy; {new Date().getFullYear()} NAIR.AI. All rights reserved. Sovereign AI.
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <button
+              type="button"
+              onClick={() => onNavigate('terms')}
+              className="text-slate-600 hover:text-[#1D4ED8] transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </button>
+            <span className="text-slate-300">·</span>
+            <button
+              type="button"
+              onClick={() => onNavigate('privacy')}
+              className="text-slate-600 hover:text-[#1D4ED8] transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
           </div>
 
           <div className="flex items-center gap-6">

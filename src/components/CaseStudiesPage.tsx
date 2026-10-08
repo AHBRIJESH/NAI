@@ -112,7 +112,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'finance',
       title: 'Deterministic ERP Invoice Reconciliation',
       client: 'National Logistics & Distribution Enterprise ($320M Rev)',
-      image: '/images/isometric_finance.jpg',
+      image: '/images/service_document_extraction.webp',
       challenge: 'Accounts payable overwhelmed by 12,000+ monthly multi-format vendor invoices, bills of lading, and paper manifests resulting in data entry errors and lost early-payment discounts.',
       solution: 'Engineered a deterministic invoice extraction pipeline (NAIR.AI Docs™) that parses multi-page PDFs, extracts line items, validates totals against ERP records via Pydantic schemas, and writes approved vouchers directly into SAP with zero human touch.',
       metrics: [
@@ -132,7 +132,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'sales',
       title: 'Sub-20s Autonomous Sales Qualification Mesh',
       client: 'B2B Enterprise Cloud Software Provider',
-      image: '/images/team_collaboration.jpg',
+      image: '/images/service_agent_swarms.webp',
       challenge: 'Inbound high-value enterprise leads waited an average of 4.5 hours for sales rep email replies, causing a 35% pipeline drop-off to faster-moving competitors.',
       solution: 'Implemented an autonomous conversational sales agent trained on enterprise product documentation, security certifications, and pricing tiers. Interacts in real time with website buyers, qualifies budget/authority, and schedules qualified meetings on rep calendars.',
       metrics: [
@@ -152,7 +152,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
       filterCategory: 'manufacturing',
       title: 'Neural Restocking & Supply Chain Forensics',
       client: 'Precision Automotive Component Fabricator',
-      image: '/images/isometric_manufacturing.jpg',
+      image: '/images/service_realtime_analytics.webp',
       challenge: 'Erratic component supply swings caused unexpected factory line shutdowns and over $600K in idle buffer inventory stored across regional warehouses.',
       solution: 'Built a predictive forecasting engine (NAIR.AI Insight™) tracking machine output rates, raw supplier transit times, and weather disruptions to trigger dynamic JIT restocking orders.',
       metrics: [
@@ -190,7 +190,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
         </button>
       </div>
 
-      {/* BESPOKE HERO: Executive Impact Terminal & Verified Macro Outcomes */}
+      {/* BESPOKE HERO: Executive Impact Terminal & Measured Production Results */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20">
         <div className="text-left mb-10">
           <motion.div
@@ -352,7 +352,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
               In-Depth Production Deployments
             </h2>
             <p className="text-sm text-slate-500 font-normal mt-1">
-              Detailed technical architecture, problem statement, and verified outcomes.
+              Detailed technical architecture, problem statement, and production results.
             </p>
           </div>
 
@@ -472,7 +472,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({
                       <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                         <div className="flex items-center gap-2">
                           <IconComp className="w-5 h-5" style={{ color: cs.accentColor }} />
-                          <span className="font-display font-extrabold text-base text-[#0A192F]">Verified Outcomes</span>
+                          <span className="font-display font-extrabold text-base text-[#0A192F]">Production Results</span>
                         </div>
                         <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
                           AUDITED SLA

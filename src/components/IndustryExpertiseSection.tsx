@@ -21,7 +21,7 @@ export const IndustryExpertiseSection: React.FC<IndustryExpertiseSectionProps> =
       title: 'Institutional Banking & Capital Markets',
       tag: 'FINRA & SEC COMPLIANCE',
       desc: 'High-throughput transaction anomaly detection, automated KYC verification dossiers, and algorithmic ledger reconciliation.',
-      image: '/images/isometric_finance.jpg',
+      image: '/images/service_realtime_analytics.webp',
       stat: '99.98% verifiable audit accuracy',
     },
     {
@@ -35,7 +35,7 @@ export const IndustryExpertiseSection: React.FC<IndustryExpertiseSectionProps> =
       title: 'Enterprise Cloud & Infrastructure',
       tag: 'ZERO-TRUST ARCHITECTURE',
       desc: 'Dynamic Kubernetes resource rightsizing, automated incident remediation swarms, and private API mesh isolation.',
-      image: '/images/security_vault.jpg',
+      image: '/images/service_private_inference.webp',
       stat: '60% cloud compute recaptured',
     },
   ];

@@ -70,7 +70,7 @@ export const TeamSplitSection: React.FC = () => {
             <ScrollReveal delay={0.15} y={32} duration={0.7}>
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
                 <img
-                  src="/images/team_collaboration.jpg"
+                  src="/images/c9d11ba6-c2c9-428f-8d67-1f013aa3d701.webp"
                   alt="NAIR.AI Engineering Team"
                   className="w-full h-[260px] sm:h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />

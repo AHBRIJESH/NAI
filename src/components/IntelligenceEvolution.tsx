@@ -64,9 +64,12 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
   const [activeStage, setActiveStage] = useState<StageKey>('ai');
   const [activeDetailTab, setActiveDetailTab] = useState<'capabilities' | 'safety' | 'matrix'>('capabilities');
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-advance tabs every 5 seconds
+  // Auto-advance tabs every 5 seconds (pauses when user hovers cursor over it, resumes when cursor leaves)
   useEffect(() => {
+    if (isPaused) return;
+
     const stageKeys: StageKey[] = ['ai', 'agi', 'asi'];
     const timer = setInterval(() => {
       setActiveStage((prev) => {
@@ -76,7 +79,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [activeStage]);
+  }, [isPaused]);
 
   const stages: EvolutionStage[] = [
     {
@@ -233,8 +236,14 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
           </div>
         </ScrollReveal>
 
-        {/* Interactive Evolutionary Stepper Bar with Play/Pause */}
-        <div className="max-w-4xl mx-auto mb-8 sm:mb-10">
+        {/* Interactive Evolutionary Stepper Bar & Showcase (Pauses on hover, resumes on leave) */}
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className="relative"
+        >
+          {/* Interactive Evolutionary Stepper Bar */}
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-10">
           <div className="p-2 sm:p-3 rounded-2xl sm:rounded-3xl bg-white/95 border border-slate-200/90 shadow-lg backdrop-blur-md">
             
             {/* Timeline Steps: 3-column row on all screen sizes */}
@@ -280,10 +289,10 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
                     {/* Auto-cycling 5-second progress bar */}
                     {isSelected && (
                       <motion.div
-                        key={`progress-${activeStage}`}
+                        key={`progress-${activeStage}-${isPaused}`}
                         initial={{ width: '0%' }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 5, ease: 'linear' }}
+                        animate={{ width: isPaused ? '0%' : '100%' }}
+                        transition={{ duration: isPaused ? 0 : 5, ease: 'linear' }}
                         className="absolute bottom-0 left-0 h-1 bg-[#1D4ED8]"
                       />
                     )}
@@ -546,6 +555,8 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
               </div>
             </motion.div>
           </AnimatePresence>
+        </div>
+
         </div>
 
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export type PageRoute = 'home' | 'about' | 'services' | 'industries' | 'resources' | 'case-studies' | 'faq' | 'contact' | 'artificial-intelligence' | 'data-and-ai';
+export type PageRoute = 'home' | 'about' | 'services' | 'industries' | 'resources' | 'case-studies' | 'faq' | 'contact' | 'artificial-intelligence' | 'data-and-ai' | 'terms' | 'privacy';
 export type IndustrySector = 'healthcare' | 'finance' | 'legal';
 
 export interface IndustrySubPage {
@@ -169,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     onNavigate('industries', sector);
   };
 
-  const isHeroTop = currentPage === 'home' && !isScrolled;
+  const isHeroTop = currentPage === 'home' && !isScrolled && !mobileMenuOpen;
 
   const getNavLinkClasses = (isActive: boolean, isOpen = false) => {
     if (isHeroTop) {
@@ -202,32 +202,41 @@ export const Navbar: React.FC<NavbarProps> = ({
         }`}
       >
         
-        {/* Brand: Official Logo */}
+        {/* Brand Logo & Desktop Navigation Links in unified high-contrast capsule at Hero Top */}
         <div
-          onClick={() => handleLinkClick('home')}
-          className="flex items-center cursor-pointer select-none group py-1"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && handleLinkClick('home')}
-          aria-label="NAIR.AI Homepage"
-        >
-          <img
-            src="/images/logo.png"
-            alt="NAIR.AI"
-            className={`h-9 sm:h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${
-              isHeroTop ? 'drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]' : ''
-            }`}
-          />
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <nav
-          className={`hidden md:flex items-center gap-4 lg:gap-7 transition-all duration-300 ${
+          className={`flex items-center transition-all duration-300 ${
             isHeroTop
-              ? 'px-5 py-2 rounded-full bg-slate-950/45 backdrop-blur-md border border-white/20 shadow-md shadow-black/20'
-              : ''
+              ? 'p-1.5 sm:p-2 pr-4 sm:pr-6 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 shadow-md shadow-black/20 gap-3 sm:gap-4 md:gap-5 lg:gap-6'
+              : 'gap-6 lg:gap-10'
           }`}
         >
+          {/* Brand: Official Logo */}
+          <div
+            onClick={() => handleLinkClick('home')}
+            className={`flex items-center cursor-pointer select-none group transition-all duration-300 ${
+              isHeroTop
+                ? 'bg-white hover:bg-white/95 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full shadow-xs'
+                : 'py-0.5'
+            }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleLinkClick('home')}
+            aria-label="NAIR.AI Homepage"
+          >
+            <img
+              src="/images/logo.png"
+              alt="NAIR.AI"
+              className="h-7 sm:h-8 md:h-8 lg:h-8.5 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          {/* Vertical Divider when in Hero Top pill on desktop */}
+          {isHeroTop && (
+            <div className="hidden md:block h-5 w-px bg-white/20 shrink-0" aria-hidden="true" />
+          )}
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-4 lg:gap-7">
           {navLinks.map((link) => {
             const isActive =
               currentPage === link.page ||
@@ -520,7 +529,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             );
           })}
-        </nav>
+          </nav>
+        </div>
 
         {/* Right Action CTA */}
         <div className="hidden sm:flex items-center gap-4">
@@ -543,7 +553,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className={`md:hidden p-2 focus:outline-hidden cursor-pointer transition-colors ${
             isHeroTop && !mobileMenuOpen
-              ? 'text-white hover:text-[#38BDF8]'
+              ? 'p-2 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/20 text-white hover:text-[#38BDF8] shadow-md shadow-black/20'
               : 'text-slate-700 hover:text-black'
           }`}
           aria-label="Toggle navigation menu"

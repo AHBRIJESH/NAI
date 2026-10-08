@@ -124,7 +124,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
         onClick={handleSkip}
         className={cn(
           container ? 'absolute inset-0' : 'fixed inset-0',
-          'z-50 bg-[#FFFDEE] flex flex-col items-center justify-center text-[#06231D] cursor-pointer',
+          'z-[9999] bg-white flex flex-col items-center justify-center text-[#0A192F] cursor-pointer',
           className
         )}
       >
@@ -149,7 +149,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
           title="Click to skip"
           className={cn(
             container ? 'absolute inset-0' : 'fixed inset-0',
-            'z-50 flex items-center justify-center overflow-hidden cursor-pointer select-none',
+            'z-[9999] flex items-center justify-center overflow-hidden cursor-pointer select-none',
             className
           )}
           initial={{ opacity: 1 }}
@@ -164,7 +164,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
           {/* Accessible Screen Reader Announcement */}
           <span className="sr-only">Loading {brandName}... Click to skip.</span>
 
-          {/* PIXEL TRANSITION OUT: Grid of Cream #FFFDEE Tiles Dissolving in Deterministic Order */}
+          {/* PIXEL TRANSITION OUT: Grid of Clean White Tiles Dissolving in Deterministic Order */}
           <div
             className="absolute inset-0 pointer-events-none grid z-0"
             style={{
@@ -176,7 +176,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
             {Array.from({ length: totalPixels }).map((_, tileIdx) => (
               <motion.div
                 key={tileIdx}
-                className="w-full h-full bg-[#FFFDEE]"
+                className="w-full h-full bg-white"
                 initial={{ opacity: 1 }}
                 exit={{
                   opacity: 0,
@@ -196,7 +196,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
             className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-1"
             exit={{ opacity: 0, transition: { duration: 0.25 } }}
           >
-            <div className="w-[500px] h-[500px] rounded-full bg-radial from-[#E2FBCE]/60 via-[#E3EF26]/15 to-transparent blur-3xl opacity-70 animate-pulse pointer-events-none" />
+            <div className="w-[500px] h-[500px] rounded-full bg-radial from-blue-200/50 via-sky-100/25 to-transparent blur-3xl opacity-70 animate-pulse pointer-events-none" />
             <div className="absolute w-[320px] h-[320px] rounded-full bg-radial from-white/90 via-transparent to-transparent blur-2xl pointer-events-none" />
           </motion.div>
 
@@ -230,7 +230,7 @@ export const PagePreloader: React.FC<PagePreloaderProps> = ({
               <motion.img
                 src="/images/logo.png"
                 alt={brandName}
-                className="h-12 sm:h-16 md:h-20 w-auto object-contain relative z-10 drop-shadow-[0_8px_24px_rgba(6,35,29,0.08)]"
+                className="h-12 sm:h-16 md:h-20 w-auto object-contain relative z-10 drop-shadow-[0_8px_24px_rgba(29,78,216,0.12)]"
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

@@ -95,7 +95,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'readiness',
       title: 'Data & AI Readiness Assessment',
       tag: 'Audit & Roadmapping',
-      image: '/images/executive_architect.jpg',
+      image: '/images/banner_ai_readiness.webp',
       icon: Search,
       color: '#0284C7',
       desc: 'Identify the sources your proposed application needs. Review their availability, structure, update frequency, quality, and access restrictions to find the gaps that would affect delivery.',
@@ -111,7 +111,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'integration',
       title: 'Enterprise System Integration',
       tag: 'Connectors & APIs',
-      image: '/images/solutions_architecture.jpg',
+      image: '/images/service_realtime_analytics.webp',
       icon: Network,
       color: '#1D4ED8',
       desc: 'Connect the application to the databases, enterprise APIs, and operational systems involved in the workflow. Specify how information is retrieved, refreshed, and passed between components.',
@@ -127,7 +127,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'doc-prep',
       title: 'Document Preparation & Validation',
       tag: 'Structured Parsing',
-      image: '/images/isometric_finance.jpg',
+      image: '/images/service_document_extraction.webp',
       icon: FileCheck2,
       color: '#DC2626',
       desc: 'Prepare business documents for extraction and downstream use. Define the fields the application needs, normalize incoming information, and check records against agreed rules before further processing.',
@@ -143,7 +143,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'retrieval',
       title: 'Knowledge Retrieval Foundations',
       tag: 'RAG & Vector Fabric',
-      image: '/images/hero_ai_lifecycle_2k.jpg',
+      image: '/images/service_knowledge_retrieval.webp',
       icon: Database,
       color: '#0284C7',
       desc: 'Organize approved content so an AI application can find relevant context. Design indexing and retrieval around the documents, metadata, permissions, and update requirements of the use case.',
@@ -159,7 +159,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'access-governance',
       title: 'Access, Ownership & Data Handling',
       tag: 'Zero-Trust Controls',
-      image: '/images/security_vault.jpg',
+      image: '/images/service_private_inference.webp',
       icon: Shield,
       color: '#1D4ED8',
       desc: 'Define who owns each source and which people or application components can use it. Establish handling requirements for sensitive fields and clarify what should be retained, logged, or removed.',
@@ -175,7 +175,7 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
       id: 'observability',
       title: 'Private Infrastructure & Observability',
       tag: 'Telemetry & SRE',
-      image: '/images/telemetry_inference.jpg',
+      image: '/images/service_ai_inference.webp',
       icon: Activity,
       color: '#059669',
       desc: 'Plan the supporting infrastructure around your AI workload. Make information flows and processing failures visible so the people operating the system can investigate issues and maintain it.',
@@ -832,29 +832,50 @@ export const DataAndAIFoundationPage: React.FC<DataAndAIFoundationPageProps> = (
 
       {/* COMPANION CROSS-LINK: "Turn prepared information into working applications" */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-28">
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-sky-900 via-[#0284C7] to-blue-900 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 text-left relative overflow-hidden">
-          <div className="space-y-4 max-w-2xl relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs font-bold uppercase tracking-wider">
-              <Cpu className="w-3.5 h-3.5" />
-              <span>Downstream Applications</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-white">
-              Turn prepared information into working applications.
-            </h2>
-            <p className="text-sky-100 text-sm sm:text-base leading-relaxed font-normal">
-              Once the foundation is in place, explore our Artificial Intelligence services for knowledge assistants, document processing, and agent workflows.
-            </p>
+        <div
+          onClick={() => onNavigate('artificial-intelligence')}
+          className="rounded-3xl border border-sky-400/30 shadow-2xl bg-gradient-to-r from-[#061329] via-[#0A192F] to-[#0F284E] text-white flex flex-col lg:flex-row items-stretch overflow-hidden group cursor-pointer hover:border-sky-400/60 transition-all duration-300"
+        >
+          {/* Visual Image Container */}
+          <div className="lg:w-5/12 relative min-h-[240px] sm:min-h-[280px] overflow-hidden">
+            <img
+              src="/images/banner_ai_practice.webp"
+              alt="Artificial Intelligence Practice"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-[#061329]/40 to-[#061329] pointer-events-none" />
+            <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-sky-200 font-mono text-[11px] font-bold uppercase tracking-wider shadow-xs">
+              Downstream Applications
+            </span>
           </div>
 
-          <div className="shrink-0 relative z-10">
-            <button
-              type="button"
-              onClick={() => onNavigate('artificial-intelligence')}
-              className="px-7 py-3.5 bg-white text-[#0284C7] hover:bg-slate-100 font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg flex items-center gap-2 cursor-pointer group"
-            >
-              <span>Explore Artificial Intelligence Services</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+          {/* Content & Action Area */}
+          <div className="lg:w-7/12 p-8 sm:p-10 lg:p-12 flex flex-col justify-between text-left space-y-6">
+            <div className="space-y-3">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-sky-400 block">
+                Downstream Applications
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white group-hover:text-sky-300 transition-colors">
+                Turn prepared information into working applications.
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                Once the foundation is in place, explore our Artificial Intelligence services for knowledge assistants, document processing, and agent workflows.
+              </p>
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavigate('artificial-intelligence');
+                }}
+                className="px-7 py-3.5 bg-white text-[#0284C7] group-hover:bg-sky-50 font-mono text-xs uppercase tracking-wider font-extrabold rounded-full transition-all shadow-lg flex items-center gap-2 cursor-pointer"
+              >
+                <span>Explore Artificial Intelligence Services</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

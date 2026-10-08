@@ -12,7 +12,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
 }) => {
   const solutions = [
     {
-      image: '/images/solutions_architecture.jpg',
+      image: '/images/banner_ai_readiness.webp',
       tag: 'STRATEGY & TOPOLOGY',
       title: 'Enterprise AI Strategy & Sizing',
       desc: 'Pragmatic architectural audits, model sizing, and hardware roadmaps designed to bypass multi-million dollar vendor dead-ends.',
@@ -23,7 +23,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
       ],
     },
     {
-      image: '/images/telemetry_agentic.jpg',
+      image: '/images/service_agent_swarms.webp',
       tag: 'AUTONOMOUS EXECUTION',
       title: 'Multi-Agent Operational Swarms',
       desc: 'Resilient agent clusters executing complex multi-step workflows across ERPs, relational databases, and proprietary enterprise APIs.',
@@ -34,7 +34,7 @@ export const BlueSolutionsSection: React.FC<BlueSolutionsSectionProps> = ({
       ],
     },
     {
-      image: '/images/telemetry_governance.jpg',
+      image: '/images/service_private_inference.webp',
       tag: 'SOVEREIGN DATA SECURITY',
       title: 'Zero-Retention Private LLMs',
       desc: 'Hardware-isolated inference environments guaranteeing client intellectual property and enterprise data never train external models.',
