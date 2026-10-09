@@ -11,10 +11,28 @@ import {
   Check, 
   Bot,
   Search,
-  ChevronLeft
+  ChevronLeft,
+  Paperclip,
+  FileText
 } from 'lucide-react';
+import { marked } from 'marked';
 import SiriOrb from './smoothui/siri-orb';
 import AILoader from './smoothui/ai-loader';
+
+// Configure marked with GitHub Flavored Markdown and line breaks
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+});
+
+function renderMarkdown(content: string): string {
+  if (!content) return '';
+  try {
+    return marked.parse(content, { async: false }) as string;
+  } catch {
+    return content;
+  }
+}
 
 const BRAND_ORB_COLORS = {
   bg: '#0A192F',
@@ -24,11 +42,21 @@ const BRAND_ORB_COLORS = {
   c4: '#2563EB',
 };
 
+interface AttachedFile {
+  name: string;
+  size: string;
+  file?: File;
+}
+
 interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp?: string;
+  attachment?: {
+    name: string;
+    size: string;
+  };
   options?: { id: string; label: string }[];
   chips?: string[];
   summaryCard?: { label: string; value: string }[];
@@ -56,11 +84,14 @@ export function ChatbotWidget() {
   const [streamingContent, setStreamingContent] = useState('');
   const [aiState, setAiState] = useState<'idle' | 'thinking' | 'streaming'>('idle');
   const [wsConnected, setWsConnected] = useState(false);
+  const [attachedFile, setAttachedFile] = useState<AttachedFile | null>(null);
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const lastUserPromptRef = useRef<string>('');
+  const streamingContentRef = useRef<string>('');
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -120,19 +151,25 @@ export function ChatbotWidget() {
         clearInterval(interval);
         setIsStreaming(false);
         setAiState('idle');
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: 'resp-' + Date.now(),
-            role: 'assistant',
-            content: response,
-            options,
-            chips,
-            summaryCard,
-            actionPair,
-            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          },
-        ]);
+        setMessages((prev) => {
+          const lastMsg = prev[prev.length - 1];
+          if (lastMsg && lastMsg.role === 'assistant' && lastMsg.content === response) {
+            return prev;
+          }
+          return [
+            ...prev,
+            {
+              id: 'resp-' + Date.now(),
+              role: 'assistant',
+              content: response,
+              options,
+              chips,
+              summaryCard,
+              actionPair,
+              timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            },
+          ];
+        });
         setStreamingContent('');
       }
     }, 35);
@@ -142,8 +179,10 @@ export function ChatbotWidget() {
   useEffect(() => {
     let ws: WebSocket | null = null;
     let reconnectTimeout: any = null;
+    let isDisposed = false;
 
     const connectWebSocket = () => {
+      if (isDisposed) return;
       try {
         const rawUrl = (import.meta.env.VITE_WS_URL as string)?.trim();
         const defaultWsUrl = 'wss://nai-chatbot.onrender.com/ws/chat';
@@ -163,39 +202,54 @@ export function ChatbotWidget() {
 
         ws = new WebSocket(wsUrl);
 
-        ws.onopen = () => setWsConnected(true);
-        ws.onerror = () => setWsConnected(false);
+        ws.onopen = () => {
+          if (!isDisposed) setWsConnected(true);
+        };
+        ws.onerror = () => {
+          if (!isDisposed) setWsConnected(false);
+        };
         ws.onclose = () => {
+          if (isDisposed) return;
           setWsConnected(false);
           reconnectTimeout = setTimeout(connectWebSocket, 5000);
         };
 
         ws.onmessage = (event) => {
+          if (isDisposed) return;
           try {
             const data = JSON.parse(event.data);
             if (data.type === 'start') {
               setIsStreaming(true);
               setAiState('streaming');
+              streamingContentRef.current = '';
               setStreamingContent('');
             } else if (data.type === 'token') {
-              setStreamingContent((prev) => prev + (data.content || ''));
+              streamingContentRef.current += (data.content || '');
+              setStreamingContent(streamingContentRef.current);
             } else if (data.type === 'done') {
+              const finalContent = streamingContentRef.current;
+              streamingContentRef.current = '';
               setIsStreaming(false);
               setAiState('idle');
-              setStreamingContent((finalContent) => {
-                if (finalContent.trim()) {
-                  setMessages((prev) => [
+              setStreamingContent('');
+
+              if (finalContent.trim()) {
+                setMessages((prev) => {
+                  const lastMsg = prev[prev.length - 1];
+                  if (lastMsg && lastMsg.role === 'assistant' && lastMsg.content === finalContent) {
+                    return prev;
+                  }
+                  return [
                     ...prev,
                     {
-                      id: 'msg-' + Date.now(),
+                      id: 'msg-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
                       role: 'assistant',
                       content: finalContent,
                       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                     },
-                  ]);
-                }
-                return '';
-              });
+                  ];
+                });
+              }
             } else if (data.type === 'error') {
               // Gracefully fall back to rich presaved simulation if provider/API key error happens
               console.warn('Backend returned service note, engaging fallback simulation:', data.content);
@@ -208,22 +262,60 @@ export function ChatbotWidget() {
 
         wsRef.current = ws;
       } catch {
-        setWsConnected(false);
-        reconnectTimeout = setTimeout(connectWebSocket, 5000);
+        if (!isDisposed) {
+          setWsConnected(false);
+          reconnectTimeout = setTimeout(connectWebSocket, 5000);
+        }
       }
     };
 
     connectWebSocket();
 
     return () => {
-      if (ws) ws.close();
+      isDisposed = true;
       if (reconnectTimeout) clearTimeout(reconnectTimeout);
+      if (ws) {
+        ws.onopen = null;
+        ws.onclose = null;
+        ws.onerror = null;
+        ws.onmessage = null;
+        ws.close();
+      }
+      wsRef.current = null;
     };
   }, [runSimulationResponse]);
 
+  const handleFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formattedSize = file.size < 1024 * 1024
+      ? `${Math.max(1, Math.round(file.size / 1024))} KB`
+      : `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+
+    setAttachedFile({
+      name: file.name,
+      size: formattedSize,
+      file,
+    });
+    e.target.value = '';
+    setTimeout(() => inputRef.current?.focus(), 100);
+  };
+
+  const handleRemoveFile = () => {
+    setAttachedFile(null);
+  };
+
   const handleSend = (textToSend?: string) => {
-    const text = (textToSend || inputValue).trim();
-    if (!text || isStreaming) return;
+    const rawText = (textToSend || inputValue).trim();
+    if ((!rawText && !attachedFile) || isStreaming) return;
+
+    const currentAttachment = attachedFile ? { name: attachedFile.name, size: attachedFile.size } : undefined;
+    const text = rawText || (currentAttachment ? `Attached document: ${currentAttachment.name}` : '');
 
     lastUserPromptRef.current = text;
 
@@ -231,20 +323,26 @@ export function ChatbotWidget() {
       id: 'user-' + Date.now(),
       role: 'user',
       content: text,
+      attachment: currentAttachment,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
     const newHistory = [...messages, userMsg];
     setMessages(newHistory);
     setInputValue('');
+    setAttachedFile(null);
     setAiState('thinking');
     setIsStreaming(true);
     setStreamingContent('');
 
+    const promptPayload = currentAttachment 
+      ? `${text}\n\n[Uploaded File Attachment: ${currentAttachment.name} (${currentAttachment.size})]`
+      : text;
+
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
       wsRef.current.send(
         JSON.stringify({
-          message: text,
+          message: promptPayload,
           history: newHistory.map((m) => ({ role: m.role, content: m.content })),
         })
       );
@@ -391,7 +489,10 @@ export function ChatbotWidget() {
 
                         {/* Bubble Card */}
                         <div className="rounded-2xl rounded-tl-sm bg-white p-3.5 text-sm text-slate-800 shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100 leading-relaxed font-normal">
-                          {msg.content}
+                          <div
+                            className="markdown-content text-sm text-slate-800 leading-relaxed font-normal [&_p]:mb-2.5 [&_p:last-child]:mb-0 [&_strong]:font-bold [&_strong]:text-slate-900 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-2 [&_li]:mb-1 [&_code]:bg-slate-100 [&_code]:text-blue-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-xs [&_code]:font-mono [&_pre]:bg-slate-900 [&_pre]:text-slate-100 [&_pre]:p-3 [&_pre]:rounded-xl [&_pre]:my-2 [&_pre]:overflow-x-auto [&_a]:text-blue-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-800 [&_h1]:text-base [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:mt-3 [&_h1]:mb-1 [&_h2]:text-sm [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-2.5 [&_h2]:mb-1 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:mt-2 [&_h3]:mb-1 [&_blockquote]:border-l-2 [&_blockquote]:border-blue-500 [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-slate-600 [&_blockquote]:my-2"
+                            dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }}
+                          />
 
                           {/* Option list with Chevrons (Like 'New bicycle >' in reference) */}
                           {msg.options && msg.options.length > 0 && (
@@ -463,7 +564,14 @@ export function ChatbotWidget() {
                   ) : (
                     /* User Bubble (Right-aligned clean pill from reference) */
                     <div className="flex justify-end">
-                      <div className="max-w-[80%] rounded-2xl rounded-tr-sm bg-white px-4 py-2.5 text-sm font-medium text-slate-800 shadow-[0_2px_6px_rgba(0,0,0,0.03)] border border-slate-200/90 leading-relaxed">
+                      <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-white px-4 py-2.5 text-sm font-medium text-slate-800 shadow-[0_2px_6px_rgba(0,0,0,0.03)] border border-slate-200/90 leading-relaxed">
+                        {msg.attachment && (
+                          <div className="mb-2 flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2 border border-slate-200/80 text-xs font-mono text-slate-700">
+                            <FileText className="size-4 text-blue-600 shrink-0" />
+                            <span className="truncate font-semibold max-w-[170px] text-[11px]">{msg.attachment.name}</span>
+                            <span className="text-[10px] text-slate-400 shrink-0">({msg.attachment.size})</span>
+                          </div>
+                        )}
                         {msg.content}
                       </div>
                     </div>
@@ -484,7 +592,10 @@ export function ChatbotWidget() {
                     <div className="rounded-2xl rounded-tl-sm bg-white p-3.5 text-sm text-slate-800 shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100 leading-relaxed">
                       {streamingContent ? (
                         <div>
-                          {streamingContent}
+                          <div
+                            className="markdown-content text-sm text-slate-800 leading-relaxed font-normal [&_p]:mb-2.5 [&_p:last-child]:mb-0 [&_strong]:font-bold [&_strong]:text-slate-900 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-2 [&_li]:mb-1 [&_code]:bg-slate-100 [&_code]:text-blue-700 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-xs [&_code]:font-mono [&_pre]:bg-slate-900 [&_pre]:text-slate-100 [&_pre]:p-3 [&_pre]:rounded-xl [&_pre]:my-2 [&_pre]:overflow-x-auto [&_a]:text-blue-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-800 [&_h1]:text-base [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:mt-3 [&_h1]:mb-1 [&_h2]:text-sm [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-2.5 [&_h2]:mb-1 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:mt-2 [&_h3]:mb-1"
+                            dangerouslySetInnerHTML={{ __html: renderMarkdown(streamingContent) }}
+                          />
                           <span className="inline-block w-1.5 h-3.5 ml-1 bg-blue-600 animate-pulse" />
                         </div>
                       ) : (
@@ -500,14 +611,58 @@ export function ChatbotWidget() {
 
             {/* Bottom Composer Bar */}
             <div className="p-3 bg-white border-t border-slate-100">
-              <div className="flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200/90 pl-4 pr-1.5 py-1.5 focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-xs transition-all no-focus-ring">
+              {/* Attached file chip preview above input */}
+              {attachedFile && (
+                <div className="mb-2 flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200/90 px-3 py-1.5 text-xs">
+                  <div className="flex items-center gap-2 overflow-hidden">
+                    <FileText className="size-3.5 text-blue-600 shrink-0" />
+                    <span className="truncate font-medium text-slate-800 text-[11px] max-w-[240px]">
+                      {attachedFile.name}
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-mono shrink-0">
+                      ({attachedFile.size})
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRemoveFile}
+                    title="Remove attachment"
+                    className="flex size-5 items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors cursor-pointer"
+                  >
+                    <X className="size-3" />
+                  </button>
+                </div>
+              )}
+
+              {/* Hidden file input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                onChange={handleFileChange}
+                accept=".pdf,.doc,.docx,.txt,.csv,.json,.png,.jpg,.jpeg,.webp"
+                className="hidden"
+              />
+
+              <div className="flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200/90 pl-3 pr-1.5 py-1.5 focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-xs transition-all no-focus-ring">
+                {/* Paperclip attachment button */}
+                <button
+                  type="button"
+                  onClick={handleFileClick}
+                  disabled={isStreaming}
+                  title="Attach file (PDF, Docs, TXT, CSV, Images)"
+                  aria-label="Attach file"
+                  className="flex size-7 shrink-0 items-center justify-center rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer disabled:opacity-40"
+                >
+                  <Paperclip className="size-4" />
+                </button>
+
                 <input
                   ref={inputRef}
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask something..."
+                  placeholder={attachedFile ? "Add a message or press Enter..." : "Ask something..."}
                   disabled={isStreaming}
                   className="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 outline-none border-none no-focus-ring disabled:opacity-50"
                   style={{ outline: 'none', boxShadow: 'none' }}
@@ -516,7 +671,7 @@ export function ChatbotWidget() {
                 <button
                   type="button"
                   onClick={() => handleSend()}
-                  disabled={!inputValue.trim() || isStreaming}
+                  disabled={(!inputValue.trim() && !attachedFile) || isStreaming}
                   aria-label="Send message"
                   className="flex size-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-slate-900 cursor-pointer disabled:cursor-not-allowed shadow-xs active:scale-95 transition-all"
                 >
