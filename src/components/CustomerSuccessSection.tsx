@@ -33,7 +33,7 @@ export const CustomerSuccessSection: React.FC<CustomerSuccessSectionProps> = ({
               {/* Left Skyscraper Image (5 cols) */}
               <div className="lg:col-span-5 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-white/20 h-[220px] sm:h-[400px]">
                 <img
-                  src="/images/service_document_extraction.webp"
+                  src="/images/hero_green_office.jpg"
                   alt="Global Enterprise Architecture"
                   className="w-full h-full object-cover object-center filter brightness-90 hover:scale-105 transition-transform duration-700"
                 />

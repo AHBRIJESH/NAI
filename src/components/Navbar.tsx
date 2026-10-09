@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const resourcesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resourcesDropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // Dynamic Scroll Detection for Seamless Top-Transparency & Cool Scrolled Transition
+  // Dynamic Scroll Detection for Seamless Top-Transparency & Scrolled Transition
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -169,14 +169,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     onNavigate('industries', sector);
   };
 
-  const isHeroTop = currentPage === 'home' && !isScrolled && !mobileMenuOpen;
+  const isDarkHeroTop = currentPage === 'home' && !isScrolled && !mobileMenuOpen;
 
   const getNavLinkClasses = (isActive: boolean, isOpen = false) => {
-    if (isHeroTop) {
+    if (isDarkHeroTop) {
       if (isActive || isOpen) {
         return 'text-[#38BDF8] font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]';
       }
-      return 'text-white/95 hover:text-white font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]';
+      return 'text-white/90 hover:text-white font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]';
     }
     if (isActive || isOpen) {
       return 'text-[#1D4ED8] font-bold';
@@ -190,33 +190,33 @@ export const Navbar: React.FC<NavbarProps> = ({
         mobileMenuOpen
           ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/90 shadow-md py-0'
           : isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-0'
+            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] py-0'
             : currentPage === 'home'
-              ? 'bg-transparent border-none border-b-0 shadow-none py-1 sm:py-2'
-              : 'bg-white/90 backdrop-blur-md border-b border-slate-200/70 shadow-xs py-0'
+              ? 'bg-transparent border-none border-b-0 shadow-none py-1 sm:py-1.5'
+              : 'bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-none py-0'
       }`}
     >
       <div
-        className={`max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between transition-all duration-300 ease-in-out ${
-          isScrolled ? 'h-16 sm:h-18' : 'h-18 sm:h-20'
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ease-in-out ${
+          isScrolled ? 'h-14 sm:h-15' : 'h-15 sm:h-16'
         }`}
       >
         
-        {/* Brand Logo & Desktop Navigation Links in unified high-contrast capsule at Hero Top */}
+        {/* Brand Logo & Desktop Navigation Links in unified glass capsule till Contact Us */}
         <div
           className={`flex items-center transition-all duration-300 ${
-            isHeroTop
-              ? 'p-1.5 sm:p-2 pr-4 sm:pr-6 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 shadow-md shadow-black/20 gap-3 sm:gap-4 md:gap-5 lg:gap-6'
-              : 'gap-6 lg:gap-10'
+            isDarkHeroTop
+              ? 'p-1.5 pr-4 sm:pr-5 rounded-full bg-slate-950/50 backdrop-blur-xl border border-white/20 shadow-[0_4px_24px_-2px_rgba(0,0,0,0.45)] gap-2.5 sm:gap-3.5 md:gap-4 lg:gap-5'
+              : 'gap-5 lg:gap-8'
           }`}
         >
-          {/* Brand: Official Logo */}
+          {/* Brand: Official Logo with Better Bright Gradient Shade Background */}
           <div
             onClick={() => handleLinkClick('home')}
             className={`flex items-center cursor-pointer select-none group transition-all duration-300 ${
-              isHeroTop
-                ? 'bg-white hover:bg-white/95 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full shadow-xs'
-                : 'py-0.5'
+              isDarkHeroTop
+                ? 'px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-gradient-to-r from-white via-[#F0F7FF] to-[#E0EFFF] border border-white/90 shadow-[0_2px_10px_rgba(37,99,235,0.18),inset_0_1px_1px_rgba(255,255,255,1)] hover:brightness-105 hover:scale-102'
+                : 'py-0.5 hover:opacity-90'
             }`}
             role="button"
             tabIndex={0}
@@ -226,17 +226,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             <img
               src="/images/logo.png"
               alt="NAIR.AI"
-              className="h-7 sm:h-8 md:h-8 lg:h-8.5 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+              className="h-6 sm:h-6.5 md:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
             />
           </div>
 
-          {/* Vertical Divider when in Hero Top pill on desktop */}
-          {isHeroTop && (
-            <div className="hidden md:block h-5 w-px bg-white/20 shrink-0" aria-hidden="true" />
+          {/* Vertical Divider inside glass capsule at Hero Top */}
+          {isDarkHeroTop && (
+            <div className="hidden md:block h-4 w-px bg-white/25 shrink-0" aria-hidden="true" />
           )}
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-7">
+          <nav className="hidden md:flex items-center gap-3.5 lg:gap-6">
           {navLinks.map((link) => {
             const isActive =
               currentPage === link.page ||
@@ -268,10 +268,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
                         servicesOpen
-                          ? isHeroTop
+                          ? isDarkHeroTop
                             ? 'rotate-180 text-[#38BDF8]'
                             : 'rotate-180 text-[#1D4ED8]'
-                          : isHeroTop
+                          : isDarkHeroTop
                             ? 'text-slate-300 group-hover:text-white'
                             : 'text-slate-400 group-hover:text-[#1D4ED8]'
                       }`}
@@ -279,7 +279,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {isActive && (
                       <span
                         className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                          isDarkHeroTop
+                            ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]'
+                            : 'bg-[#1D4ED8]'
                         }`}
                       />
                     )}
@@ -362,10 +364,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
                         industriesOpen
-                          ? isHeroTop
+                          ? isDarkHeroTop
                             ? 'rotate-180 text-[#38BDF8]'
                             : 'rotate-180 text-[#1D4ED8]'
-                          : isHeroTop
+                          : isDarkHeroTop
                             ? 'text-slate-300 group-hover:text-white'
                             : 'text-slate-400 group-hover:text-[#1D4ED8]'
                       }`}
@@ -373,7 +375,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {isActive && (
                       <span
                         className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                          isDarkHeroTop
+                            ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]'
+                            : 'bg-[#1D4ED8]'
                         }`}
                       />
                     )}
@@ -431,10 +435,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 transition-transform duration-250 ease-out ${
                         resourcesOpen
-                          ? isHeroTop
+                          ? isDarkHeroTop
                             ? 'rotate-180 text-[#38BDF8]'
                             : 'rotate-180 text-[#1D4ED8]'
-                          : isHeroTop
+                          : isDarkHeroTop
                             ? 'text-slate-300 group-hover:text-white'
                             : 'text-slate-400 group-hover:text-[#1D4ED8]'
                       }`}
@@ -442,7 +446,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {isActive && (
                       <span
                         className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                          isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                          isDarkHeroTop
+                            ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]'
+                            : 'bg-[#1D4ED8]'
                         }`}
                       />
                     )}
@@ -522,7 +528,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {isActive && (
                   <span
                     className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                      isHeroTop ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]' : 'bg-[#1D4ED8]'
+                      isDarkHeroTop
+                        ? 'bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]'
+                        : 'bg-[#1D4ED8]'
                     }`}
                   />
                 )}
@@ -533,7 +541,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Right Action CTA */}
-        <div className="hidden sm:flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-3">
           <button
             type="button"
             onClick={(e) => {
@@ -541,7 +549,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               e.stopPropagation();
               onBookCall();
             }}
-            className="px-5 py-2.5 rounded-full bg-[#1D4ED8] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98 whitespace-nowrap"
+            className={`px-4 sm:px-4.5 py-2 rounded-full text-xs font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98 whitespace-nowrap ${
+              isDarkHeroTop
+                ? 'bg-[#1D4ED8] hover:bg-[#1E40AF] text-white shadow-[0_4px_20px_rgba(29,78,216,0.4)] hover:shadow-[0_6px_25px_rgba(29,78,216,0.6)] border border-blue-400/35'
+                : 'bg-[#1D4ED8] hover:bg-[#1E40AF] text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30'
+            }`}
           >
             <span>Book an AI strategy call</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -551,14 +563,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className={`md:hidden p-2 focus:outline-hidden cursor-pointer transition-colors ${
-            isHeroTop && !mobileMenuOpen
-              ? 'p-2 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/20 text-white hover:text-[#38BDF8] shadow-md shadow-black/20'
+          className={`md:hidden p-2 rounded-xl focus:outline-hidden cursor-pointer transition-colors ${
+            isDarkHeroTop && !mobileMenuOpen
+              ? 'bg-white/10 backdrop-blur-md border border-white/20 text-white hover:text-[#38BDF8] shadow-sm'
               : 'text-slate-700 hover:text-black'
           }`}
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6 text-slate-800" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5 text-slate-800" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 

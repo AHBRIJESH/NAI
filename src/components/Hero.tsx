@@ -50,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onOpenAssessment }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-28 sm:pt-36 lg:pt-36 pb-20 sm:pb-24 lg:pb-28"
+        className="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:pl-8 lg:pr-12 xl:pl-10 xl:pr-14 pt-28 sm:pt-36 lg:pt-36 pb-20 sm:pb-24 lg:pb-28"
       >
         <div className="max-w-4xl flex flex-col justify-center text-left items-start">
           

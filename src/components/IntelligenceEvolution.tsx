@@ -93,7 +93,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       corePillars: 'ANALYZE · LEARN · CREATE · SOLVE · EMPOWER',
       tagline: 'Specialized Domain Mastery with Deterministic Guardrails',
       desc: 'Systems engineered to master specific, bounded objectives with superhuman precision. From parsing complex hospital prior authorizations to sub-15ms fraud detection, AI automates high-friction enterprise operations without hallucinations.',
-      image: '/images/evolution_ai.jpg',
+      image: '/images/8ed5f49d-f91f-4654-b1c7-426d8a4b954f.webp',
       nodes: [
         { label: 'Analyze', desc: 'Real-time telemetry ingestion and multi-factor pattern recognition.' },
         { label: 'Learn', desc: 'Continuous domain parameter tuning over proprietary private embeddings.' },
@@ -132,7 +132,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       corePillars: 'UNDERSTAND · LEARN · REASON · ADAPT',
       tagline: 'Human-Level Cognitive Synthesis Across Unseen Domains',
       desc: 'A synthetic system capable of learning, reasoning, and executing any intellectual task that a human can perform. AGI abstracts knowledge from one discipline and autonomously applies it to solve novel problems without task-specific retraining.',
-      image: '/images/evolution_agi.jpg',
+      image: '/images/daf9ba26-e623-42f3-9f2c-619f3f37f871.webp',
       nodes: [
         { label: 'Science', desc: 'Autonomous hypothesis formulation and cross-disciplinary inquiry.' },
         { label: 'Technology', desc: 'Self-writing, self-debugging multi-tier software architectures.' },
@@ -174,7 +174,7 @@ export const IntelligenceEvolution: React.FC<IntelligenceEvolutionProps> = ({
       corePillars: 'UNDERSTAND · REASON · INNOVATE · TRANSCEND',
       tagline: 'Synthetic Cognition Surpassing Total Collective Human Capability',
       desc: 'The theoretical threshold where synthetic intelligence vastly exceeds the collective cognitive capability of all humanity across scientific discovery, recursive self-improvement, macroeconomic optimization, and planetary engineering.',
-      image: '/images/evolution_asi.jpg',
+      image: '/images/be5fc172-f53f-4263-9ea8-caffceb04851.webp',
       nodes: [
         { label: 'Accelerated Discovery', desc: 'Compressing centuries of physics and biology into minutes.' },
         { label: 'Grand Challenges', desc: 'Permanent eradication of cellular degradation and resource scarcity.' },

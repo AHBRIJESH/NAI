@@ -109,19 +109,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="flex flex-wrap items-center gap-4">
               <button
                 type="button"
-                onClick={() => onBookCall('About Us - Consultation')}
-                className="px-8 py-3.5 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-xl shadow-red-600/25 hover:scale-102 flex items-center gap-2.5 cursor-pointer"
-              >
-                <span>Book an AI strategy call</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-
-              <button
-                type="button"
                 onClick={() => onNavigate('services')}
-                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer"
+                className="px-7 py-3.5 bg-[#1D4ED8] hover:bg-[#1e40af] text-white border border-[#1D4ED8] font-mono text-xs sm:text-sm uppercase tracking-wider font-extrabold rounded-full transition-all shadow-md shadow-blue-600/20 hover:scale-102 cursor-pointer flex items-center gap-2"
               >
                 <span>Explore Services</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>
           </motion.div>
@@ -133,9 +125,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between group">
             <div>
               {/* Relatable Architectural Image Banner */}
-              <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+              <div className="relative w-full h-56 sm:h-64 lg:h-72 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/banner_ai_readiness.webp"
+                  src="/images/shutterstock-1397031029.webp"
                   alt="United States Operations"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -160,9 +152,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                     </span>
                   </div>
                 </div>
-                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-[#1D4ED8]">
-                  US ACTIVE
-                </span>
               </div>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
@@ -195,9 +184,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between group">
             <div>
               {/* Relatable Architectural Image Banner */}
-              <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
+              <div className="relative w-full h-56 sm:h-64 lg:h-72 rounded-2xl overflow-hidden mb-6 border border-slate-200/80 shadow-xs bg-slate-900 group-hover:scale-[1.01] transition-transform">
                 <img
-                  src="/images/c9d11ba6-c2c9-428f-8d67-1f013aa3d701.webp"
+                  src="/images/R.jpg_11zon.webp"
                   alt="India Operations"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -222,9 +211,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                     </span>
                   </div>
                 </div>
-                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-red-50 text-[#DC2626]">
-                  INDIA ACTIVE
-                </span>
               </div>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
